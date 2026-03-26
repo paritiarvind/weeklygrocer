@@ -1,9 +1,74 @@
 {
-  "plan": null,
+  "plan": [
+    {
+      "day": "Monday",
+      "b": "moong_cheela",
+      "l": "palak_paneer",
+      "dn": "methi_dal"
+    },
+    {
+      "day": "Tuesday",
+      "b": "paneer_bhurji",
+      "l": "greek_salad",
+      "dn": "matar_paneer"
+    },
+    {
+      "day": "Wednesday",
+      "b": "moong_cheela",
+      "l": "dal_tadka",
+      "dn": "paneer_paratha"
+    },
+    {
+      "day": "Thursday",
+      "b": "avo_toast",
+      "l": "soya_curry",
+      "dn": "veggie_quesadilla"
+    },
+    {
+      "day": "Friday",
+      "b": "paneer_bhurji",
+      "l": "pasta_pesto",
+      "dn": "mediterranean_bowl"
+    },
+    {
+      "day": "Saturday",
+      "b": "muesli_bowl",
+      "l": "chana_masala",
+      "dn": "pasta_arrabiata"
+    },
+    {
+      "day": "Sunday",
+      "b": "overnight_oats",
+      "l": "buddha_bowl",
+      "dn": "dal_makhani"
+    }
+  ],
   "nextPlan": null,
-  "cookMap": {},
+  "cookMap": {
+    "0": "A",
+    "1": "N",
+    "2": "A",
+    "3": "N",
+    "4": "A",
+    "5": "N",
+    "6": "A",
+    "7": "N",
+    "8": "A",
+    "9": "N",
+    "10": "A",
+    "11": "N",
+    "12": "A",
+    "13": "N",
+    "14": "A",
+    "15": "N",
+    "16": "A",
+    "17": "N",
+    "18": "A",
+    "19": "N",
+    "20": "A"
+  },
   "nextCookMap": {},
-  "genNum": 1,
+  "genNum": 2,
   "completed": {},
   "shopChecked": {},
   "manualItems": [],
@@ -853,5 +918,5 @@
     "quick": false,
     "budget": false
   },
-  "lastUpdated": "2026-03-26T10:25:12.893Z"
+  "lastUpdated": "2026-03-26T10:25:14.942Z"
 }
