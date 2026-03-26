@@ -70,7 +70,7 @@
   "nextCookMap": {},
   "genNum": 1,
   "completed": {
-    "Thursday-Dinner": true
+    "Thursday-Dinner": false
   },
   "shopChecked": {},
   "manualItems": [],
@@ -105,5 +105,5 @@
     "quick": false,
     "budget": false
   },
-  "lastUpdated": "2026-03-26T09:49:19.727Z"
+  "lastUpdated": "2026-03-26T09:56:39.946Z"
 }
