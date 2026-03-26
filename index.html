@@ -97,21 +97,23 @@ button,input{font-family:'DM Sans',sans-serif;}
 .match-pct{font-size:.66rem;font-weight:700;min-width:28px;}
 
 /* ── TODAY MEALS ── */
-.meal-card{border-radius:14px;overflow:hidden;border:1px solid var(--s3);margin-bottom:10px;cursor:pointer;}
-.meal-card-hero{height:105px;display:flex;align-items:flex-end;padding:12px 14px;position:relative;}
-.meal-hero-bg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:3.8rem;opacity:.3;}
-.meal-hero-grad{position:absolute;inset:0;}
+.meal-card{border-radius:14px;overflow:hidden;border:1px solid var(--s3);margin-bottom:10px;cursor:pointer;position:relative;transition:opacity .3s;}
+.meal-card.is-done{opacity:.55;}
+.meal-card-hero{height:88px;display:flex;align-items:flex-end;padding:10px 13px;position:relative;overflow:hidden;}
+.meal-hero-bg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:3.2rem;opacity:.28;pointer-events:none;}
+.meal-hero-grad{position:absolute;inset:0;pointer-events:none;}
 .meal-hero-content{position:relative;z-index:1;width:100%;}
-.meal-type-row{display:flex;align-items:center;gap:6px;margin-bottom:3px;font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:rgba(255,255,255,.65);}
-.meal-name{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:700;color:#fff;line-height:1.2;}
-.meal-card-foot{background:var(--s1);padding:10px 14px;display:flex;align-items:center;gap:10px;}
-.meal-stats{display:flex;gap:10px;flex:1;flex-wrap:wrap;}
-.mstat{font-size:.7rem;color:var(--t2);}
+.meal-type-row{display:flex;align-items:center;gap:6px;margin-bottom:2px;font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:rgba(255,255,255,.65);}
+.meal-name{font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:#fff;line-height:1.2;}
+.meal-done-badge{position:absolute;top:8px;right:8px;width:24px;height:24px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;color:#000;z-index:3;}
+.meal-card-foot{background:var(--s1);padding:9px 13px;display:flex;align-items:center;gap:8px;}
+.meal-stats{display:flex;gap:8px;flex:1;flex-wrap:wrap;}
+.mstat{font-size:.69rem;color:var(--t2);}
 .mstat b{color:var(--t1);}
-.tick-btn{width:34px;height:34px;border-radius:9px;border:1.5px solid;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.88rem;transition:all .15s;flex-shrink:0;background:transparent;}
+.tick-btn{width:32px;height:32px;border-radius:8px;border:1.5px solid;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.85rem;transition:all .15s;flex-shrink:0;background:transparent;}
 .tick-btn.done{background:var(--green);border-color:var(--green);color:#000;}
 .tick-btn:not(.done){border-color:var(--s4);color:var(--t4);}
-.cook-btn{background:var(--gold);color:#000;border:none;border-radius:8px;padding:6px 12px;font-size:.72rem;font-weight:700;cursor:pointer;flex-shrink:0;font-family:'DM Sans',sans-serif;}
+.cook-btn{background:var(--gold);color:#000;border:none;border-radius:8px;padding:6px 11px;font-size:.72rem;font-weight:700;cursor:pointer;flex-shrink:0;font-family:'DM Sans',sans-serif;}
 .cook-btn:active{background:var(--gold2);}
 
 /* ── WEEK LIST ── */
@@ -283,15 +285,14 @@ button,input{font-family:'DM Sans',sans-serif;}
   <!-- TOP BAR -->
   <div id="topbar">
     <div class="serif" style="font-size:1.1rem;font-weight:700;font-style:italic;color:var(--gold);flex:1;">Rasa</div>
-    <button onclick="openScan()" style="width:34px;height:34px;border-radius:9px;border:1px solid var(--s3);background:var(--s2);color:var(--t2);cursor:pointer;font-size:.88rem;">🔍</button>
-    <button onclick="openShare()" style="width:34px;height:34px;border-radius:9px;border:1px solid var(--s3);background:var(--s2);color:var(--t2);cursor:pointer;font-size:.82rem;font-weight:700;">↗</button>
-  </div>
-
-  <!-- SYNC BAR -->
-  <div class="sync-bar" id="syncbar">
-    <div class="sync-dot ok" id="syncdot"></div>
-    <span id="synclabel">Synced</span>
-    <button onclick="loadFromGitHub(true)" style="margin-left:auto;background:none;border:none;color:var(--t3);font-size:.68rem;cursor:pointer;font-family:'DM Sans',sans-serif;">↺ Refresh</button>
+    <!-- Sync status inline -->
+    <div style="display:flex;align-items:center;gap:5px;margin-right:4px;">
+      <div class="sync-dot ok" id="syncdot"></div>
+      <span id="synclabel" style="font-size:.6rem;color:var(--t3);"></span>
+    </div>
+    <button onclick="loadFromGitHub(true)" title="Refresh" style="width:30px;height:30px;border-radius:8px;border:1px solid var(--s3);background:var(--s2);color:var(--t2);cursor:pointer;font-size:.8rem;">↺</button>
+    <button onclick="openScan()" style="width:30px;height:30px;border-radius:8px;border:1px solid var(--s3);background:var(--s2);color:var(--t2);cursor:pointer;font-size:.82rem;">🔍</button>
+    <button onclick="openShare()" style="width:30px;height:30px;border-radius:8px;border:1px solid var(--s3);background:var(--s2);color:var(--t2);cursor:pointer;font-size:.78rem;font-weight:700;">↗</button>
   </div>
 
   <!-- CONTENT -->
@@ -299,61 +300,97 @@ button,input{font-family:'DM Sans',sans-serif;}
 
     <!-- TODAY PAGE -->
     <div class="page active" id="page-today">
-      <div id="today-greeting" class="serif" style="font-size:1.4rem;font-weight:700;line-height:1.2;margin-bottom:3px;"></div>
-      <div id="today-date" style="font-size:.78rem;color:var(--t3);margin-bottom:14px;"></div>
-      <div id="today-progress" class="prog-wrap" style="display:none;">
-        <div class="prog-ring-wrap">
-          <svg class="prog-svg" width="48" height="48" viewBox="0 0 48 48">
-            <circle fill="none" stroke="#2e2e2e" stroke-width="4" cx="24" cy="24" r="20"/>
-            <circle id="prog-ring-fill" fill="none" stroke="#42c77a" stroke-width="4" stroke-linecap="round" cx="24" cy="24" r="20"
-              stroke-dasharray="125.66" stroke-dashoffset="125.66" style="transition:stroke-dashoffset .5s;"/>
-          </svg>
-          <div class="prog-text" id="prog-num">0</div>
-        </div>
-        <div>
-          <div style="font-size:.86rem;font-weight:600;" id="prog-label">0/21 meals done</div>
-          <div style="font-size:.7rem;color:var(--t3);margin-top:1px;" id="prog-sub">Start cooking below</div>
-        </div>
+      <!-- Greeting -->
+      <div style="padding-top:4px;margin-bottom:14px;">
+        <div id="today-greeting" class="serif" style="font-size:1.35rem;font-weight:700;line-height:1.25;margin-bottom:2px;"></div>
+        <div id="today-date" style="font-size:.82rem;color:var(--gold);font-weight:500;font-style:italic;"></div>
       </div>
+
+      <!-- Progress bar (replaces ring — more readable) -->
+      <div id="today-progress" style="display:none;background:var(--s1);border:1px solid var(--s3);border-radius:12px;padding:13px 14px;margin-bottom:14px;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:7px;">
+          <span style="font-size:.78rem;font-weight:600;" id="prog-label">Week progress</span>
+          <span class="serif" style="font-size:1rem;font-weight:700;color:var(--green);" id="prog-num">0/21</span>
+        </div>
+        <div style="height:5px;background:var(--s4);border-radius:3px;overflow:hidden;">
+          <div id="prog-ring-fill" style="height:100%;background:linear-gradient(90deg,var(--green),#22d3ee);border-radius:3px;transition:width .5s;width:0%;"></div>
+        </div>
+        <div style="font-size:.68rem;color:var(--t3);margin-top:5px;" id="prog-sub">Start cooking below</div>
+      </div>
+
+      <!-- Today's meals -->
       <div id="today-meals"></div>
-      <div id="today-empty" style="text-align:center;padding:40px 0;display:none;">
-        <div style="font-size:2.4rem;margin-bottom:10px;">📅</div>
-        <div class="serif" style="font-size:1rem;font-weight:700;margin-bottom:6px;">No plan yet</div>
-        <div style="font-size:.76rem;color:var(--t3);margin-bottom:14px;">Go to the Week tab to generate this week's meals.</div>
-        <button class="btn btn-gold" onclick="switchTab('week')">Generate Plan →</button>
+
+      <!-- No plan state -->
+      <div id="today-empty" style="display:none;">
+        <div style="background:var(--s1);border:1px dashed var(--s4);border-radius:14px;padding:28px 20px;text-align:center;margin-top:8px;">
+          <div style="font-size:2.2rem;margin-bottom:10px;">🍽️</div>
+          <div class="serif" style="font-size:1rem;font-weight:700;margin-bottom:6px;">No meals planned yet</div>
+          <div style="font-size:.76rem;color:var(--t3);line-height:1.55;margin-bottom:16px;">
+            Tap <strong style="color:var(--t1);">Week</strong> below → <strong style="color:var(--t1);">Generate</strong> to build your 21-meal plan for A & N.
+          </div>
+          <button class="btn btn-gold" onclick="switchTab('week')" style="width:100%;height:44px;font-size:.88rem;">📅 Go to Week tab →</button>
+        </div>
+        <!-- How it works hint -->
+        <div style="margin-top:16px;padding:14px;background:var(--s2);border-radius:12px;border:1px solid var(--s3);">
+          <div style="font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--t3);margin-bottom:10px;">How RasaWeekly works</div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="display:flex;gap:10px;align-items:flex-start;"><span style="font-size:.8rem;width:20px;flex-shrink:0;">🥬</span><div style="font-size:.75rem;color:var(--t2);line-height:1.5;"><strong style="color:var(--t1);">Pantry</strong> — add ingredients you have at home</div></div>
+            <div style="display:flex;gap:10px;align-items:flex-start;"><span style="font-size:.8rem;width:20px;flex-shrink:0;">📅</span><div style="font-size:.75rem;color:var(--t2);line-height:1.5;"><strong style="color:var(--t1);">Week</strong> — generate 21 meals matched to your pantry, split between A & N</div></div>
+            <div style="display:flex;gap:10px;align-items:flex-start;"><span style="font-size:.8rem;width:20px;flex-shrink:0;">🍽️</span><div style="font-size:.75rem;color:var(--t2);line-height:1.5;"><strong style="color:var(--t1);">Today</strong> — see today's 3 meals, tap Cook for step-by-step, tick ✓ when done</div></div>
+            <div style="display:flex;gap:10px;align-items:flex-start;"><span style="font-size:.8rem;width:20px;flex-shrink:0;">🛒</span><div style="font-size:.75rem;color:var(--t2);line-height:1.5;"><strong style="color:var(--t1);">Shop</strong> — auto-generated shopping list for the week</div></div>
+          </div>
+        </div>
       </div>
     </div>
 
     <!-- WEEK PAGE -->
     <div class="page" id="page-week">
-      <!-- Week tabs -->
-      <div style="display:flex;gap:7px;margin-bottom:12px;overflow-x:auto;padding-bottom:2px;">
-        <button id="week-tab-current" class="btn btn-gold" style="flex-shrink:0;" onclick="setWeekView('current')">This Week</button>
-        <button id="week-tab-next" class="btn btn-ghost" style="flex-shrink:0;" onclick="setWeekView('next')">Next Week</button>
+
+      <!-- Week switcher -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;">
+        <button id="week-tab-current" class="btn btn-gold" onclick="setWeekView('current')" style="height:40px;font-size:.82rem;">📅 This Week</button>
+        <button id="week-tab-next" class="btn btn-ghost" onclick="setWeekView('next')" style="height:40px;font-size:.82rem;">⏭ Next Week</button>
       </div>
-      <!-- Cook split -->
-      <div id="cook-split" style="display:none;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;"></div>
-      <!-- Stats bar -->
-      <div id="week-stats" style="display:none;"></div>
-      <!-- Generate panel -->
-      <div class="card">
-        <div class="serif" style="font-size:.95rem;font-weight:700;margin-bottom:4px;" id="gen-panel-title">Generate this week</div>
-        <div style="font-size:.7rem;color:var(--t3);margin-bottom:12px;">21 meals · A & N split · Indian + Western · matched to your pantry</div>
-        <div class="filters" id="filter-btns"></div>
-        <button class="btn-generate" id="gen-btn" onclick="runGenerate()">Generate Week 1</button>
-        <div id="gen-loading-hint" style="font-size:.68rem;color:var(--t3);text-align:center;margin-top:8px;display:none;">Matching recipes to your pantry… 5–15 seconds</div>
-        <div id="gen-sub-btns" style="display:none;margin-top:8px;display:none;">
-          <button class="btn btn-ghost" style="width:100%;margin-bottom:6px;" onclick="runGenerate(false,true)">↺ Regenerate</button>
-          <button class="btn btn-blue" style="width:100%;" id="archive-btn" onclick="archiveWeek()">📁 Archive & start fresh</button>
+
+      <!-- This week: cook split + stats (only when current plan exists) -->
+      <div id="cook-split" style="display:none;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;"></div>
+      <div id="week-stats" style="display:none;margin-bottom:12px;"></div>
+
+      <!-- Generate panel — collapsible mid-week -->
+      <div class="card" id="gen-card">
+        <div style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;" onclick="toggleGenPanel()">
+          <div>
+            <div style="display:flex;align-items:center;gap:8px;">
+              <div class="serif" style="font-size:.95rem;font-weight:700;" id="gen-panel-title">Generate this week</div>
+              <span id="gen-week-badge" style="font-size:.62rem;padding:2px 8px;border-radius:4px;background:rgba(240,160,48,.12);color:var(--gold);font-weight:700;display:none;"></span>
+            </div>
+            <div style="font-size:.7rem;color:var(--t3);margin-top:2px;" id="gen-panel-sub">21 meals · A & N split · Indian + Western · pantry-matched</div>
+          </div>
+          <span id="gen-panel-chevron" style="color:var(--t3);font-size:.7rem;transition:transform .2s;">▼</span>
         </div>
-        <div id="gen-err" style="font-size:.74rem;color:#f08080;margin-top:8px;display:none;background:rgba(240,96,96,.08);border:1px solid rgba(240,96,96,.2);border-radius:8px;padding:8px 12px;"></div>
+        <div id="gen-panel-body" style="margin-top:14px;">
+          <div class="filters" id="filter-btns"></div>
+          <button class="btn-generate" id="gen-btn" onclick="runGenerate()">Generate Week 1</button>
+          <div id="gen-loading-hint" style="font-size:.68rem;color:var(--t3);text-align:center;margin-top:8px;display:none;">Matching recipes to your pantry… 5–15 seconds</div>
+          <div id="gen-sub-btns" style="margin-top:8px;display:none;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:7px;">
+              <button class="btn btn-ghost" style="font-size:.76rem;" onclick="runGenerate(false,true)">↺ Regenerate</button>
+              <button class="btn" style="font-size:.76rem;background:rgba(91,163,245,.1);border:1px solid rgba(91,163,245,.2);color:var(--blue);" onclick="printPDF()">🖨 Save PDF</button>
+            </div>
+            <button class="btn btn-blue" style="width:100%;font-size:.76rem;" id="archive-btn" onclick="archiveWeek()">📁 Archive & start next week</button>
+          </div>
+          <div id="gen-err" style="font-size:.74rem;color:#f08080;margin-top:8px;display:none;background:rgba(240,96,96,.08);border:1px solid rgba(240,96,96,.2);border-radius:8px;padding:8px 12px;"></div>
+        </div>
       </div>
-      <!-- Plan display -->
+
+      <!-- Week plan meal list -->
       <div id="week-plan-list"></div>
-      <div id="week-empty" style="text-align:center;padding:28px 0;display:none;">
-        <div style="font-size:1.8rem;margin-bottom:8px;">📅</div>
-        <div style="font-size:.76rem;color:var(--t3);">Hit Generate above to build your week.</div>
+      <div id="week-empty" style="text-align:center;padding:24px 0;display:none;">
+        <div style="font-size:1.6rem;margin-bottom:8px;">📅</div>
+        <div style="font-size:.78rem;color:var(--t3);">Hit Generate above to build your week.</div>
       </div>
+
     </div>
 
     <!-- SHOP PAGE -->
@@ -373,7 +410,7 @@ button,input{font-family:'DM Sans',sans-serif;}
       </div>
       <div style="font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--t4);margin-bottom:8px;">Recipe ingredients needed</div>
       <div id="shop-recipe-list"></div>
-      <div style="font-size:.62px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--t4);margin:14px 0 8px;">Your additions</div>
+      <div style="font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--t4);margin:14px 0 8px;">Your additions</div>
       <div class="inp-row" style="margin-bottom:10px;">
         <input class="inp" id="manual-inp" placeholder="Greek yogurt, sourdough, halloumi…" onkeydown="if(event.key==='Enter')addManual()">
         <button class="btn btn-gold" onclick="addManual()">Add</button>
@@ -408,8 +445,34 @@ button,input{font-family:'DM Sans',sans-serif;}
       </div>
       <!-- Change config -->
       <div style="margin-top:16px;">
-        <div class="serif" style="font-size:.95rem;font-weight:700;margin-bottom:8px;">Sync settings</div>
-        <button class="btn btn-ghost" style="width:100%;" onclick="resetSetup()">⚙ Change GitHub config</button>
+        <div class="serif" style="font-size:.95rem;font-weight:700;margin-bottom:8px;">Sync & Data</div>
+
+        <!-- Current week indicator -->
+        <div style="background:var(--s1);border:1px solid var(--s3);border-radius:10px;padding:12px 14px;margin-bottom:8px;display:flex;align-items:center;gap:10px;">
+          <span style="font-size:1rem;">📅</span>
+          <div style="flex:1;">
+            <div style="font-size:.84rem;font-weight:500;">Current week</div>
+            <div style="font-size:.68rem;color:var(--t3);margin-top:1px;" id="settings-week-num">Loading…</div>
+          </div>
+          <span style="font-size:.7rem;color:var(--green);font-weight:700;" id="settings-sync-time"></span>
+        </div>
+
+        <!-- Backup button -->
+        <button class="btn btn-ghost" style="width:100%;margin-bottom:8px;justify-content:center;" onclick="backupDB()">
+          💾 Download db.json backup
+        </button>
+
+        <!-- Change config -->
+        <button class="btn btn-ghost" style="width:100%;justify-content:center;" onclick="confirmResetSetup()">
+          ⚙ Change GitHub config
+        </button>
+
+        <div style="margin-top:10px;background:rgba(91,163,245,.06);border:1px solid rgba(91,163,245,.15);border-radius:9px;padding:10px 12px;">
+          <div style="font-size:.68rem;color:var(--t2);line-height:1.6;">
+            <strong style="color:var(--blue);">ℹ️ About clearing cache</strong><br>
+            Clearing your browser cache removes your GitHub token from this device only — your plan, week number and all data stay safe in <code style="color:var(--gold);font-size:.65rem;">db.json</code> on GitHub. Just re-enter your credentials on the setup screen and everything loads back.
+          </div>
+        </div>
       </div>
     </div>
 
@@ -752,14 +815,13 @@ async function ghRequest(method, path, body) {
   return res.json();
 }
 
-async function loadFromGitHub(showMsg=false) {
+async function loadFromGitHub(showMsg=false, skipShopRender=false) {
   if (!CFG) return;
   setSyncStatus('busy','Syncing…');
   try {
     const data = await ghRequest('GET','db.json');
     dbSha = data.sha;
     const db = JSON.parse(atob(data.content.replace(/\n/g,'')));
-    // Merge remote into state
     if (db.plan)     ST.plan = idsToRecipes(db.plan);
     if (db.nextPlan) ST.nextPlan = idsToRecipes(db.nextPlan);
     ST.cookMap     = db.cookMap     || {};
@@ -771,8 +833,14 @@ async function loadFromGitHub(showMsg=false) {
     ST.history     = db.history     || [];
     if (db.groceries&&db.groceries.length) ST.groceries = db.groceries;
     if (db.filters) ST.filters = db.filters;
+    if (db.lastUpdated) ST.lastUpdated = db.lastUpdated;
     setSyncStatus('ok','Synced just now');
-    renderAll();
+    // Don't re-render shop if user is actively typing there
+    if (skipShopRender && currentTab==='shop') {
+      if (currentTab!=='shop') renderAll();
+    } else {
+      renderAll();
+    }
     if (showMsg) toast('✅ Refreshed from sync');
   } catch(e) {
     setSyncStatus('err','Sync failed — check config');
@@ -857,8 +925,13 @@ async function runGenerate(forNext=false, regen=false) {
   setGenLoading(true);
   hideGenErr();
 
-  const lastIds = ST.plan ? new Set(ST.plan.flatMap(d=>MEALS.map(m=>d[m].id))) : new Set();
-  let wp = buildLocalPlan(regen ? lastIds : lastIds);
+  // Recalculate today in case app was left open overnight
+  const todayIdx = (()=>{ const d=new Date().getDay(); return d===0?6:d-1; })();
+
+  // For regen: pass empty lastIds so all recipes are in play again
+  // For new week: avoid last week's recipes
+  const lastIds = (!regen && ST.plan) ? new Set(ST.plan.flatMap(d=>MEALS.map(m=>d[m]?.id).filter(Boolean))) : new Set();
+  let wp = buildLocalPlan(lastIds);
   const ng = regen ? ST.genNum : ST.genNum+1;
   const cm = buildCookMap(ng);
 
@@ -901,6 +974,15 @@ Rules: max 2 repeats, vary proteins and cuisines, avoid: ${[...lastIds].slice(0,
   renderAll();
   debouncedSave(forNext?'Next week plan':'Generate week '+ng);
   toast('✅ Week '+(forNext?'(next)':ng)+' ready!');
+}
+
+let genPanelOpen = true; // open by default until first plan generated
+function toggleGenPanel() {
+  genPanelOpen = !genPanelOpen;
+  const body = document.getElementById('gen-panel-body');
+  const chev = document.getElementById('gen-panel-chevron');
+  if(body) body.style.display = genPanelOpen ? 'block' : 'none';
+  if(chev) chev.style.transform = genPanelOpen ? 'none' : 'rotate(-90deg)';
 }
 
 function setGenLoading(on) {
@@ -1035,12 +1117,117 @@ function checkAllShop() {
 }
 function exportList() {
   const items = getShopItems();
-  const lines = ['🛒 Shopping List','Week '+ST.genNum+' · '+new Date().toLocaleDateString('en-AU'),'','RECIPE NEEDS:',
-    ...items.map(i=>'  '+(ST.shopChecked[i]?'☑':'□')+' '+i),'','YOUR ITEMS:',
-    ...ST.manualItems.map(i=>'  '+(i.checked?'☑':'□')+' '+i.text)];
+  const checked = i => ST.shopChecked[i] ? '[x]' : '[ ]';
+  const lines = [
+    'RasaWeekly - Shopping List',
+    'Week '+ST.genNum+' - '+new Date().toLocaleDateString('en-AU'),
+    '',
+    'NEED TO BUY:',
+    ...items.map(i => checked(i)+' '+i),
+    '',
+    'EXTRA ITEMS:',
+    ...ST.manualItems.map(i => (i.checked?'[x]':'[ ]')+' '+i.text),
+  ];
   const text = lines.join('\n');
-  if (navigator.clipboard) navigator.clipboard.writeText(text).then(()=>toast('📋 List copied!'));
-  else { const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();toast('📋 Copied!'); }
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(()=>toast('📋 List copied! Paste into iMessage or Notes.'));
+  } else {
+    const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();
+    toast('📋 Copied!');
+  }
+}
+
+function printPDF() {
+  if (!ST.plan) { toast('Generate a plan first'); return; }
+  const p = ST.plan;
+  const counts = cookCounts(ST.cookMap);
+  const doneCount = Object.values(ST.completed).filter(Boolean).length;
+
+  const win = window.open('','_blank','width=800,height=900');
+  win.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8">
+  <title>RasaWeekly — Week ${ST.genNum}</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'Segoe UI',Arial,sans-serif;background:#fff;color:#111;padding:24px;font-size:13px;}
+    h1{font-size:20px;font-weight:700;margin-bottom:2px;}
+    .sub{font-size:11px;color:#666;margin-bottom:18px;}
+    .header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;padding-bottom:14px;border-bottom:2px solid #f0a030;}
+    .brand{font-size:22px;font-weight:700;color:#f0a030;}
+    .stats-row{display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap;}
+    .stat-box{background:#f8f8f8;border-radius:8px;padding:10px 14px;flex:1;min-width:80px;}
+    .stat-v{font-size:18px;font-weight:700;color:#f0a030;}
+    .stat-l{font-size:10px;color:#888;text-transform:uppercase;letter-spacing:.4px;margin-top:1px;}
+    .cook-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;}
+    .cook-box{padding:10px 14px;border-radius:8px;border:1.5px solid;}
+    .cook-A{border-color:#f0a030;background:#fff9f0;}
+    .cook-N{border-color:#5ba3f5;background:#f0f7ff;}
+    .cook-name{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px;}
+    .cook-num{font-size:20px;font-weight:700;}
+    table{width:100%;border-collapse:collapse;margin-bottom:20px;}
+    th{background:#f0a030;color:#000;padding:7px 8px;text-align:left;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;}
+    td{padding:7px 8px;border-bottom:1px solid #eee;vertical-align:top;font-size:12px;}
+    tr:nth-child(even) td{background:#fafafa;}
+    .today-row td{background:#fff9f0!important;font-weight:600;}
+    .pip{display:inline-block;width:16px;height:16px;border-radius:4px;font-size:9px;font-weight:800;text-align:center;line-height:16px;margin-right:4px;}
+    .pip-A{background:rgba(240,160,48,.2);color:#c47820;}
+    .pip-N{background:rgba(91,163,245,.2);color:#2563eb;}
+    .done-cell{text-decoration:line-through;opacity:.5;}
+    .shop-section{margin-top:16px;}
+    .shop-title{font-size:13px;font-weight:700;margin-bottom:8px;padding-bottom:6px;border-bottom:2px solid #f0a030;}
+    .shop-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;}
+    .shop-item{display:flex;align-items:center;gap:6px;font-size:11px;padding:4px 0;}
+    .chk{width:13px;height:13px;border:1.5px solid #ccc;border-radius:3px;flex-shrink:0;}
+    .footer{margin-top:20px;padding-top:10px;border-top:1px solid #eee;font-size:10px;color:#999;display:flex;justify-content:space-between;}
+    @media print{body{padding:16px;}@page{margin:12mm;size:A4;}}
+  </style></head><body>
+  <div class="header">
+    <div>
+      <div class="brand">🍛 RasaWeekly</div>
+      <div class="sub">Week ${ST.genNum} · Generated ${new Date().toLocaleDateString('en-AU',{day:'numeric',month:'long',year:'numeric'})}</div>
+    </div>
+    <div style="text-align:right;font-size:11px;color:#888;">${doneCount}/21 meals cooked</div>
+  </div>
+
+  <div class="stats-row">
+    ${[['21','Total Meals'],['A$'+(p.reduce((s,d)=>s+MEALS.reduce((ss,m)=>ss+(d[m]?.cost||0),0),0)*1.55/7).toFixed(2),'Est. Daily Cost'],[Math.round(p.reduce((s,d)=>s+MEALS.reduce((ss,m)=>ss+(d[m]?.protein||0),0),0)/21)+'g','Avg Protein'],[Math.round(p.reduce((s,d)=>s+MEALS.reduce((ss,m)=>ss+(d[m]?.prepTime||0),0),0)/21)+'m','Avg Prep']].map(([v,l])=>`<div class="stat-box"><div class="stat-v">${v}</div><div class="stat-l">${l}</div></div>`).join('')}
+  </div>
+
+  <div class="cook-row">
+    <div class="cook-box cook-A"><div class="cook-name" style="color:#c47820;">Person A — Weight Loss</div><div class="cook-num" style="color:#f0a030;">${counts.A} meals to cook</div></div>
+    <div class="cook-box cook-N"><div class="cook-name" style="color:#2563eb;">Person N — Maintenance</div><div class="cook-num" style="color:#5ba3f5;">${counts.N} meals to cook</div></div>
+  </div>
+
+  <table>
+    <tr><th>Day</th><th>Breakfast</th><th>Lunch</th><th>Dinner</th></tr>
+    ${p.map((d,di)=>{
+      const isToday=di===TODAY_IDX;
+      return `<tr class="${isToday?'today-row':''}">
+        <td><strong>${d.day.slice(0,3)}</strong>${isToday?'<br><span style="font-size:9px;color:#f0a030;">TODAY</span>':''}</td>
+        ${MEALS.map((m,mi)=>{
+          const r=d[m]; if(!r) return '<td>—</td>';
+          const cook=ST.cookMap[slot(di,mi)]||'A';
+          const done=!!ST.completed[d.day+'-'+m];
+          return `<td class="${done?'done-cell':''}"><span class="pip pip-${cook}">${cook}</span>${r.name}<br><span style="font-size:10px;color:#888;">⏱${r.prepTime}m · 💪${r.protein}g</span></td>`;
+        }).join('')}
+      </tr>`;
+    }).join('')}
+  </table>
+
+  <div class="shop-section">
+    <div class="shop-title">🛒 Shopping List</div>
+    <div class="shop-grid">
+      ${getShopItems().map(i=>`<div class="shop-item"><div class="chk"></div>${i}</div>`).join('')}
+      ${ST.manualItems.map(i=>`<div class="shop-item"><div class="chk"></div>${i.text} <span style="font-size:9px;color:#5ba3f5;">(custom)</span></div>`).join('')}
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>RasaWeekly · paritiarvind.github.io/weeklygrocer</span>
+    <span>Printed ${new Date().toLocaleDateString('en-AU')}</span>
+  </div>
+  <script>window.onload=()=>{window.print();}<\/script>
+  </body></html>`);
+  win.document.close();
 }
 
 function getShopItems() {
@@ -1103,9 +1290,11 @@ function renderCurrentTab() {
 // ── RENDER TODAY ──────────────────────────────────────────────────────────────
 function renderToday() {
   const h=new Date().getHours();
-  const greet=h<12?'Good morning':'Good '+(h<17?'afternoon':'evening');
+  const greet=h<12?'Good morning 👋':(h<17?'Good afternoon ☀️':'Good evening 🌙');
   const greeting=document.getElementById('today-greeting');
-  if(greeting) greeting.innerHTML=greet+',<br><span style="color:var(--gold);font-style:italic;">'+new Date().toLocaleDateString('en-AU',{weekday:'long',day:'numeric',month:'long'})+'</span>';
+  const dateEl=document.getElementById('today-date');
+  if(greeting) greeting.textContent=greet;
+  if(dateEl) dateEl.textContent=new Date().toLocaleDateString('en-AU',{weekday:'long',day:'numeric',month:'long'});
 
   const doneCount=Object.values(ST.completed).filter(Boolean).length;
   const progWrap=document.getElementById('today-progress');
@@ -1117,28 +1306,36 @@ function renderToday() {
   const todayEmpty=document.getElementById('today-empty');
 
   if (ST.plan) {
-    if(progWrap) progWrap.style.display='flex';
-    const pct=doneCount/21;
-    const r=20, circ=2*Math.PI*r;
-    if(progFill) progFill.setAttribute('stroke-dashoffset', circ*(1-pct));
-    if(progNum) progNum.textContent=doneCount;
-    if(progLabel) progLabel.textContent=doneCount+'/21 meals done this week';
-    if(progSub) progSub.textContent=doneCount===21?'🎉 Perfect week!':doneCount===0?'Start cooking below':'Keep it up!';
+    if(progWrap) progWrap.style.display='block';
+    if(progFill) progFill.style.width=((doneCount/21)*100)+'%';
+    if(progNum) progNum.textContent=doneCount+'/21 done';
+    if(progLabel) progLabel.textContent='Week '+ST.genNum+' progress';
+    if(progSub) progSub.textContent=doneCount===21?'🎉 Perfect week! Archive and start fresh.':(doneCount===0?'Tap a meal below to start cooking':''+Math.round(doneCount/21*100)+'% through the week — keep it up!');
 
     const todayPlan=ST.plan[TODAY_IDX];
-    if(todayMeals) todayMeals.innerHTML=MEALS.map((m,mi)=>{
+
+    // Who cooks banner
+    const cookersToday = MEALS.map((m,mi)=>ST.cookMap[slot(TODAY_IDX,mi)]).filter(Boolean);
+    const aCount = cookersToday.filter(c=>c==='A').length;
+    const nCount = cookersToday.filter(c=>c==='N').length;
+    const banner = aCount>0&&nCount>0
+      ? `<div style="background:var(--s2);border-radius:9px;padding:9px 13px;margin-bottom:12px;display:flex;align-items:center;gap:8px;font-size:.76rem;"><span class="pip pip-A">A</span><span style="color:var(--t2);">cooks ${aCount} meal${aCount>1?'s':''}</span><span style="color:var(--t3);margin:0 4px;">·</span><span class="pip pip-N">N</span><span style="color:var(--t2);">cooks ${nCount} meal${nCount>1?'s':''}</span><span style="margin-left:auto;font-size:.66rem;color:var(--t3);">⬡ = % pantry matched</span></div>`
+      : `<div style="background:var(--s2);border-radius:9px;padding:9px 13px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;font-size:.76rem;"><span><span class="pip pip-${aCount>0?'A':'N'}" style="margin-right:6px;">${aCount>0?'A':'N'}</span><span style="color:var(--t2);">cooks all meals today</span></span><span style="font-size:.66rem;color:var(--t3);">⬡ = % pantry matched</span></div>`;
+    if(todayMeals) todayMeals.innerHTML = banner + MEALS.map((m,mi)=>{
       const r=todayPlan[m]; if(!r) return '';
       const cook=ST.cookMap[slot(TODAY_IDX,mi)]||'A';
       const done=!!ST.completed[todayPlan.day+'-'+m];
       const pct2=matchPct(r,ST.groceries);
-      return `<div class="meal-card" style="position:relative;opacity:${done?'.6':'1'};transition:opacity .3s;" onclick="openModal('${todayPlan.day}','${m}',${TODAY_IDX},false)">
-        <div class="meal-card-hero" style="position:relative;">
+      return `<div class="meal-card${done?' is-done':''}" onclick="openModal('${todayPlan.day}','${m}',${TODAY_IDX},false)">
+        <div class="meal-card-hero" style="background:linear-gradient(to top,rgba(10,10,10,.95) 0%,${r.color}55 100%);">
           <div class="meal-hero-bg">${r.emoji}</div>
-          <div class="meal-hero-grad" style="background:linear-gradient(to top,rgba(10,10,10,.95) 0%,${r.color}44 100%);"></div>
-          ${done?`<div style="position:absolute;top:10px;right:10px;width:28px;height:28px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.9rem;font-weight:700;color:#000;z-index:3;">✓</div>`:''}
+          ${done?'<div class="meal-done-badge">✓</div>':''}
           <div class="meal-hero-content">
-            <div class="meal-type-row"><span class="pip pip-${cook}">${cook}</span>${m}${done?'<span style="margin-left:auto;font-size:.65rem;color:var(--green);font-weight:700;">Done</span>':''}</div>
-            <div class="meal-name" style="${done?'text-decoration:line-through;opacity:.7;':''}">${r.name}</div>
+            <div class="meal-type-row">
+              <span class="pip pip-${cook}">${cook}</span>${m}
+              ${done?'<span style="margin-left:auto;font-size:.6rem;color:var(--green);font-weight:700;letter-spacing:.3px;">DONE</span>':''}
+            </div>
+            <div class="meal-name" style="${done?'opacity:.6;text-decoration:line-through;':''}">${r.name}</div>
           </div>
         </div>
         <div class="meal-card-foot">
@@ -1195,17 +1392,37 @@ function renderWeek() {
     ).join('');
   } else if(statsEl) statsEl.style.display='none';
 
-  // Gen panel
-  const title=document.getElementById('gen-panel-title');
+  // Auto-collapse gen panel when plan exists (it's noise mid-week)
+  // Auto-expand when no plan exists
+  const body = document.getElementById('gen-panel-body');
+  const chev = document.getElementById('gen-panel-chevron');
+  const sub  = document.getElementById('gen-panel-sub');
+  if (!activePlan) {
+    genPanelOpen = true;
+  } else if (genPanelOpen === true && activePlan && !document.getElementById('gen-btn')?.disabled) {
+    // First time seeing a plan — collapse the generate panel
+    genPanelOpen = false;
+  }
+  if(body) body.style.display = genPanelOpen ? 'block' : 'none';
+  if(chev) chev.style.transform = genPanelOpen ? 'none' : 'rotate(-90deg)';
+  if(sub) sub.style.display = genPanelOpen ? 'block' : 'none';
+
+  // Gen panel title + badge  const title=document.getElementById('gen-panel-title');
   const genBtn=document.getElementById('gen-btn');
   const subBtns=document.getElementById('gen-sub-btns');
+  const badge=document.getElementById('gen-week-badge');
   if(title) title.textContent=weekView==='next'?'Plan next week':'Generate this week';
-  if(genBtn&&!genBtn.disabled) genBtn.textContent='Generate '+(weekView==='next'?'Next Week':'Week ')+(ST.genNum+1);
+  if(genBtn&&!genBtn.disabled) genBtn.textContent='Generate '+(weekView==='next'?'Next':'This')+' Week '+(ST.genNum+1);
+  if(badge){
+    if(weekView==='current'&&ST.plan){badge.textContent='Week '+ST.genNum;badge.style.display='inline';}
+    else if(weekView==='next'&&ST.nextPlan){badge.textContent='Ready ✓';badge.style.display='inline';badge.style.background='rgba(66,199,122,.12)';badge.style.color='var(--green)';}
+    else badge.style.display='none';
+  }
   if(subBtns) {
     if(weekView==='current'&&ST.plan) {
       subBtns.style.display='block';
       const archBtn=document.getElementById('archive-btn');
-      if(archBtn) archBtn.textContent='📁 Archive & start fresh'+(ST.nextPlan?' (activates next plan)':'');
+      if(archBtn) archBtn.textContent='📁 Archive & start next week'+(ST.nextPlan?' (next plan ready)':'');
     } else subBtns.style.display='none';
   }
 
@@ -1229,7 +1446,7 @@ function renderWeek() {
         const cook=activeCookMap[slot(di,mi)]||'A';
         const done=weekView==='current'&&!!ST.completed[d.day+'-'+m];
         const pct=matchPct(r,ST.groceries);
-        return `<div class="week-meal-row" style="opacity:${done?.55:1};transition:opacity .3s;" onclick="openModal('${d.day}','${m}',${di},${weekView==='next'})">
+        return `<div class="week-meal-row" style="opacity:${done?.55:1};transition:opacity .3s;" onclick="openModal('${d.day}','${m}',${di},${weekView==='next'?'true':'false'})">
           <div class="week-meal-emoji" style="background:${r.color}22;">${r.emoji}</div>
           <div class="week-meal-info">
             <div class="week-meal-type"><span class="pip pip-${cook}">${cook}</span>${m}${done?'<span style="margin-left:6px;font-size:.6rem;color:var(--green);font-weight:700;">✓ Done</span>':''}</div>
@@ -1315,6 +1532,11 @@ function renderPantry() {
     ns.style.background=p==='granted'?'rgba(66,199,122,.12)':'rgba(240,96,96,.1)';
     ns.style.color=p==='granted'?'var(--green)':'var(--red)';
   }
+  // Settings section week info
+  const wkEl=document.getElementById('settings-week-num');
+  const stEl=document.getElementById('settings-sync-time');
+  if(wkEl) wkEl.textContent=ST.genNum>0?(ST.plan?'Week '+ST.genNum+' active · '+Object.values(ST.completed).filter(Boolean).length+'/21 meals done':'Week '+ST.genNum+' — no active plan'):'No weeks generated yet';
+  if(stEl) stEl.textContent=ST.lastUpdated?'Last saved '+new Date(ST.lastUpdated).toLocaleDateString('en-AU',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}):'';
 }
 
 function renderFilters() {
@@ -1385,7 +1607,8 @@ function toggleFav(id) {
   if(favs.includes(id)) favs=favs.filter(f=>f!==id);
   else favs.push(id);
   try{localStorage.setItem('rw_favs',JSON.stringify(favs));}catch(_){}
-  renderModal(id);
+  // Re-render modal with updated fav state
+  if(document.getElementById('modal').style.display!=='none') renderModal(id);
 }
 function removeFav(id) { favs=favs.filter(f=>f!==id); try{localStorage.setItem('rw_favs',JSON.stringify(favs));}catch(_){} renderHistory(); }
 
@@ -1626,6 +1849,37 @@ function resetSetup() {
   document.getElementById('setup-screen').style.display='flex';
 }
 
+function confirmResetSetup() {
+  if (confirm('This only clears your GitHub token from this device.\n\nYour plan, week number and all data stay safe on GitHub.\n\nContinue?')) {
+    resetSetup();
+  }
+}
+
+function backupDB() {
+  const db = {
+    plan:       ST.plan       ? planToIds(ST.plan)     : null,
+    nextPlan:   ST.nextPlan   ? planToIds(ST.nextPlan) : null,
+    cookMap:    ST.cookMap,
+    nextCookMap:ST.nextCookMap,
+    genNum:     ST.genNum,
+    completed:  ST.completed,
+    shopChecked:ST.shopChecked,
+    manualItems:ST.manualItems,
+    history:    ST.history,
+    groceries:  ST.groceries,
+    filters:    ST.filters,
+    lastUpdated: new Date().toISOString(),
+  };
+  const blob = new Blob([JSON.stringify(db, null, 2)], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'rasaweekly-backup-week'+ST.genNum+'-'+new Date().toISOString().slice(0,10)+'.json';
+  a.click();
+  URL.revokeObjectURL(url);
+  toast('💾 Backup downloaded!');
+}
+
 // ── BOOT ──────────────────────────────────────────────────────────────────────
 (async()=>{
   // Load favs from localStorage (local only, not synced)
@@ -1648,7 +1902,12 @@ function resetSetup() {
   renderAll();
 
   // Auto-refresh every 30 seconds (picks up wife's changes)
-  setInterval(()=>loadFromGitHub(false),30000);
+  // Skip re-render of shop tab if user is actively typing in the manual input
+  setInterval(()=>{
+    const active = document.activeElement;
+    const isTypingInShop = active && active.id === 'manual-inp';
+    loadFromGitHub(false, isTypingInShop);
+  }, 30000);
 
   // Saturday notification
   scheduleWeeklyReminder();
