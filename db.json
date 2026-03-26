@@ -28,12 +28,14 @@
     "besan",
     "kidney beans",
     "urad dal",
-    "green peas"
+    "green peas",
+    "tomato",
+    "methi leaves"
   ],
   "filters": {
     "protein": false,
     "quick": false,
     "budget": false
   },
-  "lastUpdated": "2026-03-26T09:48:30.677Z"
+  "lastUpdated": "2026-03-26T09:48:32.626Z"
 }
