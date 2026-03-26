@@ -2,85 +2,75 @@
   "plan": [
     {
       "day": "Monday",
-      "b": "moong_cheela",
-      "l": "palak_paneer",
+      "b": "muesli_bowl",
+      "l": "pasta_pesto",
       "dn": "methi_dal"
     },
     {
       "day": "Tuesday",
-      "b": "paneer_bhurji",
-      "l": "greek_salad",
-      "dn": "matar_paneer"
-    },
-    {
-      "day": "Wednesday",
       "b": "moong_cheela",
-      "l": "dal_tadka",
-      "dn": "paneer_paratha"
-    },
-    {
-      "day": "Thursday",
-      "b": "avo_toast",
-      "l": "soya_curry",
+      "l": "pasta_pesto",
       "dn": "veggie_quesadilla"
     },
     {
-      "day": "Friday",
+      "day": "Wednesday",
       "b": "paneer_bhurji",
-      "l": "pasta_pesto",
-      "dn": "mediterranean_bowl"
-    },
-    {
-      "day": "Saturday",
-      "b": "muesli_bowl",
-      "l": "chana_masala",
+      "l": "caprese",
       "dn": "pasta_arrabiata"
     },
     {
+      "day": "Thursday",
+      "b": "scrambled_eggs",
+      "l": "greek_salad",
+      "dn": "lentil_soup"
+    },
+    {
+      "day": "Friday",
+      "b": "muesli_bowl",
+      "l": "chana_masala",
+      "dn": "methi_dal"
+    },
+    {
+      "day": "Saturday",
+      "b": "avo_toast",
+      "l": "palak_paneer",
+      "dn": "stir_fry_tofu"
+    },
+    {
       "day": "Sunday",
-      "b": "overnight_oats",
-      "l": "buddha_bowl",
-      "dn": "dal_makhani"
+      "b": "paneer_bhurji",
+      "l": "soya_curry",
+      "dn": "veggie_quesadilla"
     }
   ],
   "nextPlan": null,
   "cookMap": {
-    "0": "A",
-    "1": "N",
-    "2": "A",
-    "3": "N",
-    "4": "A",
-    "5": "N",
-    "6": "A",
-    "7": "N",
-    "8": "A",
-    "9": "N",
-    "10": "A",
-    "11": "N",
-    "12": "A",
-    "13": "N",
-    "14": "A",
-    "15": "N",
-    "16": "A",
-    "17": "N",
-    "18": "A",
-    "19": "N",
-    "20": "A"
+    "0": "N",
+    "1": "A",
+    "2": "N",
+    "3": "A",
+    "4": "N",
+    "5": "A",
+    "6": "N",
+    "7": "A",
+    "8": "N",
+    "9": "A",
+    "10": "N",
+    "11": "A",
+    "12": "N",
+    "13": "A",
+    "14": "N",
+    "15": "A",
+    "16": "N",
+    "17": "A",
+    "18": "N",
+    "19": "A",
+    "20": "N"
   },
   "nextCookMap": {},
-  "genNum": 2,
-  "completed": {
-    "Thursday-Dinner": false,
-    "Thursday-Lunch": true,
-    "Thursday-Breakfast": true
-  },
-  "shopChecked": {
-    "chilli flakes": true,
-    "coriander powder": true,
-    "coriander": true,
-    "ghee": true,
-    "asafoetida": true
-  },
+  "genNum": 3,
+  "completed": {},
+  "shopChecked": {},
   "manualItems": [],
   "history": [
     {
@@ -928,5 +918,5 @@
     "quick": false,
     "budget": false
   },
-  "lastUpdated": "2026-03-26T10:51:45.483Z"
+  "lastUpdated": "2026-03-26T10:51:54.553Z"
 }
