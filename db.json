@@ -74,7 +74,9 @@
     "Thursday-Lunch": true,
     "Thursday-Breakfast": true
   },
-  "shopChecked": {},
+  "shopChecked": {
+    "chilli flakes": true
+  },
   "manualItems": [],
   "history": [
     {
@@ -922,5 +924,5 @@
     "quick": false,
     "budget": false
   },
-  "lastUpdated": "2026-03-26T10:31:28.394Z"
+  "lastUpdated": "2026-03-26T10:31:33.764Z"
 }
