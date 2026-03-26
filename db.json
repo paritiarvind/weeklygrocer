@@ -70,7 +70,8 @@
   "nextCookMap": {},
   "genNum": 2,
   "completed": {
-    "Thursday-Dinner": true
+    "Thursday-Dinner": true,
+    "Thursday-Lunch": true
   },
   "shopChecked": {},
   "manualItems": [],
@@ -90,7 +91,7 @@
             "protein": 18,
             "prepTime": 15,
             "cost": 1.2,
-            "emoji": "Ã°ÂÂ¥Â",
+            "emoji": "ÃÂ°ÃÂÃÂ¥ÃÂ",
             "color": "#4A7C59",
             "ingredients": [
               "moong dal",
@@ -106,7 +107,7 @@
               "Soak moong dal 2 hrs, blend with ginger and green chilli to smooth batter.",
               "Add chopped onion, cumin, coriander and salt.",
               "Heat non-stick tawa, drizzle oil. Pour batter, spread thin.",
-              "Cook 2Ã¢ÂÂ3 min until edges lift, flip, cook 1Ã¢ÂÂ2 min until golden.",
+              "Cook 2ÃÂ¢ÃÂÃÂ3 min until edges lift, flip, cook 1ÃÂ¢ÃÂÃÂ2 min until golden.",
               "Serve with green chutney or curd."
             ],
             "tip": "Thinner spread = crispier cheela.",
@@ -125,7 +126,7 @@
             "protein": 19,
             "prepTime": 25,
             "cost": 1.2,
-            "emoji": "Ã°ÂÂ«Â",
+            "emoji": "ÃÂ°ÃÂÃÂ«ÃÂ",
             "color": "#8B4513",
             "ingredients": [
               "chickpeas",
@@ -140,7 +141,7 @@
               "oil"
             ],
             "steps": [
-              "Cook chickpeas until tender (canned works Ã¢ÂÂ drain well).",
+              "Cook chickpeas until tender (canned works ÃÂ¢ÃÂÃÂ drain well).",
               "Blend onion, tomatoes, ginger and garlic to smooth paste.",
               "Heat oil, add cumin seeds. Add paste, cook until oil separates ~8 min.",
               "Add spices, cook 2 min. Add chickpeas + 1 cup water, simmer 10 min.",
@@ -162,7 +163,7 @@
             "protein": 17,
             "prepTime": 20,
             "cost": 0.9,
-            "emoji": "Ã°ÂÂÂµ",
+            "emoji": "ÃÂ°ÃÂÃÂÃÂµ",
             "color": "#4A6741",
             "ingredients": [
               "masoor dal",
@@ -176,7 +177,7 @@
               "tomato"
             ],
             "steps": [
-              "Cook masoor dal with turmeric until soft Ã¢ÂÂ no soaking needed ~12 min.",
+              "Cook masoor dal with turmeric until soft ÃÂ¢ÃÂÃÂ no soaking needed ~12 min.",
               "Heat ghee, add cumin, then garlic until golden.",
               "Add onion 4 min, then tomato and green chilli until soft.",
               "Add chopped methi, cook 3 min until wilted.",
@@ -201,7 +202,7 @@
             "protein": 22,
             "prepTime": 15,
             "cost": 1.8,
-            "emoji": "Ã°ÂÂ§Â",
+            "emoji": "ÃÂ°ÃÂÃÂ§ÃÂ",
             "color": "#C04D2C",
             "ingredients": [
               "paneer",
@@ -222,7 +223,7 @@
               "Crumble in paneer, stir gently, cook 2 min.",
               "Finish with garam masala and coriander."
             ],
-            "tip": "Add paneer last Ã¢ÂÂ just warm through, do not overcook.",
+            "tip": "Add paneer last ÃÂ¢ÃÂÃÂ just warm through, do not overcook.",
             "nutrition": {
               "calories": 280,
               "protein": 22,
@@ -238,7 +239,7 @@
             "protein": 16,
             "prepTime": 10,
             "cost": 1.8,
-            "emoji": "Ã°ÂÂ¥Â",
+            "emoji": "ÃÂ°ÃÂÃÂ¥ÃÂ",
             "color": "#1B4F72",
             "ingredients": [
               "chickpeas",
@@ -258,7 +259,7 @@
               "Whisk olive oil, lemon juice, oregano, salt and pepper for dressing.",
               "Toss everything, crumble feta on top."
             ],
-            "tip": "Marinate red onion in lemon juice 10 min Ã¢ÂÂ removes the raw sharpness.",
+            "tip": "Marinate red onion in lemon juice 10 min ÃÂ¢ÃÂÃÂ removes the raw sharpness.",
             "nutrition": {
               "calories": 340,
               "protein": 16,
@@ -274,7 +275,7 @@
             "protein": 22,
             "prepTime": 22,
             "cost": 2.1,
-            "emoji": "Ã°ÂÂÂ¢",
+            "emoji": "ÃÂ°ÃÂÃÂÃÂ¢",
             "color": "#1E5C2E",
             "ingredients": [
               "paneer",
@@ -291,7 +292,7 @@
             "steps": [
               "Blend onion, tomato, ginger and garlic to smooth paste.",
               "Heat oil, add cumin. Add paste, cook until oil separates ~7 min.",
-              "Add spices. Cook 2 min. Add peas + ÃÂ½ cup water. Cover 5 min.",
+              "Add spices. Cook 2 min. Add peas + ÃÂÃÂ½ cup water. Cover 5 min.",
               "Add paneer cubes. Simmer 4 min.",
               "Garnish with coriander. Serve with roti."
             ],
@@ -314,7 +315,7 @@
             "protein": 12,
             "prepTime": 8,
             "cost": 2.2,
-            "emoji": "Ã°ÂÂ¥Â",
+            "emoji": "ÃÂ°ÃÂÃÂ¥ÃÂ",
             "color": "#2D6A4F",
             "ingredients": [
               "bread",
@@ -338,7 +339,7 @@
               "carbs": 28,
               "fat": 18
             },
-            "source": "Modern CafÃÂ© Classic"
+            "source": "Modern CafÃÂÃÂ© Classic"
           },
           "L": {
             "id": "palak_paneer",
@@ -347,7 +348,7 @@
             "protein": 24,
             "prepTime": 25,
             "cost": 2,
-            "emoji": "Ã°ÂÂ¥Â¬",
+            "emoji": "ÃÂ°ÃÂÃÂ¥ÃÂ¬",
             "color": "#2D5016",
             "ingredients": [
               "spinach",
@@ -363,7 +364,7 @@
             ],
             "steps": [
               "Blanch spinach 1 min, ice-water shock, blend smooth.",
-              "SautÃÂ© onion, garlic, ginger golden. Add tomato, cook soft. Blend smooth.",
+              "SautÃÂÃÂ© onion, garlic, ginger golden. Add tomato, cook soft. Blend smooth.",
               "Return blended mix to pan. Add spinach puree, simmer 5 min.",
               "Add pan-fried paneer cubes. Cook 3 min.",
               "Swirl in cream. Serve with roti."
@@ -384,7 +385,7 @@
             "protein": 20,
             "prepTime": 25,
             "cost": 1.4,
-            "emoji": "Ã°ÂÂ«Â",
+            "emoji": "ÃÂ°ÃÂÃÂ«ÃÂ",
             "color": "#8B7355",
             "ingredients": [
               "whole wheat flour",
@@ -398,12 +399,12 @@
             ],
             "steps": [
               "Knead soft wheat dough with water and salt. Rest 10 min.",
-              "Mix grated paneer with green chilli, ginger, cumin, coriander, red chilli, salt Ã¢ÂÂ keep dry.",
+              "Mix grated paneer with green chilli, ginger, cumin, coriander, red chilli, salt ÃÂ¢ÃÂÃÂ keep dry.",
               "Roll dough disc, add filling in centre, seal edges, roll gently into paratha.",
               "Cook on hot tawa, apply ghee both sides until golden spots appear ~4 min.",
               "Serve with curd and pickle."
             ],
-            "tip": "Grate paneer fine Ã¢ÂÂ coarse filling tears the dough when rolling.",
+            "tip": "Grate paneer fine ÃÂ¢ÃÂÃÂ coarse filling tears the dough when rolling.",
             "nutrition": {
               "calories": 330,
               "protein": 20,
@@ -422,7 +423,7 @@
             "protein": 22,
             "prepTime": 15,
             "cost": 1.8,
-            "emoji": "Ã°ÂÂ§Â",
+            "emoji": "ÃÂ°ÃÂÃÂ§ÃÂ",
             "color": "#C04D2C",
             "ingredients": [
               "paneer",
@@ -443,7 +444,7 @@
               "Crumble in paneer, stir gently, cook 2 min.",
               "Finish with garam masala and coriander."
             ],
-            "tip": "Add paneer last Ã¢ÂÂ just warm through, do not overcook.",
+            "tip": "Add paneer last ÃÂ¢ÃÂÃÂ just warm through, do not overcook.",
             "nutrition": {
               "calories": 280,
               "protein": 22,
@@ -459,7 +460,7 @@
             "protein": 18,
             "prepTime": 20,
             "cost": 0.9,
-            "emoji": "Ã°ÂÂ¥Â£",
+            "emoji": "ÃÂ°ÃÂÃÂ¥ÃÂ£",
             "color": "#C49A2B",
             "ingredients": [
               "toor dal",
@@ -475,12 +476,12 @@
             ],
             "steps": [
               "Pressure cook toor dal with turmeric and salt until mushy. Mash and adjust.",
-              "Heat ghee Ã¢ÂÂ add cumin, asafoetida, red chillies Ã¢ÂÂ sizzle 30 sec.",
+              "Heat ghee ÃÂ¢ÃÂÃÂ add cumin, asafoetida, red chillies ÃÂ¢ÃÂÃÂ sizzle 30 sec.",
               "Add garlic golden, then onion golden, then tomato soft.",
               "Pour tadka over dal, stir, simmer 5 min.",
               "Garnish with coriander. Serve with rice or roti."
             ],
-            "tip": "Use real ghee for the tadka Ã¢ÂÂ the flavour difference is dramatic.",
+            "tip": "Use real ghee for the tadka ÃÂ¢ÃÂÃÂ the flavour difference is dramatic.",
             "nutrition": {
               "calories": 245,
               "protein": 18,
@@ -496,7 +497,7 @@
             "protein": 20,
             "prepTime": 25,
             "cost": 1.5,
-            "emoji": "Ã°ÂÂ«Â",
+            "emoji": "ÃÂ°ÃÂÃÂ«ÃÂ",
             "color": "#1A0A00",
             "ingredients": [
               "urad dal",
@@ -512,7 +513,7 @@
             ],
             "steps": [
               "Pressure cook soaked urad dal and kidney beans until very soft.",
-              "SautÃÂ© onions in butter until deep golden. Add ginger, garlic, cook 2 min.",
+              "SautÃÂÃÂ© onions in butter until deep golden. Add ginger, garlic, cook 2 min.",
               "Add blended tomatoes and red chilli. Cook until butter separates.",
               "Add cooked lentils + water. Simmer low 15 min, stirring often.",
               "Stir in cream and garam masala. Simmer 5 min more."
@@ -536,7 +537,7 @@
             "protein": 18,
             "prepTime": 15,
             "cost": 1.2,
-            "emoji": "Ã°ÂÂ¥Â",
+            "emoji": "ÃÂ°ÃÂÃÂ¥ÃÂ",
             "color": "#4A7C59",
             "ingredients": [
               "moong dal",
@@ -552,7 +553,7 @@
               "Soak moong dal 2 hrs, blend with ginger and green chilli to smooth batter.",
               "Add chopped onion, cumin, coriander and salt.",
               "Heat non-stick tawa, drizzle oil. Pour batter, spread thin.",
-              "Cook 2Ã¢ÂÂ3 min until edges lift, flip, cook 1Ã¢ÂÂ2 min until golden.",
+              "Cook 2ÃÂ¢ÃÂÃÂ3 min until edges lift, flip, cook 1ÃÂ¢ÃÂÃÂ2 min until golden.",
               "Serve with green chutney or curd."
             ],
             "tip": "Thinner spread = crispier cheela.",
@@ -571,7 +572,7 @@
             "protein": 28,
             "prepTime": 22,
             "cost": 1,
-            "emoji": "Ã°ÂÂ«Â",
+            "emoji": "ÃÂ°ÃÂÃÂ«ÃÂ",
             "color": "#5C3317",
             "ingredients": [
               "soya chunks",
@@ -608,7 +609,7 @@
             "protein": 18,
             "prepTime": 15,
             "cost": 1.6,
-            "emoji": "Ã°ÂÂ«Â",
+            "emoji": "ÃÂ°ÃÂÃÂ«ÃÂ",
             "color": "#8B6914",
             "ingredients": [
               "flour tortillas",
@@ -623,13 +624,13 @@
               "smoked paprika"
             ],
             "steps": [
-              "SautÃÂ© diced capsicum and onion in oil until soft. Add black beans and corn.",
+              "SautÃÂÃÂ© diced capsicum and onion in oil until soft. Add black beans and corn.",
               "Season with cumin, smoked paprika, salt and pepper. Cook 2 min more.",
               "Lay tortilla flat. Add cheese on one half, then vegetable mix, then more cheese.",
               "Fold in half. Press in a dry pan on medium ~2 min each side until golden.",
               "Serve with sliced avocado and sour cream."
             ],
-            "tip": "Do not overfill Ã¢ÂÂ a thin layer toasts more evenly and stays crisp.",
+            "tip": "Do not overfill ÃÂ¢ÃÂÃÂ a thin layer toasts more evenly and stays crisp.",
             "nutrition": {
               "calories": 400,
               "protein": 18,
@@ -648,7 +649,7 @@
             "protein": 14,
             "prepTime": 5,
             "cost": 1.4,
-            "emoji": "Ã°ÂÂ¥Â£",
+            "emoji": "ÃÂ°ÃÂÃÂ¥ÃÂ£",
             "color": "#8B7355",
             "ingredients": [
               "muesli",
@@ -665,7 +666,7 @@
               "Top with fresh berries, sliced banana and a drizzle of honey.",
               "Sprinkle chia seeds for extra fibre."
             ],
-            "tip": "Soak muesli in milk overnight Ã¢ÂÂ bircher style is creamier and more digestible.",
+            "tip": "Soak muesli in milk overnight ÃÂ¢ÃÂÃÂ bircher style is creamier and more digestible.",
             "nutrition": {
               "calories": 380,
               "protein": 14,
@@ -681,7 +682,7 @@
             "protein": 18,
             "prepTime": 20,
             "cost": 2.1,
-            "emoji": "Ã°ÂÂÂ",
+            "emoji": "ÃÂ°ÃÂÃÂÃÂ",
             "color": "#1E5631",
             "ingredients": [
               "pasta",
@@ -694,10 +695,10 @@
               "pine nuts"
             ],
             "steps": [
-              "Boil pasta in well-salted water. Reserve ÃÂ½ cup pasta water before draining.",
-              "SautÃÂ© diced zucchini and halved cherry tomatoes in olive oil with garlic ~4 min.",
+              "Boil pasta in well-salted water. Reserve ÃÂÃÂ½ cup pasta water before draining.",
+              "SautÃÂÃÂ© diced zucchini and halved cherry tomatoes in olive oil with garlic ~4 min.",
               "Drain pasta, return to pot off heat.",
-              "Add pesto, sautÃÂ©ed veggies and splash of pasta water. Toss well.",
+              "Add pesto, sautÃÂÃÂ©ed veggies and splash of pasta water. Toss well.",
               "Serve topped with parmesan and toasted pine nuts."
             ],
             "tip": "Starchy pasta water makes the pesto silkier and helps it cling.",
@@ -716,7 +717,7 @@
             "protein": 18,
             "prepTime": 18,
             "cost": 2.2,
-            "emoji": "Ã°ÂÂ«Â",
+            "emoji": "ÃÂ°ÃÂÃÂ«ÃÂ",
             "color": "#1B4F72",
             "ingredients": [
               "quinoa",
@@ -733,7 +734,7 @@
             ],
             "steps": [
               "Cook quinoa and let cool slightly.",
-              "Roast chickpeas with olive oil, cumin and paprika at 200ÃÂ°C for 20 min.",
+              "Roast chickpeas with olive oil, cumin and paprika at 200ÃÂÃÂ°C for 20 min.",
               "Dice cucumber, halve tomatoes, chop parsley.",
               "Assemble: quinoa base topped with all vegetables, chickpeas and crumbled feta.",
               "Drizzle with olive oil and lemon juice. Spoon hummus on the side."
@@ -757,7 +758,7 @@
             "protein": 15,
             "prepTime": 5,
             "cost": 1.1,
-            "emoji": "Ã°ÂÂ«Â",
+            "emoji": "ÃÂ°ÃÂÃÂ«ÃÂ",
             "color": "#5B8C99",
             "ingredients": [
               "oats",
@@ -769,12 +770,12 @@
               "banana"
             ],
             "steps": [
-              "Add ÃÂ½ cup oats to a jar.",
-              "Pour over ÃÂ¾ cup milk, add 2 tbsp Greek yogurt and 1 tbsp chia seeds.",
+              "Add ÃÂÃÂ½ cup oats to a jar.",
+              "Pour over ÃÂÃÂ¾ cup milk, add 2 tbsp Greek yogurt and 1 tbsp chia seeds.",
               "Drizzle with honey. Stir well. Seal and refrigerate overnight.",
               "Top with fresh berries and banana slices before eating."
             ],
-            "tip": "Prep 5 jars on Sunday Ã¢ÂÂ breakfast sorted all week.",
+            "tip": "Prep 5 jars on Sunday ÃÂ¢ÃÂÃÂ breakfast sorted all week.",
             "nutrition": {
               "calories": 350,
               "protein": 15,
@@ -790,7 +791,7 @@
             "protein": 20,
             "prepTime": 15,
             "cost": 2.3,
-            "emoji": "Ã°ÂÂ¥Â",
+            "emoji": "ÃÂ°ÃÂÃÂ¥ÃÂ",
             "color": "#6B4226",
             "ingredients": [
               "quinoa",
@@ -805,13 +806,13 @@
               "sesame seeds"
             ],
             "steps": [
-              "Cook quinoa: rinse, simmer in 2ÃÂ water 15 min, fluff and cool.",
-              "Roast chickpeas with olive oil and smoked paprika 200ÃÂ°C for 20 min until crispy.",
+              "Cook quinoa: rinse, simmer in 2ÃÂÃÂ water 15 min, fluff and cool.",
+              "Roast chickpeas with olive oil and smoked paprika 200ÃÂÃÂ°C for 20 min until crispy.",
               "Make tahini dressing: whisk tahini, lemon juice, garlic, water until smooth.",
               "Assemble: quinoa base, pile greens, cucumber, carrot ribbons, avocado and chickpeas.",
               "Drizzle dressing. Finish with sesame seeds."
             ],
-            "tip": "Batch cook quinoa and roast chickpeas on Sunday Ã¢ÂÂ assembly takes 5 min on weekdays.",
+            "tip": "Batch cook quinoa and roast chickpeas on Sunday ÃÂ¢ÃÂÃÂ assembly takes 5 min on weekdays.",
             "nutrition": {
               "calories": 420,
               "protein": 20,
@@ -827,7 +828,7 @@
             "protein": 16,
             "prepTime": 20,
             "cost": 1.8,
-            "emoji": "Ã°ÂÂÂ",
+            "emoji": "ÃÂ°ÃÂÃÂÃÂ",
             "color": "#8B0000",
             "ingredients": [
               "pasta",
@@ -843,11 +844,11 @@
             "steps": [
               "Boil pasta in salted water until al dente. Reserve pasta water.",
               "Heat olive oil, add sliced garlic and chilli flakes until garlic is golden.",
-              "Add diced zucchini and capsicum, sautÃÂ© 3 min.",
+              "Add diced zucchini and capsicum, sautÃÂÃÂ© 3 min.",
               "Add crushed tomatoes, season well, simmer 10 min until sauce thickens.",
               "Toss with drained pasta and pasta water. Serve with basil and parmesan."
             ],
-            "tip": "Chilli flakes bloom in olive oil Ã¢ÂÂ this is where the heat depth comes from.",
+            "tip": "Chilli flakes bloom in olive oil ÃÂ¢ÃÂÃÂ this is where the heat depth comes from.",
             "nutrition": {
               "calories": 420,
               "protein": 16,
@@ -920,5 +921,5 @@
     "quick": false,
     "budget": false
   },
-  "lastUpdated": "2026-03-26T10:27:20.830Z"
+  "lastUpdated": "2026-03-26T10:27:52.896Z"
 }
