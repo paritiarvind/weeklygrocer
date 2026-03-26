@@ -3,44 +3,44 @@
     {
       "day": "Monday",
       "b": "overnight_oats",
-      "l": "dal_tadka",
+      "l": "soya_curry",
       "dn": "matar_paneer"
     },
     {
       "day": "Tuesday",
       "b": "moong_cheela",
-      "l": "buddha_bowl",
+      "l": "dal_tadka",
       "dn": "paneer_paratha"
     },
     {
       "day": "Wednesday",
       "b": "paneer_bhurji",
-      "l": "dal_tadka",
-      "dn": "mediterranean_bowl"
-    },
-    {
-      "day": "Thursday",
-      "b": "overnight_oats",
-      "l": "greek_salad",
+      "l": "buddha_bowl",
       "dn": "dal_makhani"
     },
     {
-      "day": "Friday",
+      "day": "Thursday",
       "b": "avo_toast",
-      "l": "palak_paneer",
+      "l": "soya_curry",
+      "dn": "mediterranean_bowl"
+    },
+    {
+      "day": "Friday",
+      "b": "overnight_oats",
+      "l": "dal_tadka",
       "dn": "matar_paneer"
     },
     {
       "day": "Saturday",
       "b": "moong_cheela",
-      "l": "soya_curry",
-      "dn": "dal_makhani"
+      "l": "palak_paneer",
+      "dn": "methi_dal"
     },
     {
       "day": "Sunday",
-      "b": "muesli_bowl",
-      "l": "buddha_bowl",
-      "dn": "paneer_paratha"
+      "b": "paneer_bhurji",
+      "l": "chana_masala",
+      "dn": "dal_makhani"
     }
   ],
   "nextPlan": null,
@@ -918,5 +918,5 @@
     "quick": false,
     "budget": false
   },
-  "lastUpdated": "2026-03-26T10:51:57.562Z"
+  "lastUpdated": "2026-03-26T10:52:05.909Z"
 }
