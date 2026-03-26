@@ -2,73 +2,73 @@
   "plan": [
     {
       "day": "Monday",
-      "b": "muesli_bowl",
-      "l": "pasta_pesto",
-      "dn": "methi_dal"
+      "b": "overnight_oats",
+      "l": "dal_tadka",
+      "dn": "matar_paneer"
     },
     {
       "day": "Tuesday",
       "b": "moong_cheela",
-      "l": "pasta_pesto",
-      "dn": "veggie_quesadilla"
+      "l": "buddha_bowl",
+      "dn": "paneer_paratha"
     },
     {
       "day": "Wednesday",
       "b": "paneer_bhurji",
-      "l": "caprese",
-      "dn": "pasta_arrabiata"
+      "l": "dal_tadka",
+      "dn": "mediterranean_bowl"
     },
     {
       "day": "Thursday",
-      "b": "scrambled_eggs",
+      "b": "overnight_oats",
       "l": "greek_salad",
-      "dn": "lentil_soup"
+      "dn": "dal_makhani"
     },
     {
       "day": "Friday",
-      "b": "muesli_bowl",
-      "l": "chana_masala",
-      "dn": "methi_dal"
+      "b": "avo_toast",
+      "l": "palak_paneer",
+      "dn": "matar_paneer"
     },
     {
       "day": "Saturday",
-      "b": "avo_toast",
-      "l": "palak_paneer",
-      "dn": "stir_fry_tofu"
+      "b": "moong_cheela",
+      "l": "soya_curry",
+      "dn": "dal_makhani"
     },
     {
       "day": "Sunday",
-      "b": "paneer_bhurji",
-      "l": "soya_curry",
-      "dn": "veggie_quesadilla"
+      "b": "muesli_bowl",
+      "l": "buddha_bowl",
+      "dn": "paneer_paratha"
     }
   ],
   "nextPlan": null,
   "cookMap": {
-    "0": "N",
-    "1": "A",
-    "2": "N",
-    "3": "A",
-    "4": "N",
-    "5": "A",
-    "6": "N",
-    "7": "A",
-    "8": "N",
-    "9": "A",
-    "10": "N",
-    "11": "A",
-    "12": "N",
-    "13": "A",
-    "14": "N",
-    "15": "A",
-    "16": "N",
-    "17": "A",
-    "18": "N",
-    "19": "A",
-    "20": "N"
+    "0": "A",
+    "1": "N",
+    "2": "A",
+    "3": "N",
+    "4": "A",
+    "5": "N",
+    "6": "A",
+    "7": "N",
+    "8": "A",
+    "9": "N",
+    "10": "A",
+    "11": "N",
+    "12": "A",
+    "13": "N",
+    "14": "A",
+    "15": "N",
+    "16": "A",
+    "17": "N",
+    "18": "A",
+    "19": "N",
+    "20": "A"
   },
   "nextCookMap": {},
-  "genNum": 3,
+  "genNum": 4,
   "completed": {},
   "shopChecked": {},
   "manualItems": [],
@@ -918,5 +918,5 @@
     "quick": false,
     "budget": false
   },
-  "lastUpdated": "2026-03-26T10:51:54.553Z"
+  "lastUpdated": "2026-03-26T10:51:57.562Z"
 }
