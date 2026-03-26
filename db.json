@@ -71,7 +71,8 @@
   "genNum": 2,
   "completed": {
     "Thursday-Dinner": true,
-    "Thursday-Lunch": true
+    "Thursday-Lunch": true,
+    "Thursday-Breakfast": true
   },
   "shopChecked": {},
   "manualItems": [],
@@ -921,5 +922,5 @@
     "quick": false,
     "budget": false
   },
-  "lastUpdated": "2026-03-26T10:27:52.896Z"
+  "lastUpdated": "2026-03-26T10:28:57.397Z"
 }
