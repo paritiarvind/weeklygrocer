@@ -16,7 +16,7 @@ jobs:
             -H "Content-Type: application/json" \
             -d '{
               "from": "RasaWeekly <onboarding@resend.dev>",
-              "to": ["${{ secrets.EMAIL_A }}", "${{ secrets.EMAIL_N }}"],
+              "to": ["paritiarvind@gmail.com"],
               "subject": "🍛 Saturday reminder — plan next week meals!",
               "html": "<div style=\"font-family:sans-serif;max-width:480px;margin:0 auto;background:#111;color:#f2f2f2;border-radius:16px;overflow:hidden;\"><div style=\"background:linear-gradient(135deg,#f0a030,#c47820);padding:28px 24px;text-align:center;\"><div style=\"font-size:2.5rem;\">🍛</div><h1 style=\"margin:8px 0 4px;color:#000;font-size:1.4rem;\">RasaWeekly</h1><p style=\"color:#000;opacity:.7;margin:0;font-size:.85rem;\">Your Saturday meal planning reminder</p></div><div style=\"padding:24px;\"><h2 style=\"font-size:1.1rem;margin:0 0 12px;\">Time to plan next week! 📅</h2><p style=\"color:#aaa;line-height:1.6;font-size:.9rem;\">It is Saturday — the perfect time to:</p><ul style=\"color:#aaa;line-height:1.8;font-size:.9rem;padding-left:20px;\"><li>Update your pantry with what you have</li><li>Generate next week 21 meals</li><li>Check the shopping list</li></ul><div style=\"text-align:center;margin:24px 0;\"><a href=\"https://paritiarvind.github.io/weeklygrocer\" style=\"background:linear-gradient(135deg,#f0a030,#c47820);color:#000;text-decoration:none;padding:13px 28px;border-radius:10px;font-weight:700;font-size:.95rem;\">Open RasaWeekly</a></div><p style=\"color:#555;font-size:.75rem;text-align:center;\">Every Saturday at 2pm Sydney time</p></div></div>"
             }'
