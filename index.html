@@ -1,0 +1,1658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="RasaWeekly">
+<meta name="theme-color" content="#0a0a0a">
+<title>RasaWeekly</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;0,700;1,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0a;--s1:#131313;--s2:#1c1c1c;--s3:#252525;--s4:#2e2e2e;
+  --t1:#f2f2f2;--t2:#999;--t3:#555;--t4:#2e2e2e;
+  --gold:#f0a030;--gold2:#c47820;--blue:#5ba3f5;--green:#42c77a;
+  --red:#f06060;--orange:#f07830;
+  --sat: env(safe-area-inset-top,0px);
+  --sab: env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+html{height:100%;background:#0a0a0a;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t1);height:100%;overflow:hidden;-webkit-font-smoothing:antialiased;}
+::-webkit-scrollbar{display:none;}
+.serif{font-family:'Fraunces',serif;}
+button,input{font-family:'DM Sans',sans-serif;}
+@keyframes slideUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulse{0%,100%{opacity:.4}50%{opacity:.15}}
+.sk{animation:pulse 1.4s ease-in-out infinite;background:var(--s3);border-radius:8px;}
+
+/* ── LAYOUT ── */
+#app{display:flex;flex-direction:column;height:100vh;height:100dvh;}
+#topbar{flex-shrink:0;height:calc(50px + var(--sat));padding-top:var(--sat);background:rgba(10,10,10,.96);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--s3);display:flex;align-items:center;padding-left:16px;padding-right:16px;gap:10px;z-index:90;}
+#content{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:calc(66px + var(--sab));}
+#bottomnav{position:fixed;bottom:0;left:0;right:0;height:calc(62px + var(--sab));padding-bottom:var(--sab);background:rgba(10,10,10,.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid var(--s3);display:flex;align-items:center;justify-content:space-around;z-index:90;}
+.nav-btn{flex:1;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;cursor:pointer;border:none;background:none;color:var(--t3);padding-top:6px;transition:color .15s;}
+.nav-btn.on{color:var(--gold);}
+.nav-icon{font-size:1.1rem;line-height:1;}
+.nav-lbl{font-size:.55rem;font-weight:600;letter-spacing:.3px;text-transform:uppercase;}
+.nav-dot{width:4px;height:4px;border-radius:50%;background:var(--gold);opacity:0;transition:opacity .2s;margin-top:1px;}
+.nav-btn.on .nav-dot{opacity:1;}
+.page{padding:16px;display:none;}
+.page.active{display:block;}
+
+/* ── CARDS ── */
+.card{background:var(--s1);border:1px solid var(--s3);border-radius:13px;padding:16px;margin-bottom:12px;}
+
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 16px;border-radius:9px;font-size:.8rem;font-weight:600;cursor:pointer;border:none;transition:all .15s;font-family:'DM Sans',sans-serif;}
+.btn:disabled{opacity:.4;cursor:not-allowed;}
+.btn-gold{background:var(--gold);color:#000;}
+.btn-gold:not(:disabled):active{background:var(--gold2);}
+.btn-ghost{background:transparent;border:1px solid var(--s4);color:var(--t2);}
+.btn-ghost:not(:disabled):active{background:var(--s3);}
+.btn-green{background:rgba(66,199,122,.12);border:1px solid rgba(66,199,122,.25);color:var(--green);}
+.btn-blue{background:rgba(91,163,245,.1);border:1px solid rgba(91,163,245,.2);color:var(--blue);}
+.btn-red{background:transparent;border:1px solid rgba(240,96,96,.3);color:var(--red);}
+.btn-generate{width:100%;height:50px;border-radius:12px;border:none;cursor:pointer;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;font-family:'Fraunces',serif;font-size:1rem;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .18s;}
+.btn-generate:disabled{opacity:.45;cursor:not-allowed;}
+.btn-generate:not(:disabled):active{transform:scale(.98);}
+.spinner{width:16px;height:16px;border:2.5px solid rgba(0,0,0,.2);border-top-color:#000;border-radius:50%;animation:spin .7s linear infinite;}
+
+/* ── INPUTS ── */
+.inp{padding:10px 13px;border:1px solid var(--s4);border-radius:9px;background:var(--s2);color:var(--t1);font-size:.86rem;outline:none;transition:border-color .18s;width:100%;}
+.inp:focus{border-color:var(--gold);}
+.inp::placeholder{color:var(--t3);}
+.inp-row{display:flex;gap:8px;margin-bottom:10px;}
+.inp-row .inp{flex:1;width:auto;}
+
+/* ── CHIPS ── */
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;}
+.chip{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:18px;font-size:.72rem;font-weight:500;border:1px solid var(--s4);background:var(--s2);color:var(--t2);}
+.chip.matched{border-color:rgba(66,199,122,.4);color:var(--green);background:rgba(66,199,122,.07);}
+.chip-x{background:none;border:none;cursor:pointer;color:inherit;opacity:.6;font-size:.8rem;padding:0;line-height:1;margin-left:2px;}
+.chip-x:hover{opacity:1;}
+.quick-add{display:flex;flex-wrap:wrap;gap:5px;}
+.qadd-btn{padding:4px 10px;border-radius:14px;font-size:.7rem;font-weight:500;cursor:pointer;border:1px solid var(--s4);background:transparent;color:var(--t3);transition:all .14s;font-family:'DM Sans',sans-serif;}
+.qadd-btn:active{border-color:var(--gold);color:var(--gold);}
+
+/* ── FILTERS ── */
+.filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;}
+.flt{padding:6px 13px;border-radius:18px;font-size:.72rem;font-weight:600;cursor:pointer;border:1px solid var(--s4);background:transparent;color:var(--t3);transition:all .15s;font-family:'DM Sans',sans-serif;}
+.flt.on{border-color:rgba(240,160,48,.5);color:var(--gold);background:rgba(240,160,48,.08);}
+
+/* ── COOK PIP ── */
+.pip{width:17px;height:17px;border-radius:4px;font-size:.58rem;font-weight:800;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;}
+.pip-A{background:rgba(240,160,48,.2);color:var(--gold);}
+.pip-N{background:rgba(91,163,245,.2);color:var(--blue);}
+
+/* ── MATCH BAR ── */
+.match-bar{display:flex;align-items:center;gap:7px;}
+.match-track{flex:1;height:3px;background:var(--s4);border-radius:2px;overflow:hidden;}
+.match-fill{height:100%;border-radius:2px;transition:width .4s;}
+.match-pct{font-size:.66rem;font-weight:700;min-width:28px;}
+
+/* ── TODAY MEALS ── */
+.meal-card{border-radius:14px;overflow:hidden;border:1px solid var(--s3);margin-bottom:10px;cursor:pointer;}
+.meal-card-hero{height:105px;display:flex;align-items:flex-end;padding:12px 14px;position:relative;}
+.meal-hero-bg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:3.8rem;opacity:.3;}
+.meal-hero-grad{position:absolute;inset:0;}
+.meal-hero-content{position:relative;z-index:1;width:100%;}
+.meal-type-row{display:flex;align-items:center;gap:6px;margin-bottom:3px;font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:rgba(255,255,255,.65);}
+.meal-name{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:700;color:#fff;line-height:1.2;}
+.meal-card-foot{background:var(--s1);padding:10px 14px;display:flex;align-items:center;gap:10px;}
+.meal-stats{display:flex;gap:10px;flex:1;flex-wrap:wrap;}
+.mstat{font-size:.7rem;color:var(--t2);}
+.mstat b{color:var(--t1);}
+.tick-btn{width:34px;height:34px;border-radius:9px;border:1.5px solid;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.88rem;transition:all .15s;flex-shrink:0;background:transparent;}
+.tick-btn.done{background:var(--green);border-color:var(--green);color:#000;}
+.tick-btn:not(.done){border-color:var(--s4);color:var(--t4);}
+.cook-btn{background:var(--gold);color:#000;border:none;border-radius:8px;padding:6px 12px;font-size:.72rem;font-weight:700;cursor:pointer;flex-shrink:0;font-family:'DM Sans',sans-serif;}
+.cook-btn:active{background:var(--gold2);}
+
+/* ── WEEK LIST ── */
+.week-day-label{display:flex;align-items:center;gap:8px;margin-bottom:8px;margin-top:14px;}
+.week-day-name{font-family:'Fraunces',serif;font-size:.92rem;font-weight:700;}
+.today-tag{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:2px 7px;border-radius:4px;background:rgba(240,160,48,.15);color:var(--gold);}
+.week-meal-row{display:flex;gap:10px;padding:9px 12px;background:var(--s1);border:1px solid var(--s3);border-radius:10px;cursor:pointer;margin-bottom:5px;align-items:center;transition:background .12s;}
+.week-meal-row:active{background:var(--s2);}
+.week-meal-row.done-row{opacity:.55;}
+.week-meal-emoji{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.15rem;flex-shrink:0;}
+.week-meal-info{flex:1;min-width:0;}
+.week-meal-type{display:flex;align-items:center;gap:5px;font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--t3);margin-bottom:2px;}
+.week-meal-name{font-size:.8rem;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.week-meal-name.done{text-decoration:line-through;opacity:.5;}
+.week-meal-meta{display:flex;gap:8px;margin-top:2px;}
+.wmeta{font-size:.63rem;color:var(--t2);}
+
+/* ── SHOP ── */
+.shop-item{display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--s1);border:1px solid var(--s3);border-radius:9px;cursor:pointer;margin-bottom:5px;transition:background .12s;}
+.shop-item:active{background:var(--s2);}
+.shop-chk{width:18px;height:18px;border-radius:5px;border:1.5px solid var(--s4);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.66rem;font-weight:700;color:#000;transition:all .14s;}
+.shop-chk.on{background:var(--green);border-color:var(--green);}
+.shop-name{flex:1;font-size:.84rem;}
+.shop-name.done{text-decoration:line-through;color:var(--t3);}
+.custom-tag{font-size:.58rem;color:var(--blue);background:rgba(91,163,245,.1);padding:2px 6px;border-radius:4px;flex-shrink:0;}
+
+/* ── PROGRESS RING ── */
+.prog-wrap{background:var(--s1);border:1px solid var(--s3);border-radius:12px;padding:12px 14px;margin-bottom:14px;display:flex;align-items:center;gap:12px;}
+.prog-ring-wrap{position:relative;width:48px;height:48px;flex-shrink:0;}
+.prog-svg{transform:rotate(-90deg);}
+.prog-text{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:.9rem;font-weight:700;color:var(--green);}
+
+/* ── RECIPE MODAL ── */
+.modal-overlay{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);display:flex;flex-direction:column;animation:fadeIn .15s ease;}
+.modal-sheet{background:var(--s1);border-radius:22px 22px 0 0;margin-top:auto;height:92vh;overflow-y:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--s3);border-bottom:none;}
+.modal-handle{width:36px;height:4px;background:var(--s4);border-radius:2px;margin:10px auto 0;}
+.modal-hero{height:148px;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:14px 16px;}
+.modal-hero-bg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:4.5rem;opacity:.32;}
+.modal-hero-grad{position:absolute;inset:0;}
+.modal-hero-meta{position:relative;z-index:1;width:100%;}
+.modal-type{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.6);margin-bottom:4px;display:flex;align-items:center;gap:6px;}
+.modal-title{font-family:'Fraunces',serif;font-size:1.35rem;font-weight:700;color:#fff;line-height:1.2;margin-bottom:8px;}
+.mpills{display:flex;gap:5px;flex-wrap:wrap;}
+.mpill{background:rgba(255,255,255,.13);backdrop-filter:blur(6px);padding:3px 9px;border-radius:6px;font-size:.68rem;font-weight:600;color:#fff;}
+.modal-actions{display:flex;gap:7px;padding:12px 16px;border-bottom:1px solid var(--s3);flex-wrap:wrap;}
+.modal-body{padding:14px 16px;}
+.modal-sec{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--t3);margin-bottom:9px;}
+.fit-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;}
+.fit-box{background:var(--s2);border:1px solid var(--s3);border-radius:9px;padding:10px 12px;}
+.fit-who{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px;}
+.fit-val{font-size:.82rem;font-weight:600;}
+.fit-note{font-size:.62rem;color:var(--t3);margin-top:2px;}
+.nutr-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:14px;}
+.nutr-box{background:var(--s2);border:1px solid var(--s3);border-radius:8px;padding:8px 5px;text-align:center;}
+.nutr-v{font-family:'Fraunces',serif;font-size:.96rem;font-weight:700;color:var(--gold);}
+.nutr-l{font-size:.58rem;color:var(--t3);margin-top:1px;text-transform:uppercase;letter-spacing:.3px;}
+.ings{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px;}
+.ing{background:var(--s2);border:1px solid var(--s3);padding:4px 9px;border-radius:6px;font-size:.74rem;color:var(--t2);}
+.ing.have{background:rgba(66,199,122,.08);border-color:rgba(66,199,122,.3);color:var(--green);}
+.steps-list{display:flex;flex-direction:column;gap:10px;margin-bottom:14px;}
+.step-row{display:flex;gap:9px;align-items:flex-start;}
+.step-num{width:20px;height:20px;border-radius:5px;background:var(--s3);border:1px solid var(--s4);display:flex;align-items:center;justify-content:center;font-size:.62rem;font-weight:700;color:var(--gold);flex-shrink:0;margin-top:2px;}
+.step-text{font-size:.8rem;line-height:1.62;color:var(--t2);}
+.tip-box{background:rgba(240,160,48,.05);border:1px solid rgba(240,160,48,.15);border-radius:9px;padding:10px 13px;font-size:.76rem;color:var(--t2);line-height:1.5;margin-bottom:13px;}
+.tip-label{display:block;font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--gold);margin-bottom:2px;}
+.src-box{padding:8px 12px;background:var(--s2);border-radius:8px;font-size:.67rem;color:var(--t4);margin-bottom:12px;}
+.alts-section{border-top:1px solid var(--s3);padding:14px 16px;}
+.alt-item{display:flex;align-items:center;gap:9px;padding:9px 11px;background:var(--s2);border:1px solid var(--s3);border-radius:9px;cursor:pointer;margin-bottom:5px;transition:all .12s;}
+.alt-item:active{border-color:var(--gold);background:var(--s3);}
+.alt-emoji{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+.alt-name{flex:1;font-size:.8rem;font-weight:600;}
+.alt-meta{font-size:.65rem;color:var(--t3);margin-top:1px;}
+.alt-use{background:var(--gold);border:none;border-radius:6px;padding:5px 11px;font-size:.7rem;font-weight:700;cursor:pointer;color:#000;font-family:'DM Sans',sans-serif;flex-shrink:0;}
+.portion-row{display:flex;align-items:center;gap:10px;background:var(--s2);border:1px solid var(--s3);border-radius:9px;padding:9px 13px;margin-bottom:13px;}
+.portion-ctrl{display:flex;align-items:center;gap:12px;margin-left:auto;}
+.portion-btn{width:28px;height:28px;border-radius:7px;border:1px solid var(--s4);background:var(--s3);color:var(--t1);cursor:pointer;font-size:.95rem;display:flex;align-items:center;justify-content:center;}
+.portion-val{font-family:'Fraunces',serif;font-size:1rem;font-weight:700;min-width:18px;text-align:center;}
+
+/* ── COOK NOW ── */
+.cook-overlay{position:fixed;inset:0;z-index:300;background:var(--bg);display:flex;flex-direction:column;animation:fadeIn .15s ease;}
+.cook-topbar{padding:calc(14px + var(--sat)) 16px 12px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--s3);}
+.cook-back{width:36px;height:36px;border-radius:10px;border:1px solid var(--s3);background:var(--s2);color:var(--t2);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.9rem;}
+.cook-prog{display:flex;gap:3px;padding:10px 16px;}
+.cook-prog-seg{flex:1;height:3px;border-radius:2px;background:var(--s4);transition:background .3s;}
+.cook-prog-seg.done{background:var(--green);}
+.cook-prog-seg.active{background:var(--gold);}
+.cook-step-body{flex:1;padding:18px 20px;overflow-y:auto;}
+.cook-step-num{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--t3);margin-bottom:10px;}
+.cook-step-text{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:600;line-height:1.5;color:var(--t1);}
+.cook-done-screen{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px;text-align:center;}
+.cook-footer{padding:14px 16px;padding-bottom:calc(16px + var(--sab));display:flex;gap:9px;}
+.cook-step-btn{flex:1;height:50px;border-radius:13px;font-weight:700;cursor:pointer;font-size:.9rem;font-family:'DM Sans',sans-serif;border:none;transition:all .15s;}
+.cook-next{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;}
+.cook-prev{background:var(--s2);border:1px solid var(--s3);color:var(--t2);}
+
+/* ── SCAN SHEET ── */
+.scan-overlay{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.85);backdrop-filter:blur(12px);display:flex;flex-direction:column;animation:fadeIn .15s ease;}
+.scan-sheet{background:var(--s1);border-radius:22px 22px 0 0;margin-top:auto;max-height:80vh;overflow-y:auto;border:1px solid var(--s3);border-bottom:none;}
+.scan-item{display:flex;align-items:center;gap:11px;padding:10px 12px;background:var(--s2);border:1px solid var(--s3);border-radius:11px;cursor:pointer;margin-bottom:7px;}
+.scan-item:active{border-color:var(--gold);}
+
+/* ── HISTORY ── */
+.hist-card{background:var(--s1);border:1px solid var(--s3);border-radius:12px;margin-bottom:8px;overflow:hidden;}
+.hist-head{display:flex;align-items:center;gap:10px;padding:12px 14px;cursor:pointer;}
+.hist-body{border-top:1px solid var(--s3);padding:12px 14px;}
+.hist-day{margin-bottom:8px;}
+.hist-day-name{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--t3);margin-bottom:4px;}
+.hist-meals{display:flex;gap:5px;flex-wrap:wrap;}
+.hmeal{font-size:.68rem;padding:3px 8px;border-radius:5px;background:var(--s2);border:1px solid var(--s3);color:var(--t3);display:flex;align-items:center;gap:3px;}
+.hmeal.done{border-color:rgba(66,199,122,.25);color:var(--green);background:rgba(66,199,122,.06);}
+
+/* ── SYNC STATUS ── */
+.sync-bar{display:flex;align-items:center;gap:7px;padding:8px 14px;background:var(--s2);border-bottom:1px solid var(--s3);font-size:.68rem;color:var(--t3);}
+.sync-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+.sync-dot.ok{background:var(--green);}
+.sync-dot.busy{background:var(--gold);animation:pulse .8s ease-in-out infinite;}
+.sync-dot.err{background:var(--red);}
+
+/* ── TOAST ── */
+#toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:var(--s2);border:1px solid var(--s4);border-radius:10px;padding:10px 18px;font-size:.78rem;color:var(--t1);font-weight:500;z-index:999;box-shadow:0 8px 32px rgba(0,0,0,.8);white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .2s;}
+#toast.show{opacity:1;}
+
+/* ── SHARE MODAL ── */
+.share-overlay{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.88);backdrop-filter:blur(10px);display:flex;align-items:flex-end;justify-content:center;padding:16px;animation:fadeIn .15s ease;}
+.share-sheet{background:var(--s1);border:1px solid var(--s3);border-radius:20px;padding:24px;width:100%;max-width:400px;animation:slideUp .2s ease;}
+.share-step{display:flex;gap:10px;margin-bottom:11px;align-items:flex-start;}
+.share-step-num{width:22px;height:22px;border-radius:6px;background:var(--gold);color:#000;font-size:.72rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+
+/* ── SETUP ── */
+#setup-screen{position:fixed;inset:0;z-index:400;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;animation:fadeIn .3s ease;}
+.setup-card{width:100%;max-width:380px;background:var(--s1);border:1px solid var(--s3);border-radius:20px;padding:24px;}
+
+@media(min-width:600px){
+  #content .page{max-width:540px;margin:0 auto;}
+}
+</style>
+</head>
+<body>
+
+<!-- ── SETUP SCREEN (first run) ── -->
+<div id="setup-screen" style="display:none;">
+  <div style="text-align:center;margin-bottom:28px;">
+    <div style="width:64px;height:64px;background:linear-gradient(135deg,#f0a030,#c47820);border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:1.9rem;margin:0 auto 14px;box-shadow:0 20px 50px rgba(240,160,48,.28);">🍛</div>
+    <div class="serif" style="font-size:1.8rem;font-weight:700;">Rasa<span style="color:var(--gold);font-style:italic;">Weekly</span></div>
+    <div style="font-size:.8rem;color:var(--t3);margin-top:4px;">Family meal planner</div>
+  </div>
+  <div class="setup-card">
+    <div class="serif" style="font-size:1rem;font-weight:700;margin-bottom:4px;">One-time setup</div>
+    <div style="font-size:.74rem;color:var(--t3);margin-bottom:16px;">Enter your GitHub sync details so both phones stay updated.</div>
+
+    <label style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--t3);display:block;margin-bottom:6px;">GitHub Username</label>
+    <input class="inp" id="setup-user" placeholder="your-github-username" style="margin-bottom:12px;">
+
+    <label style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--t3);display:block;margin-bottom:6px;">Repository Name</label>
+    <input class="inp" id="setup-repo" placeholder="rasaweekly" style="margin-bottom:12px;">
+
+    <label style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--t3);display:block;margin-bottom:6px;">GitHub Personal Access Token</label>
+    <input class="inp" id="setup-token" type="password" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" style="margin-bottom:6px;">
+    <div style="font-size:.66rem;color:var(--t3);margin-bottom:16px;">Token needs <strong style="color:var(--t2);">Contents: Read & Write</strong> permission only. <a href="https://github.com/settings/tokens/new" target="_blank" style="color:var(--gold);">Create one here ↗</a></div>
+
+    <button class="btn-generate" onclick="saveSetup()">Save & Start</button>
+    <div id="setup-err" style="font-size:.72rem;color:var(--red);margin-top:8px;min-height:18px;"></div>
+  </div>
+</div>
+
+<!-- ── MAIN APP ── -->
+<div id="app" style="display:none;">
+
+  <!-- TOP BAR -->
+  <div id="topbar">
+    <div class="serif" style="font-size:1.1rem;font-weight:700;font-style:italic;color:var(--gold);flex:1;">Rasa</div>
+    <button onclick="openScan()" style="width:34px;height:34px;border-radius:9px;border:1px solid var(--s3);background:var(--s2);color:var(--t2);cursor:pointer;font-size:.88rem;">🔍</button>
+    <button onclick="openShare()" style="width:34px;height:34px;border-radius:9px;border:1px solid var(--s3);background:var(--s2);color:var(--t2);cursor:pointer;font-size:.82rem;font-weight:700;">↗</button>
+  </div>
+
+  <!-- SYNC BAR -->
+  <div class="sync-bar" id="syncbar">
+    <div class="sync-dot ok" id="syncdot"></div>
+    <span id="synclabel">Synced</span>
+    <button onclick="loadFromGitHub(true)" style="margin-left:auto;background:none;border:none;color:var(--t3);font-size:.68rem;cursor:pointer;font-family:'DM Sans',sans-serif;">↺ Refresh</button>
+  </div>
+
+  <!-- CONTENT -->
+  <div id="content">
+
+    <!-- TODAY PAGE -->
+    <div class="page active" id="page-today">
+      <div id="today-greeting" class="serif" style="font-size:1.4rem;font-weight:700;line-height:1.2;margin-bottom:3px;"></div>
+      <div id="today-date" style="font-size:.78rem;color:var(--t3);margin-bottom:14px;"></div>
+      <div id="today-progress" class="prog-wrap" style="display:none;">
+        <div class="prog-ring-wrap">
+          <svg class="prog-svg" width="48" height="48" viewBox="0 0 48 48">
+            <circle fill="none" stroke="#2e2e2e" stroke-width="4" cx="24" cy="24" r="20"/>
+            <circle id="prog-ring-fill" fill="none" stroke="#42c77a" stroke-width="4" stroke-linecap="round" cx="24" cy="24" r="20"
+              stroke-dasharray="125.66" stroke-dashoffset="125.66" style="transition:stroke-dashoffset .5s;"/>
+          </svg>
+          <div class="prog-text" id="prog-num">0</div>
+        </div>
+        <div>
+          <div style="font-size:.86rem;font-weight:600;" id="prog-label">0/21 meals done</div>
+          <div style="font-size:.7rem;color:var(--t3);margin-top:1px;" id="prog-sub">Start cooking below</div>
+        </div>
+      </div>
+      <div id="today-meals"></div>
+      <div id="today-empty" style="text-align:center;padding:40px 0;display:none;">
+        <div style="font-size:2.4rem;margin-bottom:10px;">📅</div>
+        <div class="serif" style="font-size:1rem;font-weight:700;margin-bottom:6px;">No plan yet</div>
+        <div style="font-size:.76rem;color:var(--t3);margin-bottom:14px;">Go to the Week tab to generate this week's meals.</div>
+        <button class="btn btn-gold" onclick="switchTab('week')">Generate Plan →</button>
+      </div>
+    </div>
+
+    <!-- WEEK PAGE -->
+    <div class="page" id="page-week">
+      <!-- Week tabs -->
+      <div style="display:flex;gap:7px;margin-bottom:12px;overflow-x:auto;padding-bottom:2px;">
+        <button id="week-tab-current" class="btn btn-gold" style="flex-shrink:0;" onclick="setWeekView('current')">This Week</button>
+        <button id="week-tab-next" class="btn btn-ghost" style="flex-shrink:0;" onclick="setWeekView('next')">Next Week</button>
+      </div>
+      <!-- Cook split -->
+      <div id="cook-split" style="display:none;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;"></div>
+      <!-- Stats bar -->
+      <div id="week-stats" style="display:none;"></div>
+      <!-- Generate panel -->
+      <div class="card">
+        <div class="serif" style="font-size:.95rem;font-weight:700;margin-bottom:4px;" id="gen-panel-title">Generate this week</div>
+        <div style="font-size:.7rem;color:var(--t3);margin-bottom:12px;">21 meals · A & N split · Indian + Western · matched to your pantry</div>
+        <div class="filters" id="filter-btns"></div>
+        <button class="btn-generate" id="gen-btn" onclick="runGenerate()">Generate Week 1</button>
+        <div id="gen-loading-hint" style="font-size:.68rem;color:var(--t3);text-align:center;margin-top:8px;display:none;">Matching recipes to your pantry… 5–15 seconds</div>
+        <div id="gen-sub-btns" style="display:none;margin-top:8px;display:none;">
+          <button class="btn btn-ghost" style="width:100%;margin-bottom:6px;" onclick="runGenerate(false,true)">↺ Regenerate</button>
+          <button class="btn btn-blue" style="width:100%;" id="archive-btn" onclick="archiveWeek()">📁 Archive & start fresh</button>
+        </div>
+        <div id="gen-err" style="font-size:.74rem;color:#f08080;margin-top:8px;display:none;background:rgba(240,96,96,.08);border:1px solid rgba(240,96,96,.2);border-radius:8px;padding:8px 12px;"></div>
+      </div>
+      <!-- Plan display -->
+      <div id="week-plan-list"></div>
+      <div id="week-empty" style="text-align:center;padding:28px 0;display:none;">
+        <div style="font-size:1.8rem;margin-bottom:8px;">📅</div>
+        <div style="font-size:.76rem;color:var(--t3);">Hit Generate above to build your week.</div>
+      </div>
+    </div>
+
+    <!-- SHOP PAGE -->
+    <div class="page" id="page-shop">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+        <div class="serif" style="font-size:1.2rem;font-weight:700;">Shopping</div>
+        <div style="display:flex;gap:6px;">
+          <button class="btn btn-ghost" style="font-size:.72rem;padding:6px 11px;" onclick="clearShop()">Clear</button>
+          <button class="btn btn-green" style="font-size:.72rem;padding:6px 11px;" onclick="checkAllShop()">✓ All</button>
+          <button class="btn btn-gold" style="font-size:.72rem;padding:6px 11px;" onclick="exportList()">📋</button>
+        </div>
+      </div>
+      <div id="shop-coverage" style="display:none;background:var(--s1);border:1px solid var(--s3);border-radius:10px;padding:10px 13px;margin-bottom:12px;display:flex;align-items:center;gap:10px;">
+        <span style="font-size:.66rem;color:var(--t3);white-space:nowrap;">Pantry covers</span>
+        <div style="flex:1;height:4px;background:var(--s4);border-radius:2px;overflow:hidden;"><div id="cov-fill" style="height:100%;border-radius:2px;transition:width .5s;"></div></div>
+        <span id="cov-pct" style="font-size:.72rem;font-weight:700;white-space:nowrap;"></span>
+      </div>
+      <div style="font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--t4);margin-bottom:8px;">Recipe ingredients needed</div>
+      <div id="shop-recipe-list"></div>
+      <div style="font-size:.62px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--t4);margin:14px 0 8px;">Your additions</div>
+      <div class="inp-row" style="margin-bottom:10px;">
+        <input class="inp" id="manual-inp" placeholder="Greek yogurt, sourdough, halloumi…" onkeydown="if(event.key==='Enter')addManual()">
+        <button class="btn btn-gold" onclick="addManual()">Add</button>
+      </div>
+      <div id="manual-list"></div>
+    </div>
+
+    <!-- PANTRY PAGE -->
+    <div class="page" id="page-pantry">
+      <div class="serif" style="font-size:1.4rem;font-weight:700;margin-bottom:3px;">Your pantry <span style="color:var(--gold);font-style:italic;">&amp; settings</span></div>
+      <div style="font-size:.78rem;color:var(--t3);margin-bottom:16px;">Recipes are scored by how many ingredients you already have</div>
+      <div class="inp-row">
+        <input class="inp" id="pantry-inp" placeholder="avocado, pasta, paneer, eggs…" onkeydown="if(event.key==='Enter')addGrocery()">
+        <button class="btn btn-gold" onclick="addGrocery()">Add</button>
+      </div>
+      <div id="pantry-chips" class="chips"></div>
+      <div style="font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--t4);margin-bottom:7px;">Quick add</div>
+      <div class="quick-add" id="quick-add-btns"></div>
+      <!-- Pantry coverage -->
+      <div id="pantry-coverage" style="margin-top:16px;display:none;"></div>
+      <!-- Notifications -->
+      <div style="margin-top:16px;">
+        <div class="serif" style="font-size:.95rem;font-weight:700;margin-bottom:8px;">Reminders</div>
+        <div class="card" style="display:flex;align-items:center;gap:12px;cursor:pointer;" onclick="toggleNotif()">
+          <span style="font-size:1.1rem;">🔔</span>
+          <div style="flex:1;">
+            <div style="font-size:.84rem;font-weight:500;">Saturday 2pm reminder</div>
+            <div style="font-size:.68rem;color:var(--t3);margin-top:1px;">Plan next week's meals together</div>
+          </div>
+          <span id="notif-status" style="font-size:.62rem;padding:2px 8px;border-radius:4px;font-weight:700;"></span>
+        </div>
+      </div>
+      <!-- Change config -->
+      <div style="margin-top:16px;">
+        <div class="serif" style="font-size:.95rem;font-weight:700;margin-bottom:8px;">Sync settings</div>
+        <button class="btn btn-ghost" style="width:100%;" onclick="resetSetup()">⚙ Change GitHub config</button>
+      </div>
+    </div>
+
+    <!-- HISTORY PAGE -->
+    <div class="page" id="page-history">
+      <div class="serif" style="font-size:1.2rem;font-weight:700;margin-bottom:4px;">History & Saved</div>
+      <div style="font-size:.72rem;color:var(--t3);margin-bottom:14px;">Archived weeks + bookmarked recipes</div>
+      <div id="history-list"></div>
+      <div class="serif" style="font-size:1rem;font-weight:700;margin:18px 0 10px;">Saved Recipes</div>
+      <div id="favs-list"></div>
+    </div>
+
+  </div><!-- /content -->
+
+  <!-- BOTTOM NAV -->
+  <nav id="bottomnav">
+    <button class="nav-btn on" onclick="switchTab('today')" id="nav-today">
+      <span class="nav-icon">🍽️</span><span class="nav-lbl">Today</span><span class="nav-dot"></span>
+    </button>
+    <button class="nav-btn" onclick="switchTab('week')" id="nav-week">
+      <span class="nav-icon">📅</span><span class="nav-lbl">Week</span><span class="nav-dot"></span>
+    </button>
+    <button class="nav-btn" onclick="switchTab('shop')" id="nav-shop">
+      <span class="nav-icon">🛒</span><span class="nav-lbl">Shop</span><span class="nav-dot"></span>
+    </button>
+    <button class="nav-btn" onclick="switchTab('pantry')" id="nav-pantry">
+      <span class="nav-icon">🥬</span><span class="nav-lbl">Pantry</span><span class="nav-dot"></span>
+    </button>
+    <button class="nav-btn" onclick="switchTab('history')" id="nav-history">
+      <span class="nav-icon">📁</span><span class="nav-lbl">History</span><span class="nav-dot"></span>
+    </button>
+  </nav>
+</div><!-- /app -->
+
+<!-- TOAST -->
+<div id="toast"></div>
+
+<!-- RECIPE MODAL -->
+<div class="modal-overlay" id="modal" style="display:none;" onclick="if(event.target===this)closeModal()">
+  <div class="modal-sheet" id="modal-sheet"></div>
+</div>
+
+<!-- COOK NOW -->
+<div class="cook-overlay" id="cook-overlay" style="display:none;"></div>
+
+<!-- SCAN SHEET -->
+<div class="scan-overlay" id="scan-overlay" style="display:none;" onclick="if(event.target===this)closeScan()">
+  <div class="scan-sheet" id="scan-sheet"></div>
+</div>
+
+<!-- SHARE MODAL -->
+<div class="share-overlay" id="share-overlay" style="display:none;" onclick="if(event.target===this)closeShare()">
+  <div class="share-sheet">
+    <div style="width:36px;height:4px;background:var(--s4);border-radius:2px;margin:0 auto 18px;"></div>
+    <div class="serif" style="font-size:1.1rem;font-weight:700;margin-bottom:6px;text-align:center;">Share with your wife</div>
+    <div style="font-size:.76rem;color:var(--t3);text-align:center;line-height:1.55;margin-bottom:18px;">She opens the same URL on her phone — the plan syncs automatically, no generate needed.</div>
+    <div class="card" style="margin-bottom:12px;">
+      <div style="font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--t3);margin-bottom:10px;">How to share</div>
+      <div class="share-step"><div class="share-step-num">1</div><div style="font-size:.76rem;color:var(--t2);line-height:1.5;padding-top:2px;">Copy the URL of this page from your browser</div></div>
+      <div class="share-step"><div class="share-step-num">2</div><div style="font-size:.76rem;color:var(--t2);line-height:1.5;padding-top:2px;">Send it to your wife via iMessage or WhatsApp</div></div>
+      <div class="share-step" style="margin-bottom:0;"><div class="share-step-num">3</div><div style="font-size:.76rem;color:var(--t2);line-height:1.5;padding-top:2px;">She opens it → taps <strong style="color:var(--t1);">Add to Home Screen</strong> → done</div></div>
+    </div>
+    <div style="background:rgba(66,199,122,.07);border:1px solid rgba(66,199,122,.2);border-radius:10px;padding:11px 13px;margin-bottom:16px;">
+      <div style="font-size:.72rem;color:var(--green);line-height:1.6;">✓ Plan syncs instantly on both phones<br>✓ Tick a meal done — she sees it<br>✓ Shopping list stays in sync<br>✓ Same URL, always live data</div>
+    </div>
+    <button class="btn-generate" onclick="closeShare()">Got it</button>
+  </div>
+</div>
+
+<script>
+// ── CONFIG ────────────────────────────────────────────────────────────────────
+const CFG_KEY = 'rw_config';
+let CFG = null; // {user, repo, token}
+
+// ── STATE ─────────────────────────────────────────────────────────────────────
+let ST = {
+  plan: null, nextPlan: null,
+  cookMap: {}, nextCookMap: {},
+  genNum: 0,
+  completed: {}, shopChecked: {},
+  manualItems: [], history: [],
+  groceries: ['avocado','eggs','paneer','chickpeas','spinach','oats','pasta','garlic','onion','olive oil','lemon','feta cheese','ginger','cumin','turmeric'],
+  filters: {protein:true, quick:false, budget:false},
+  lastUpdated: ''
+};
+let favs = []; // local only
+let portions = 2;
+let currentTab = 'today';
+let weekView = 'current';
+let selectedRecipe = null;
+let selectedDayIdx = null;
+let selectedMealType = null;
+let selectedIsNext = false;
+let cookNowRecipe = null;
+let cookNowStep = 0;
+let dbSha = null; // GitHub file SHA for updates
+
+// ── RECIPE DB ─────────────────────────────────────────────────────────────────
+const DAYS = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
+const MEALS = ['Breakfast','Lunch','Dinner'];
+const TODAY_IDX = (()=>{ const d=new Date().getDay(); return d===0?6:d-1; })();
+
+const QUICK_G = ['avocado','eggs','paneer','chickpeas','spinach','oats','pasta','garlic','onion','olive oil','lemon','feta cheese','ginger','cumin','turmeric','curd','yogurt','tomato','urad dal','kidney beans','besan','green peas','methi leaves','mixed sprouts','mozzarella','basil','parmesan','tahini','quinoa','muesli'];
+
+const DB = [
+  {id:'avo_toast',name:'Avocado Toast',meal:'Breakfast',protein:12,prepTime:8,cost:2.2,emoji:'🥑',color:'#2D6A4F',
+   ingredients:['bread','avocado','lemon','olive oil','chilli flakes','salt','pepper'],
+   steps:['Toast 2 slices of sourdough until golden and crisp.','Halve avocado, scoop flesh into bowl. Mash with fork, add lemon juice, olive oil, salt and pepper.','Spread generously on toast. Top with chilli flakes.','Optional: add a fried or poached egg on top.'],
+   tip:'Everything bagel seasoning on top is a game changer.',
+   nutrition:{calories:310,protein:12,carbs:28,fat:18},source:'Modern Café Classic'},
+
+  {id:'overnight_oats',name:'Overnight Oats',meal:'Breakfast',protein:15,prepTime:5,cost:1.1,emoji:'🫙',color:'#5B8C99',
+   ingredients:['oats','milk','greek yogurt','chia seeds','honey','berries','banana'],
+   steps:['Add ½ cup oats to a jar.','Pour over ¾ cup milk, add 2 tbsp Greek yogurt and 1 tbsp chia seeds.','Drizzle with honey. Stir well. Seal and refrigerate overnight.','Top with fresh berries and banana slices before eating.'],
+   tip:'Prep 5 jars on Sunday — breakfast sorted all week.',
+   nutrition:{calories:350,protein:15,carbs:52,fat:7},source:'Nutrition First'},
+
+  {id:'muesli_bowl',name:'Muesli with Fresh Fruit',meal:'Breakfast',protein:14,prepTime:5,cost:1.4,emoji:'🥣',color:'#8B7355',
+   ingredients:['muesli','milk','greek yogurt','berries','banana','honey','chia seeds'],
+   steps:['Pour muesli into a bowl.','Add milk or Greek yogurt to your preferred consistency.','Top with fresh berries, sliced banana and a drizzle of honey.','Sprinkle chia seeds for extra fibre.'],
+   tip:'Soak muesli in milk overnight — bircher style is creamier and more digestible.',
+   nutrition:{calories:380,protein:14,carbs:58,fat:8},source:'Nutrition Australia'},
+
+  {id:'scrambled_eggs',name:'Scrambled Eggs on Toast',meal:'Breakfast',protein:20,prepTime:10,cost:1.3,emoji:'🍳',color:'#C49A2B',
+   ingredients:['eggs','bread','butter','milk','chives','salt','pepper'],
+   steps:['Crack 3 eggs into bowl, add splash of milk, salt and pepper. Whisk.','Toast bread slices.','Melt butter in non-stick pan on lowest heat. Pour in eggs.','Stir slowly with spatula, folding gently, until just cooked. Remove while still slightly glossy.','Pile onto toast. Finish with chives.'],
+   tip:'Low heat and patience make silky eggs. Pull off when 90% done.',
+   nutrition:{calories:320,protein:20,carbs:22,fat:15},source:'Gordon Ramsay Method'},
+
+  {id:'paneer_bhurji',name:'Paneer Bhurji',meal:'Breakfast',protein:22,prepTime:15,cost:1.8,emoji:'🧀',color:'#C04D2C',
+   ingredients:['paneer','onion','tomato','green chilli','ginger','garlic','turmeric','garam masala','oil','coriander'],
+   steps:['Heat oil, add cumin, fry onion golden ~4 min.','Add ginger, garlic and green chilli. Cook 1 min.','Add tomatoes, turmeric, red chilli until mashy ~3 min.','Crumble in paneer, stir gently, cook 2 min.','Finish with garam masala and coriander.'],
+   tip:'Add paneer last — just warm through, do not overcook.',
+   nutrition:{calories:280,protein:22,carbs:8,fat:16},source:"Hebbar's Kitchen"},
+
+  {id:'moong_cheela',name:'Moong Dal Cheela',meal:'Breakfast',protein:18,prepTime:15,cost:1.2,emoji:'🥞',color:'#4A7C59',
+   ingredients:['moong dal','onion','green chilli','ginger','cumin','coriander leaves','oil','salt'],
+   steps:['Soak moong dal 2 hrs, blend with ginger and green chilli to smooth batter.','Add chopped onion, cumin, coriander and salt.','Heat non-stick tawa, drizzle oil. Pour batter, spread thin.','Cook 2–3 min until edges lift, flip, cook 1–2 min until golden.','Serve with green chutney or curd.'],
+   tip:'Thinner spread = crispier cheela.',
+   nutrition:{calories:210,protein:18,carbs:24,fat:5},source:'Tarla Dalal'},
+
+  {id:'greek_salad',name:'Greek Salad with Chickpeas',meal:'Lunch',protein:16,prepTime:10,cost:1.8,emoji:'🥗',color:'#1B4F72',
+   ingredients:['chickpeas','cucumber','cherry tomatoes','feta cheese','kalamata olives','red onion','olive oil','lemon','oregano'],
+   steps:['Drain and rinse chickpeas well.','Dice cucumber, quarter cherry tomatoes, thinly slice red onion.','Combine chickpeas, cucumber, tomatoes, olives and onion.','Whisk olive oil, lemon juice, oregano, salt and pepper for dressing.','Toss everything, crumble feta on top.'],
+   tip:'Marinate red onion in lemon juice 10 min — removes the raw sharpness.',
+   nutrition:{calories:340,protein:16,carbs:32,fat:16},source:'Mediterranean Kitchen'},
+
+  {id:'pasta_pesto',name:'Pasta with Pesto & Veggies',meal:'Lunch',protein:18,prepTime:20,cost:2.1,emoji:'🍝',color:'#1E5631',
+   ingredients:['pasta','basil pesto','cherry tomatoes','zucchini','parmesan','olive oil','garlic','pine nuts'],
+   steps:['Boil pasta in well-salted water. Reserve ½ cup pasta water before draining.','Sauté diced zucchini and halved cherry tomatoes in olive oil with garlic ~4 min.','Drain pasta, return to pot off heat.','Add pesto, sautéed veggies and splash of pasta water. Toss well.','Serve topped with parmesan and toasted pine nuts.'],
+   tip:'Starchy pasta water makes the pesto silkier and helps it cling.',
+   nutrition:{calories:480,protein:18,carbs:64,fat:16},source:'Italian Kitchen'},
+
+  {id:'buddha_bowl',name:'Buddha Bowl',meal:'Lunch',protein:20,prepTime:15,cost:2.3,emoji:'🥙',color:'#6B4226',
+   ingredients:['quinoa','roasted chickpeas','avocado','mixed greens','cucumber','carrot','tahini','lemon','olive oil','sesame seeds'],
+   steps:['Cook quinoa: rinse, simmer in 2× water 15 min, fluff and cool.','Roast chickpeas with olive oil and smoked paprika 200°C for 20 min until crispy.','Make tahini dressing: whisk tahini, lemon juice, garlic, water until smooth.','Assemble: quinoa base, pile greens, cucumber, carrot ribbons, avocado and chickpeas.','Drizzle dressing. Finish with sesame seeds.'],
+   tip:'Batch cook quinoa and roast chickpeas on Sunday — assembly takes 5 min on weekdays.',
+   nutrition:{calories:420,protein:20,carbs:44,fat:18},source:'Whole Foods Kitchen'},
+
+  {id:'caprese',name:'Caprese Salad with Sourdough',meal:'Lunch',protein:15,prepTime:8,cost:2.4,emoji:'🍅',color:'#8B1A1A',
+   ingredients:['fresh mozzarella','cherry tomatoes','basil','sourdough bread','olive oil','balsamic glaze','salt','pepper'],
+   steps:['Slice mozzarella and tomatoes into even rounds.','Arrange alternating slices on a plate. Tuck basil leaves between slices.','Drizzle generously with olive oil and balsamic glaze.','Season with flaky salt and cracked pepper.','Serve with toasted sourdough.'],
+   tip:'Use the best quality olive oil you can — this dish lives by ingredient quality.',
+   nutrition:{calories:380,protein:15,carbs:30,fat:20},source:'Italian Classic'},
+
+  {id:'chana_masala',name:'Chana Masala',meal:'Lunch',protein:19,prepTime:25,cost:1.2,emoji:'🫘',color:'#8B4513',
+   ingredients:['chickpeas','onion','tomato','ginger','garlic','cumin','coriander powder','garam masala','amchur','oil'],
+   steps:['Cook chickpeas until tender (canned works — drain well).','Blend onion, tomatoes, ginger and garlic to smooth paste.','Heat oil, add cumin seeds. Add paste, cook until oil separates ~8 min.','Add spices, cook 2 min. Add chickpeas + 1 cup water, simmer 10 min.','Finish with garam masala and amchur.'],
+   tip:'A tea bag while boiling dried chickpeas gives rich dark colour.',
+   nutrition:{calories:295,protein:19,carbs:38,fat:7},source:'Tarla Dalal'},
+
+  {id:'dal_tadka',name:'Dal Tadka',meal:'Lunch',protein:18,prepTime:20,cost:0.9,emoji:'🥣',color:'#C49A2B',
+   ingredients:['toor dal','onion','tomato','garlic','ginger','turmeric','red chilli','cumin','ghee','asafoetida'],
+   steps:['Pressure cook toor dal with turmeric and salt until mushy. Mash and adjust.','Heat ghee — add cumin, asafoetida, red chillies — sizzle 30 sec.','Add garlic golden, then onion golden, then tomato soft.','Pour tadka over dal, stir, simmer 5 min.','Garnish with coriander. Serve with rice or roti.'],
+   tip:'Use real ghee for the tadka — the flavour difference is dramatic.',
+   nutrition:{calories:245,protein:18,carbs:34,fat:6},source:'Sanjeev Kapoor'},
+
+  {id:'palak_paneer',name:'Palak Paneer',meal:'Lunch',protein:24,prepTime:25,cost:2.0,emoji:'🥬',color:'#2D5016',
+   ingredients:['spinach','paneer','onion','tomato','garlic','ginger','cumin','garam masala','cream','oil'],
+   steps:['Blanch spinach 1 min, ice-water shock, blend smooth.','Sauté onion, garlic, ginger golden. Add tomato, cook soft. Blend smooth.','Return blended mix to pan. Add spinach puree, simmer 5 min.','Add pan-fried paneer cubes. Cook 3 min.','Swirl in cream. Serve with roti.'],
+   tip:'Ice water after blanching keeps spinach vibrant green.',
+   nutrition:{calories:320,protein:24,carbs:12,fat:18},source:'Sanjeev Kapoor'},
+
+  {id:'soya_curry',name:'Soya Chunks Masala',meal:'Lunch',protein:28,prepTime:22,cost:1.0,emoji:'🫙',color:'#5C3317',
+   ingredients:['soya chunks','onion','tomato','ginger','garlic','red chilli','cumin','garam masala','curd','oil'],
+   steps:['Boil soya chunks 5 min in salted water, squeeze completely dry.','Fry onion golden, add ginger and garlic, cook 2 min.','Add tomatoes, red chilli and cumin. Cook until mashy.','Stir in beaten curd slowly. Add soya + 1 cup water, simmer 10 min.','Finish with garam masala and coriander.'],
+   tip:'Squeezing soya dry removes raw smell and helps masala penetrate.',
+   nutrition:{calories:270,protein:28,carbs:18,fat:8},source:"Hebbar's Kitchen"},
+
+  {id:'pasta_arrabiata',name:'Pasta Arrabiata',meal:'Dinner',protein:16,prepTime:20,cost:1.8,emoji:'🍝',color:'#8B0000',
+   ingredients:['pasta','crushed tomatoes','garlic','chilli flakes','olive oil','basil','parmesan','zucchini','capsicum'],
+   steps:['Boil pasta in salted water until al dente. Reserve pasta water.','Heat olive oil, add sliced garlic and chilli flakes until garlic is golden.','Add diced zucchini and capsicum, sauté 3 min.','Add crushed tomatoes, season well, simmer 10 min until sauce thickens.','Toss with drained pasta and pasta water. Serve with basil and parmesan.'],
+   tip:'Chilli flakes bloom in olive oil — this is where the heat depth comes from.',
+   nutrition:{calories:420,protein:16,carbs:68,fat:10},source:'Italian Kitchen'},
+
+  {id:'dal_makhani',name:'Dal Makhani',meal:'Dinner',protein:20,prepTime:25,cost:1.5,emoji:'🫕',color:'#1A0A00',
+   ingredients:['urad dal','kidney beans','butter','cream','onion','tomato','ginger','garlic','garam masala','red chilli'],
+   steps:['Pressure cook soaked urad dal and kidney beans until very soft.','Sauté onions in butter until deep golden. Add ginger, garlic, cook 2 min.','Add blended tomatoes and red chilli. Cook until butter separates.','Add cooked lentils + water. Simmer low 15 min, stirring often.','Stir in cream and garam masala. Simmer 5 min more.'],
+   tip:'Low and slow is the secret. Tastes even better the next day.',
+   nutrition:{calories:340,protein:20,carbs:40,fat:12},source:'Sanjeev Kapoor'},
+
+  {id:'stir_fry_tofu',name:'Tofu & Veg Stir Fry',meal:'Dinner',protein:22,prepTime:20,cost:1.7,emoji:'🥢',color:'#2C3E50',
+   ingredients:['firm tofu','broccoli','capsicum','carrot','soy sauce','sesame oil','ginger','garlic','rice','sesame seeds'],
+   steps:['Press tofu 10 min, cube. Pan-fry in hot oil until golden on most sides ~6 min.','Cook rice per packet. Prep all vegetables into bite-sized pieces.','In same hot pan, stir fry broccoli and carrot 3 min, then capsicum 2 min more.','Add ginger and garlic, toss 30 sec. Return tofu to pan.','Add soy sauce and sesame oil. Toss well. Serve over rice topped with sesame seeds.'],
+   tip:'High heat, fast cooking — do not crowd the pan or vegetables steam instead.',
+   nutrition:{calories:380,protein:22,carbs:46,fat:12},source:'Asian Kitchen'},
+
+  {id:'matar_paneer',name:'Matar Paneer',meal:'Dinner',protein:22,prepTime:22,cost:2.1,emoji:'🟢',color:'#1E5C2E',
+   ingredients:['paneer','green peas','onion','tomato','ginger','garlic','cumin','garam masala','coriander powder','oil'],
+   steps:['Blend onion, tomato, ginger and garlic to smooth paste.','Heat oil, add cumin. Add paste, cook until oil separates ~7 min.','Add spices. Cook 2 min. Add peas + ½ cup water. Cover 5 min.','Add paneer cubes. Simmer 4 min.','Garnish with coriander. Serve with roti.'],
+   tip:'Golden-fry paneer cubes first for better texture and colour.',
+   nutrition:{calories:310,protein:22,carbs:18,fat:17},source:"Hebbar's Kitchen"},
+
+  {id:'mediterranean_bowl',name:'Mediterranean Grain Bowl',meal:'Dinner',protein:18,prepTime:18,cost:2.2,emoji:'🫙',color:'#1B4F72',
+   ingredients:['quinoa','feta cheese','roasted capsicum','cucumber','kalamata olives','cherry tomatoes','chickpeas','hummus','lemon','olive oil','parsley'],
+   steps:['Cook quinoa and let cool slightly.','Roast chickpeas with olive oil, cumin and paprika at 200°C for 20 min.','Dice cucumber, halve tomatoes, chop parsley.','Assemble: quinoa base topped with all vegetables, chickpeas and crumbled feta.','Drizzle with olive oil and lemon juice. Spoon hummus on the side.'],
+   tip:'Warm pita bread on the side makes this more filling.',
+   nutrition:{calories:390,protein:18,carbs:48,fat:15},source:'Mediterranean Kitchen'},
+
+  {id:'lentil_soup',name:'Red Lentil & Vegetable Soup',meal:'Dinner',protein:16,prepTime:25,cost:1.1,emoji:'🍲',color:'#8B4513',
+   ingredients:['red lentils','carrot','celery','onion','garlic','cumin','smoked paprika','crushed tomatoes','vegetable stock','lemon','olive oil','parsley'],
+   steps:['Sauté diced onion, carrot and celery in olive oil until soft ~5 min.','Add garlic, cumin and smoked paprika. Cook 1 min until fragrant.','Add rinsed lentils, crushed tomatoes and vegetable stock. Stir well.','Bring to boil, reduce to simmer. Cook 20 min until lentils are completely soft.','Squeeze in lemon juice, season, top with parsley. Serve with crusty bread.'],
+   tip:'Blend half the soup and stir back in for a creamy texture without cream.',
+   nutrition:{calories:280,protein:16,carbs:42,fat:6},source:'Jamie Oliver Inspired'},
+
+  {id:'veggie_quesadilla',name:'Cheese & Veggie Quesadillas',meal:'Dinner',protein:18,prepTime:15,cost:1.6,emoji:'🫔',color:'#8B6914',
+   ingredients:['flour tortillas','cheddar cheese','capsicum','onion','black beans','corn','avocado','sour cream','cumin','smoked paprika'],
+   steps:['Sauté diced capsicum and onion in oil until soft. Add black beans and corn.','Season with cumin, smoked paprika, salt and pepper. Cook 2 min more.','Lay tortilla flat. Add cheese on one half, then vegetable mix, then more cheese.','Fold in half. Press in a dry pan on medium ~2 min each side until golden.','Serve with sliced avocado and sour cream.'],
+   tip:'Do not overfill — a thin layer toasts more evenly and stays crisp.',
+   nutrition:{calories:400,protein:18,carbs:44,fat:16},source:'Tex-Mex Classic'},
+
+  {id:'methi_dal',name:'Methi Dal',meal:'Dinner',protein:17,prepTime:20,cost:0.9,emoji:'🍵',color:'#4A6741',
+   ingredients:['masoor dal','methi leaves','onion','garlic','green chilli','turmeric','cumin','ghee','tomato'],
+   steps:['Cook masoor dal with turmeric until soft — no soaking needed ~12 min.','Heat ghee, add cumin, then garlic until golden.','Add onion 4 min, then tomato and green chilli until soft.','Add chopped methi, cook 3 min until wilted.','Combine with dal, simmer 5 min. Serve with chapati.'],
+   tip:'If methi is too bitter, sprinkle with salt, rest 10 min, squeeze out water.',
+   nutrition:{calories:230,protein:17,carbs:32,fat:5},source:'Tarla Dalal'},
+
+  {id:'paneer_paratha',name:'Paneer Stuffed Paratha',meal:'Dinner',protein:20,prepTime:25,cost:1.4,emoji:'🫓',color:'#8B7355',
+   ingredients:['whole wheat flour','paneer','green chilli','ginger','cumin','coriander','red chilli powder','ghee'],
+   steps:['Knead soft wheat dough with water and salt. Rest 10 min.','Mix grated paneer with green chilli, ginger, cumin, coriander, red chilli, salt — keep dry.','Roll dough disc, add filling in centre, seal edges, roll gently into paratha.','Cook on hot tawa, apply ghee both sides until golden spots appear ~4 min.','Serve with curd and pickle.'],
+   tip:'Grate paneer fine — coarse filling tears the dough when rolling.',
+   nutrition:{calories:330,protein:20,carbs:38,fat:12},source:'Sanjeev Kapoor'},
+];
+
+const BYID = Object.fromEntries(DB.map(r => [r.id, r]));
+
+// ── PROFILES ─────────────────────────────────────────────────────────────────
+const PROFILES = {
+  A:{goal:'Weight Loss',detail:'High protein · Calorie deficit',dailyCal:1700,dailyProtein:130,mealCal:{Breakfast:350,Lunch:500,Dinner:450},color:'#f0a030'},
+  N:{goal:'Maintenance',detail:'Balanced macros · Nutritious',dailyCal:1950,dailyProtein:65,mealCal:{Breakfast:450,Lunch:600,Dinner:600},color:'#5ba3f5'}
+};
+
+function getFit(r, who) {
+  const {calories:c, protein:p, fat:f} = r.nutrition;
+  const tgt = PROFILES[who].mealCal[r.meal];
+  if (who==='A') {
+    if (p>=20&&c<=tgt)      return {text:'Ideal',color:'#42c77a'};
+    if (p>=16&&c<=tgt*1.1)  return {text:'Good', color:'#86efac'};
+    if (c>tgt*1.2||f>15)    return {text:'High', color:'#f07830'};
+    return {text:'OK', color:'#555'};
+  }
+  if (p>=17&&c<=tgt&&f<=16) return {text:'Ideal',color:'#5ba3f5'};
+  if (p>=13&&c<=tgt*1.1)    return {text:'Good', color:'#93c5fd'};
+  if (c>tgt*1.2)            return {text:'High', color:'#f07830'};
+  return {text:'OK', color:'#555'};
+}
+
+// ── INGREDIENT MATCHING ───────────────────────────────────────────────────────
+const ALIAS = {
+  curd:['yogurt','dahi'],yogurt:['curd','dahi'],
+  chickpeas:['chole','chana'],'kidney beans':['rajma'],rajma:['kidney beans'],
+  'toor dal':['yellow lentils'],'moong dal':['green gram','mung'],
+  semolina:['rava','sooji'],rava:['semolina'],besan:['chickpea flour','gram flour'],
+  methi:['fenugreek'],eggs:['egg'],paneer:['cottage cheese'],
+  avocado:['avo'],'cherry tomatoes':['tomato','tomatoes'],
+  pasta:['penne','fusilli','spaghetti'],'mixed greens':['spinach','lettuce','rocket'],
+  muesli:['granola','oats'],oats:['rolled oats','muesli','oatmeal'],
+};
+function tok(s){ return s.toLowerCase().replace(/[()[\]]/g,' ').split(/[\s,/\-–]+/).map(t=>t.trim()).filter(t=>t.length>=3); }
+function ingMatch(ing, g) {
+  const it=tok(ing), gt=tok(g);
+  if (it.some(a=>gt.some(b=>a.includes(b)||b.includes(a)))) return true;
+  for (const b of gt) { const al=ALIAS[b]||[]; if (al.some(a=>it.some(t=>t.includes(a)||a.includes(t)))) return true; }
+  for (const a of it) { const al=ALIAS[a]||[]; if (al.some(x=>gt.some(t=>t.includes(x)||x.includes(t)))) return true; }
+  return false;
+}
+function matchPct(r, groc) {
+  if (!r.ingredients.length) return 0;
+  return Math.round(r.ingredients.filter(i=>groc.some(g=>ingMatch(i,g))).length/r.ingredients.length*100);
+}
+function matchColor(pct) { return pct>=70?'var(--green)':pct>=40?'var(--gold)':'var(--orange)'; }
+
+// ── SCORING & PLAN BUILDING ───────────────────────────────────────────────────
+function scoreR(r) {
+  const pct = matchPct(r, ST.groceries) / 100;
+  return pct*20
+    + (ST.filters.protein&&r.protein>=18?3:ST.filters.protein&&r.protein>=14?1.5:0)
+    + (ST.filters.quick&&r.prepTime<=15?3:ST.filters.quick&&r.prepTime<=20?1.5:0)
+    + (ST.filters.budget&&r.cost<=1.2?2:ST.filters.budget&&r.cost<=1.8?1:0);
+}
+function wPick(arr, used, lastIds) {
+  return arr.map(r=>{
+    let w=Math.max(0.5,scoreR(r));
+    if((used[r.id]||0)>=2) w*=0.05;
+    if((used[r.id]||0)===1) w*=0.4;
+    if(lastIds&&lastIds.has(r.id)) w*=0.25;
+    w *= 0.85+Math.random()*0.3;
+    return {r,w};
+  }).sort((a,b)=>b.w-a.w)[0].r;
+}
+function buildLocalPlan(lastIds) {
+  const byM = m => [...DB].filter(r=>r.meal===m).sort((a,b)=>scoreR(b)-scoreR(a));
+  const bkf=byM('Breakfast'), lnc=byM('Lunch'), din=byM('Dinner');
+  const used={};
+  const pick=arr=>{const r=wPick(arr,used,lastIds);used[r.id]=(used[r.id]||0)+1;return r;};
+  return DAYS.map(day=>({day,Breakfast:pick(bkf),Lunch:pick(lnc),Dinner:pick(din)}));
+}
+function planToIds(plan){ return plan.map(d=>({day:d.day,b:d.Breakfast.id,l:d.Lunch.id,dn:d.Dinner.id})); }
+function idsToRecipes(ids){ return ids.map(d=>({day:d.day,Breakfast:BYID[d.b],Lunch:BYID[d.l],Dinner:BYID[d.dn]})); }
+function buildCookMap(gn){ const m={}; for(let s=0;s<21;s++) m[s]=(s%2===0)===(gn%2===0)?'A':'N'; return m; }
+function cookCounts(cm){ let a=0,n=0; Object.values(cm).forEach(c=>c==='A'?a++:n++); return {A:a,N:n}; }
+function slot(di,mi){ return di*3+mi; }
+
+// ── GITHUB SYNC ───────────────────────────────────────────────────────────────
+async function ghRequest(method, path, body) {
+  const url = `https://api.github.com/repos/${CFG.user}/${CFG.repo}/contents/${path}`;
+  const res = await fetch(url, {
+    method,
+    headers: {
+      'Authorization': `token ${CFG.token}`,
+      'Accept': 'application/vnd.github.v3+json',
+      'Content-Type': 'application/json',
+    },
+    body: body ? JSON.stringify(body) : undefined,
+  });
+  if (!res.ok) {
+    const err = await res.json().catch(()=>({}));
+    throw new Error(err.message || `GitHub ${res.status}`);
+  }
+  return res.json();
+}
+
+async function loadFromGitHub(showMsg=false) {
+  if (!CFG) return;
+  setSyncStatus('busy','Syncing…');
+  try {
+    const data = await ghRequest('GET','db.json');
+    dbSha = data.sha;
+    const db = JSON.parse(atob(data.content.replace(/\n/g,'')));
+    // Merge remote into state
+    if (db.plan)     ST.plan = idsToRecipes(db.plan);
+    if (db.nextPlan) ST.nextPlan = idsToRecipes(db.nextPlan);
+    ST.cookMap     = db.cookMap     || {};
+    ST.nextCookMap = db.nextCookMap || {};
+    ST.genNum      = db.genNum      || 0;
+    ST.completed   = db.completed   || {};
+    ST.shopChecked = db.shopChecked || {};
+    ST.manualItems = db.manualItems || [];
+    ST.history     = db.history     || [];
+    if (db.groceries&&db.groceries.length) ST.groceries = db.groceries;
+    if (db.filters) ST.filters = db.filters;
+    setSyncStatus('ok','Synced just now');
+    renderAll();
+    if (showMsg) toast('✅ Refreshed from sync');
+  } catch(e) {
+    setSyncStatus('err','Sync failed — check config');
+    if (showMsg) toast('⚠ Sync failed: '+e.message);
+  }
+}
+
+async function saveToGitHub(msg='Update') {
+  if (!CFG) return;
+  setSyncStatus('busy','Saving…');
+  try {
+    // Get latest SHA first to avoid conflicts
+    try {
+      const check = await ghRequest('GET','db.json');
+      dbSha = check.sha;
+    } catch(e) {
+      // File might not exist yet on first save
+    }
+    const db = {
+      plan:       ST.plan       ? planToIds(ST.plan)     : null,
+      nextPlan:   ST.nextPlan   ? planToIds(ST.nextPlan) : null,
+      cookMap:    ST.cookMap,
+      nextCookMap:ST.nextCookMap,
+      genNum:     ST.genNum,
+      completed:  ST.completed,
+      shopChecked:ST.shopChecked,
+      manualItems:ST.manualItems,
+      history:    ST.history,
+      groceries:  ST.groceries,
+      filters:    ST.filters,
+      lastUpdated: new Date().toISOString(),
+    };
+    const body = {
+      message: msg,
+      content: btoa(unescape(encodeURIComponent(JSON.stringify(db, null, 2)))),
+      sha: dbSha || undefined,
+    };
+    if (!dbSha) delete body.sha;
+    const res = await ghRequest('PUT','db.json', body);
+    dbSha = res.content.sha;
+    setSyncStatus('ok','Synced just now');
+  } catch(e) {
+    setSyncStatus('err','Save failed');
+    toast('⚠ Save failed: '+e.message);
+  }
+}
+
+function setSyncStatus(state, label) {
+  const dot = document.getElementById('syncdot');
+  const lbl = document.getElementById('synclabel');
+  if (!dot||!lbl) return;
+  dot.className = 'sync-dot '+state;
+  lbl.textContent = label;
+}
+
+// Debounced save — avoid rapid-fire writes
+let saveTimer = null;
+function debouncedSave(msg) {
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(()=>saveToGitHub(msg), 1200);
+}
+
+// ── GENERATE ─────────────────────────────────────────────────────────────────
+async function callClaude(sys, usr) {
+  const res = await fetch('https://api.anthropic.com/v1/messages', {
+    method:'POST',
+    headers:{'Content-Type':'application/json','anthropic-version':'2023-06-01'},
+    body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:sys,messages:[{role:'user',content:usr}]})
+  });
+  if (!res.ok) throw new Error('HTTP '+res.status);
+  const d = await res.json();
+  return (d.content||[]).map(b=>b.text||'').join('').trim();
+}
+function exJSON(t) {
+  try { return JSON.parse(t); } catch{}
+  const m=t.match(/\{[\s\S]*\}/); if(m) try { return JSON.parse(m[0]); } catch{}
+  return null;
+}
+
+async function runGenerate(forNext=false, regen=false) {
+  if (!ST.groceries.length) { showGenErr('Add at least one ingredient in the Pantry tab first.'); return; }
+  setGenLoading(true);
+  hideGenErr();
+
+  const lastIds = ST.plan ? new Set(ST.plan.flatMap(d=>MEALS.map(m=>d[m].id))) : new Set();
+  let wp = buildLocalPlan(regen ? lastIds : lastIds);
+  const ng = regen ? ST.genNum : ST.genNum+1;
+  const cm = buildCookMap(ng);
+
+  try {
+    const byM = m => [...DB].filter(r=>r.meal===m).sort((a,b)=>scoreR(b)-scoreR(a));
+    const bkf=byM('Breakfast'),lnc=byM('Lunch'),din=byM('Dinner');
+    const raw = await Promise.race([
+      callClaude(
+        'JSON-only API. No markdown. No explanation. Output raw JSON only.',
+        `7-day meal plan (mixed Indian + Western vegetarian). Exact names only.
+Pantry: ${ST.groceries.join(', ')}.
+B: ${bkf.map(r=>r.name).join(' | ')}
+L: ${lnc.map(r=>r.name).join(' | ')}
+D: ${din.map(r=>r.name).join(' | ')}
+Rules: max 2 repeats, vary proteins and cuisines, avoid: ${[...lastIds].slice(0,5).join(',')||'none'}.
+{"days":[{"day":"Monday","Breakfast":"NAME","Lunch":"NAME","Dinner":"NAME"},{"day":"Tuesday","Breakfast":"NAME","Lunch":"NAME","Dinner":"NAME"},{"day":"Wednesday","Breakfast":"NAME","Lunch":"NAME","Dinner":"NAME"},{"day":"Thursday","Breakfast":"NAME","Lunch":"NAME","Dinner":"NAME"},{"day":"Friday","Breakfast":"NAME","Lunch":"NAME","Dinner":"NAME"},{"day":"Saturday","Breakfast":"NAME","Lunch":"NAME","Dinner":"NAME"},{"day":"Sunday","Breakfast":"NAME","Lunch":"NAME","Dinner":"NAME"}]}`
+      ),
+      new Promise((_,rej)=>setTimeout(()=>rej(new Error('timeout')),15000))
+    ]);
+    const parsed = exJSON(raw);
+    if (parsed?.days?.length===7) {
+      const byN=Object.fromEntries(DB.map(r=>[r.name,r]));
+      if (parsed.days.every(d=>byN[d.Breakfast]&&byN[d.Lunch]&&byN[d.Dinner]))
+        wp = parsed.days.map(d=>({day:d.day,Breakfast:byN[d.Breakfast],Lunch:byN[d.Lunch],Dinner:byN[d.Dinner]}));
+    }
+  } catch(_) {} // local plan is already ready
+
+  if (forNext) {
+    ST.nextPlan = wp;
+    ST.nextCookMap = cm;
+  } else {
+    if (!regen) ST.genNum = ng;
+    ST.plan = wp;
+    ST.cookMap = cm;
+    ST.completed = {};
+    ST.shopChecked = {};
+  }
+
+  setGenLoading(false);
+  renderAll();
+  debouncedSave(forNext?'Next week plan':'Generate week '+ng);
+  toast('✅ Week '+(forNext?'(next)':ng)+' ready!');
+}
+
+function setGenLoading(on) {
+  const btn = document.getElementById('gen-btn');
+  const hint = document.getElementById('gen-loading-hint');
+  if (!btn) return;
+  btn.disabled = on;
+  btn.innerHTML = on
+    ? '<div class="spinner"></div> Building your week…'
+    : 'Generate Week '+(ST.genNum+1);
+  if (hint) hint.style.display = on?'block':'none';
+}
+
+function showGenErr(msg) {
+  const el=document.getElementById('gen-err');
+  if(el){el.textContent='⚠ '+msg;el.style.display='block';}
+}
+function hideGenErr() {
+  const el=document.getElementById('gen-err');
+  if(el) el.style.display='none';
+}
+
+function archiveWeek() {
+  if (!ST.plan) return;
+  const doneCount = Object.values(ST.completed).filter(Boolean).length;
+  const entry = {
+    id:Date.now(), genNum:ST.genNum, label:'Week '+ST.genNum,
+    archivedAt:Date.now(),
+    plan:ST.plan.map(d=>({day:d.day,B:d.Breakfast,L:d.Lunch,D:d.Dinner})),
+    cookMap:{...ST.cookMap}, completed:{...ST.completed},
+    stats:{done:doneCount,avgP:Math.round(ST.plan.reduce((s,d)=>s+MEALS.reduce((ss,m)=>ss+(d[m]?.protein||0),0),0)/21)}
+  };
+  ST.history = [entry,...ST.history].slice(0,10);
+  if (ST.nextPlan) {
+    ST.genNum++;
+    ST.plan = ST.nextPlan;
+    ST.cookMap = ST.nextCookMap;
+    ST.nextPlan = null;
+    ST.nextCookMap = {};
+    toast('📁 Archived! Next week is now active.');
+  } else {
+    ST.plan = null;
+    ST.cookMap = {};
+    toast('📁 Archived! Generate your next week.');
+  }
+  ST.completed = {};
+  ST.shopChecked = {};
+  renderAll();
+  debouncedSave('Archive week');
+}
+
+function swapMeal(dayIdx, mealType, newR, isNext) {
+  const planKey = isNext ? 'nextPlan' : 'plan';
+  if (!ST[planKey]) return;
+  ST[planKey] = ST[planKey].map((d,i)=>i===dayIdx?{...d,[mealType]:newR}:d);
+  if (selectedRecipe) {
+    selectedRecipe = newR;
+  }
+  renderAll();
+  debouncedSave('Swap meal');
+  closeModal();
+  toast('↺ Swapped to '+newR.name);
+}
+
+function toggleDone(day, meal) {
+  const k = day+'-'+meal;
+  ST.completed[k] = !ST.completed[k];
+  renderAll();
+  debouncedSave('Toggle done');
+}
+
+function toggleShop(key) {
+  ST.shopChecked[key] = !ST.shopChecked[key];
+  renderShop();
+  debouncedSave('Shopping update');
+}
+
+function toggleManualItem(id) {
+  ST.manualItems = ST.manualItems.map(i=>i.id===id?{...i,checked:!i.checked}:i);
+  renderShop();
+  debouncedSave('Manual item');
+}
+
+function addManual() {
+  const inp = document.getElementById('manual-inp');
+  const t = inp.value.trim();
+  if (!t) return;
+  ST.manualItems.push({id:Date.now(),text:t,checked:false});
+  inp.value = '';
+  renderShop();
+  debouncedSave('Add manual item');
+}
+
+function removeManual(id) {
+  ST.manualItems = ST.manualItems.filter(i=>i.id!==id);
+  renderShop();
+  debouncedSave('Remove item');
+}
+
+function addGrocery(val) {
+  const inp = document.getElementById('pantry-inp');
+  const v = (val||inp.value).trim().toLowerCase();
+  if (v && !ST.groceries.includes(v)) {
+    ST.groceries.push(v);
+    if (inp&&!val) inp.value='';
+    renderPantry();
+    debouncedSave('Pantry update');
+  } else if (inp&&!val) inp.value='';
+}
+
+function removeGrocery(v) {
+  ST.groceries = ST.groceries.filter(x=>x!==v);
+  renderPantry();
+  debouncedSave('Pantry update');
+}
+
+function updateFilter(k) {
+  ST.filters[k] = !ST.filters[k];
+  renderFilters();
+  debouncedSave('Filter update');
+}
+
+function clearShop() {
+  ST.shopChecked = {};
+  renderShop();
+  debouncedSave('Clear shop');
+}
+function checkAllShop() {
+  getShopItems().forEach(i=>ST.shopChecked[i]=true);
+  renderShop();
+  debouncedSave('Check all');
+}
+function exportList() {
+  const items = getShopItems();
+  const lines = ['🛒 Shopping List','Week '+ST.genNum+' · '+new Date().toLocaleDateString('en-AU'),'','RECIPE NEEDS:',
+    ...items.map(i=>'  '+(ST.shopChecked[i]?'☑':'□')+' '+i),'','YOUR ITEMS:',
+    ...ST.manualItems.map(i=>'  '+(i.checked?'☑':'□')+' '+i.text)];
+  const text = lines.join('\n');
+  if (navigator.clipboard) navigator.clipboard.writeText(text).then(()=>toast('📋 List copied!'));
+  else { const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();toast('📋 Copied!'); }
+}
+
+function getShopItems() {
+  if (!ST.plan) return [];
+  const need = new Set();
+  ST.plan.forEach(d=>MEALS.forEach(m=>d[m]?.ingredients.forEach(i=>{
+    if (!ST.groceries.some(g=>ingMatch(i,g))) need.add(i);
+  })));
+  return [...need].sort();
+}
+
+function pantryAvg() {
+  if (!ST.plan||!ST.groceries.length) return 0;
+  let t=0,c=0;
+  ST.plan.forEach(d=>MEALS.forEach(m=>{if(d[m]){t+=matchPct(d[m],ST.groceries);c++;}}));
+  return c?Math.round(t/c):0;
+}
+
+// ── TOAST ─────────────────────────────────────────────────────────────────────
+let toastTimer=null;
+function toast(msg,ms=2500) {
+  const el=document.getElementById('toast');
+  if (!el) return;
+  el.textContent=msg; el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>el.classList.remove('show'),ms);
+}
+
+// ── TAB / VIEW ────────────────────────────────────────────────────────────────
+function switchTab(t) {
+  currentTab=t;
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('on'));
+  const page=document.getElementById('page-'+t);
+  const nav=document.getElementById('nav-'+t);
+  if(page) page.classList.add('active');
+  if(nav) nav.classList.add('on');
+  renderCurrentTab();
+}
+
+function setWeekView(v) {
+  weekView=v;
+  document.getElementById('week-tab-current').className='btn '+(v==='current'?'btn-gold':'btn-ghost');
+  document.getElementById('week-tab-next').className='btn '+(v==='next'?'btn-gold':'btn-ghost');
+  renderWeek();
+}
+
+// ── RENDER ALL ────────────────────────────────────────────────────────────────
+function renderAll() {
+  renderCurrentTab();
+}
+function renderCurrentTab() {
+  if (currentTab==='today')   renderToday();
+  if (currentTab==='week')    renderWeek();
+  if (currentTab==='shop')    renderShop();
+  if (currentTab==='pantry')  renderPantry();
+  if (currentTab==='history') renderHistory();
+}
+
+// ── RENDER TODAY ──────────────────────────────────────────────────────────────
+function renderToday() {
+  const h=new Date().getHours();
+  const greet=h<12?'Good morning':'Good '+(h<17?'afternoon':'evening');
+  const greeting=document.getElementById('today-greeting');
+  if(greeting) greeting.innerHTML=greet+',<br><span style="color:var(--gold);font-style:italic;">'+new Date().toLocaleDateString('en-AU',{weekday:'long',day:'numeric',month:'long'})+'</span>';
+
+  const doneCount=Object.values(ST.completed).filter(Boolean).length;
+  const progWrap=document.getElementById('today-progress');
+  const progFill=document.getElementById('prog-ring-fill');
+  const progNum=document.getElementById('prog-num');
+  const progLabel=document.getElementById('prog-label');
+  const progSub=document.getElementById('prog-sub');
+  const todayMeals=document.getElementById('today-meals');
+  const todayEmpty=document.getElementById('today-empty');
+
+  if (ST.plan) {
+    if(progWrap) progWrap.style.display='flex';
+    const pct=doneCount/21;
+    const r=20, circ=2*Math.PI*r;
+    if(progFill) progFill.setAttribute('stroke-dashoffset', circ*(1-pct));
+    if(progNum) progNum.textContent=doneCount;
+    if(progLabel) progLabel.textContent=doneCount+'/21 meals done this week';
+    if(progSub) progSub.textContent=doneCount===21?'🎉 Perfect week!':doneCount===0?'Start cooking below':'Keep it up!';
+
+    const todayPlan=ST.plan[TODAY_IDX];
+    if(todayMeals) todayMeals.innerHTML=MEALS.map((m,mi)=>{
+      const r=todayPlan[m]; if(!r) return '';
+      const cook=ST.cookMap[slot(TODAY_IDX,mi)]||'A';
+      const done=!!ST.completed[todayPlan.day+'-'+m];
+      const pct2=matchPct(r,ST.groceries);
+      return `<div class="meal-card" onclick="openModal('${todayPlan.day}','${m}',${TODAY_IDX},false)">
+        ${done?'<div style="position:absolute;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;font-size:2rem;z-index:2;border-radius:14px 14px 0 0;">✓</div>':''}
+        <div class="meal-card-hero" style="position:relative;">
+          <div class="meal-hero-bg">${r.emoji}</div>
+          <div class="meal-hero-grad" style="background:linear-gradient(to top,rgba(10,10,10,.95) 0%,${r.color}44 100%);"></div>
+          <div class="meal-hero-content">
+            <div class="meal-type-row"><span class="pip pip-${cook}">${cook}</span>${m}</div>
+            <div class="meal-name">${r.name}</div>
+          </div>
+        </div>
+        <div class="meal-card-foot">
+          <div class="meal-stats">
+            <span class="mstat">⏱ <b>${r.prepTime}m</b></span>
+            <span class="mstat">💪 <b>${r.protein}g</b></span>
+            <span class="mstat" style="color:${matchColor(pct2)};font-weight:700;">⬡${pct2}%</span>
+            <span class="mstat">A$${(r.cost*1.55).toFixed(2)}</span>
+          </div>
+          <button class="cook-btn" onclick="event.stopPropagation();openCookNow('${r.id}')">Cook</button>
+          <button class="tick-btn ${done?'done':''}" onclick="event.stopPropagation();toggleDone('${todayPlan.day}','${m}')">${done?'✓':'○'}</button>
+        </div>
+      </div>`;
+    }).join('');
+    if(todayEmpty) todayEmpty.style.display='none';
+  } else {
+    if(progWrap) progWrap.style.display='none';
+    if(todayMeals) todayMeals.innerHTML='';
+    if(todayEmpty) todayEmpty.style.display='block';
+  }
+}
+
+// ── RENDER WEEK ───────────────────────────────────────────────────────────────
+function renderWeek() {
+  const activePlan = weekView==='next'?ST.nextPlan:ST.plan;
+  const activeCookMap = weekView==='next'?ST.nextCookMap:ST.cookMap;
+
+  // Cook split
+  const splitEl=document.getElementById('cook-split');
+  if(splitEl) {
+    if(weekView==='current'&&ST.plan) {
+      const c=cookCounts(ST.cookMap);
+      splitEl.style.display='grid';
+      splitEl.innerHTML=['A','N'].map(who=>`
+        <div style="border-radius:10px;padding:10px 13px;border:1px solid ${who==='A'?'rgba(240,160,48,.25)':'rgba(91,163,245,.25)'};background:${who==='A'?'rgba(240,160,48,.04)':'rgba(91,163,245,.04)'};display:flex;align-items:center;gap:8px;">
+          <div style="width:28px;height:28px;border-radius:7px;font-family:'Fraunces',serif;font-weight:700;font-size:.95rem;display:flex;align-items:center;justify-content:center;background:${who==='A'?'rgba(240,160,48,.18)':'rgba(91,163,245,.18)'};color:${who==='A'?'var(--gold)':'var(--blue)'};">${who}</div>
+          <div><div style="font-family:'Fraunces',serif;font-size:1.1rem;font-weight:700;color:${who==='A'?'var(--gold)':'var(--blue)'};">${c[who]}</div><div style="font-size:.6rem;color:var(--t3);">meals to cook</div></div>
+        </div>`).join('');
+    } else {
+      splitEl.style.display='none';
+    }
+  }
+
+  // Stats bar
+  const statsEl=document.getElementById('week-stats');
+  if(statsEl&&ST.plan&&weekView==='current') {
+    let tp=0,tc=0,tt=0,n=0;
+    ST.plan.forEach(d=>MEALS.forEach(m=>{const r=d[m];if(r){tp+=r.protein;tc+=r.cost;tt+=r.prepTime;n++;}}));
+    statsEl.style.display='grid';
+    statsEl.style.gridTemplateColumns='repeat(4,1fr)';
+    statsEl.style.gap='7px'; statsEl.style.marginBottom='12px';
+    statsEl.innerHTML=[['21','Meals'],['A$'+(tc*1.55*n/7/n).toFixed(2),'Daily'],[ Math.round(tp/n)+'g','Protein'],[Math.round(tt/n)+'m','Prep']].map(([v,l])=>
+      `<div style="background:var(--s1);border:1px solid var(--s3);border-radius:9px;padding:11px 8px;text-align:center;"><div style="font-family:'Fraunces',serif;font-size:1.15rem;font-weight:700;color:var(--gold);">${v}</div><div style="font-size:.6rem;color:var(--t3);margin-top:2px;text-transform:uppercase;letter-spacing:.3px;">${l}</div></div>`
+    ).join('');
+  } else if(statsEl) statsEl.style.display='none';
+
+  // Gen panel
+  const title=document.getElementById('gen-panel-title');
+  const genBtn=document.getElementById('gen-btn');
+  const subBtns=document.getElementById('gen-sub-btns');
+  if(title) title.textContent=weekView==='next'?'Plan next week':'Generate this week';
+  if(genBtn&&!genBtn.disabled) genBtn.textContent='Generate '+(weekView==='next'?'Next Week':'Week ')+(ST.genNum+1);
+  if(subBtns) {
+    if(weekView==='current'&&ST.plan) {
+      subBtns.style.display='block';
+      const archBtn=document.getElementById('archive-btn');
+      if(archBtn) archBtn.textContent='📁 Archive & start fresh'+(ST.nextPlan?' (activates next plan)':'');
+    } else subBtns.style.display='none';
+  }
+
+  // Week plan list
+  const listEl=document.getElementById('week-plan-list');
+  const emptyEl=document.getElementById('week-empty');
+  if(!activePlan) {
+    if(listEl) listEl.innerHTML='';
+    if(emptyEl) emptyEl.style.display='block';
+    return;
+  }
+  if(emptyEl) emptyEl.style.display='none';
+  if(listEl) listEl.innerHTML=activePlan.map((d,di)=>`
+    <div>
+      <div class="week-day-label">
+        <div class="week-day-name">${d.day}</div>
+        ${di===TODAY_IDX&&weekView==='current'?'<span class="today-tag">Today</span>':''}
+      </div>
+      ${MEALS.map((m,mi)=>{
+        const r=d[m];if(!r)return'';
+        const cook=activeCookMap[slot(di,mi)]||'A';
+        const done=weekView==='current'&&!!ST.completed[d.day+'-'+m];
+        const pct=matchPct(r,ST.groceries);
+        return `<div class="week-meal-row ${done?'done-row':''}" onclick="openModal('${d.day}','${m}',${di},${weekView==='next'})">
+          <div class="week-meal-emoji" style="background:${r.color}22;">${r.emoji}</div>
+          <div class="week-meal-info">
+            <div class="week-meal-type"><span class="pip pip-${cook}">${cook}</span>${m}</div>
+            <div class="week-meal-name ${done?'done':''}">${r.name}</div>
+            <div class="week-meal-meta">
+              <span class="wmeta">⏱${r.prepTime}m</span>
+              <span class="wmeta" style="color:var(--green);">💪${r.protein}g</span>
+              <span class="wmeta" style="color:${matchColor(pct)};font-weight:700;">⬡${pct}%</span>
+            </div>
+          </div>
+          ${weekView==='current'?`<button class="tick-btn ${done?'done':''}" style="width:28px;height:28px;font-size:.8rem;" onclick="event.stopPropagation();toggleDone('${d.day}','${m}')">${done?'✓':'○'}</button>`:''}
+        </div>`;
+      }).join('')}
+    </div>`).join('');
+}
+
+// ── RENDER SHOP ───────────────────────────────────────────────────────────────
+function renderShop() {
+  const items=getShopItems();
+  const avg=pantryAvg();
+  const covEl=document.getElementById('shop-coverage');
+  if(covEl) {
+    covEl.style.display=ST.plan?'flex':'none';
+    if(ST.plan){
+      const fill=document.getElementById('cov-fill');
+      const pct=document.getElementById('cov-pct');
+      if(fill){fill.style.width=avg+'%';fill.style.background=matchColor(avg);}
+      if(pct){pct.textContent=avg+'%';pct.style.color=matchColor(avg);}
+    }
+  }
+  const listEl=document.getElementById('shop-recipe-list');
+  if(listEl) {
+    if(!ST.plan) listEl.innerHTML='<div style="font-size:.76rem;color:var(--t3);padding:8px 0;">Generate a meal plan first to see what you need.</div>';
+    else if(!items.length) listEl.innerHTML='<div style="font-size:.76rem;color:var(--green);padding:8px 0;">✓ Your pantry covers all recipe ingredients this week!</div>';
+    else listEl.innerHTML=items.map(item=>`
+      <div class="shop-item" onclick="toggleShop('${item.replace(/'/g,"\\'")}')">
+        <div class="shop-chk ${ST.shopChecked[item]?'on':''}">${ST.shopChecked[item]?'✓':''}</div>
+        <span class="shop-name ${ST.shopChecked[item]?'done':''}">${item}</span>
+      </div>`).join('');
+  }
+  const manEl=document.getElementById('manual-list');
+  if(manEl) {
+    if(!ST.manualItems.length) manEl.innerHTML='<div style="font-size:.72rem;color:var(--t4);">Add anything extra you need above.</div>';
+    else manEl.innerHTML=ST.manualItems.map(item=>`
+      <div class="shop-item" onclick="toggleManualItem(${item.id})">
+        <div class="shop-chk ${item.checked?'on':''}">${item.checked?'✓':''}</div>
+        <span class="shop-name ${item.checked?'done':''}">${item.text}</span>
+        <span class="custom-tag">custom</span>
+        <button onclick="event.stopPropagation();removeManual(${item.id})" style="background:none;border:none;cursor:pointer;color:var(--t3);font-size:.74rem;padding:4px;">✕</button>
+      </div>`).join('');
+  }
+}
+
+// ── RENDER PANTRY ─────────────────────────────────────────────────────────────
+function renderPantry() {
+  const chips=document.getElementById('pantry-chips');
+  if(chips) chips.innerHTML=ST.groceries.map(g=>{
+    const used=ST.plan&&ST.plan.some(d=>MEALS.some(m=>d[m]?.ingredients.some(i=>ingMatch(i,g))));
+    return `<span class="chip ${used?'matched':''}">${used?'<span style="font-size:.6rem;">✓</span>':''}${g}<button class="chip-x" onclick="removeGrocery('${g}')">×</button></span>`;
+  }).join('');
+  const qaEl=document.getElementById('quick-add-btns');
+  if(qaEl) qaEl.innerHTML=QUICK_G.filter(q=>!ST.groceries.includes(q)).slice(0,18).map(q=>
+    `<button class="qadd-btn" onclick="addGrocery('${q}')">+ ${q}</button>`).join('');
+  const covEl=document.getElementById('pantry-coverage');
+  if(covEl&&ST.plan) {
+    const avg=pantryAvg();
+    covEl.style.display='block';
+    covEl.innerHTML=`<div class="card">
+      <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+        <span style="font-size:.78rem;font-weight:500;">Pantry coverage this week</span>
+        <span style="font-size:.78rem;font-weight:700;color:${matchColor(avg)};">${avg}%</span>
+      </div>
+      <div style="height:4px;background:var(--s4);border-radius:2px;overflow:hidden;">
+        <div style="height:100%;width:${avg}%;background:${matchColor(avg)};border-radius:2px;transition:width .5s;"></div>
+      </div>
+    </div>`;
+  } else if(covEl) covEl.style.display='none';
+
+  const ns=document.getElementById('notif-status');
+  if(ns) {
+    const p='Notification'in window?Notification.permission:'unsupported';
+    ns.textContent=p==='granted'?'ON':'OFF';
+    ns.style.background=p==='granted'?'rgba(66,199,122,.12)':'rgba(240,96,96,.1)';
+    ns.style.color=p==='granted'?'var(--green)':'var(--red)';
+  }
+}
+
+function renderFilters() {
+  const el=document.getElementById('filter-btns');
+  if(!el) return;
+  el.innerHTML=[['protein','💪 High protein'],['quick','⚡ Under 20 min'],['budget','💰 Budget-friendly']].map(([k,l])=>
+    `<button class="flt ${ST.filters[k]?'on':''}" onclick="updateFilter('${k}')">${l}</button>`).join('');
+}
+
+// ── RENDER HISTORY ────────────────────────────────────────────────────────────
+function renderHistory() {
+  const el=document.getElementById('history-list');
+  if(el) {
+    if(!ST.history.length) el.innerHTML='<div style="font-size:.76rem;color:var(--t3);margin-bottom:14px;">No history yet. Archive a week to save it here.</div>';
+    else el.innerHTML=ST.history.map(entry=>{
+      const open=expandHist===entry.id;
+      return `<div class="hist-card">
+        <div class="hist-head" onclick="toggleHist(${entry.id})">
+          <div style="flex:1;">
+            <div class="serif" style="font-size:.9rem;font-weight:700;">${entry.label} <span style="font-weight:400;color:var(--t3);font-family:'DM Sans',sans-serif;font-size:.68rem;">— ${new Date(entry.archivedAt).toLocaleDateString('en-AU',{day:'numeric',month:'short'})}</span></div>
+            <div style="font-size:.66rem;color:var(--t3);margin-top:1px;">${entry.stats.done}/21 done · avg ${entry.stats.avgP}g protein</div>
+          </div>
+          <div style="font-family:'Fraunces',serif;font-size:1rem;color:var(--green);">${Math.round(entry.stats.done/21*100)}%</div>
+          <div style="color:var(--t4);font-size:.64rem;transition:transform .18s;transform:${open?'rotate(90deg)':'none'};">▶</div>
+        </div>
+        ${open?`<div class="hist-body">${entry.plan.map(day=>`
+          <div class="hist-day">
+            <div class="hist-day-name">${day.day}</div>
+            <div class="hist-meals">
+              ${[['B',day.B,0],['L',day.L,1],['D',day.D,2]].filter(([,r])=>r).map(([mt,r,mi])=>{
+                const sl2=DAYS.indexOf(day.day)*3+mi;
+                const ck=entry.cookMap?.[sl2];
+                const done=entry.completed?.[day.day+'-'+(mt==='B'?'Breakfast':mt==='L'?'Lunch':'Dinner')];
+                return `<div class="hmeal ${done?'done':''}">${ck?`<span class="pip pip-${ck}">${ck}</span>`:''} ${r.name}${done?' ✓':''}</div>`;
+              }).join('')}
+            </div>
+          </div>`).join('')}</div>`:''}
+      </div>`;
+    }).join('');
+  }
+
+  const favsEl=document.getElementById('favs-list');
+  if(favsEl) {
+    if(!favs.length) favsEl.innerHTML='<div style="font-size:.74rem;color:var(--t3);">Open any recipe and tap Save to bookmark it.</div>';
+    else favsEl.innerHTML=favs.map(id=>{
+      const r=BYID[id]; if(!r)return'';
+      const pct=matchPct(r,ST.groceries);
+      return `<div style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--s1);border:1px solid var(--s3);border-radius:9px;margin-bottom:6px;">
+        <div style="width:34px;height:34px;border-radius:8px;background:${r.color}22;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;">${r.emoji}</div>
+        <div style="flex:1;min-width:0;">
+          <div style="font-weight:600;font-size:.84rem;">${r.name}</div>
+          <div style="font-size:.66rem;color:var(--t3);margin-top:2px;">${r.meal} · ${r.prepTime}m · ${r.protein}g protein · ${pct}% match</div>
+        </div>
+        <div style="display:flex;gap:5px;">
+          <button class="btn btn-ghost" style="font-size:.7rem;padding:5px 10px;" onclick="openModal(null,null,null,false,'${r.id}')">View</button>
+          <button class="btn btn-red" style="font-size:.7rem;padding:5px 8px;" onclick="removeFav('${r.id}')">✕</button>
+        </div>
+      </div>`;
+    }).join('');
+  }
+}
+
+let expandHist=null;
+function toggleHist(id) { expandHist=expandHist===id?null:id; renderHistory(); }
+
+// ── FAVS ──────────────────────────────────────────────────────────────────────
+function toggleFav(id) {
+  if(favs.includes(id)) favs=favs.filter(f=>f!==id);
+  else favs.push(id);
+  try{localStorage.setItem('rw_favs',JSON.stringify(favs));}catch(_){}
+  renderModal(id);
+}
+function removeFav(id) { favs=favs.filter(f=>f!==id); try{localStorage.setItem('rw_favs',JSON.stringify(favs));}catch(_){} renderHistory(); }
+
+// ── MODAL ─────────────────────────────────────────────────────────────────────
+function openModal(day, mealType, dayIdx, isNext, directId) {
+  let r;
+  if (directId) { r=BYID[directId]; selectedDayIdx=null; selectedMealType=null; selectedIsNext=false; }
+  else {
+    const p=isNext?ST.nextPlan:ST.plan;
+    if(!p||dayIdx===null) return;
+    r=p[dayIdx][mealType];
+    selectedDayIdx=dayIdx; selectedMealType=mealType; selectedIsNext=isNext;
+  }
+  selectedRecipe=r;
+  const overlay=document.getElementById('modal');
+  if(!overlay) return;
+  overlay.style.display='flex';
+  renderModal(r.id);
+  document.body.style.overflow='hidden';
+}
+
+function renderModal(rid) {
+  const r=BYID[rid]||selectedRecipe; if(!r) return;
+  const pct=matchPct(r,ST.groceries);
+  const isFav=favs.includes(r.id);
+  const cook = selectedDayIdx!==null ? (selectedIsNext?ST.nextCookMap:ST.cookMap)[slot(selectedDayIdx,MEALS.indexOf(selectedMealType))] : null;
+  const done = selectedDayIdx!==null&&!selectedIsNext&&!!ST.completed[(ST.plan?.[selectedDayIdx]?.day)+'-'+selectedMealType];
+
+  // Alts
+  const planRef=selectedIsNext?ST.nextPlan:ST.plan;
+  const alts=selectedDayIdx!==null&&planRef ? DB.filter(a=>{
+    const used=new Set(planRef.filter((_,i)=>i!==selectedDayIdx).map(d=>d[selectedMealType]?.id).filter(Boolean));
+    return a.meal===selectedMealType&&a.id!==r.id&&!used.has(a.id);
+  }).sort((a,b)=>scoreR(b)-scoreR(a)).slice(0,4) : [];
+
+  const nutrScaled=[
+    ['Calories',r.nutrition.calories],['Protein',r.nutrition.protein+'g'],
+    ['Carbs',r.nutrition.carbs+'g'],['Fat',r.nutrition.fat+'g']
+  ].map(([l,v])=>{
+    const n=parseInt(v);
+    const scaled=portions===2?v:(typeof v==='string'&&v.endsWith('g')?Math.round(n*portions/2)+'g':Math.round(n*portions/2));
+    return [l,scaled];
+  });
+
+  document.getElementById('modal-sheet').innerHTML=`
+    <div class="modal-handle"></div>
+    <div class="modal-hero" style="background:linear-gradient(to top,rgba(10,10,10,.97) 0%,${r.color}44 100%);">
+      <div class="modal-hero-bg">${r.emoji}</div>
+      <div class="modal-hero-grad" style="background:linear-gradient(to top,rgba(10,10,10,.97) 0%,${r.color}44 100%);"></div>
+      <div class="modal-hero-meta">
+        <div class="modal-type">${cook?`<span class="pip pip-${cook}">${cook}</span>`:''}${selectedMealType||r.meal}${selectedDayIdx!==null&&planRef?(' · '+(planRef[selectedDayIdx]?.day||'')):''}
+        </div>
+        <div class="modal-title">${r.name}</div>
+        <div class="mpills">
+          <span class="mpill">⏱ ${r.prepTime}m</span>
+          <span class="mpill">💪 ${r.protein}g protein</span>
+          <span class="mpill">A$${(r.cost*1.55).toFixed(2)}/serve</span>
+          <span class="mpill" style="color:${matchColor(pct)};">⬡ ${pct}%</span>
+        </div>
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-gold" onclick="openCookNow('${r.id}')">👨‍🍳 Cook Now</button>
+      <button class="btn ${isFav?'btn-red':'btn-ghost'}" onclick="toggleFav('${r.id}')">${isFav?'❤️ Saved':'🤍 Save'}</button>
+      ${selectedDayIdx!==null&&!selectedIsNext?`<button class="btn btn-green" onclick="toggleDone('${planRef?.[selectedDayIdx]?.day}','${selectedMealType}');closeModal()">${done?'✓ Unmark':'○ Mark Done'}</button>`:''}
+    </div>
+    <div class="modal-body">
+      <div class="fit-row">
+        ${['A','N'].map(who=>{const fit=getFit(r,who);return`<div class="fit-box"><div class="fit-who" style="color:${PROFILES[who].color};">Person ${who} · ${PROFILES[who].goal}</div><div class="fit-val" style="color:${fit.color};">${fit.text}</div><div class="fit-note">${r.nutrition.calories} cal · target ${PROFILES[who].mealCal[r.meal]}</div></div>`;}).join('')}
+      </div>
+      <div class="portion-row">
+        <span style="font-size:.82rem;font-weight:500;">Servings</span>
+        <div class="portion-ctrl">
+          <button class="portion-btn" onclick="changePortion(-1)">−</button>
+          <span class="portion-val" id="portion-val">${portions}</span>
+          <button class="portion-btn" onclick="changePortion(1)">+</button>
+        </div>
+      </div>
+      <div class="modal-sec">Nutrition ${portions!==2?'· '+portions+' servings':''}</div>
+      <div class="nutr-grid">${nutrScaled.map(([l,v])=>`<div class="nutr-box"><div class="nutr-v">${v}</div><div class="nutr-l">${l}</div></div>`).join('')}</div>
+      <div class="modal-sec">Ingredients <span style="font-weight:400;color:var(--green);">— green = in pantry</span></div>
+      <div class="ings">${r.ingredients.map(ing=>{const have=ST.groceries.some(g=>ingMatch(ing,g));return`<span class="ing ${have?'have':''}">${have?'✓ ':''}${ing}</span>`;}).join('')}</div>
+      <div class="modal-sec">Method</div>
+      <div class="steps-list">${r.steps.map((s,i)=>`<div class="step-row"><div class="step-num">${i+1}</div><div class="step-text">${s}</div></div>`).join('')}</div>
+      ${r.tip?`<div class="tip-box"><span class="tip-label">💡 Tip</span>${r.tip}</div>`:''}
+      <div class="src-box">Verified recipe from <strong style="color:var(--t2);">${r.source}</strong></div>
+    </div>
+    ${alts.length?`<div class="alts-section">
+      <div class="modal-sec">↻ Swap ${selectedMealType} — by pantry match</div>
+      ${alts.map(alt=>{const p2=matchPct(alt,ST.groceries);const fA=getFit(alt,'A');const fN=getFit(alt,'N');return`
+        <div class="alt-item" onclick="swapMeal(${selectedDayIdx},'${selectedMealType}',BYID['${alt.id}'],${selectedIsNext})">
+          <div class="alt-emoji" style="background:${alt.color}22;">${alt.emoji}</div>
+          <div style="flex:1;min-width:0;"><div class="alt-name">${alt.name}</div><div class="alt-meta">⏱${alt.prepTime}m · 💪${alt.protein}g · <span style="color:${matchColor(p2)};">⬡${p2}%</span> · <span style="color:${fA.color};">A:${fA.text[0]}</span> <span style="color:${fN.color};">N:${fN.text[0]}</span></div></div>
+          <button class="alt-use" onclick="event.stopPropagation();swapMeal(${selectedDayIdx},'${selectedMealType}',BYID['${alt.id}'],${selectedIsNext})">Swap</button>
+        </div>`;}).join('')}
+    </div>`:''}
+  `;
+}
+
+function changePortion(delta) {
+  portions=Math.max(1,Math.min(8,portions+delta));
+  if(selectedRecipe) renderModal(selectedRecipe.id);
+}
+
+function closeModal() {
+  const overlay=document.getElementById('modal');
+  if(overlay) overlay.style.display='none';
+  document.body.style.overflow='';
+}
+
+// ── COOK NOW ─────────────────────────────────────────────────────────────────
+function openCookNow(id) {
+  cookNowRecipe=BYID[id]; cookNowStep=0;
+  closeModal();
+  renderCookNow();
+  document.getElementById('cook-overlay').style.display='flex';
+  document.body.style.overflow='hidden';
+  // Try wake lock
+  if('wakeLock'in navigator) navigator.wakeLock.request('screen').catch(()=>{});
+}
+function renderCookNow() {
+  const overlay=document.getElementById('cook-overlay');
+  if(!overlay||!cookNowRecipe) return;
+  const steps=cookNowRecipe.steps;
+  const done=cookNowStep>=steps.length;
+  overlay.innerHTML=`
+    <div class="cook-topbar">
+      <button class="cook-back" onclick="closeCookNow()">✕</button>
+      <div style="flex:1;"><div class="serif" style="font-size:.95rem;font-weight:700;">${cookNowRecipe.name}</div><div style="font-size:.66rem;color:var(--t3);margin-top:1px;">Step ${Math.min(cookNowStep+1,steps.length)} of ${steps.length}</div></div>
+    </div>
+    <div class="cook-prog">${steps.map((_,i)=>`<div class="cook-prog-seg ${i<cookNowStep?'done':i===cookNowStep?'active':''}"></div>`).join('')}</div>
+    ${done?`
+      <div class="cook-done-screen">
+        <div style="font-size:3.8rem;margin-bottom:14px;">🎉</div>
+        <div class="serif" style="font-size:1.5rem;font-weight:700;margin-bottom:8px;">All done!</div>
+        <div style="font-size:.84rem;color:var(--t3);margin-bottom:20px;">${cookNowRecipe.name} is ready. Enjoy!</div>
+        <button class="btn btn-gold" style="padding:12px 28px;" onclick="closeCookNow()">Close</button>
+      </div>
+    `:`
+      <div class="cook-step-body">
+        <div class="cook-step-num">Step ${cookNowStep+1}</div>
+        <div class="cook-step-text">${steps[cookNowStep]}</div>
+        ${cookNowStep===steps.length-1&&cookNowRecipe.tip?`<div class="tip-box" style="margin-top:20px;"><span class="tip-label">💡 Tip</span>${cookNowRecipe.tip}</div>`:''}
+      </div>
+      <div class="cook-footer">
+        ${cookNowStep>0?`<button class="cook-step-btn cook-prev" onclick="cookNowStep--;renderCookNow()">← Prev</button>`:''}
+        <button class="cook-step-btn cook-next" onclick="cookNowStep++;renderCookNow()">${cookNowStep===steps.length-1?'🎉 Finish':'Next step →'}</button>
+      </div>
+    `}
+  `;
+}
+function closeCookNow() {
+  document.getElementById('cook-overlay').style.display='none';
+  document.body.style.overflow='';
+  cookNowRecipe=null; cookNowStep=0;
+}
+
+// ── SCAN ──────────────────────────────────────────────────────────────────────
+function openScan() {
+  const results=DB.map(r=>({...r,pct:matchPct(r,ST.groceries)})).sort((a,b)=>b.pct-a.pct).filter(r=>r.pct>0);
+  const sheet=document.getElementById('scan-sheet');
+  if(!sheet) return;
+  sheet.innerHTML=`
+    <div class="modal-handle"></div>
+    <div style="padding:14px 18px 10px;">
+      <div class="serif" style="font-size:1.1rem;font-weight:700;">What can I make now?</div>
+      <div style="font-size:.72rem;color:var(--t3);margin-top:2px;">Sorted by pantry match — tap to see recipe</div>
+    </div>
+    <div style="padding:0 14px 28px;">
+      ${!results.length?'<div style="text-align:center;padding:24px;color:var(--t3);font-size:.8rem;">Add pantry ingredients first.</div>':''}
+      ${results.slice(0,14).map(r=>`
+        <div class="scan-item" onclick="closeScan();openModal(null,null,null,false,'${r.id}')">
+          <div style="width:42px;height:42px;border-radius:10px;background:${r.color}22;display:flex;align-items:center;justify-content:center;font-size:1.25rem;flex-shrink:0;">${r.emoji}</div>
+          <div style="flex:1;min-width:0;"><div style="font-weight:600;font-size:.82rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${r.name}</div><div style="font-size:.66rem;color:var(--t3);margin-top:1px;">${r.meal} · ⏱${r.prepTime}m · 💪${r.protein}g · A$${(r.cost*1.55).toFixed(2)}</div></div>
+          <div style="font-size:.78rem;font-weight:700;color:${matchColor(r.pct)};flex-shrink:0;">${r.pct}%</div>
+        </div>`).join('')}
+    </div>`;
+  document.getElementById('scan-overlay').style.display='flex';
+  document.body.style.overflow='hidden';
+}
+function closeScan() {
+  document.getElementById('scan-overlay').style.display='none';
+  document.body.style.overflow='';
+}
+
+// ── SHARE / NOTIF ─────────────────────────────────────────────────────────────
+function openShare() { document.getElementById('share-overlay').style.display='flex'; }
+function closeShare() { document.getElementById('share-overlay').style.display='none'; }
+
+async function toggleNotif() {
+  if(!('Notification'in window)){toast('Notifications not supported on this browser');return;}
+  if(Notification.permission==='granted'){toast('Reminders already on! 🔔');renderPantry();return;}
+  const p=await Notification.requestPermission();
+  if(p==='granted'){
+    toast('🔔 Saturday 2pm reminders set!');
+    scheduleWeeklyReminder();
+  }
+  renderPantry();
+}
+function scheduleWeeklyReminder() {
+  if(!('Notification'in window)||Notification.permission!=='granted') return;
+  const now=new Date();
+  const sat=new Date(now);
+  const days=(6-now.getDay()+7)%7||7;
+  sat.setDate(now.getDate()+days);
+  sat.setHours(14,0,0,0);
+  const ms=sat-now;
+  if(ms>0&&ms<7*24*60*60*1000) setTimeout(()=>new Notification('🍛 RasaWeekly',{body:"Time to plan next week's meals! Tap to open."}),ms);
+}
+
+// ── SETUP / CONFIG ────────────────────────────────────────────────────────────
+async function saveSetup() {
+  const user=document.getElementById('setup-user').value.trim();
+  const repo=document.getElementById('setup-repo').value.trim();
+  const token=document.getElementById('setup-token').value.trim();
+  const errEl=document.getElementById('setup-err');
+  if(!user||!repo||!token){if(errEl)errEl.textContent='All fields are required.';return;}
+  if(errEl)errEl.textContent='Testing connection…';
+  try {
+    const res=await fetch(`https://api.github.com/repos/${user}/${repo}`,{headers:{'Authorization':'token '+token,'Accept':'application/vnd.github.v3+json'}});
+    if(!res.ok) throw new Error('Repo not found or token invalid ('+res.status+')');
+    CFG={user,repo,token};
+    try{localStorage.setItem(CFG_KEY,JSON.stringify(CFG));}catch(_){}
+    document.getElementById('setup-screen').style.display='none';
+    document.getElementById('app').style.display='flex';
+    await loadFromGitHub();
+    renderAll();
+    renderFilters();
+  } catch(e) {
+    if(errEl) errEl.textContent='❌ '+e.message;
+  }
+}
+
+function resetSetup() {
+  try{localStorage.removeItem(CFG_KEY);}catch(_){}
+  CFG=null;
+  document.getElementById('app').style.display='none';
+  document.getElementById('setup-screen').style.display='flex';
+}
+
+// ── BOOT ──────────────────────────────────────────────────────────────────────
+(async()=>{
+  // Load favs from localStorage (local only, not synced)
+  try{const f=localStorage.getItem('rw_favs');if(f)favs=JSON.parse(f);}catch(_){}
+
+  // Load config
+  try{const c=localStorage.getItem(CFG_KEY);if(c)CFG=JSON.parse(c);}catch(_){}
+
+  if(!CFG){
+    document.getElementById('setup-screen').style.display='flex';
+    return;
+  }
+
+  document.getElementById('app').style.display='flex';
+  renderFilters();
+  renderPantry();
+
+  // Load from GitHub
+  await loadFromGitHub();
+  renderAll();
+
+  // Auto-refresh every 30 seconds (picks up wife's changes)
+  setInterval(()=>loadFromGitHub(false),30000);
+
+  // Saturday notification
+  scheduleWeeklyReminder();
+})();
+</script>
+</body>
+</html>

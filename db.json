@@ -1,0 +1,14 @@
+{
+  "plan": null,
+  "nextPlan": null,
+  "cookMap": {},
+  "nextCookMap": {},
+  "genNum": 0,
+  "completed": {},
+  "shopChecked": {},
+  "manualItems": [],
+  "history": [],
+  "groceries": ["avocado","eggs","paneer","chickpeas","spinach","oats","pasta","garlic","onion","olive oil","lemon","feta cheese","ginger","cumin","turmeric"],
+  "filters": {"protein": true, "quick": false, "budget": false},
+  "lastUpdated": ""
+}
