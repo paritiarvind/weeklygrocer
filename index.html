@@ -1131,14 +1131,14 @@ function renderToday() {
       const cook=ST.cookMap[slot(TODAY_IDX,mi)]||'A';
       const done=!!ST.completed[todayPlan.day+'-'+m];
       const pct2=matchPct(r,ST.groceries);
-      return `<div class="meal-card" onclick="openModal('${todayPlan.day}','${m}',${TODAY_IDX},false)">
-        ${done?'<div style="position:absolute;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;font-size:2rem;z-index:2;border-radius:14px 14px 0 0;">✓</div>':''}
+      return `<div class="meal-card" style="position:relative;opacity:${done?'.6':'1'};transition:opacity .3s;" onclick="openModal('${todayPlan.day}','${m}',${TODAY_IDX},false)">
         <div class="meal-card-hero" style="position:relative;">
           <div class="meal-hero-bg">${r.emoji}</div>
           <div class="meal-hero-grad" style="background:linear-gradient(to top,rgba(10,10,10,.95) 0%,${r.color}44 100%);"></div>
+          ${done?`<div style="position:absolute;top:10px;right:10px;width:28px;height:28px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.9rem;font-weight:700;color:#000;z-index:3;">✓</div>`:''}
           <div class="meal-hero-content">
-            <div class="meal-type-row"><span class="pip pip-${cook}">${cook}</span>${m}</div>
-            <div class="meal-name">${r.name}</div>
+            <div class="meal-type-row"><span class="pip pip-${cook}">${cook}</span>${m}${done?'<span style="margin-left:auto;font-size:.65rem;color:var(--green);font-weight:700;">Done</span>':''}</div>
+            <div class="meal-name" style="${done?'text-decoration:line-through;opacity:.7;':''}">${r.name}</div>
           </div>
         </div>
         <div class="meal-card-foot">
@@ -1190,7 +1190,7 @@ function renderWeek() {
     statsEl.style.display='grid';
     statsEl.style.gridTemplateColumns='repeat(4,1fr)';
     statsEl.style.gap='7px'; statsEl.style.marginBottom='12px';
-    statsEl.innerHTML=[['21','Meals'],['A$'+(tc*1.55*n/7/n).toFixed(2),'Daily'],[ Math.round(tp/n)+'g','Protein'],[Math.round(tt/n)+'m','Prep']].map(([v,l])=>
+    statsEl.innerHTML=[['21','Meals'],['A$'+(tc*1.55/7).toFixed(2),'Daily'],[ Math.round(tp/n)+'g','Protein'],[Math.round(tt/n)+'m','Prep']].map(([v,l])=>
       `<div style="background:var(--s1);border:1px solid var(--s3);border-radius:9px;padding:11px 8px;text-align:center;"><div style="font-family:'Fraunces',serif;font-size:1.15rem;font-weight:700;color:var(--gold);">${v}</div><div style="font-size:.6rem;color:var(--t3);margin-top:2px;text-transform:uppercase;letter-spacing:.3px;">${l}</div></div>`
     ).join('');
   } else if(statsEl) statsEl.style.display='none';
@@ -1229,10 +1229,10 @@ function renderWeek() {
         const cook=activeCookMap[slot(di,mi)]||'A';
         const done=weekView==='current'&&!!ST.completed[d.day+'-'+m];
         const pct=matchPct(r,ST.groceries);
-        return `<div class="week-meal-row ${done?'done-row':''}" onclick="openModal('${d.day}','${m}',${di},${weekView==='next'})">
+        return `<div class="week-meal-row" style="opacity:${done?.55:1};transition:opacity .3s;" onclick="openModal('${d.day}','${m}',${di},${weekView==='next'})">
           <div class="week-meal-emoji" style="background:${r.color}22;">${r.emoji}</div>
           <div class="week-meal-info">
-            <div class="week-meal-type"><span class="pip pip-${cook}">${cook}</span>${m}</div>
+            <div class="week-meal-type"><span class="pip pip-${cook}">${cook}</span>${m}${done?'<span style="margin-left:6px;font-size:.6rem;color:var(--green);font-weight:700;">✓ Done</span>':''}</div>
             <div class="week-meal-name ${done?'done':''}">${r.name}</div>
             <div class="week-meal-meta">
               <span class="wmeta">⏱${r.prepTime}m</span>
@@ -1240,7 +1240,7 @@ function renderWeek() {
               <span class="wmeta" style="color:${matchColor(pct)};font-weight:700;">⬡${pct}%</span>
             </div>
           </div>
-          ${weekView==='current'?`<button class="tick-btn ${done?'done':''}" style="width:28px;height:28px;font-size:.8rem;" onclick="event.stopPropagation();toggleDone('${d.day}','${m}')">${done?'✓':'○'}</button>`:''}
+          ${weekView==='current'?`<button class="tick-btn ${done?'done':''}" style="width:30px;height:30px;font-size:.8rem;flex-shrink:0;" onclick="event.stopPropagation();toggleDone('${d.day}','${m}')">${done?'✓':'○'}</button>`:''}
         </div>`;
       }).join('')}
     </div>`).join('');
