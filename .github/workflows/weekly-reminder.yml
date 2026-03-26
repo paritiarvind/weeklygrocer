@@ -1,0 +1,44 @@
+name: Weekly Meal Plan Reminder
+
+on:
+  schedule:
+    # Every Saturday at 2pm Sydney time (4am UTC Saturday)
+    - cron: '0 4 * * 6'
+  workflow_dispatch: # lets you trigger it manually to test
+
+jobs:
+  send-reminder:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send reminder emails
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.GMAIL_USER }}
+          password: ${{ secrets.GMAIL_APP_PASSWORD }}
+          to: ${{ secrets.EMAIL_A }},${{ secrets.EMAIL_N }}
+          from: RasaWeekly 🍛 <${{ secrets.GMAIL_USER }}>
+          subject: "🍛 Saturday reminder — plan next week's meals!"
+          html_body: |
+            <div style="font-family:sans-serif;max-width:480px;margin:0 auto;background:#0a0a0a;color:#f2f2f2;border-radius:16px;overflow:hidden;">
+              <div style="background:linear-gradient(135deg,#f0a030,#c47820);padding:28px 24px;text-align:center;">
+                <div style="font-size:2.5rem;margin-bottom:8px;">🍛</div>
+                <h1 style="font-size:1.4rem;font-weight:700;margin:0;color:#000;">RasaWeekly</h1>
+                <p style="color:#000;opacity:.7;margin:4px 0 0;font-size:.85rem;">Your Saturday meal planning reminder</p>
+              </div>
+              <div style="padding:24px;">
+                <h2 style="font-size:1.1rem;margin:0 0 12px;">Time to plan next week! 📅</h2>
+                <p style="color:#999;line-height:1.6;font-size:.9rem;">It's Saturday — the perfect time to:</p>
+                <ul style="color:#999;line-height:1.8;font-size:.9rem;padding-left:20px;">
+                  <li>Update your pantry with what you have</li>
+                  <li>Generate next week's 21 meals</li>
+                  <li>Check the shopping list for what you need</li>
+                </ul>
+                <div style="text-align:center;margin:24px 0;">
+                  <a href="https://YOUR-USERNAME.github.io/rasaweekly" style="background:linear-gradient(135deg,#f0a030,#c47820);color:#000;text-decoration:none;padding:13px 28px;border-radius:10px;font-weight:700;font-size:.95rem;">Open RasaWeekly →</a>
+                </div>
+                <p style="color:#555;font-size:.75rem;text-align:center;margin:0;">Sent every Saturday at 2pm Sydney time</p>
+              </div>
+            </div>
