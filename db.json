@@ -1,80 +1,828 @@
 {
-  "plan": [
-    {
-      "day": "Monday",
-      "b": "moong_cheela",
-      "l": "chana_masala",
-      "dn": "methi_dal"
-    },
-    {
-      "day": "Tuesday",
-      "b": "paneer_bhurji",
-      "l": "greek_salad",
-      "dn": "matar_paneer"
-    },
-    {
-      "day": "Wednesday",
-      "b": "avo_toast",
-      "l": "palak_paneer",
-      "dn": "paneer_paratha"
-    },
-    {
-      "day": "Thursday",
-      "b": "paneer_bhurji",
-      "l": "dal_tadka",
-      "dn": "dal_makhani"
-    },
-    {
-      "day": "Friday",
-      "b": "moong_cheela",
-      "l": "soya_curry",
-      "dn": "veggie_quesadilla"
-    },
-    {
-      "day": "Saturday",
-      "b": "muesli_bowl",
-      "l": "pasta_pesto",
-      "dn": "mediterranean_bowl"
-    },
-    {
-      "day": "Sunday",
-      "b": "overnight_oats",
-      "l": "buddha_bowl",
-      "dn": "pasta_arrabiata"
-    }
-  ],
+  "plan": null,
   "nextPlan": null,
-  "cookMap": {
-    "0": "N",
-    "1": "A",
-    "2": "N",
-    "3": "A",
-    "4": "N",
-    "5": "A",
-    "6": "N",
-    "7": "A",
-    "8": "N",
-    "9": "A",
-    "10": "N",
-    "11": "A",
-    "12": "N",
-    "13": "A",
-    "14": "N",
-    "15": "A",
-    "16": "N",
-    "17": "A",
-    "18": "N",
-    "19": "A",
-    "20": "N"
-  },
+  "cookMap": {},
   "nextCookMap": {},
   "genNum": 1,
-  "completed": {
-    "Thursday-Dinner": true
-  },
+  "completed": {},
   "shopChecked": {},
   "manualItems": [],
-  "history": [],
+  "history": [
+    {
+      "id": 1774520699452,
+      "genNum": 1,
+      "label": "Week 1",
+      "archivedAt": 1774520699452,
+      "plan": [
+        {
+          "day": "Monday",
+          "B": {
+            "id": "moong_cheela",
+            "name": "Moong Dal Cheela",
+            "meal": "Breakfast",
+            "protein": 18,
+            "prepTime": 15,
+            "cost": 1.2,
+            "emoji": "🥞",
+            "color": "#4A7C59",
+            "ingredients": [
+              "moong dal",
+              "onion",
+              "green chilli",
+              "ginger",
+              "cumin",
+              "coriander leaves",
+              "oil",
+              "salt"
+            ],
+            "steps": [
+              "Soak moong dal 2 hrs, blend with ginger and green chilli to smooth batter.",
+              "Add chopped onion, cumin, coriander and salt.",
+              "Heat non-stick tawa, drizzle oil. Pour batter, spread thin.",
+              "Cook 2–3 min until edges lift, flip, cook 1–2 min until golden.",
+              "Serve with green chutney or curd."
+            ],
+            "tip": "Thinner spread = crispier cheela.",
+            "nutrition": {
+              "calories": 210,
+              "protein": 18,
+              "carbs": 24,
+              "fat": 5
+            },
+            "source": "Tarla Dalal"
+          },
+          "L": {
+            "id": "chana_masala",
+            "name": "Chana Masala",
+            "meal": "Lunch",
+            "protein": 19,
+            "prepTime": 25,
+            "cost": 1.2,
+            "emoji": "🫘",
+            "color": "#8B4513",
+            "ingredients": [
+              "chickpeas",
+              "onion",
+              "tomato",
+              "ginger",
+              "garlic",
+              "cumin",
+              "coriander powder",
+              "garam masala",
+              "amchur",
+              "oil"
+            ],
+            "steps": [
+              "Cook chickpeas until tender (canned works — drain well).",
+              "Blend onion, tomatoes, ginger and garlic to smooth paste.",
+              "Heat oil, add cumin seeds. Add paste, cook until oil separates ~8 min.",
+              "Add spices, cook 2 min. Add chickpeas + 1 cup water, simmer 10 min.",
+              "Finish with garam masala and amchur."
+            ],
+            "tip": "A tea bag while boiling dried chickpeas gives rich dark colour.",
+            "nutrition": {
+              "calories": 295,
+              "protein": 19,
+              "carbs": 38,
+              "fat": 7
+            },
+            "source": "Tarla Dalal"
+          },
+          "D": {
+            "id": "methi_dal",
+            "name": "Methi Dal",
+            "meal": "Dinner",
+            "protein": 17,
+            "prepTime": 20,
+            "cost": 0.9,
+            "emoji": "🍵",
+            "color": "#4A6741",
+            "ingredients": [
+              "masoor dal",
+              "methi leaves",
+              "onion",
+              "garlic",
+              "green chilli",
+              "turmeric",
+              "cumin",
+              "ghee",
+              "tomato"
+            ],
+            "steps": [
+              "Cook masoor dal with turmeric until soft — no soaking needed ~12 min.",
+              "Heat ghee, add cumin, then garlic until golden.",
+              "Add onion 4 min, then tomato and green chilli until soft.",
+              "Add chopped methi, cook 3 min until wilted.",
+              "Combine with dal, simmer 5 min. Serve with chapati."
+            ],
+            "tip": "If methi is too bitter, sprinkle with salt, rest 10 min, squeeze out water.",
+            "nutrition": {
+              "calories": 230,
+              "protein": 17,
+              "carbs": 32,
+              "fat": 5
+            },
+            "source": "Tarla Dalal"
+          }
+        },
+        {
+          "day": "Tuesday",
+          "B": {
+            "id": "paneer_bhurji",
+            "name": "Paneer Bhurji",
+            "meal": "Breakfast",
+            "protein": 22,
+            "prepTime": 15,
+            "cost": 1.8,
+            "emoji": "🧀",
+            "color": "#C04D2C",
+            "ingredients": [
+              "paneer",
+              "onion",
+              "tomato",
+              "green chilli",
+              "ginger",
+              "garlic",
+              "turmeric",
+              "garam masala",
+              "oil",
+              "coriander"
+            ],
+            "steps": [
+              "Heat oil, add cumin, fry onion golden ~4 min.",
+              "Add ginger, garlic and green chilli. Cook 1 min.",
+              "Add tomatoes, turmeric, red chilli until mashy ~3 min.",
+              "Crumble in paneer, stir gently, cook 2 min.",
+              "Finish with garam masala and coriander."
+            ],
+            "tip": "Add paneer last — just warm through, do not overcook.",
+            "nutrition": {
+              "calories": 280,
+              "protein": 22,
+              "carbs": 8,
+              "fat": 16
+            },
+            "source": "Hebbar's Kitchen"
+          },
+          "L": {
+            "id": "greek_salad",
+            "name": "Greek Salad with Chickpeas",
+            "meal": "Lunch",
+            "protein": 16,
+            "prepTime": 10,
+            "cost": 1.8,
+            "emoji": "🥗",
+            "color": "#1B4F72",
+            "ingredients": [
+              "chickpeas",
+              "cucumber",
+              "cherry tomatoes",
+              "feta cheese",
+              "kalamata olives",
+              "red onion",
+              "olive oil",
+              "lemon",
+              "oregano"
+            ],
+            "steps": [
+              "Drain and rinse chickpeas well.",
+              "Dice cucumber, quarter cherry tomatoes, thinly slice red onion.",
+              "Combine chickpeas, cucumber, tomatoes, olives and onion.",
+              "Whisk olive oil, lemon juice, oregano, salt and pepper for dressing.",
+              "Toss everything, crumble feta on top."
+            ],
+            "tip": "Marinate red onion in lemon juice 10 min — removes the raw sharpness.",
+            "nutrition": {
+              "calories": 340,
+              "protein": 16,
+              "carbs": 32,
+              "fat": 16
+            },
+            "source": "Mediterranean Kitchen"
+          },
+          "D": {
+            "id": "matar_paneer",
+            "name": "Matar Paneer",
+            "meal": "Dinner",
+            "protein": 22,
+            "prepTime": 22,
+            "cost": 2.1,
+            "emoji": "🟢",
+            "color": "#1E5C2E",
+            "ingredients": [
+              "paneer",
+              "green peas",
+              "onion",
+              "tomato",
+              "ginger",
+              "garlic",
+              "cumin",
+              "garam masala",
+              "coriander powder",
+              "oil"
+            ],
+            "steps": [
+              "Blend onion, tomato, ginger and garlic to smooth paste.",
+              "Heat oil, add cumin. Add paste, cook until oil separates ~7 min.",
+              "Add spices. Cook 2 min. Add peas + ½ cup water. Cover 5 min.",
+              "Add paneer cubes. Simmer 4 min.",
+              "Garnish with coriander. Serve with roti."
+            ],
+            "tip": "Golden-fry paneer cubes first for better texture and colour.",
+            "nutrition": {
+              "calories": 310,
+              "protein": 22,
+              "carbs": 18,
+              "fat": 17
+            },
+            "source": "Hebbar's Kitchen"
+          }
+        },
+        {
+          "day": "Wednesday",
+          "B": {
+            "id": "avo_toast",
+            "name": "Avocado Toast",
+            "meal": "Breakfast",
+            "protein": 12,
+            "prepTime": 8,
+            "cost": 2.2,
+            "emoji": "🥑",
+            "color": "#2D6A4F",
+            "ingredients": [
+              "bread",
+              "avocado",
+              "lemon",
+              "olive oil",
+              "chilli flakes",
+              "salt",
+              "pepper"
+            ],
+            "steps": [
+              "Toast 2 slices of sourdough until golden and crisp.",
+              "Halve avocado, scoop flesh into bowl. Mash with fork, add lemon juice, olive oil, salt and pepper.",
+              "Spread generously on toast. Top with chilli flakes.",
+              "Optional: add a fried or poached egg on top."
+            ],
+            "tip": "Everything bagel seasoning on top is a game changer.",
+            "nutrition": {
+              "calories": 310,
+              "protein": 12,
+              "carbs": 28,
+              "fat": 18
+            },
+            "source": "Modern Café Classic"
+          },
+          "L": {
+            "id": "palak_paneer",
+            "name": "Palak Paneer",
+            "meal": "Lunch",
+            "protein": 24,
+            "prepTime": 25,
+            "cost": 2,
+            "emoji": "🥬",
+            "color": "#2D5016",
+            "ingredients": [
+              "spinach",
+              "paneer",
+              "onion",
+              "tomato",
+              "garlic",
+              "ginger",
+              "cumin",
+              "garam masala",
+              "cream",
+              "oil"
+            ],
+            "steps": [
+              "Blanch spinach 1 min, ice-water shock, blend smooth.",
+              "Sauté onion, garlic, ginger golden. Add tomato, cook soft. Blend smooth.",
+              "Return blended mix to pan. Add spinach puree, simmer 5 min.",
+              "Add pan-fried paneer cubes. Cook 3 min.",
+              "Swirl in cream. Serve with roti."
+            ],
+            "tip": "Ice water after blanching keeps spinach vibrant green.",
+            "nutrition": {
+              "calories": 320,
+              "protein": 24,
+              "carbs": 12,
+              "fat": 18
+            },
+            "source": "Sanjeev Kapoor"
+          },
+          "D": {
+            "id": "paneer_paratha",
+            "name": "Paneer Stuffed Paratha",
+            "meal": "Dinner",
+            "protein": 20,
+            "prepTime": 25,
+            "cost": 1.4,
+            "emoji": "🫓",
+            "color": "#8B7355",
+            "ingredients": [
+              "whole wheat flour",
+              "paneer",
+              "green chilli",
+              "ginger",
+              "cumin",
+              "coriander",
+              "red chilli powder",
+              "ghee"
+            ],
+            "steps": [
+              "Knead soft wheat dough with water and salt. Rest 10 min.",
+              "Mix grated paneer with green chilli, ginger, cumin, coriander, red chilli, salt — keep dry.",
+              "Roll dough disc, add filling in centre, seal edges, roll gently into paratha.",
+              "Cook on hot tawa, apply ghee both sides until golden spots appear ~4 min.",
+              "Serve with curd and pickle."
+            ],
+            "tip": "Grate paneer fine — coarse filling tears the dough when rolling.",
+            "nutrition": {
+              "calories": 330,
+              "protein": 20,
+              "carbs": 38,
+              "fat": 12
+            },
+            "source": "Sanjeev Kapoor"
+          }
+        },
+        {
+          "day": "Thursday",
+          "B": {
+            "id": "paneer_bhurji",
+            "name": "Paneer Bhurji",
+            "meal": "Breakfast",
+            "protein": 22,
+            "prepTime": 15,
+            "cost": 1.8,
+            "emoji": "🧀",
+            "color": "#C04D2C",
+            "ingredients": [
+              "paneer",
+              "onion",
+              "tomato",
+              "green chilli",
+              "ginger",
+              "garlic",
+              "turmeric",
+              "garam masala",
+              "oil",
+              "coriander"
+            ],
+            "steps": [
+              "Heat oil, add cumin, fry onion golden ~4 min.",
+              "Add ginger, garlic and green chilli. Cook 1 min.",
+              "Add tomatoes, turmeric, red chilli until mashy ~3 min.",
+              "Crumble in paneer, stir gently, cook 2 min.",
+              "Finish with garam masala and coriander."
+            ],
+            "tip": "Add paneer last — just warm through, do not overcook.",
+            "nutrition": {
+              "calories": 280,
+              "protein": 22,
+              "carbs": 8,
+              "fat": 16
+            },
+            "source": "Hebbar's Kitchen"
+          },
+          "L": {
+            "id": "dal_tadka",
+            "name": "Dal Tadka",
+            "meal": "Lunch",
+            "protein": 18,
+            "prepTime": 20,
+            "cost": 0.9,
+            "emoji": "🥣",
+            "color": "#C49A2B",
+            "ingredients": [
+              "toor dal",
+              "onion",
+              "tomato",
+              "garlic",
+              "ginger",
+              "turmeric",
+              "red chilli",
+              "cumin",
+              "ghee",
+              "asafoetida"
+            ],
+            "steps": [
+              "Pressure cook toor dal with turmeric and salt until mushy. Mash and adjust.",
+              "Heat ghee — add cumin, asafoetida, red chillies — sizzle 30 sec.",
+              "Add garlic golden, then onion golden, then tomato soft.",
+              "Pour tadka over dal, stir, simmer 5 min.",
+              "Garnish with coriander. Serve with rice or roti."
+            ],
+            "tip": "Use real ghee for the tadka — the flavour difference is dramatic.",
+            "nutrition": {
+              "calories": 245,
+              "protein": 18,
+              "carbs": 34,
+              "fat": 6
+            },
+            "source": "Sanjeev Kapoor"
+          },
+          "D": {
+            "id": "dal_makhani",
+            "name": "Dal Makhani",
+            "meal": "Dinner",
+            "protein": 20,
+            "prepTime": 25,
+            "cost": 1.5,
+            "emoji": "🫕",
+            "color": "#1A0A00",
+            "ingredients": [
+              "urad dal",
+              "kidney beans",
+              "butter",
+              "cream",
+              "onion",
+              "tomato",
+              "ginger",
+              "garlic",
+              "garam masala",
+              "red chilli"
+            ],
+            "steps": [
+              "Pressure cook soaked urad dal and kidney beans until very soft.",
+              "Sauté onions in butter until deep golden. Add ginger, garlic, cook 2 min.",
+              "Add blended tomatoes and red chilli. Cook until butter separates.",
+              "Add cooked lentils + water. Simmer low 15 min, stirring often.",
+              "Stir in cream and garam masala. Simmer 5 min more."
+            ],
+            "tip": "Low and slow is the secret. Tastes even better the next day.",
+            "nutrition": {
+              "calories": 340,
+              "protein": 20,
+              "carbs": 40,
+              "fat": 12
+            },
+            "source": "Sanjeev Kapoor"
+          }
+        },
+        {
+          "day": "Friday",
+          "B": {
+            "id": "moong_cheela",
+            "name": "Moong Dal Cheela",
+            "meal": "Breakfast",
+            "protein": 18,
+            "prepTime": 15,
+            "cost": 1.2,
+            "emoji": "🥞",
+            "color": "#4A7C59",
+            "ingredients": [
+              "moong dal",
+              "onion",
+              "green chilli",
+              "ginger",
+              "cumin",
+              "coriander leaves",
+              "oil",
+              "salt"
+            ],
+            "steps": [
+              "Soak moong dal 2 hrs, blend with ginger and green chilli to smooth batter.",
+              "Add chopped onion, cumin, coriander and salt.",
+              "Heat non-stick tawa, drizzle oil. Pour batter, spread thin.",
+              "Cook 2–3 min until edges lift, flip, cook 1–2 min until golden.",
+              "Serve with green chutney or curd."
+            ],
+            "tip": "Thinner spread = crispier cheela.",
+            "nutrition": {
+              "calories": 210,
+              "protein": 18,
+              "carbs": 24,
+              "fat": 5
+            },
+            "source": "Tarla Dalal"
+          },
+          "L": {
+            "id": "soya_curry",
+            "name": "Soya Chunks Masala",
+            "meal": "Lunch",
+            "protein": 28,
+            "prepTime": 22,
+            "cost": 1,
+            "emoji": "🫙",
+            "color": "#5C3317",
+            "ingredients": [
+              "soya chunks",
+              "onion",
+              "tomato",
+              "ginger",
+              "garlic",
+              "red chilli",
+              "cumin",
+              "garam masala",
+              "curd",
+              "oil"
+            ],
+            "steps": [
+              "Boil soya chunks 5 min in salted water, squeeze completely dry.",
+              "Fry onion golden, add ginger and garlic, cook 2 min.",
+              "Add tomatoes, red chilli and cumin. Cook until mashy.",
+              "Stir in beaten curd slowly. Add soya + 1 cup water, simmer 10 min.",
+              "Finish with garam masala and coriander."
+            ],
+            "tip": "Squeezing soya dry removes raw smell and helps masala penetrate.",
+            "nutrition": {
+              "calories": 270,
+              "protein": 28,
+              "carbs": 18,
+              "fat": 8
+            },
+            "source": "Hebbar's Kitchen"
+          },
+          "D": {
+            "id": "veggie_quesadilla",
+            "name": "Cheese & Veggie Quesadillas",
+            "meal": "Dinner",
+            "protein": 18,
+            "prepTime": 15,
+            "cost": 1.6,
+            "emoji": "🫔",
+            "color": "#8B6914",
+            "ingredients": [
+              "flour tortillas",
+              "cheddar cheese",
+              "capsicum",
+              "onion",
+              "black beans",
+              "corn",
+              "avocado",
+              "sour cream",
+              "cumin",
+              "smoked paprika"
+            ],
+            "steps": [
+              "Sauté diced capsicum and onion in oil until soft. Add black beans and corn.",
+              "Season with cumin, smoked paprika, salt and pepper. Cook 2 min more.",
+              "Lay tortilla flat. Add cheese on one half, then vegetable mix, then more cheese.",
+              "Fold in half. Press in a dry pan on medium ~2 min each side until golden.",
+              "Serve with sliced avocado and sour cream."
+            ],
+            "tip": "Do not overfill — a thin layer toasts more evenly and stays crisp.",
+            "nutrition": {
+              "calories": 400,
+              "protein": 18,
+              "carbs": 44,
+              "fat": 16
+            },
+            "source": "Tex-Mex Classic"
+          }
+        },
+        {
+          "day": "Saturday",
+          "B": {
+            "id": "muesli_bowl",
+            "name": "Muesli with Fresh Fruit",
+            "meal": "Breakfast",
+            "protein": 14,
+            "prepTime": 5,
+            "cost": 1.4,
+            "emoji": "🥣",
+            "color": "#8B7355",
+            "ingredients": [
+              "muesli",
+              "milk",
+              "greek yogurt",
+              "berries",
+              "banana",
+              "honey",
+              "chia seeds"
+            ],
+            "steps": [
+              "Pour muesli into a bowl.",
+              "Add milk or Greek yogurt to your preferred consistency.",
+              "Top with fresh berries, sliced banana and a drizzle of honey.",
+              "Sprinkle chia seeds for extra fibre."
+            ],
+            "tip": "Soak muesli in milk overnight — bircher style is creamier and more digestible.",
+            "nutrition": {
+              "calories": 380,
+              "protein": 14,
+              "carbs": 58,
+              "fat": 8
+            },
+            "source": "Nutrition Australia"
+          },
+          "L": {
+            "id": "pasta_pesto",
+            "name": "Pasta with Pesto & Veggies",
+            "meal": "Lunch",
+            "protein": 18,
+            "prepTime": 20,
+            "cost": 2.1,
+            "emoji": "🍝",
+            "color": "#1E5631",
+            "ingredients": [
+              "pasta",
+              "basil pesto",
+              "cherry tomatoes",
+              "zucchini",
+              "parmesan",
+              "olive oil",
+              "garlic",
+              "pine nuts"
+            ],
+            "steps": [
+              "Boil pasta in well-salted water. Reserve ½ cup pasta water before draining.",
+              "Sauté diced zucchini and halved cherry tomatoes in olive oil with garlic ~4 min.",
+              "Drain pasta, return to pot off heat.",
+              "Add pesto, sautéed veggies and splash of pasta water. Toss well.",
+              "Serve topped with parmesan and toasted pine nuts."
+            ],
+            "tip": "Starchy pasta water makes the pesto silkier and helps it cling.",
+            "nutrition": {
+              "calories": 480,
+              "protein": 18,
+              "carbs": 64,
+              "fat": 16
+            },
+            "source": "Italian Kitchen"
+          },
+          "D": {
+            "id": "mediterranean_bowl",
+            "name": "Mediterranean Grain Bowl",
+            "meal": "Dinner",
+            "protein": 18,
+            "prepTime": 18,
+            "cost": 2.2,
+            "emoji": "🫙",
+            "color": "#1B4F72",
+            "ingredients": [
+              "quinoa",
+              "feta cheese",
+              "roasted capsicum",
+              "cucumber",
+              "kalamata olives",
+              "cherry tomatoes",
+              "chickpeas",
+              "hummus",
+              "lemon",
+              "olive oil",
+              "parsley"
+            ],
+            "steps": [
+              "Cook quinoa and let cool slightly.",
+              "Roast chickpeas with olive oil, cumin and paprika at 200°C for 20 min.",
+              "Dice cucumber, halve tomatoes, chop parsley.",
+              "Assemble: quinoa base topped with all vegetables, chickpeas and crumbled feta.",
+              "Drizzle with olive oil and lemon juice. Spoon hummus on the side."
+            ],
+            "tip": "Warm pita bread on the side makes this more filling.",
+            "nutrition": {
+              "calories": 390,
+              "protein": 18,
+              "carbs": 48,
+              "fat": 15
+            },
+            "source": "Mediterranean Kitchen"
+          }
+        },
+        {
+          "day": "Sunday",
+          "B": {
+            "id": "overnight_oats",
+            "name": "Overnight Oats",
+            "meal": "Breakfast",
+            "protein": 15,
+            "prepTime": 5,
+            "cost": 1.1,
+            "emoji": "🫙",
+            "color": "#5B8C99",
+            "ingredients": [
+              "oats",
+              "milk",
+              "greek yogurt",
+              "chia seeds",
+              "honey",
+              "berries",
+              "banana"
+            ],
+            "steps": [
+              "Add ½ cup oats to a jar.",
+              "Pour over ¾ cup milk, add 2 tbsp Greek yogurt and 1 tbsp chia seeds.",
+              "Drizzle with honey. Stir well. Seal and refrigerate overnight.",
+              "Top with fresh berries and banana slices before eating."
+            ],
+            "tip": "Prep 5 jars on Sunday — breakfast sorted all week.",
+            "nutrition": {
+              "calories": 350,
+              "protein": 15,
+              "carbs": 52,
+              "fat": 7
+            },
+            "source": "Nutrition First"
+          },
+          "L": {
+            "id": "buddha_bowl",
+            "name": "Buddha Bowl",
+            "meal": "Lunch",
+            "protein": 20,
+            "prepTime": 15,
+            "cost": 2.3,
+            "emoji": "🥙",
+            "color": "#6B4226",
+            "ingredients": [
+              "quinoa",
+              "roasted chickpeas",
+              "avocado",
+              "mixed greens",
+              "cucumber",
+              "carrot",
+              "tahini",
+              "lemon",
+              "olive oil",
+              "sesame seeds"
+            ],
+            "steps": [
+              "Cook quinoa: rinse, simmer in 2× water 15 min, fluff and cool.",
+              "Roast chickpeas with olive oil and smoked paprika 200°C for 20 min until crispy.",
+              "Make tahini dressing: whisk tahini, lemon juice, garlic, water until smooth.",
+              "Assemble: quinoa base, pile greens, cucumber, carrot ribbons, avocado and chickpeas.",
+              "Drizzle dressing. Finish with sesame seeds."
+            ],
+            "tip": "Batch cook quinoa and roast chickpeas on Sunday — assembly takes 5 min on weekdays.",
+            "nutrition": {
+              "calories": 420,
+              "protein": 20,
+              "carbs": 44,
+              "fat": 18
+            },
+            "source": "Whole Foods Kitchen"
+          },
+          "D": {
+            "id": "pasta_arrabiata",
+            "name": "Pasta Arrabiata",
+            "meal": "Dinner",
+            "protein": 16,
+            "prepTime": 20,
+            "cost": 1.8,
+            "emoji": "🍝",
+            "color": "#8B0000",
+            "ingredients": [
+              "pasta",
+              "crushed tomatoes",
+              "garlic",
+              "chilli flakes",
+              "olive oil",
+              "basil",
+              "parmesan",
+              "zucchini",
+              "capsicum"
+            ],
+            "steps": [
+              "Boil pasta in salted water until al dente. Reserve pasta water.",
+              "Heat olive oil, add sliced garlic and chilli flakes until garlic is golden.",
+              "Add diced zucchini and capsicum, sauté 3 min.",
+              "Add crushed tomatoes, season well, simmer 10 min until sauce thickens.",
+              "Toss with drained pasta and pasta water. Serve with basil and parmesan."
+            ],
+            "tip": "Chilli flakes bloom in olive oil — this is where the heat depth comes from.",
+            "nutrition": {
+              "calories": 420,
+              "protein": 16,
+              "carbs": 68,
+              "fat": 10
+            },
+            "source": "Italian Kitchen"
+          }
+        }
+      ],
+      "cookMap": {
+        "0": "N",
+        "1": "A",
+        "2": "N",
+        "3": "A",
+        "4": "N",
+        "5": "A",
+        "6": "N",
+        "7": "A",
+        "8": "N",
+        "9": "A",
+        "10": "N",
+        "11": "A",
+        "12": "N",
+        "13": "A",
+        "14": "N",
+        "15": "A",
+        "16": "N",
+        "17": "A",
+        "18": "N",
+        "19": "A",
+        "20": "N"
+      },
+      "completed": {
+        "Thursday-Dinner": true
+      },
+      "stats": {
+        "done": 1,
+        "avgP": 19
+      }
+    }
+  ],
   "groceries": [
     "avocado",
     "eggs",
@@ -105,5 +853,5 @@
     "quick": false,
     "budget": false
   },
-  "lastUpdated": "2026-03-26T09:56:42.094Z"
+  "lastUpdated": "2026-03-26T10:25:00.664Z"
 }
