@@ -8,7 +8,27 @@
   "shopChecked": {},
   "manualItems": [],
   "history": [],
-  "groceries": ["avocado","eggs","paneer","chickpeas","spinach","oats","pasta","garlic","onion","olive oil","lemon","feta cheese","ginger","cumin","turmeric"],
-  "filters": {"protein": true, "quick": false, "budget": false},
-  "lastUpdated": ""
+  "groceries": [
+    "avocado",
+    "eggs",
+    "paneer",
+    "chickpeas",
+    "spinach",
+    "oats",
+    "pasta",
+    "garlic",
+    "onion",
+    "olive oil",
+    "lemon",
+    "feta cheese",
+    "ginger",
+    "cumin",
+    "turmeric"
+  ],
+  "filters": {
+    "protein": false,
+    "quick": false,
+    "budget": false
+  },
+  "lastUpdated": "2026-03-26T09:46:55.463Z"
 }
