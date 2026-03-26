@@ -24,12 +24,16 @@
     "ginger",
     "cumin",
     "turmeric",
-    "greek yogurt"
+    "greek yogurt",
+    "besan",
+    "kidney beans",
+    "urad dal",
+    "green peas"
   ],
   "filters": {
     "protein": false,
     "quick": false,
     "budget": false
   },
-  "lastUpdated": "2026-03-26T09:48:26.278Z"
+  "lastUpdated": "2026-03-26T09:48:30.677Z"
 }
