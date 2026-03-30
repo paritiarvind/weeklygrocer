@@ -109,6 +109,7 @@
   "mealNotes": {},
   "nApproved": true,
   "cookOverrides": {
+    "8": "N",
     "12": "N"
   },
   "history": [],
@@ -146,5 +147,5 @@
     "budget": false
   },
   "pantryUpdatedAt": "2026-03-30T05:41:07.902Z",
-  "lastUpdated": "2026-03-30T06:26:12.249Z"
+  "lastUpdated": "2026-03-30T06:27:57.088Z"
 }
