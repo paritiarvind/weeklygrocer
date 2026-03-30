@@ -94,7 +94,8 @@
     "soya chunks": true,
     "sesame seeds": true,
     "semolina": true,
-    "salt": true
+    "salt": true,
+    "red lentils": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -135,5 +136,5 @@
     "budget": false
   },
   "pantryUpdatedAt": "2026-03-30T05:41:07.902Z",
-  "lastUpdated": "2026-03-30T05:47:06.187Z"
+  "lastUpdated": "2026-03-30T05:47:09.230Z"
 }
