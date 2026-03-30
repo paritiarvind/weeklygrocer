@@ -88,7 +88,10 @@
     "cinnamon": true,
     "cucumber": true,
     "dried red chilli": true,
-    "ghee": true
+    "ghee": true,
+    "tamarind": true,
+    "sugar": true,
+    "soya chunks": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -129,5 +132,5 @@
     "budget": false
   },
   "pantryUpdatedAt": "2026-03-30T05:41:07.902Z",
-  "lastUpdated": "2026-03-30T05:46:29.720Z"
+  "lastUpdated": "2026-03-30T05:46:55.342Z"
 }
