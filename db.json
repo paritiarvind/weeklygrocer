@@ -135,13 +135,14 @@
     "turmeric",
     "whole wheat flour",
     "yogurt",
-    "zucchini"
+    "zucchini",
+    "green peas"
   ],
   "filters": {
     "protein": false,
     "quick": false,
     "budget": false
   },
-  "pantryUpdatedAt": "2026-03-30T00:00:00.000Z",
-  "lastUpdated": "2026-03-30T10:35:20.387Z"
+  "pantryUpdatedAt": "2026-03-30T10:35:34.639Z",
+  "lastUpdated": "2026-03-30T10:35:36.348Z"
 }
