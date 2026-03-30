@@ -34,7 +34,7 @@ button,input{font-family:'DM Sans',sans-serif;}
 /* ── LAYOUT ── */
 #app{display:flex;flex-direction:column;height:100vh;height:100dvh;}
 #topbar{flex-shrink:0;height:calc(50px + var(--sat));padding-top:var(--sat);background:rgba(10,10,10,.96);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--s3);display:flex;align-items:center;padding-left:16px;padding-right:16px;gap:10px;z-index:90;}
-#content{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:calc(66px + var(--sab));}
+#content{flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:calc(66px + var(--sab));}
 #bottomnav{position:fixed;bottom:0;left:0;right:0;height:calc(62px + var(--sab));padding-bottom:var(--sab);background:rgba(10,10,10,.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid var(--s3);display:flex;align-items:center;justify-content:space-around;z-index:90;}
 /* ── NAV BADGE ── */
 .nav-badge{position:absolute;top:6px;right:calc(50% - 18px);width:7px;height:7px;border-radius:50%;background:var(--red);border:1.5px solid var(--bg);}
