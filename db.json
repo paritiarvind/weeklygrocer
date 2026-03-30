@@ -2,77 +2,74 @@
   "plan": [
     {
       "day": "Monday",
-      "b": "avo_toast",
-      "l": "chole_rice",
-      "dn": "baingan_bharta"
+      "b": "moong_sprouts",
+      "l": "chickpea_wrap",
+      "dn": "frittata"
     },
     {
       "day": "Tuesday",
-      "b": "savoury_oats",
-      "l": "palak_paneer",
-      "dn": "shakshuka"
+      "b": "dahi_chivda",
+      "l": "soya_curry",
+      "dn": "lentil_soup"
     },
     {
       "day": "Wednesday",
-      "b": "besan_chilla",
-      "l": "egg_fried_rice",
-      "dn": "mediterranean_bowl"
+      "b": "muesli_bowl",
+      "l": "buddha_bowl",
+      "dn": "veggie_quesadilla"
     },
     {
       "day": "Thursday",
-      "b": "bread_upma",
-      "l": "greek_salad",
-      "dn": "cauliflower_steak"
+      "b": "overnight_oats",
+      "l": "pasta_pesto",
+      "dn": "pasta_bake"
     },
     {
       "day": "Friday",
-      "b": "poha",
-      "l": "chana_masala",
-      "dn": "coconut_curry"
+      "b": "bircher_muesli",
+      "l": "soya_curry",
+      "dn": "stir_fry_tofu"
     },
     {
       "day": "Saturday",
-      "b": "moong_cheela",
-      "l": "dal_tadka",
-      "dn": "matar_paneer"
+      "b": "upma",
+      "l": "rasam_rice",
+      "dn": "aloo_gobi"
     },
     {
       "day": "Sunday",
-      "b": "paneer_bhurji",
-      "l": "rajma_chawal",
-      "dn": "chilli_paneer"
+      "b": "chole_bhature",
+      "l": "chole_rice",
+      "dn": "kadai_paneer"
     }
   ],
   "nextPlan": null,
   "cookMap": {
-    "0": "N",
-    "1": "A",
-    "2": "N",
-    "3": "A",
-    "4": "N",
-    "5": "A",
-    "6": "N",
-    "7": "A",
-    "8": "N",
-    "9": "A",
-    "10": "N",
-    "11": "A",
-    "12": "N",
-    "13": "A",
-    "14": "N",
-    "15": "A",
-    "16": "N",
-    "17": "A",
-    "18": "N",
-    "19": "A",
-    "20": "N"
+    "0": "A",
+    "1": "N",
+    "2": "A",
+    "3": "N",
+    "4": "A",
+    "5": "N",
+    "6": "A",
+    "7": "N",
+    "8": "A",
+    "9": "N",
+    "10": "A",
+    "11": "N",
+    "12": "A",
+    "13": "N",
+    "14": "A",
+    "15": "N",
+    "16": "A",
+    "17": "N",
+    "18": "A",
+    "19": "N",
+    "20": "A"
   },
   "nextCookMap": {},
-  "genNum": 1,
-  "completed": {
-    "Monday-Breakfast": true,
-    "Monday-Lunch": true
-  },
+  "genNum": 2,
+  "completed": {},
   "shopChecked": {},
   "manualItems": [],
   "mealNotes": {},
@@ -102,5 +99,5 @@
     "budget": false
   },
   "pantryUpdatedAt": "",
-  "lastUpdated": "2026-03-30T05:11:33.025Z"
+  "lastUpdated": "2026-03-30T05:11:59.525Z"
 }
