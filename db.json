@@ -101,7 +101,8 @@
     "parmesan": true,
     "mustard seeds": true,
     "mixed berries": true,
-    "honey": true
+    "honey": true,
+    "garam masala": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -142,5 +143,5 @@
     "budget": false
   },
   "pantryUpdatedAt": "2026-03-30T05:41:07.902Z",
-  "lastUpdated": "2026-03-30T05:48:23.663Z"
+  "lastUpdated": "2026-03-30T05:48:25.783Z"
 }
