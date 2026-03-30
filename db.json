@@ -76,12 +76,11 @@
   "shopChecked": {},
   "manualItems": [],
   "mealNotes": {},
-  "nApproved": false,
+  "nApproved": true,
   "cookOverrides": {},
   "history": [],
   "groceries": [
     "eggs",
-    "paneer",
     "chickpeas",
     "spinach",
     "oats",
@@ -99,6 +98,6 @@
     "quick": false,
     "budget": false
   },
-  "pantryUpdatedAt": "2026-03-30T05:37:48.920Z",
-  "lastUpdated": "2026-03-30T05:37:51.283Z"
+  "pantryUpdatedAt": "2026-03-30T05:37:54.480Z",
+  "lastUpdated": "2026-03-30T05:37:56.267Z"
 }
