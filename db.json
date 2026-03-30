@@ -75,7 +75,8 @@
   },
   "shopChecked": {
     "Italian herbs": true,
-    "baking soda": true
+    "baking soda": true,
+    "basil pesto": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -116,5 +117,5 @@
     "budget": false
   },
   "pantryUpdatedAt": "2026-03-30T05:41:07.902Z",
-  "lastUpdated": "2026-03-30T05:45:03.023Z"
+  "lastUpdated": "2026-03-30T05:45:07.941Z"
 }
