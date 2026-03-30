@@ -87,7 +87,8 @@
     "chilli flakes": true,
     "cinnamon": true,
     "cucumber": true,
-    "dried red chilli": true
+    "dried red chilli": true,
+    "ghee": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -128,5 +129,5 @@
     "budget": false
   },
   "pantryUpdatedAt": "2026-03-30T05:41:07.902Z",
-  "lastUpdated": "2026-03-30T05:45:40.941Z"
+  "lastUpdated": "2026-03-30T05:46:29.720Z"
 }
