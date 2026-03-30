@@ -14,21 +14,21 @@
     },
     {
       "day": "Wednesday",
-      "b": "muesli_bowl",
-      "l": "buddha_bowl",
-      "dn": "veggie_quesadilla"
-    },
-    {
-      "day": "Thursday",
       "b": "overnight_oats",
       "l": "pasta_pesto",
       "dn": "pasta_bake"
     },
     {
+      "day": "Thursday",
+      "b": "muesli_bowl",
+      "l": "buddha_bowl",
+      "dn": "veggie_quesadilla"
+    },
+    {
       "day": "Friday",
       "b": "bircher_muesli",
-      "l": "soya_curry",
-      "dn": "stir_fry_tofu"
+      "l": "chickpea_wrap",
+      "dn": "pasta_arrabiata"
     },
     {
       "day": "Saturday",
@@ -99,5 +99,5 @@
     "budget": false
   },
   "pantryUpdatedAt": "",
-  "lastUpdated": "2026-03-30T05:11:59.525Z"
+  "lastUpdated": "2026-03-30T05:12:05.956Z"
 }
