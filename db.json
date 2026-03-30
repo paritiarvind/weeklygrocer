@@ -76,7 +76,9 @@
   "shopChecked": {
     "Italian herbs": true,
     "baking soda": true,
-    "basil pesto": true
+    "basil pesto": true,
+    "basmati rice": true,
+    "berries": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -117,5 +119,5 @@
     "budget": false
   },
   "pantryUpdatedAt": "2026-03-30T05:41:07.902Z",
-  "lastUpdated": "2026-03-30T05:45:07.941Z"
+  "lastUpdated": "2026-03-30T05:45:15.950Z"
 }
