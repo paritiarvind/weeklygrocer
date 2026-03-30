@@ -106,7 +106,9 @@
     "flattened rice": true,
     "coriander": true,
     "red chilli powder": true,
-    "rice": true
+    "rice": true,
+    "basil": true,
+    "banana": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -150,5 +152,5 @@
     "budget": false
   },
   "pantryUpdatedAt": "2026-03-30T05:41:07.902Z",
-  "lastUpdated": "2026-03-30T06:32:25.035Z"
+  "lastUpdated": "2026-03-30T06:42:20.975Z"
 }
