@@ -73,7 +73,9 @@
     "Monday-Breakfast": true,
     "Monday-Lunch": true
   },
-  "shopChecked": {},
+  "shopChecked": {
+    "Italian herbs": true
+  },
   "manualItems": [],
   "mealNotes": {},
   "nApproved": false,
@@ -113,5 +115,5 @@
     "budget": false
   },
   "pantryUpdatedAt": "2026-03-30T05:41:07.902Z",
-  "lastUpdated": "2026-03-30T05:42:51.611Z"
+  "lastUpdated": "2026-03-30T05:44:20.587Z"
 }
