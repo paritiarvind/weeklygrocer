@@ -95,13 +95,14 @@
     "kidney beans",
     "urad dal",
     "yogurt",
-    "avocado"
+    "avocado",
+    "green peas"
   ],
   "filters": {
     "protein": false,
     "quick": false,
     "budget": false
   },
-  "pantryUpdatedAt": "2026-03-30T05:38:27.900Z",
-  "lastUpdated": "2026-03-30T05:38:29.667Z"
+  "pantryUpdatedAt": "2026-03-30T05:38:30.850Z",
+  "lastUpdated": "2026-03-30T05:38:32.662Z"
 }
