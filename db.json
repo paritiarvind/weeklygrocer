@@ -70,7 +70,8 @@
   "nextCookMap": {},
   "genNum": 3,
   "completed": {
-    "Monday-Breakfast": true
+    "Monday-Breakfast": true,
+    "Monday-Lunch": true
   },
   "shopChecked": {},
   "manualItems": [],
@@ -101,5 +102,5 @@
     "budget": false
   },
   "pantryUpdatedAt": "",
-  "lastUpdated": "2026-03-30T05:12:39.857Z"
+  "lastUpdated": "2026-03-30T05:12:45.585Z"
 }
