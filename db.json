@@ -99,7 +99,8 @@
     "red chilli": true,
     "pepper": true,
     "parmesan": true,
-    "mustard seeds": true
+    "mustard seeds": true,
+    "mixed berries": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -140,5 +141,5 @@
     "budget": false
   },
   "pantryUpdatedAt": "2026-03-30T05:41:07.902Z",
-  "lastUpdated": "2026-03-30T05:47:21.909Z"
+  "lastUpdated": "2026-03-30T05:48:16.445Z"
 }
