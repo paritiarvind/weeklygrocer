@@ -99,13 +99,14 @@
     "green peas",
     "methi leaves",
     "pasta",
-    "besan"
+    "besan",
+    "moong dal"
   ],
   "filters": {
     "protein": false,
     "quick": false,
     "budget": false
   },
-  "pantryUpdatedAt": "2026-03-30T05:39:24.353Z",
-  "lastUpdated": "2026-03-30T05:39:25.801Z"
+  "pantryUpdatedAt": "2026-03-30T05:39:53.026Z",
+  "lastUpdated": "2026-03-30T05:39:54.448Z"
 }
