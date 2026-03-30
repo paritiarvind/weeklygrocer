@@ -114,7 +114,8 @@
     "zucchini": true,
     "crushed tomatoes": true,
     "amchur": true,
-    "milk": true
+    "milk": true,
+    "sour cream": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -158,5 +159,5 @@
     "budget": false
   },
   "pantryUpdatedAt": "2026-03-30T05:41:07.902Z",
-  "lastUpdated": "2026-03-30T06:49:36.195Z"
+  "lastUpdated": "2026-03-30T06:51:34.587Z"
 }
