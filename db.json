@@ -146,10 +146,10 @@
     "green peas"
   ],
   "filters": {
-    "protein": false,
+    "protein": true,
     "quick": false,
     "budget": false
   },
   "pantryUpdatedAt": "2026-03-30T10:35:34.639Z",
-  "lastUpdated": "2026-03-30T20:32:03.952Z"
+  "lastUpdated": "2026-03-30T20:32:18.434Z"
 }
