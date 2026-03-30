@@ -95,13 +95,14 @@
     "kidney beans",
     "urad dal",
     "green peas",
-    "besan"
+    "besan",
+    "muesli"
   ],
   "filters": {
     "protein": false,
     "quick": false,
     "budget": false
   },
-  "pantryUpdatedAt": "2026-03-30T05:38:22.172Z",
-  "lastUpdated": "2026-03-30T05:38:24.033Z"
+  "pantryUpdatedAt": "2026-03-30T05:38:25.090Z",
+  "lastUpdated": "2026-03-30T05:38:26.942Z"
 }
