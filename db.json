@@ -78,7 +78,12 @@
     "baking soda": true,
     "basil pesto": true,
     "basmati rice": true,
-    "berries": true
+    "berries": true,
+    "capsicum": true,
+    "carrot": true,
+    "cashews": true,
+    "chaat masala": true,
+    "cherry tomatoes": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -119,5 +124,5 @@
     "budget": false
   },
   "pantryUpdatedAt": "2026-03-30T05:41:07.902Z",
-  "lastUpdated": "2026-03-30T05:45:17.616Z"
+  "lastUpdated": "2026-03-30T05:45:24.462Z"
 }
