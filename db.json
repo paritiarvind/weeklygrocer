@@ -101,13 +101,14 @@
     "pasta",
     "besan",
     "moong dal",
-    "cauliflower"
+    "cauliflower",
+    "toor dal"
   ],
   "filters": {
     "protein": false,
     "quick": false,
     "budget": false
   },
-  "pantryUpdatedAt": "2026-03-30T05:40:12.115Z",
-  "lastUpdated": "2026-03-30T05:40:13.868Z"
+  "pantryUpdatedAt": "2026-03-30T05:40:25.098Z",
+  "lastUpdated": "2026-03-30T05:40:26.515Z"
 }
