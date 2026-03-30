@@ -75,10 +75,10 @@
     "Monday-Dinner": true
   },
   "shopChecked": {},
+  "manualItems": [],
   "mealNotes": {},
   "nApproved": false,
   "cookOverrides": {},
-  "manualItems": [],
   "history": [],
   "groceries": [
     "ajwain",
@@ -138,10 +138,10 @@
     "zucchini"
   ],
   "filters": {
-    "protein": true,
+    "protein": false,
     "quick": false,
     "budget": false
   },
   "pantryUpdatedAt": "2026-03-30T00:00:00.000Z",
-  "lastUpdated": "2026-03-30T10:00:00.000Z"
+  "lastUpdated": "2026-03-30T10:35:20.387Z"
 }
