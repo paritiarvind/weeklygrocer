@@ -97,13 +97,14 @@
     "yogurt",
     "avocado",
     "green peas",
-    "methi leaves"
+    "methi leaves",
+    "pasta"
   ],
   "filters": {
     "protein": false,
     "quick": false,
     "budget": false
   },
-  "pantryUpdatedAt": "2026-03-30T05:38:43.680Z",
-  "lastUpdated": "2026-03-30T05:38:51.490Z"
+  "pantryUpdatedAt": "2026-03-30T05:38:57.328Z",
+  "lastUpdated": "2026-03-30T05:38:59.159Z"
 }
