@@ -104,7 +104,8 @@
     "honey": true,
     "garam masala": true,
     "flattened rice": true,
-    "coriander": true
+    "coriander": true,
+    "red chilli powder": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -148,5 +149,5 @@
     "budget": false
   },
   "pantryUpdatedAt": "2026-03-30T05:41:07.902Z",
-  "lastUpdated": "2026-03-30T06:31:58.802Z"
+  "lastUpdated": "2026-03-30T06:32:22.826Z"
 }
