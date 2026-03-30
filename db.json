@@ -108,7 +108,8 @@
     "red chilli powder": true,
     "rice": true,
     "basil": true,
-    "banana": true
+    "banana": true,
+    "ajwain": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -152,5 +153,5 @@
     "budget": false
   },
   "pantryUpdatedAt": "2026-03-30T05:41:07.902Z",
-  "lastUpdated": "2026-03-30T06:42:20.975Z"
+  "lastUpdated": "2026-03-30T06:42:23.845Z"
 }
