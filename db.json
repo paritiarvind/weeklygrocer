@@ -96,7 +96,8 @@
     "semolina": true,
     "salt": true,
     "red lentils": true,
-    "red chilli": true
+    "red chilli": true,
+    "pepper": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -137,5 +138,5 @@
     "budget": false
   },
   "pantryUpdatedAt": "2026-03-30T05:41:07.902Z",
-  "lastUpdated": "2026-03-30T05:47:11.062Z"
+  "lastUpdated": "2026-03-30T05:47:17.266Z"
 }
