@@ -78,7 +78,9 @@
   },
   "shopChecked": {},
   "manualItems": [],
-  "mealNotes": {},
+  "mealNotes": {
+    "Tuesday-Breakfast": "Too bland, add crunch"
+  },
   "nApproved": false,
   "cookOverrides": {
     "3": "N",
@@ -149,5 +151,5 @@
     "budget": false
   },
   "pantryUpdatedAt": "2026-03-30T10:35:34.639Z",
-  "lastUpdated": "2026-03-30T20:31:28.637Z"
+  "lastUpdated": "2026-03-30T20:32:03.952Z"
 }
