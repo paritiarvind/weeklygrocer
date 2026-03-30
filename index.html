@@ -286,7 +286,7 @@ button,input{font-family:'DM Sans',sans-serif;}
 <body>
 
 <!-- ── SETUP SCREEN (first run) ── -->
-<div id="setup-screen" style="display:none;">
+<div id="setup-screen" style="display:flex;">
   <div style="text-align:center;margin-bottom:28px;">
     <div style="width:64px;height:64px;background:linear-gradient(135deg,#f0a030,#c47820);border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:1.9rem;margin:0 auto 14px;box-shadow:0 20px 50px rgba(240,160,48,.28);">🍛</div>
     <div class="serif" style="font-size:1.8rem;font-weight:700;">Rasa<span style="color:var(--gold);font-style:italic;">Weekly</span></div>
@@ -997,7 +997,9 @@ const SUBS = {
   'corn':           'frozen peas or diced capsicum',
   'pine nuts':      'chopped cashews or walnuts',
   'chia seeds':     'flaxseeds or skip',
-}; return s.toLowerCase().replace(/[()[\]]/g,' ').split(/[\s,/\-–]+/).map(t=>t.trim()).filter(t=>t.length>=3); }
+};
+
+function tok(s){ return s.toLowerCase().replace(/[()[\]]/g,' ').split(/[\s,/\-–]+/).map(t=>t.trim()).filter(t=>t.length>=3); }
 function ingMatch(ing, g) {
   const it=tok(ing), gt=tok(g);
   if (it.some(a=>gt.some(b=>a.includes(b)||b.includes(a)))) return true;
@@ -2236,18 +2238,30 @@ function backupDB() {
 
 // ── BOOT ──────────────────────────────────────────────────────────────────────
 (async()=>{
+  // Hide setup screen immediately — we'll show the right screen below
+  const setupEl = document.getElementById('setup-screen');
+  const appEl   = document.getElementById('app');
+
   try{const f=localStorage.getItem('rw_favs');if(f)favs=JSON.parse(f);}catch(_){}
   try{const c=localStorage.getItem(CFG_KEY);if(c)CFG=JSON.parse(c);}catch(_){}
 
   if (!CFG) {
-    document.getElementById('setup-screen').style.display='flex';
+    // No config — show setup
+    if(setupEl) setupEl.style.display='flex';
     return;
   }
 
-  document.getElementById('app').style.display='flex';
+  // Config exists — show app immediately, then load data
+  if(setupEl) setupEl.style.display='none';
+  if(appEl)   appEl.style.display='flex';
   renderFilters();
-  await loadFromGitHub();
-  renderAll();
+  renderAll(); // show defaults immediately so screen is never blank
+
+  try {
+    await loadFromGitHub();
+  } catch(e) {
+    setSyncStatus('err', 'Could not load — check connection');
+  }
 
   // Auto-refresh every 30s — skip shop render if user is typing there
   setInterval(()=>{
