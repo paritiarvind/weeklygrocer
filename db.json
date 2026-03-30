@@ -111,7 +111,8 @@
     "banana": true,
     "ajwain": true,
     "tomato": true,
-    "zucchini": true
+    "zucchini": true,
+    "crushed tomatoes": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -155,5 +156,5 @@
     "budget": false
   },
   "pantryUpdatedAt": "2026-03-30T05:41:07.902Z",
-  "lastUpdated": "2026-03-30T06:44:24.768Z"
+  "lastUpdated": "2026-03-30T06:44:34.057Z"
 }
