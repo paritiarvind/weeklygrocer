@@ -4,7 +4,7 @@
       "day": "Monday",
       "b": "avo_toast",
       "l": "chole_rice",
-      "dn": "frittata"
+      "dn": "baingan_bharta"
     },
     {
       "day": "Tuesday",
@@ -102,5 +102,5 @@
     "budget": false
   },
   "pantryUpdatedAt": "",
-  "lastUpdated": "2026-03-30T05:09:19.662Z"
+  "lastUpdated": "2026-03-30T05:10:59.723Z"
 }
