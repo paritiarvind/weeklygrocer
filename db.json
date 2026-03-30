@@ -78,7 +78,10 @@
   "manualItems": [],
   "mealNotes": {},
   "nApproved": false,
-  "cookOverrides": {},
+  "cookOverrides": {
+    "3": "N",
+    "4": "A"
+  },
   "history": [],
   "groceries": [
     "ajwain",
@@ -144,5 +147,5 @@
     "budget": false
   },
   "pantryUpdatedAt": "2026-03-30T10:35:34.639Z",
-  "lastUpdated": "2026-03-30T10:47:00.078Z"
+  "lastUpdated": "2026-03-30T11:01:12.871Z"
 }
