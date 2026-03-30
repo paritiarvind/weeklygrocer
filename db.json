@@ -115,7 +115,8 @@
     "crushed tomatoes": true,
     "amchur": true,
     "milk": true,
-    "sour cream": true
+    "sour cream": true,
+    "tahini": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -159,5 +160,5 @@
     "budget": false
   },
   "pantryUpdatedAt": "2026-03-30T05:41:07.902Z",
-  "lastUpdated": "2026-03-30T06:51:34.587Z"
+  "lastUpdated": "2026-03-30T06:52:39.008Z"
 }
