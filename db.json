@@ -74,7 +74,8 @@
     "Monday-Lunch": true
   },
   "shopChecked": {
-    "Italian herbs": true
+    "Italian herbs": true,
+    "baking soda": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -115,5 +116,5 @@
     "budget": false
   },
   "pantryUpdatedAt": "2026-03-30T05:41:07.902Z",
-  "lastUpdated": "2026-03-30T05:44:20.587Z"
+  "lastUpdated": "2026-03-30T05:45:03.023Z"
 }
