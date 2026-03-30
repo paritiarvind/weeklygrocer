@@ -100,13 +100,14 @@
     "methi leaves",
     "pasta",
     "besan",
-    "moong dal"
+    "moong dal",
+    "cauliflower"
   ],
   "filters": {
     "protein": false,
     "quick": false,
     "budget": false
   },
-  "pantryUpdatedAt": "2026-03-30T05:39:53.026Z",
-  "lastUpdated": "2026-03-30T05:39:54.448Z"
+  "pantryUpdatedAt": "2026-03-30T05:40:12.115Z",
+  "lastUpdated": "2026-03-30T05:40:13.868Z"
 }
