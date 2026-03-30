@@ -85,7 +85,9 @@
     "chaat masala": true,
     "cherry tomatoes": true,
     "chilli flakes": true,
-    "cinnamon": true
+    "cinnamon": true,
+    "cucumber": true,
+    "dried red chilli": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -126,5 +128,5 @@
     "budget": false
   },
   "pantryUpdatedAt": "2026-03-30T05:41:07.902Z",
-  "lastUpdated": "2026-03-30T05:45:35.908Z"
+  "lastUpdated": "2026-03-30T05:45:39.221Z"
 }
