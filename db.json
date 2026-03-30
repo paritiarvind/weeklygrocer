@@ -102,13 +102,14 @@
     "besan",
     "moong dal",
     "cauliflower",
-    "toor dal"
+    "toor dal",
+    "massor dal"
   ],
   "filters": {
     "protein": false,
     "quick": false,
     "budget": false
   },
-  "pantryUpdatedAt": "2026-03-30T05:40:25.098Z",
-  "lastUpdated": "2026-03-30T05:40:26.515Z"
+  "pantryUpdatedAt": "2026-03-30T05:40:31.339Z",
+  "lastUpdated": "2026-03-30T05:40:33.068Z"
 }
