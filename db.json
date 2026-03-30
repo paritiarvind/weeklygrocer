@@ -86,7 +86,6 @@
     "chickpeas",
     "spinach",
     "oats",
-    "pasta",
     "garlic",
     "onion",
     "olive oil",
@@ -101,6 +100,6 @@
     "quick": false,
     "budget": false
   },
-  "pantryUpdatedAt": "",
-  "lastUpdated": "2026-03-30T05:12:45.585Z"
+  "pantryUpdatedAt": "2026-03-30T05:12:52.641Z",
+  "lastUpdated": "2026-03-30T05:12:54.342Z"
 }
