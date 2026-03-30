@@ -76,7 +76,7 @@
   "shopChecked": {},
   "manualItems": [],
   "mealNotes": {},
-  "nApproved": false,
+  "nApproved": true,
   "cookOverrides": {},
   "history": [],
   "groceries": [
@@ -101,5 +101,5 @@
     "budget": false
   },
   "pantryUpdatedAt": "2026-03-30T05:12:52.641Z",
-  "lastUpdated": "2026-03-30T05:12:54.342Z"
+  "lastUpdated": "2026-03-30T05:37:05.810Z"
 }
