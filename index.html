@@ -2500,13 +2500,16 @@ function printPDF() {
 
   // Prep reminders
   const prepReminders = (() => {
+    const seen = new Set();
     const out = [];
     ST.plan.forEach((d,di) => {
       const next = ST.plan[(di+1)%7]; if(!next||di===6) return;
       const ings = MEALS.flatMap(m=>next[m]?.ingredients||[]);
       Object.entries(OVERNIGHT_PREP).forEach(([ing,inst]) => {
-        if(ings.some(i=>i.toLowerCase().includes(ing)||ing.includes(i.toLowerCase())))
+        if(!seen.has(inst) && ings.some(i=>i.toLowerCase().includes(ing)||ing.includes(i.toLowerCase()))) {
+          seen.add(inst);
           out.push({night:d.day.slice(0,3), inst});
+        }
       });
     });
     return out.slice(0,5);
@@ -2580,16 +2583,16 @@ function printPDF() {
     .stat-chip{background:#f8f8f8;border-radius:4px;padding:2px 7px;font-size:8px;color:#555;border:1px solid #e5e5e5;}
 
     /* ── MEAL GRID ── */
-    .grid-wrap{flex:1;}
-    table{width:100%;border-collapse:collapse;table-layout:fixed;}
+    .grid-wrap{flex:1;display:flex;flex-direction:column;}
+    table{width:100%;height:100%;border-collapse:collapse;table-layout:fixed;}
     .day-header{padding:5px 4px 4px;text-align:center;color:#fff;font-weight:700;font-size:9px;text-transform:uppercase;letter-spacing:.4px;line-height:1.3;}
     .day-name{font-size:11px;font-weight:800;display:block;}
     .day-date{font-size:8px;opacity:.85;display:block;margin-top:1px;font-weight:500;}
     .day-tag{font-size:7px;opacity:.75;display:block;margin-top:1px;}
-    .row-label{width:38px;padding:4px 3px;text-align:center;background:#fafafa;border-right:2px solid #f0f0f0;border-bottom:1px solid #f0f0f0;vertical-align:middle;}
+    .row-label{width:38px;padding:4px 3px;text-align:center;background:#fafafa;border-right:2px solid #f0f0f0;border-bottom:1px solid #f0f0f0;vertical-align:middle;height:1px;}
     .row-icon{display:block;font-size:11px;line-height:1;}
     .row-text{display:block;font-size:6.5px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:#aaa;margin-top:1px;}
-    .mc{padding:5px 5px;border-bottom:1px solid #f0f0f0;border-right:1px solid #f0f0f0;vertical-align:top;min-height:36px;}
+    .mc{padding:6px 6px;border-bottom:1px solid #f0f0f0;border-right:1px solid #f0f0f0;vertical-align:top;height:1px;}/* height:1px forces cell to fill tr height in table */
     .mc-inner{display:flex;align-items:flex-start;gap:4px;}
     .mc-emoji{font-size:14px;flex-shrink:0;line-height:1;margin-top:1px;}
     .mc-name{font-size:9px;font-weight:700;color:#111;line-height:1.3;margin-bottom:2px;}
