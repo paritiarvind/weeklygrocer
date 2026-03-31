@@ -145,13 +145,14 @@
     "zucchini",
     "green peas",
     "quinoa",
-    "cashew"
+    "cashew",
+    "cashew nuts"
   ],
   "filters": {
     "protein": true,
     "quick": false,
     "budget": false
   },
-  "pantryUpdatedAt": "2026-03-31T08:39:18.558Z",
-  "lastUpdated": "2026-03-31T08:39:19.979Z"
+  "pantryUpdatedAt": "2026-03-31T08:39:27.385Z",
+  "lastUpdated": "2026-03-31T08:39:29.133Z"
 }
