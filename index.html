@@ -2473,147 +2473,233 @@ function scheduleWeeklyReminder() {
 // ── PDF PRINT ─────────────────────────────────────────────────────────────────
 function printPDF() {
   if (!ST.plan) { toast('No plan to print yet'); return; }
-  const counts  = effectiveCookCounts();
-  const done    = Object.values(ST.completed).filter(Boolean).length;
-  const todayIdx = getTodayIdx();
-  const quote   = getDailyQuote();
-  const weekCost = (ST.plan.reduce((s,d)=>s+MEALS.reduce((ss,m)=>ss+(d[m]?.cost||0),0),0)*1.55).toFixed(2);
+
+  // ── Computed values ─────────────────────────────────────────────────────────
+  const counts   = effectiveCookCounts();
+  const quote    = getDailyQuote();
+  const shopAll  = [...getShopItems(), ...ST.manualItems.map(i=>i.text)];
   const avgProt  = Math.round(ST.plan.reduce((s,d)=>s+MEALS.reduce((ss,m)=>ss+(d[m]?.protein||0),0),0)/21);
   const avgPrep  = Math.round(ST.plan.reduce((s,d)=>s+MEALS.reduce((ss,m)=>ss+(d[m]?.prepTime||0),0),0)/21);
-  const shopItems = getShopItems();
-  const win = window.open('','_blank','width=1200,height=850');
-  if (!win) { toast('Allow popups to print'); return; }
-  const gridRows = MEALS.map((meal,mi) => {
-    const label = meal==='Breakfast'?'☀️ Bkf':meal==='Lunch'?'🏢 Lnch':'🌙 Din';
-    const cells = ST.plan.map((d,di) => {
-      const r=d[meal]; if(!r) return '<div class="mc">—</div>';
-      const ck=getCook(slot(di,mi));
-      const isDone=!!ST.completed[d.day+'-'+meal];
-      const isToday=di===todayIdx; const isSat=di===5; const isSun=di===6;
-      const bg=isToday?'background:#fffbf0;':isSat?'background:#f0fff4;':isSun?'background:#eff6ff;':'';
-      return `<div class="mc" style="${bg}${isDone?'opacity:.4;':''}">
-        <span style="float:right;font-size:11px;">${r.emoji}</span>
-        <span class="pip pip-${ck}">${ck}</span>
-        <span class="mn${isDone?' dt':''}">${r.name}</span>
-        <div class="mm">⏱${r.prepTime}m · 💪${r.protein}g</div>
-      </div>`;
-    }).join('');
-    return `<div class="row-label">${label}</div>${cells}`;
-  }).join('');
+  const weekCost = (ST.plan.reduce((s,d)=>s+MEALS.reduce((ss,m)=>ss+(d[m]?.cost||0),0),0)*1.55).toFixed(0);
+  const pantryPct = pantryAvg ? pantryAvg() : 0;
+
+  // Week date range — find Monday of current week
+  const today   = new Date();
+  const monday  = new Date(today); monday.setDate(today.getDate() - ((today.getDay()+6)%7));
+  const sunday  = new Date(monday); sunday.setDate(monday.getDate()+6);
+  const fmtDate = d => d.toLocaleDateString('en-AU',{day:'numeric',month:'short'});
+  const dayDate = di => { const d=new Date(monday); d.setDate(monday.getDate()+di); return d.toLocaleDateString('en-AU',{day:'numeric',month:'short'}); };
+
+  // Week number (rough ISO)
+  const startOfYear = new Date(monday.getFullYear(),0,1);
+  const weekNum = Math.ceil(((monday-startOfYear)/86400000+startOfYear.getDay()+1)/7);
+
+  // Day colors
+  const DAY_COLORS = ['#1e3a8a','#065f46','#4c1d95','#7c2d12','#881337','#14532d','#312e81'];
+  const DAY_LIGHT  = ['#dbeafe','#d1fae5','#ede9fe','#ffedd5','#ffe4e6','#dcfce7','#e0e7ff'];
+
+  // Prep reminders
   const prepReminders = (() => {
     const out = [];
     ST.plan.forEach((d,di) => {
-      const next = ST.plan[(di+1)%7]; if(!next) return;
+      const next = ST.plan[(di+1)%7]; if(!next||di===6) return;
       const ings = MEALS.flatMap(m=>next[m]?.ingredients||[]);
       Object.entries(OVERNIGHT_PREP).forEach(([ing,inst]) => {
         if(ings.some(i=>i.toLowerCase().includes(ing)||ing.includes(i.toLowerCase())))
-          out.push(`<div class="pi"><div class="pd"></div><span><b>${d.day.slice(0,3)}:</b> ${inst}</span></div>`);
+          out.push({night:d.day.slice(0,3), inst});
       });
     });
-    return out.slice(0,5).join('') || '<div style="font-size:8px;color:#aaa;">No overnight prep needed 🎉</div>';
+    return out.slice(0,5);
   })();
-  win.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8">
-  <title>Annam — Weekly Meal Plan</title>
+
+  // Grid rows HTML
+  const MEAL_ICONS = {Breakfast:'☀', Lunch:'🍱', Dinner:'🌙'};
+  const gridRows = MEALS.map((meal,mi) => {
+    const cells = ST.plan.map((d,di) => {
+      const r = d[meal]; if(!r) return '<td class="mc"></td>';
+      const ck = getCook(slot(di,mi));
+      return `<td class="mc" style="border-top:3px solid ${DAY_COLORS[di]}20;">
+        <div class="mc-inner">
+          <div class="mc-emoji">${r.emoji}</div>
+          <div>
+            <div class="mc-name">${r.name}</div>
+            <div class="mc-meta">⏱${r.prepTime}m &nbsp;💪${r.protein}g</div>
+          </div>
+          <span class="pip pip-${ck}">${ck}</span>
+        </div>
+      </td>`;
+    }).join('');
+    return `<tr>
+      <td class="row-label"><span class="row-icon">${MEAL_ICONS[meal]}</span><span class="row-text">${meal.slice(0,3).toUpperCase()}</span></td>
+      ${cells}
+    </tr>`;
+  }).join('');
+
+  // Shopping cut-out columns
+  const COL = 4;
+  const colSize = Math.ceil(shopAll.length / COL);
+  const shopCols = Array.from({length:COL}, (_,ci) =>
+    shopAll.slice(ci*colSize, (ci+1)*colSize)
+  );
+  const shopColsHtml = shopCols.map(col =>
+    `<div class="shop-col">${col.map(i=>`
+      <div class="shop-item-print">
+        <span class="shop-chk"></span>
+        <span class="shop-name">${i}</span>
+      </div>`).join('')}</div>`
+  ).join('');
+
+  const win = window.open('','_blank','width=1200,height=900');
+  if (!win) { toast('Allow popups to print'); return; }
+
+  win.document.write(`<!DOCTYPE html><html><head>
+  <meta charset="UTF-8">
+  <title>Annam — Week ${weekNum} · ${fmtDate(monday)} to ${fmtDate(sunday)}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,700;0,900;1,400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-  *{box-sizing:border-box;margin:0;padding:0;}
-  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,700;1,400&family=DM+Sans:wght@400;600&display=swap');
-  body{font-family:'DM Sans',Arial,sans-serif;background:#fff;color:#111;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
-  .page{width:277mm;padding:8mm 10mm;display:flex;flex-direction:column;gap:5px;min-height:190mm;}
-  .hdr{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:3px solid #111;padding-bottom:5px;}
-  .brand{font-family:'Fraunces',serif;font-size:24px;font-weight:700;color:#111;}
-  .brand em{color:#f0a030;font-style:normal;}
-  .hdr-right{text-align:right;font-size:9px;color:#888;}
-  .hdr-prog{font-size:11px;font-weight:600;color:#333;margin-bottom:2px;}
-  .pbar{height:3px;background:#eee;border-radius:2px;width:100px;margin-left:auto;}
-  .pfill{height:100%;background:linear-gradient(90deg,#f0a030,#42c77a);border-radius:2px;}
-  .stats{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;}
-  .st{background:#f8f8f8;border-radius:5px;padding:5px 7px;border-left:3px solid #f0a030;}
-  .st.na{border-left-color:#f0a030;} .st.nn{border-left-color:#5ba3f5;}
-  .sv{font-family:'Fraunces',serif;font-size:13px;font-weight:700;color:#f0a030;}
-  .sl{font-size:7.5px;color:#888;text-transform:uppercase;letter-spacing:.4px;margin-top:1px;}
-  .grid{display:grid;grid-template-columns:42px repeat(7,1fr);border:1px solid #e0e0e0;border-radius:6px;overflow:hidden;flex:1;}
-  .dh{background:#111;color:#fff;padding:5px 5px;font-size:8.5px;font-weight:700;text-align:center;border-bottom:1px solid #333;}
-  .dh.today{background:#f0a030;color:#000;} .dh.sat{background:#065f46;color:#fff;} .dh.sun{background:#1e3a8a;color:#fff;}
-  .row-label{background:#f5f5f5;border-right:1px solid #e0e0e0;border-bottom:1px solid #e0e0e0;padding:4px 5px;font-size:7.5px;font-weight:700;color:#666;display:flex;align-items:center;}
-  .mc{padding:4px 5px;border-right:1px solid #eee;border-bottom:1px solid #eee;min-height:34px;font-size:8.5px;}
-  .pip{display:inline-flex;align-items:center;justify-content:center;width:11px;height:11px;border-radius:2px;font-size:6.5px;font-weight:800;margin-right:2px;}
-  .pip-A{background:rgba(240,160,48,.25);color:#b45309;} .pip-N{background:rgba(91,163,245,.2);color:#1d4ed8;}
-  .mn{font-weight:600;line-height:1.3;color:#222;} .mn.dt{text-decoration:line-through;color:#bbb;}
-  .mm{font-size:7px;color:#aaa;margin-top:1px;}
-  .bot{display:grid;grid-template-columns:1.4fr 1fr;gap:6px;}
-  .box{border:1px solid #e5e5e5;border-radius:6px;padding:7px 8px;}
-  .bttl{font-size:9.5px;font-weight:700;margin-bottom:5px;display:flex;align-items:center;gap:4px;}
-  .sg{display:grid;grid-template-columns:repeat(3,1fr);gap:1px 6px;}
-  .si{display:flex;align-items:center;gap:3px;font-size:8px;padding:1.5px 0;color:#444;}
-  .chk{width:9px;height:9px;border:1.5px solid #ccc;border-radius:2px;flex-shrink:0;}
-  .chk.ok{background:#42c77a;border-color:#42c77a;}
-  .side{display:flex;flex-direction:column;gap:5px;}
-  .qbox{border-left:4px solid #f0a030;background:#fffbf0;border-radius:0 6px 6px 0;padding:7px 9px;flex:1;}
-  .qt{font-family:'Fraunces',serif;font-size:10.5px;font-style:italic;color:#333;line-height:1.5;margin-bottom:3px;}
-  .qa{font-size:7.5px;color:#888;font-weight:600;}
-  .pi{display:flex;gap:4px;font-size:8px;color:#555;margin-bottom:2.5px;align-items:flex-start;}
-  .pd{width:4px;height:4px;border-radius:50%;background:#f0a030;flex-shrink:0;margin-top:3px;}
-  .footer{display:flex;justify-content:space-between;font-size:7.5px;color:#bbb;padding-top:4px;border-top:1px solid #eee;}
-  .fb{font-family:'Fraunces',serif;font-weight:700;color:#ccc;}
-  @media print{@page{size:A4 landscape;margin:8mm;} body{-webkit-print-color-adjust:exact;}}
-  </style></head><body><div class="page">
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'DM Sans',Arial,sans-serif;background:#fff;color:#111;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
 
-  <div class="hdr">
-    <div><div class="brand">🍛 <em>Annam</em></div><div style="font-size:8px;color:#888;margin-top:1px;">Family Meal Planner · A & N</div></div>
-    <div class="hdr-right">
-      <div class="hdr-prog">${done}/21 meals done</div>
-      <div class="pbar"><div class="pfill" style="width:${Math.round(done/21*100)}%;"></div></div>
-      <div style="margin-top:2px;">${new Date().toLocaleDateString('en-AU',{day:'numeric',month:'long',year:'numeric'})}</div>
+    /* ── PAGE ── */
+    .page{width:277mm;min-height:190mm;padding:7mm 9mm;display:flex;flex-direction:column;gap:5px;}
+
+    /* ── HEADER ── */
+    .header{display:flex;align-items:flex-end;justify-content:space-between;padding-bottom:6px;border-bottom:3px solid #111;margin-bottom:2px;}
+    .brand{font-family:'Fraunces',serif;font-size:28px;font-weight:900;color:#111;letter-spacing:-1px;line-height:1;}
+    .brand em{color:#f0a030;font-style:normal;}
+    .header-center{text-align:center;}
+    .week-dates{font-family:'Fraunces',serif;font-size:13px;font-weight:700;color:#111;letter-spacing:.3px;}
+    .week-sub{font-size:8px;color:#888;margin-top:2px;text-transform:uppercase;letter-spacing:.8px;}
+    .header-right{text-align:right;display:flex;flex-direction:column;gap:3px;align-items:flex-end;}
+    .badge{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:4px;font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;}
+    .badge-gold{background:#fef3c7;color:#92400e;border:1px solid #fcd34d;}
+    .badge-blue{background:#dbeafe;color:#1e3a8a;border:1px solid #93c5fd;}
+    .badge-green{background:#d1fae5;color:#065f46;border:1px solid #6ee7b7;}
+    .stats-row{display:flex;gap:5px;}
+    .stat-chip{background:#f8f8f8;border-radius:4px;padding:2px 7px;font-size:8px;color:#555;border:1px solid #e5e5e5;}
+
+    /* ── MEAL GRID ── */
+    .grid-wrap{flex:1;}
+    table{width:100%;border-collapse:collapse;table-layout:fixed;}
+    .day-header{padding:5px 4px 4px;text-align:center;color:#fff;font-weight:700;font-size:9px;text-transform:uppercase;letter-spacing:.4px;line-height:1.3;}
+    .day-name{font-size:11px;font-weight:800;display:block;}
+    .day-date{font-size:8px;opacity:.85;display:block;margin-top:1px;font-weight:500;}
+    .day-tag{font-size:7px;opacity:.75;display:block;margin-top:1px;}
+    .row-label{width:38px;padding:4px 3px;text-align:center;background:#fafafa;border-right:2px solid #f0f0f0;border-bottom:1px solid #f0f0f0;vertical-align:middle;}
+    .row-icon{display:block;font-size:11px;line-height:1;}
+    .row-text{display:block;font-size:6.5px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:#aaa;margin-top:1px;}
+    .mc{padding:5px 5px;border-bottom:1px solid #f0f0f0;border-right:1px solid #f0f0f0;vertical-align:top;min-height:36px;}
+    .mc-inner{display:flex;align-items:flex-start;gap:4px;}
+    .mc-emoji{font-size:14px;flex-shrink:0;line-height:1;margin-top:1px;}
+    .mc-name{font-size:9px;font-weight:700;color:#111;line-height:1.3;margin-bottom:2px;}
+    .mc-meta{font-size:7px;color:#999;}
+    .pip{display:inline-flex;align-items:center;justify-content:center;width:13px;height:13px;border-radius:3px;font-size:7px;font-weight:800;flex-shrink:0;margin-left:auto;}
+    .pip-A{background:#fef3c7;color:#92400e;}
+    .pip-N{background:#dbeafe;color:#1e3a8a;}
+
+    /* ── QUOTE STRIP ── */
+    .quote-strip{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 100%);border-radius:8px;padding:8px 14px;display:flex;align-items:center;gap:12px;margin-top:2px;}
+    .quote-mark{font-family:'Fraunces',serif;font-size:32px;color:#f0a030;line-height:.6;flex-shrink:0;margin-top:4px;}
+    .quote-text{font-family:'Fraunces',serif;font-size:10px;font-style:italic;color:#e2e8f0;line-height:1.55;flex:1;}
+    .quote-attr{font-size:7.5px;color:#94a3b8;margin-top:3px;font-weight:600;}
+    .prep-col{flex-shrink:0;border-left:1px solid rgba(255,255,255,.1);padding-left:12px;min-width:140px;}
+    .prep-title{font-size:7.5px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#94a3b8;margin-bottom:4px;}
+    .prep-item{display:flex;gap:4px;font-size:7.5px;color:#cbd5e1;margin-bottom:3px;line-height:1.35;align-items:flex-start;}
+    .prep-dot{width:4px;height:4px;border-radius:50%;background:#f0a030;flex-shrink:0;margin-top:4px;}
+
+    /* ── SHOPPING CUT-OUT ── */
+    .cutout{border:2px dashed #ccc;border-radius:6px;padding:7px 10px;margin-top:4px;position:relative;}
+    .cutout::before{content:'✂';position:absolute;top:-9px;left:10px;background:#fff;padding:0 4px;font-size:13px;color:#999;line-height:1;}
+    .cutout-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;padding-bottom:4px;border-bottom:1px solid #e5e5e5;}
+    .cutout-title{font-family:'Fraunces',serif;font-size:11px;font-weight:700;color:#111;}
+    .cutout-meta{font-size:7.5px;color:#888;}
+    .shop-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:0 10px;}
+    .shop-col{font-size:0;}
+    .shop-item-print{display:flex;align-items:center;gap:4px;padding:2px 0;font-size:8px;color:#333;border-bottom:1px solid #f5f5f5;}
+    .shop-item-print:last-child{border-bottom:none;}
+    .shop-chk{width:9px;height:9px;border:1.5px solid #aaa;border-radius:2px;flex-shrink:0;display:inline-block;}
+    .shop-name{line-height:1.4;}
+
+    @media print{
+      @page{size:A4 landscape;margin:7mm;}
+      body{-webkit-print-color-adjust:exact;}
+    }
+  </style>
+  </head><body><div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div>
+      <div class="brand">🍛 <em>Annam</em></div>
+      <div style="font-size:8px;color:#888;margin-top:2px;font-weight:500;letter-spacing:.3px;">Family Meal Planner · A & N</div>
     </div>
-  </div>
-
-  <div class="stats">
-    <div class="st"><div class="sv">21</div><div class="sl">Meals</div></div>
-    <div class="st"><div class="sv">A$${weekCost}</div><div class="sl">Week Cost</div></div>
-    <div class="st"><div class="sv">${avgProt}g</div><div class="sl">Avg Protein</div></div>
-    <div class="st"><div class="sv">${avgPrep}m</div><div class="sl">Avg Prep</div></div>
-    <div class="st na"><div class="sv" style="color:#f0a030;">${counts.A}</div><div class="sl">A cooks</div></div>
-    <div class="st nn"><div class="sv" style="color:#5ba3f5;">${counts.N}</div><div class="sl">N cooks</div></div>
-  </div>
-
-  <div class="grid">
-    <div class="dh" style="background:#fff;border-right:1px solid #e0e0e0;"></div>
-    ${ST.plan.map((d,di)=>{
-      const cls=di===todayIdx?'today':di===5?'sat':di===6?'sun':'';
-      const tag=di===todayIdx?' ★':di===5?' 🌿':di===6?' 🏔':'';
-      return `<div class="dh${cls?' '+cls:''}">${d.day.slice(0,3).toUpperCase()}${tag}</div>`;
-    }).join('')}
-    ${gridRows}
-  </div>
-
-  <div class="bot">
-    <div class="box">
-      <div class="bttl">🛒 Shopping List <span style="font-size:7.5px;color:#888;font-weight:400;">${shopItems.filter(i=>!ST.shopChecked[i]).length} items needed</span></div>
-      <div class="sg">
-        ${[...shopItems.map(i=>{const ok=ST.shopChecked[i];return`<div class="si"><div class="chk${ok?' ok':''}"></div><span style="${ok?'text-decoration:line-through;color:#bbb;':''}">${i}</span></div>`;}),
-           ...ST.manualItems.map(i=>`<div class="si"><div class="chk${i.checked?' ok':''}"></div><span style="${i.checked?'text-decoration:line-through;color:#bbb;':''}">${i.text} <span style="color:#5ba3f5;font-size:7px;">★</span></span></div>`)
-          ].join('')}
+    <div class="header-center">
+      <div class="week-dates">${fmtDate(monday)} — ${fmtDate(sunday)}, ${monday.getFullYear()}</div>
+      <div class="week-sub">Week ${weekNum} of ${monday.getFullYear()}</div>
+    </div>
+    <div class="header-right">
+      <div class="stats-row">
+        <span class="stat-chip">💪 ${avgProt}g avg protein</span>
+        <span class="stat-chip">⏱ ${avgPrep}m avg prep</span>
+        <span class="stat-chip">💰 A\$${weekCost}/week</span>
+        <span class="stat-chip">🥬 ${pantryPct}% pantry match</span>
+      </div>
+      <div class="stats-row">
+        <span class="badge badge-gold">A cooks ${counts.A} meals</span>
+        <span class="badge badge-blue">N cooks ${counts.N} meals</span>
       </div>
     </div>
-    <div class="side">
-      <div class="qbox">
-        <div class="qt">"${quote.q}"</div>
-        <div class="qa">— ${quote.a}</div>
-      </div>
-      <div class="box">
-        <div class="bttl">🌙 Overnight Prep</div>
-        ${prepReminders}
-      </div>
+  </div>
+
+  <!-- MEAL GRID -->
+  <div class="grid-wrap">
+    <table>
+      <thead>
+        <tr>
+          <td style="width:38px;background:#fafafa;border-right:2px solid #f0f0f0;border-bottom:2px solid #111;"></td>
+          ${ST.plan.map((d,di) => {
+            const bg = DAY_COLORS[di];
+            const isSat = di===5, isSun = di===6;
+            const tag = isSat ? '🌿 South Indian' : isSun ? '🏔 North/South Indian' : '';
+            return `<td class="day-header" style="background:${bg};">
+              <span class="day-name">${d.day.slice(0,3).toUpperCase()}</span>
+              <span class="day-date">${dayDate(di)}</span>
+              ${tag ? `<span class="day-tag">${tag}</span>` : ''}
+            </td>`;
+          }).join('')}
+        </tr>
+      </thead>
+      <tbody>${gridRows}</tbody>
+    </table>
+  </div>
+
+  <!-- QUOTE + PREP STRIP -->
+  <div class="quote-strip">
+    <div class="quote-mark">"</div>
+    <div style="flex:1;">
+      <div class="quote-text">${quote.q}</div>
+      <div class="quote-attr">— ${quote.a}</div>
     </div>
+    ${prepReminders.length ? `
+    <div class="prep-col">
+      <div class="prep-title">🌙 Tonight's prep</div>
+      ${prepReminders.map(p=>`<div class="prep-item"><div class="prep-dot"></div><span><b>${p.night}:</b> ${p.inst}</span></div>`).join('')}
+    </div>` : ''}
   </div>
 
-  <div class="footer">
-    <div class="fb">Annam 🍛</div>
-    <div>Sat = South Indian Telugu · Sun = North Indian bkf + South Indian lunch/dinner · Weekdays = office-friendly</div>
-    <div>Printed ${new Date().toLocaleDateString('en-AU',{day:'numeric',month:'short',year:'numeric'})}</div>
+  <!-- SHOPPING CUT-OUT -->
+  <div class="cutout">
+    <div class="cutout-header">
+      <div class="cutout-title">🛒 Shopping List — ${fmtDate(monday)} to ${fmtDate(sunday)}</div>
+      <div class="cutout-meta">${shopAll.length} items &nbsp;·&nbsp; Cut and carry to shop</div>
+    </div>
+    <div class="shop-cols">${shopColsHtml}</div>
   </div>
 
-  </div><script>window.onload=()=>{window.print();}<\/script></body></html>`);
+  </div>
+  <script>window.onload=()=>{window.print();}<\/script>
+  </body></html>`);
   win.document.close();
 }
 
