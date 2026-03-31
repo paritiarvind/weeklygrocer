@@ -143,13 +143,14 @@
     "whole wheat flour",
     "yogurt",
     "zucchini",
-    "green peas"
+    "green peas",
+    "quinoa"
   ],
   "filters": {
     "protein": true,
     "quick": false,
     "budget": false
   },
-  "pantryUpdatedAt": "2026-03-30T10:35:34.639Z",
-  "lastUpdated": "2026-03-30T21:55:41.035Z"
+  "pantryUpdatedAt": "2026-03-31T08:38:58.285Z",
+  "lastUpdated": "2026-03-31T08:38:59.707Z"
 }
