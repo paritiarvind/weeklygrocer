@@ -148,10 +148,10 @@
     "cashew"
   ],
   "filters": {
-    "protein": true,
+    "protein": false,
     "quick": false,
     "budget": false
   },
   "pantryUpdatedAt": "2026-03-31T08:39:29.904Z",
-  "lastUpdated": "2026-03-31T08:39:31.692Z"
+  "lastUpdated": "2026-03-31T09:01:30.658Z"
 }
