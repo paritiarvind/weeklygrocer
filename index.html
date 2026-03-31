@@ -35,7 +35,7 @@ button,input{font-family:'DM Sans',sans-serif;}
 /* ── LAYOUT ── */
 #app{display:flex;flex-direction:column;height:100vh;height:100dvh;}
 #topbar{flex-shrink:0;height:calc(50px + var(--sat));padding-top:var(--sat);background:rgba(10,10,10,.96);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--s3);display:flex;align-items:center;padding-left:16px;padding-right:16px;gap:10px;z-index:90;}
-#content{flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:calc(66px + var(--sab));}
+#content{flex:1;min-height:0;position:relative;overflow:hidden;}
 #bottomnav{position:fixed;bottom:0;left:0;right:0;height:calc(62px + var(--sab));padding-bottom:var(--sab);background:rgba(10,10,10,.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid var(--s3);display:flex;align-items:center;justify-content:space-around;z-index:90;}
 /* ── NAV BADGE ── */
 .nav-badge{position:absolute;top:6px;right:calc(50% - 18px);width:7px;height:7px;border-radius:50%;background:var(--red);border:1.5px solid var(--bg);}
@@ -75,8 +75,9 @@ button,input{font-family:'DM Sans',sans-serif;}
 .nav-lbl{font-size:.55rem;font-weight:600;letter-spacing:.3px;text-transform:uppercase;}
 .nav-dot{width:4px;height:4px;border-radius:50%;background:var(--gold);opacity:0;transition:opacity .2s;margin-top:1px;}
 .nav-btn.on .nav-dot{opacity:1;}
-.page{padding:16px;display:none;}
-.page.active{display:block;}
+.page{display:none;}
+.page.active{display:block;position:absolute;top:0;left:0;right:0;bottom:0;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;padding:16px;padding-bottom:calc(66px + var(--sab));box-sizing:border-box;}
+@media(min-width:600px){.page.active{padding-left:max(16px,calc((100% - 508px)/2));padding-right:max(16px,calc((100% - 508px)/2));}}
 
 /* ── CARDS ── */
 .card{background:var(--s1);border:1px solid var(--s3);border-radius:13px;padding:16px;margin-bottom:12px;}
@@ -280,7 +281,7 @@ button,input{font-family:'DM Sans',sans-serif;}
 .setup-card{width:100%;max-width:380px;background:var(--s1);border:1px solid var(--s3);border-radius:20px;padding:24px;}
 
 @media(min-width:600px){
-  #content .page{max-width:540px;margin:0 auto;}
+  #content 
 }
 </style>
 </head>
