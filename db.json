@@ -79,7 +79,8 @@
     "Wednesday-Lunch": true,
     "Wednesday-Breakfast": true,
     "Wednesday-Dinner": true,
-    "Thursday-Lunch": true
+    "Thursday-Lunch": true,
+    "Thursday-Breakfast": true
   },
   "shopChecked": {},
   "manualItems": [],
@@ -158,5 +159,5 @@
     "budget": false
   },
   "pantryUpdatedAt": "2026-03-31T08:39:29.904Z",
-  "lastUpdated": "2026-04-01T12:32:07.069Z"
+  "lastUpdated": "2026-04-01T19:44:54.495Z"
 }
