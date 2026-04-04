@@ -147,5 +147,54 @@
   },
   "pantryUpdatedAt": "2026-04-04T14:11:19.943Z",
   "pushSubscriptions": [],
-  "lastUpdated": "2026-04-04T18:21:28.739Z"
+  "household": [
+    {
+      "id": "A",
+      "name": "A",
+      "gender": "male",
+      "age": 32,
+      "weight": 90,
+      "height": 178,
+      "goal": "loss",
+      "targetCal": 1700,
+      "targetProtein": 130
+    },
+    {
+      "id": "N",
+      "name": "N",
+      "gender": "female",
+      "age": 28,
+      "weight": 58,
+      "height": 162,
+      "goal": "maintain",
+      "targetCal": 1950,
+      "targetProtein": 65
+    }
+  ],
+  "preferences": {
+    "cuisines": {
+      "south": true,
+      "north": true,
+      "western": true,
+      "mediterranean": false,
+      "asian": false,
+      "mexican": false
+    },
+    "diet": {
+      "highProtein": true,
+      "quickMeals": false,
+      "budgetFriendly": false,
+      "balanced": true,
+      "vegetarian": true
+    },
+    "mealTimes": {
+      "breakfast": "07:30",
+      "lunch": "12:30",
+      "dinner": "18:30",
+      "snack": "15:30"
+    },
+    "snacksEnabled": true,
+    "maxPrepTime": 45
+  },
+  "lastUpdated": "2026-04-04T18:40:43.385Z"
 }
