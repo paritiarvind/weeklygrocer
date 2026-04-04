@@ -182,8 +182,8 @@
     },
     "diet": {
       "highProtein": true,
-      "quickMeals": false,
-      "budgetFriendly": false,
+      "quickMeals": true,
+      "budgetFriendly": true,
       "balanced": true,
       "vegetarian": true
     },
@@ -196,5 +196,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 45
   },
-  "lastUpdated": "2026-04-04T18:40:43.385Z"
+  "lastUpdated": "2026-04-04T18:40:59.593Z"
 }
