@@ -338,13 +338,18 @@ button,input{font-family:'DM Sans',sans-serif;}
 .member-stat{background:var(--s2);border-radius:7px;padding:7px 8px;text-align:center;}
 .member-stat-v{font-size:.88rem;font-weight:700;color:var(--t1);}
 .member-stat-l{font-size:.6rem;color:var(--t3);margin-top:1px;}
-.cuisine-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
-.cuisine-chip{display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:10px;border:1.5px solid var(--s3);background:var(--s1);cursor:pointer;transition:all .15s;}
-.cuisine-chip.on{border-color:var(--gold);background:rgba(240,160,48,.06);}
-.cuisine-chip-icon{font-size:1.2rem;}
-.cuisine-chip-label{font-size:.78rem;font-weight:500;color:var(--t2);}
+.cuisine-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.cuisine-chip{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;border:1.5px solid var(--s3);background:var(--s1);cursor:pointer;transition:all .2s;position:relative;overflow:hidden;}
+.cuisine-chip.on{border-color:var(--gold);background:rgba(240,160,48,.08);}
+.cuisine-chip.on::after{content:'✓';position:absolute;top:8px;right:10px;font-size:.7rem;font-weight:700;color:var(--gold);}
+.cuisine-chip.unavailable{opacity:.45;cursor:default;}
+.cuisine-chip-icon{font-size:1.4rem;flex-shrink:0;}
+.cuisine-chip-content{flex:1;}
+.cuisine-chip-label{font-size:.8rem;font-weight:600;color:var(--t1);}
 .cuisine-chip.on .cuisine-chip-label{color:var(--gold);}
-.coming-soon{font-size:.6rem;color:var(--t4);margin-left:auto;}
+.cuisine-chip-sub{font-size:.64rem;color:var(--t4);margin-top:1px;}
+.cuisine-chip.on .cuisine-chip-sub{color:rgba(240,160,48,.7);}
+.coming-soon-badge{font-size:.58rem;background:var(--s3);color:var(--t4);padding:1px 5px;border-radius:4px;font-weight:600;text-transform:uppercase;letter-spacing:.3px;}
 </style>
 </head>
 <body>
@@ -838,8 +843,8 @@ let ST = {
   nApproved: false,    // N confirmed the current plan
   pushSubscriptions: [], // push subscription objects for both phones
   household: [
-    { id:'A', name:'A', gender:'male',   age:32, weight:90, height:178, goal:'loss',     targetCal:1700, targetProtein:130 },
-    { id:'N', name:'N', gender:'female', age:28, weight:58, height:162, goal:'maintain', targetCal:1950, targetProtein:65  },
+    { id:'A', name:'A', gender:'male',   age:32, weight:90, height:178, goal:'loss',     targetCal:1700, targetProtein:130, veg:true  },
+    { id:'N', name:'N', gender:'female', age:28, weight:58, height:162, goal:'maintain', targetCal:1950, targetProtein:65,  veg:true  },
   ],
   preferences: {
     cuisines:   { south:true, north:true, western:true, mediterranean:false, asian:false, mexican:false },
@@ -3292,7 +3297,13 @@ async function togglePush() {
 }
 
 async function subscribePush() {
-  if (!swRegistration) { toast('Service worker not ready — try again'); return; }
+  // Wait for SW to be ready if not yet registered
+  if (!swRegistration && 'serviceWorker' in navigator) {
+    try {
+      swRegistration = await navigator.serviceWorker.ready;
+    } catch(e) {}
+  }
+  if (!swRegistration) { toast('Add to Home Screen first to enable push on iPhone'); return; }
   const perm = await Notification.requestPermission();
   if (perm !== 'granted') {
     toast('Notifications blocked — enable in phone settings');
@@ -3432,25 +3443,40 @@ function renderSettingsContent() {
 function renderSettingsMembers() {
   const el = document.getElementById('settings-members');
   if (!el) return;
-  el.innerHTML = ST.household.map((m, idx) => {
-    // Calculate BMI
-    const bmi = m.weight && m.height ? (m.weight / ((m.height/100) ** 2)).toFixed(1) : '—';
-    const goalLabel = m.goal === 'loss' ? '🔻 Weight loss' : m.goal === 'gain' ? '📈 Weight gain' : '⚖️ Maintenance';
-    return `<div class="member-card">
+  const members = ST.household || [];
+  if (!members.length) {
+    el.innerHTML = '<div style="font-size:.78rem;color:var(--t3);text-align:center;padding:16px;">No members yet — tap Add member</div>';
+    return;
+  }
+  el.innerHTML = members.map((m, idx) => {
+    const bmi       = m.weight && m.height ? (m.weight / ((m.height/100)**2)).toFixed(1) : '—';
+    const bmiLabel  = bmi==='—'?'—':bmi<18.5?'Underweight':bmi<25?'Healthy':bmi<30?'Overweight':'Obese';
+    const goalLabel = m.goal==='loss'?'🔻 Weight loss':m.goal==='gain'?'📈 Weight gain':'⚖️ Maintenance';
+    const vegLabel  = m.veg===false ? '🍖 Non-veg' : '🥬 Vegetarian';
+    const colors    = ['#f0a030','#5ba3f5','#42c77a','#f08030','#a855f7','#ec4899'];
+    const color     = colors[idx % colors.length];
+    return `<div class="member-card" style="border-left:3px solid ${color};">
       <div class="member-header">
-        <div class="member-avatar member-avatar-${m.id}">${m.name.charAt(0).toUpperCase()}</div>
+        <div class="member-avatar" style="background:${color}22;color:${color};">${(m.name||'?').charAt(0).toUpperCase()}</div>
         <div style="flex:1;">
-          <div class="member-name">${m.name}</div>
-          <div class="member-goal">${goalLabel}</div>
+          <div class="member-name">${m.name || 'Member'}</div>
+          <div class="member-goal">${goalLabel} &nbsp;·&nbsp; ${vegLabel}</div>
         </div>
-        <button onclick="editMember(${idx})" style="background:var(--s3);border:none;border-radius:7px;padding:5px 10px;font-size:.7rem;color:var(--t2);cursor:pointer;font-family:'DM Sans',sans-serif;">Edit</button>
+        <div style="display:flex;gap:5px;">
+          <button onclick="editMember(${idx})" style="background:var(--s3);border:none;border-radius:7px;padding:5px 10px;font-size:.7rem;color:var(--t2);cursor:pointer;font-family:'DM Sans',sans-serif;">Edit</button>
+          ${members.length>1?`<button onclick="removeMember(${idx})" style="background:rgba(240,96,96,.1);border:1px solid rgba(240,96,96,.2);border-radius:7px;padding:5px 8px;font-size:.7rem;color:var(--red);cursor:pointer;font-family:'DM Sans',sans-serif;">✕</button>`:''}
+        </div>
       </div>
       <div class="member-stats">
-        <div class="member-stat"><div class="member-stat-v">${m.weight}kg</div><div class="member-stat-l">Weight</div></div>
-        <div class="member-stat"><div class="member-stat-v">BMI ${bmi}</div><div class="member-stat-l">Body mass</div></div>
-        <div class="member-stat"><div class="member-stat-v">${m.targetCal}</div><div class="member-stat-l">Cal/day</div></div>
+        <div class="member-stat"><div class="member-stat-v">${m.weight||'—'}kg</div><div class="member-stat-l">Weight</div></div>
+        <div class="member-stat"><div class="member-stat-v">${m.height||'—'}cm</div><div class="member-stat-l">Height</div></div>
+        <div class="member-stat"><div class="member-stat-v">BMI ${bmi}</div><div class="member-stat-l">${bmiLabel}</div></div>
       </div>
-      <div style="font-size:.68rem;color:var(--t3);">Target protein: <span style="color:var(--gold);font-weight:600;">${m.targetProtein}g/day</span></div>
+      <div style="display:flex;gap:12px;font-size:.68rem;color:var(--t3);margin-top:4px;">
+        <span>🔥 <strong style="color:var(--gold);">${m.targetCal||'—'}</strong> cal/day</span>
+        <span>💪 <strong style="color:var(--gold);">${m.targetProtein||'—'}g</strong> protein/day</span>
+        <span style="margin-left:auto;">${m.age||'—'} yrs · ${m.gender||'—'}</span>
+      </div>
     </div>`;
   }).join('');
 }
@@ -3459,11 +3485,15 @@ function renderSettingsCuisines() {
   const el = document.getElementById('settings-cuisines');
   if (!el) return;
   el.innerHTML = CUISINES.map(c => {
-    const on = ST.preferences.cuisines[c.id];
-    return `<div class="cuisine-chip${on?' on':''}" onclick="${c.available ? `toggleCuisine('${c.id}')` : ''}">
+    const on = ST.preferences?.cuisines?.[c.id] || false;
+    const subs = {south:'Pesarattu, Pulihora, Dosas',north:'Chole, Rajma, Dal Makhani',western:'Pasta, Buddha Bowls, Frittata',mediterranean:'Hummus, Falafel — coming soon',asian:'Stir fry, Dim sum — coming soon',mexican:'Tacos, Burritos — coming soon'};
+    return `<div class="cuisine-chip${on?' on':''}${!c.available?' unavailable':''}" onclick="${c.available?`toggleCuisine('${c.id}')`:''}" >
       <span class="cuisine-chip-icon">${c.icon}</span>
-      <span class="cuisine-chip-label">${c.label}</span>
-      ${!c.available ? '<span class="coming-soon">Soon</span>' : (on ? '<span style="font-size:.7rem;margin-left:auto;">✓</span>' : '')}
+      <div class="cuisine-chip-content">
+        <div class="cuisine-chip-label">${c.label}</div>
+        <div class="cuisine-chip-sub">${subs[c.id]||''}</div>
+      </div>
+      ${!c.available?'<span class="coming-soon-badge">Soon</span>':''}
     </div>`;
   }).join('');
 }
@@ -3561,6 +3591,11 @@ function editMember(idx) {
       <div class="serif" style="font-size:1.1rem;font-weight:700;margin-bottom:16px;">Edit ${m.name}</div>
       <label style="font-size:.72rem;color:var(--t3);display:block;margin-bottom:4px;">Name</label>
       <input id="em-name" value="${m.name}" style="width:100%;background:var(--s2);border:1px solid var(--s3);border-radius:8px;padding:10px 12px;color:var(--t1);font-size:.88rem;font-family:'DM Sans',sans-serif;margin-bottom:12px;">
+      <label style="font-size:.72rem;color:var(--t3);display:block;margin-bottom:4px;">Diet</label>
+      <select id="em-veg" style="width:100%;background:var(--s2);border:1px solid var(--s3);border-radius:8px;padding:10px 12px;color:var(--t1);font-size:.88rem;font-family:'DM Sans',sans-serif;margin-bottom:12px;">
+        <option value="true" ${m.veg!==false?'selected':''}>🥬 Vegetarian</option>
+        <option value="false" ${m.veg===false?'selected':''}>🍖 Non-vegetarian</option>
+      </select>
       <label style="font-size:.72rem;color:var(--t3);display:block;margin-bottom:4px;">Goal</label>
       <select id="em-goal" style="width:100%;background:var(--s2);border:1px solid var(--s3);border-radius:8px;padding:10px 12px;color:var(--t1);font-size:.88rem;font-family:'DM Sans',sans-serif;margin-bottom:12px;">
         ${goals.map(g => `<option value="${g.v}" ${m.goal===g.v?'selected':''}>${g.l}</option>`).join('')}
@@ -3598,6 +3633,7 @@ function editMember(idx) {
 function saveMember(idx) {
   const name   = document.getElementById('em-name')?.value.trim();
   const goal   = document.getElementById('em-goal')?.value;
+  const veg    = document.getElementById('em-veg')?.value !== 'false';
   const weight = parseInt(document.getElementById('em-weight')?.value);
   const height = parseInt(document.getElementById('em-height')?.value);
   const cal    = parseInt(document.getElementById('em-cal')?.value);
@@ -3605,11 +3641,21 @@ function saveMember(idx) {
 
   if (!name) { toast('Name required'); return; }
 
-  ST.household[idx] = { ...ST.household[idx], name, goal, weight, height, targetCal:cal, targetProtein:prot };
+  ST.household[idx] = { ...ST.household[idx], name, goal, weight, height, targetCal:cal, targetProtein:prot, veg };
   closeModal();
   debouncedSave('Member profile updated');
   renderSettingsMembers();
   toast('✓ Profile saved');
+}
+
+function removeMember(idx) {
+  if (ST.household.length <= 1) { toast('Need at least one member'); return; }
+  const name = ST.household[idx].name;
+  if (!confirm('Remove ' + name + ' from household?')) return;
+  ST.household.splice(idx, 1);
+  renderSettingsMembers();
+  debouncedSave('Member removed');
+  toast(name + ' removed');
 }
 
 function addHouseholdMember() {
