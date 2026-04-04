@@ -286,10 +286,12 @@ button,input{font-family:'DM Sans',sans-serif;}
 }
 
 /* ── GUIDED TOUR ── */
-#tour-overlay{position:fixed;inset:0;z-index:800;pointer-events:none;}
-#tour-overlay.active{pointer-events:all;}
-#tour-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.82);transition:opacity .3s;}
-#tour-spotlight{position:absolute;border-radius:16px;box-shadow:0 0 0 9999px rgba(0,0,0,.82);transition:all .4s cubic-bezier(.4,0,.2,1);border:2px solid rgba(240,160,48,.6);}
+#tour-overlay{position:fixed;inset:0;z-index:800;pointer-events:none;display:none;}
+#tour-overlay.active{pointer-events:all;display:block;}
+#tour-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.82);transition:opacity .3s;opacity:0;}
+#tour-overlay.active #tour-backdrop{opacity:1;}
+#tour-spotlight{position:absolute;border-radius:16px;transition:all .4s cubic-bezier(.4,0,.2,1);border:2px solid rgba(240,160,48,.6);opacity:0;}
+#tour-overlay.active #tour-spotlight{opacity:1;box-shadow:0 0 0 9999px rgba(0,0,0,.82);}
 #tour-sheet{position:absolute;bottom:0;left:0;right:0;background:var(--s1);border-radius:24px 24px 0 0;padding:24px 20px 36px;border-top:1px solid var(--s3);transform:translateY(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);}
 #tour-sheet.visible{transform:translateY(0);}
 .tour-dots{display:flex;gap:6px;justify-content:center;margin-bottom:16px;}
@@ -3207,23 +3209,23 @@ function startTour() {
   tourStep   = 0;
   tourActive = true;
   const overlay = document.getElementById('tour-overlay');
+  overlay.style.display = 'block'; // show first
   overlay.classList.add('active');
   renderTourStep();
-  // Animate sheet in
+  // Animate sheet in after brief delay
   setTimeout(() => {
     document.getElementById('tour-sheet').classList.add('visible');
-  }, 50);
+  }, 80);
 }
 
 function endTour() {
   tourActive = false;
   const overlay = document.getElementById('tour-overlay');
   const sheet   = document.getElementById('tour-sheet');
-  const spot    = document.getElementById('tour-spotlight');
   sheet.classList.remove('visible');
   setTimeout(() => {
     overlay.classList.remove('active');
-    spot.style.opacity = '0';
+    overlay.style.display = 'none';
   }, 350);
   try { localStorage.setItem(TOUR_KEY, '1'); } catch(_) {}
 }
