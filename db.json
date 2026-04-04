@@ -90,7 +90,8 @@
     "Italian herbs": true,
     "mixed greens": true,
     "moong sprouts": true,
-    "mustard seeds": true
+    "mustard seeds": true,
+    "oregano": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -128,5 +129,5 @@
     "budget": false
   },
   "pantryUpdatedAt": "2026-04-04T14:11:19.943Z",
-  "lastUpdated": "2026-04-04T16:34:47.026Z"
+  "lastUpdated": "2026-04-04T16:34:49.618Z"
 }
