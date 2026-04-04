@@ -3,7 +3,7 @@
     {
       "day": "Monday",
       "b": "upma",
-      "l": "palak_paneer",
+      "l": "buddha_bowl",
       "dn": "frittata"
     },
     {
@@ -111,5 +111,5 @@
     "budget": false
   },
   "pantryUpdatedAt": "2026-04-04T14:11:19.943Z",
-  "lastUpdated": "2026-04-04T16:32:56.748Z"
+  "lastUpdated": "2026-04-04T16:33:36.477Z"
 }
