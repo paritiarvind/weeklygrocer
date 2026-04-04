@@ -104,7 +104,8 @@
     "soya chunks": true,
     "vegetable stock": true,
     "cauliflower": true,
-    "cucumber": true
+    "cucumber": true,
+    "red lentils": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -142,5 +143,5 @@
     "budget": false
   },
   "pantryUpdatedAt": "2026-04-04T14:11:19.943Z",
-  "lastUpdated": "2026-04-04T16:55:56.243Z"
+  "lastUpdated": "2026-04-04T16:56:04.945Z"
 }
