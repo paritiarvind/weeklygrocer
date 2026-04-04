@@ -91,13 +91,17 @@
     "feta cheese",
     "ginger",
     "cumin",
-    "turmeric"
+    "turmeric",
+    "curd",
+    "tomato",
+    "kidney beans",
+    "besan"
   ],
   "filters": {
     "protein": false,
     "quick": false,
     "budget": false
   },
-  "pantryUpdatedAt": "",
-  "lastUpdated": "2026-04-04T14:09:15.141Z"
+  "pantryUpdatedAt": "2026-04-04T14:11:02.278Z",
+  "lastUpdated": "2026-04-04T14:11:03.701Z"
 }
