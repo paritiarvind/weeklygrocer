@@ -77,7 +77,9 @@
     "vegetable stock": true,
     "smoked paprika": true,
     "peanuts": true,
-    "oregano": true
+    "oregano": true,
+    "idli batter": true,
+    "drumstick": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -1012,5 +1014,5 @@
     "budget": false
   },
   "pantryUpdatedAt": "2026-04-04T13:32:35.143Z",
-  "lastUpdated": "2026-04-04T14:02:14.734Z"
+  "lastUpdated": "2026-04-04T14:02:28.688Z"
 }
