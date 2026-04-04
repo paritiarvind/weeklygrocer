@@ -70,7 +70,9 @@
   "nextCookMap": {},
   "genNum": 1,
   "completed": {},
-  "shopChecked": {},
+  "shopChecked": {
+    "salt": true
+  },
   "manualItems": [],
   "mealNotes": {},
   "nApproved": false,
@@ -107,5 +109,5 @@
     "budget": false
   },
   "pantryUpdatedAt": "2026-04-04T14:11:19.943Z",
-  "lastUpdated": "2026-04-04T14:11:21.651Z"
+  "lastUpdated": "2026-04-04T14:11:33.733Z"
 }
