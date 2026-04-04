@@ -71,7 +71,9 @@
   "genNum": 1,
   "completed": {},
   "shopChecked": {
-    "salt": true
+    "salt": true,
+    "coriander": true,
+    "coriander powder": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -109,5 +111,5 @@
     "budget": false
   },
   "pantryUpdatedAt": "2026-04-04T14:11:19.943Z",
-  "lastUpdated": "2026-04-04T14:11:33.733Z"
+  "lastUpdated": "2026-04-04T16:31:52.575Z"
 }
