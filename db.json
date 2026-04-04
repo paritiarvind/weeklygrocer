@@ -2,114 +2,75 @@
   "plan": [
     {
       "day": "Monday",
-      "b": "upma",
-      "l": "buddha_bowl",
-      "dn": "frittata"
+      "b": "besan_chilla",
+      "l": "palak_paneer",
+      "dn": "veggie_quesadilla"
     },
     {
       "day": "Tuesday",
-      "b": "avo_toast",
-      "l": "chole_rice",
-      "dn": "shakshuka"
+      "b": "bread_upma",
+      "l": "chickpea_wrap",
+      "dn": "cauliflower_steak"
     },
     {
       "day": "Wednesday",
-      "b": "savoury_oats",
-      "l": "soya_curry",
-      "dn": "mediterranean_bowl"
+      "b": "smoothie_bowl",
+      "l": "rajma_chawal",
+      "dn": "stir_fry_tofu"
     },
     {
       "day": "Thursday",
-      "b": "poha",
-      "l": "egg_fried_rice",
-      "dn": "lentil_soup"
+      "b": "muesli_bowl",
+      "l": "gongura_pappu",
+      "dn": "coconut_curry"
     },
     {
       "day": "Friday",
-      "b": "moong_sprouts",
-      "l": "greek_salad",
-      "dn": "pasta_bake"
+      "b": "dahi_chivda",
+      "l": "pesara_pappu",
+      "dn": "pasta_arrabiata"
     },
     {
       "day": "Saturday",
-      "b": "pesarattu",
-      "l": "chana_masala",
-      "dn": "baingan_bharta"
+      "b": "moong_cheela",
+      "l": "rasam_rice",
+      "dn": "matar_paneer"
     },
     {
       "day": "Sunday",
-      "b": "paneer_bhurji",
-      "l": "dal_tadka",
-      "dn": "aloo_gobi"
+      "b": "aloo_paratha_north",
+      "l": "curd_rice",
+      "dn": "methi_dal"
     }
   ],
   "nextPlan": null,
   "cookMap": {
-    "0": "N",
-    "1": "A",
-    "2": "N",
-    "3": "A",
-    "4": "N",
-    "5": "A",
-    "6": "N",
-    "7": "A",
-    "8": "N",
-    "9": "A",
-    "10": "N",
-    "11": "A",
-    "12": "N",
-    "13": "A",
-    "14": "N",
-    "15": "A",
-    "16": "N",
-    "17": "A",
-    "18": "N",
-    "19": "A",
-    "20": "N"
+    "0": "A",
+    "1": "N",
+    "2": "A",
+    "3": "N",
+    "4": "A",
+    "5": "N",
+    "6": "A",
+    "7": "N",
+    "8": "A",
+    "9": "N",
+    "10": "A",
+    "11": "N",
+    "12": "A",
+    "13": "N",
+    "14": "A",
+    "15": "N",
+    "16": "A",
+    "17": "N",
+    "18": "A",
+    "19": "N",
+    "20": "A"
   },
   "nextCookMap": {},
-  "genNum": 1,
+  "genNum": 2,
   "completed": {},
-  "shopChecked": {
-    "salt": true,
-    "coriander": true,
-    "coriander powder": true,
-    "amchur": true,
-    "asafoetida": true,
-    "basmati rice": true,
-    "capsicum": true,
-    "carrot": true,
-    "cashews": true,
-    "chaat masala": true,
-    "chilli flakes": true,
-    "cooked rice": true,
-    "flattened rice": true,
-    "garam masala": true,
-    "ghee": true,
-    "green chilli": true,
-    "Italian herbs": true,
-    "mixed greens": true,
-    "moong sprouts": true,
-    "mustard seeds": true,
-    "oregano": true,
-    "peanuts": true,
-    "pepper": true,
-    "red chilli": true,
-    "rice": true,
-    "roasted capsicum": true,
-    "semolina": true,
-    "sesame seeds": true,
-    "smoked paprika": true,
-    "soy sauce": true,
-    "soya chunks": true,
-    "vegetable stock": true,
-    "cauliflower": true,
-    "cucumber": true,
-    "red lentils": true,
-    "quinoa": true,
-    "potato": true,
-    "parmesan": true
-  },
+  "shopChecked": {},
   "manualItems": [],
   "mealNotes": {},
   "nApproved": false,
@@ -196,5 +157,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 45
   },
-  "lastUpdated": "2026-04-04T18:43:29.979Z"
+  "lastUpdated": "2026-04-04T18:44:29.483Z"
 }
