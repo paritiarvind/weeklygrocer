@@ -87,9 +87,7 @@
     "garam masala": true,
     "ghee": true,
     "green chilli": true,
-    "Italian herbs": true,
-    "mixed greens": true,
-    "moong sprouts": true
+    "Italian herbs": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -127,5 +125,5 @@
     "budget": false
   },
   "pantryUpdatedAt": "2026-04-04T14:11:19.943Z",
-  "lastUpdated": "2026-04-04T16:34:38.867Z"
+  "lastUpdated": "2026-04-04T16:34:40.680Z"
 }
