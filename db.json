@@ -82,7 +82,10 @@
     "cashews": true,
     "chaat masala": true,
     "chilli flakes": true,
-    "cooked rice": true
+    "cooked rice": true,
+    "flattened rice": true,
+    "garam masala": true,
+    "ghee": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -120,5 +123,5 @@
     "budget": false
   },
   "pantryUpdatedAt": "2026-04-04T14:11:19.943Z",
-  "lastUpdated": "2026-04-04T16:34:26.126Z"
+  "lastUpdated": "2026-04-04T16:34:30.292Z"
 }
