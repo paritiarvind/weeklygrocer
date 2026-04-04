@@ -70,7 +70,9 @@
   "nextCookMap": {},
   "genNum": 1,
   "completed": {},
-  "shopChecked": {},
+  "shopChecked": {
+    "asafoetida": true
+  },
   "manualItems": [],
   "mealNotes": {},
   "nApproved": false,
@@ -91,7 +93,7 @@
             "protein": 18,
             "prepTime": 8,
             "cost": 1,
-            "emoji": "ÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂ±",
+            "emoji": "ÃÂÃÂÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ±",
             "color": "#4A6741",
             "ingredients": [
               "moong sprouts",
@@ -112,7 +114,7 @@
               "Add grated ginger, lemon juice, chaat masala and salt. Toss well.",
               "Garnish with fresh coriander. Eat immediately or refrigerate up to 4 hours."
             ],
-            "tip": "Sprouts can be pre-germinated over 2 days from moong dal ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ soak overnight, drain, rinse twice daily. Or buy ready sprouts from the supermarket.",
+            "tip": "Sprouts can be pre-germinated over 2 days from moong dal ÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ soak overnight, drain, rinse twice daily. Or buy ready sprouts from the supermarket.",
             "nutrition": {
               "calories": 190,
               "protein": 18,
@@ -129,7 +131,7 @@
             "protein": 17,
             "prepTime": 20,
             "cost": 2.2,
-            "emoji": "ÃÂÃÂ°ÃÂÃÂÃÂÃÂ«ÃÂÃÂ",
+            "emoji": "ÃÂÃÂÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ«ÃÂÃÂÃÂÃÂ",
             "color": "#C47820",
             "prepMode": true,
             "ingredients": [
@@ -146,13 +148,13 @@
               "lemon"
             ],
             "steps": [
-              "Use canned or pre-cooked chickpeas. SautÃÂÃÂÃÂÃÂ© onion until golden. Add ginger, garlic, cook 2 min.",
-              "Add blended tomato and chole masala. Cook until oil separates ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ about 4 min.",
-              "Add chickpeas with ÃÂÃÂÃÂÃÂ¼ cup water. Simmer 10 min until thick and saucy.",
+              "Use canned or pre-cooked chickpeas. SautÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ© onion until golden. Add ginger, garlic, cook 2 min.",
+              "Add blended tomato and chole masala. Cook until oil separates ÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ about 4 min.",
+              "Add chickpeas with ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¼ cup water. Simmer 10 min until thick and saucy.",
               "For jeera rice: heat ghee, add cumin seeds, add soaked basmati rice, cook 12 min covered on lowest heat.",
               "Serve chole over jeera rice with coriander, lemon and sliced onion."
             ],
-            "tip": "Canned chickpeas work perfectly here ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ saves 45 minutes without compromising taste. Drain and rinse well.",
+            "tip": "Canned chickpeas work perfectly here ÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ saves 45 minutes without compromising taste. Drain and rinse well.",
             "nutrition": {
               "calories": 360,
               "protein": 17,
@@ -168,7 +170,7 @@
             "protein": 18,
             "prepTime": 15,
             "cost": 3.5,
-            "emoji": "ÃÂÃÂ°ÃÂÃÂÃÂÃÂ«ÃÂÃÂ",
+            "emoji": "ÃÂÃÂÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ«ÃÂÃÂÃÂÃÂ",
             "color": "#8B6914",
             "ingredients": [
               "flour tortillas",
@@ -183,13 +185,13 @@
               "smoked paprika"
             ],
             "steps": [
-              "SautÃÂÃÂÃÂÃÂ© diced capsicum and onion in oil until soft. Add black beans and corn.",
+              "SautÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ© diced capsicum and onion in oil until soft. Add black beans and corn.",
               "Season with cumin, smoked paprika, salt and pepper. Cook 2 min more.",
               "Lay tortilla flat. Add cheese on one half, then vegetable mix, then more cheese.",
               "Fold in half. Press in a dry pan on medium ~2 min each side until golden.",
               "Serve with sliced avocado and sour cream."
             ],
-            "tip": "Do not overfill ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ a thin layer toasts more evenly and stays crisp.",
+            "tip": "Do not overfill ÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ a thin layer toasts more evenly and stays crisp.",
             "nutrition": {
               "calories": 400,
               "protein": 18,
@@ -209,7 +211,7 @@
             "protein": 14,
             "prepTime": 5,
             "cost": 1.4,
-            "emoji": "ÃÂÃÂ°ÃÂÃÂÃÂÃÂ¥ÃÂÃÂ",
+            "emoji": "ÃÂÃÂÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¥ÃÂÃÂÃÂÃÂ",
             "color": "#F5F0E0",
             "ingredients": [
               "flattened rice",
@@ -223,13 +225,13 @@
               "ginger"
             ],
             "steps": [
-              "Rinse flattened rice quickly under water. Drain immediately ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ it softens fast.",
+              "Rinse flattened rice quickly under water. Drain immediately ÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ it softens fast.",
               "In a bowl, whisk thick curd with a pinch of sugar and salt until smooth.",
               "Add drained poha to the curd. Mix gently.",
               "Add finely grated ginger and chopped green chilli. Stir to combine.",
               "Top with pomegranate seeds, coriander and a sprinkle of cumin. Eat immediately."
             ],
-            "tip": "Use very thick curd ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ if it is too runny, strain it through a cloth for 10 minutes first.",
+            "tip": "Use very thick curd ÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ if it is too runny, strain it through a cloth for 10 minutes first.",
             "nutrition": {
               "calories": 260,
               "protein": 14,
@@ -245,7 +247,7 @@
             "protein": 17,
             "prepTime": 12,
             "cost": 2.8,
-            "emoji": "ÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂ¯",
+            "emoji": "ÃÂÃÂÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¯",
             "color": "#8B4513",
             "ingredients": [
               "flour tortillas",
@@ -267,7 +269,7 @@
               "Warm tortilla. Layer spinach, diced cucumber, tomato, spiced chickpeas.",
               "Drizzle tahini sauce and a spoon of yogurt. Roll tightly."
             ],
-            "tip": "The crispy chickpeas are the hero ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ don't skip the pan-fry step.",
+            "tip": "The crispy chickpeas are the hero ÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ don't skip the pan-fry step.",
             "nutrition": {
               "calories": 370,
               "protein": 17,
@@ -284,7 +286,7 @@
             "protein": 8,
             "prepTime": 30,
             "cost": 2.8,
-            "emoji": "ÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂ",
+            "emoji": "ÃÂÃÂÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ",
             "color": "#4B0082",
             "ingredients": [
               "eggplant",
@@ -300,13 +302,13 @@
               "coriander"
             ],
             "steps": [
-              "Roast eggplant directly on gas flame or under grill, turning, until skin is completely charred and eggplant is collapsed ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ about 15 min.",
+              "Roast eggplant directly on gas flame or under grill, turning, until skin is completely charred and eggplant is collapsed ÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ about 15 min.",
               "Cool slightly, peel off charred skin. Mash flesh roughly with a fork.",
-              "Heat oil, add cumin. SautÃÂÃÂÃÂÃÂ© onion until golden. Add ginger, garlic, green chilli, cook 2 min.",
+              "Heat oil, add cumin. SautÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ© onion until golden. Add ginger, garlic, green chilli, cook 2 min.",
               "Add tomato and spices, cook until oil separates. Add mashed eggplant, stir well.",
               "Cook 5 min on medium heat. Finish with garam masala and fresh coriander."
             ],
-            "tip": "The char from the flame is what gives baingan bharta its signature smoky flavour ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ gas flame is best.",
+            "tip": "The char from the flame is what gives baingan bharta its signature smoky flavour ÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ gas flame is best.",
             "nutrition": {
               "calories": 190,
               "protein": 8,
@@ -326,7 +328,7 @@
             "protein": 14,
             "prepTime": 5,
             "cost": 1.4,
-            "emoji": "ÃÂÃÂ°ÃÂÃÂÃÂÃÂ¥ÃÂÃÂ£",
+            "emoji": "ÃÂÃÂÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¥ÃÂÃÂÃÂÃÂ£",
             "color": "#8B7355",
             "ingredients": [
               "muesli",
@@ -343,7 +345,7 @@
               "Top with fresh berries, sliced banana and a drizzle of honey.",
               "Sprinkle chia seeds for extra fibre."
             ],
-            "tip": "Soak muesli in milk overnight ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ bircher style is creamier and more digestible.",
+            "tip": "Soak muesli in milk overnight ÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ bircher style is creamier and more digestible.",
             "nutrition": {
               "calories": 380,
               "protein": 14,
@@ -360,7 +362,7 @@
             "protein": 28,
             "prepTime": 22,
             "cost": 2,
-            "emoji": "ÃÂÃÂ°ÃÂÃÂÃÂÃÂ«ÃÂÃÂ",
+            "emoji": "ÃÂÃÂÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ«ÃÂÃÂÃÂÃÂ",
             "color": "#5C3317",
             "ingredients": [
               "soya chunks",
@@ -398,7 +400,7 @@
             "protein": 20,
             "prepTime": 25,
             "cost": 3.2,
-            "emoji": "ÃÂÃÂ°ÃÂÃÂÃÂÃÂ«ÃÂÃÂ",
+            "emoji": "ÃÂÃÂÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ«ÃÂÃÂÃÂÃÂ",
             "color": "#8B7355",
             "ingredients": [
               "whole wheat flour",
@@ -412,12 +414,12 @@
             ],
             "steps": [
               "Knead soft wheat dough with water and salt. Rest 10 min.",
-              "Mix grated paneer with green chilli, ginger, cumin, coriander, red chilli, salt ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ keep dry.",
+              "Mix grated paneer with green chilli, ginger, cumin, coriander, red chilli, salt ÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ keep dry.",
               "Roll dough disc, add filling in centre, seal edges, roll gently into paratha.",
               "Cook on hot tawa, apply ghee both sides until golden spots appear ~4 min.",
               "Serve with curd and pickle."
             ],
-            "tip": "Grate paneer fine ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ coarse filling tears the dough when rolling.",
+            "tip": "Grate paneer fine ÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ coarse filling tears the dough when rolling.",
             "nutrition": {
               "calories": 330,
               "protein": 20,
@@ -437,7 +439,7 @@
             "protein": 15,
             "prepTime": 5,
             "cost": 1.2,
-            "emoji": "ÃÂÃÂ°ÃÂÃÂÃÂÃÂ«ÃÂÃÂ",
+            "emoji": "ÃÂÃÂÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ«ÃÂÃÂÃÂÃÂ",
             "color": "#5B8C99",
             "ingredients": [
               "oats",
@@ -449,12 +451,12 @@
               "banana"
             ],
             "steps": [
-              "Add ÃÂÃÂÃÂÃÂ½ cup oats to a jar.",
-              "Pour over ÃÂÃÂÃÂÃÂ¾ cup milk, add 2 tbsp Greek yogurt and 1 tbsp chia seeds.",
+              "Add ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ½ cup oats to a jar.",
+              "Pour over ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¾ cup milk, add 2 tbsp Greek yogurt and 1 tbsp chia seeds.",
               "Drizzle with honey. Stir well. Seal and refrigerate overnight.",
               "Top with fresh berries and banana slices before eating."
             ],
-            "tip": "Prep 5 jars on Sunday ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ breakfast sorted all week.",
+            "tip": "Prep 5 jars on Sunday ÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ breakfast sorted all week.",
             "nutrition": {
               "calories": 350,
               "protein": 15,
@@ -470,7 +472,7 @@
             "protein": 18,
             "prepTime": 20,
             "cost": 3.2,
-            "emoji": "ÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂ",
+            "emoji": "ÃÂÃÂÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ",
             "color": "#1E5631",
             "ingredients": [
               "pasta",
@@ -483,10 +485,10 @@
               "pine nuts"
             ],
             "steps": [
-              "Boil pasta in well-salted water. Reserve ÃÂÃÂÃÂÃÂ½ cup pasta water before draining.",
-              "SautÃÂÃÂÃÂÃÂ© diced zucchini and halved cherry tomatoes in olive oil with garlic ~4 min.",
+              "Boil pasta in well-salted water. Reserve ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ½ cup pasta water before draining.",
+              "SautÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ© diced zucchini and halved cherry tomatoes in olive oil with garlic ~4 min.",
               "Drain pasta, return to pot off heat.",
-              "Add pesto, sautÃÂÃÂÃÂÃÂ©ed veggies and splash of pasta water. Toss well.",
+              "Add pesto, sautÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©ed veggies and splash of pasta water. Toss well.",
               "Serve topped with parmesan and toasted pine nuts."
             ],
             "tip": "Starchy pasta water makes the pesto silkier and helps it cling.",
@@ -505,7 +507,7 @@
             "protein": 16,
             "prepTime": 25,
             "cost": 1.1,
-            "emoji": "ÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂ²",
+            "emoji": "ÃÂÃÂÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ²",
             "color": "#8B4513",
             "ingredients": [
               "red lentils",
@@ -522,7 +524,7 @@
               "parsley"
             ],
             "steps": [
-              "SautÃÂÃÂÃÂÃÂ© diced onion, carrot and celery in olive oil until soft ~5 min.",
+              "SautÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ© diced onion, carrot and celery in olive oil until soft ~5 min.",
               "Add garlic, cumin and smoked paprika. Cook 1 min until fragrant.",
               "Add rinsed lentils, crushed tomatoes and vegetable stock. Stir well.",
               "Bring to boil, reduce to simmer. Cook 20 min until lentils are completely soft.",
@@ -548,7 +550,7 @@
             "protein": 16,
             "prepTime": 12,
             "cost": 1.2,
-            "emoji": "ÃÂÃÂ°ÃÂÃÂÃÂÃÂ¥ÃÂÃÂ",
+            "emoji": "ÃÂÃÂÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¥ÃÂÃÂÃÂÃÂ",
             "color": "#C47820",
             "ingredients": [
               "besan",
@@ -564,13 +566,13 @@
               "curd"
             ],
             "steps": [
-              "Mix besan with turmeric, cumin, ajwain, salt and enough water to make a smooth, pourable batter ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ like pancake batter.",
+              "Mix besan with turmeric, cumin, ajwain, salt and enough water to make a smooth, pourable batter ÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ like pancake batter.",
               "Add finely chopped onion, tomato, green chilli and grated ginger. Mix well.",
               "Heat a flat non-stick pan on medium. Brush lightly with oil.",
               "Pour one ladle of batter, spread in a circle. Drizzle oil around edges.",
               "Cook 3 min until edges lift and bottom is golden. Flip and cook 2 min more. Serve with curd."
             ],
-            "tip": "The batter should be smooth ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ no lumps. Add water slowly and whisk well. Rest the batter 5 min for better chillas.",
+            "tip": "The batter should be smooth ÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ no lumps. Add water slowly and whisk well. Rest the batter 5 min for better chillas.",
             "nutrition": {
               "calories": 230,
               "protein": 16,
@@ -586,7 +588,7 @@
             "protein": 20,
             "prepTime": 15,
             "cost": 3.5,
-            "emoji": "ÃÂÃÂ°ÃÂÃÂÃÂÃÂ¥ÃÂÃÂ",
+            "emoji": "ÃÂÃÂÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¥ÃÂÃÂÃÂÃÂ",
             "color": "#6B4226",
             "ingredients": [
               "quinoa",
@@ -601,13 +603,13 @@
               "sesame seeds"
             ],
             "steps": [
-              "Cook quinoa: rinse, simmer in 2ÃÂÃÂÃÂÃÂ water 15 min, fluff and cool.",
-              "Roast chickpeas with olive oil and smoked paprika 200ÃÂÃÂÃÂÃÂ°C for 20 min until crispy.",
+              "Cook quinoa: rinse, simmer in 2ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ water 15 min, fluff and cool.",
+              "Roast chickpeas with olive oil and smoked paprika 200ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ°C for 20 min until crispy.",
               "Make tahini dressing: whisk tahini, lemon juice, garlic, water until smooth.",
               "Assemble: quinoa base, pile greens, cucumber, carrot ribbons, avocado and chickpeas.",
               "Drizzle dressing. Finish with sesame seeds."
             ],
-            "tip": "Batch cook quinoa and roast chickpeas on Sunday ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ assembly takes 5 min on weekdays.",
+            "tip": "Batch cook quinoa and roast chickpeas on Sunday ÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ assembly takes 5 min on weekdays.",
             "nutrition": {
               "calories": 420,
               "protein": 20,
@@ -623,7 +625,7 @@
             "protein": 16,
             "prepTime": 20,
             "cost": 3.2,
-            "emoji": "ÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂ",
+            "emoji": "ÃÂÃÂÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ",
             "color": "#8B0000",
             "ingredients": [
               "pasta",
@@ -639,11 +641,11 @@
             "steps": [
               "Boil pasta in salted water until al dente. Reserve pasta water.",
               "Heat olive oil, add sliced garlic and chilli flakes until garlic is golden.",
-              "Add diced zucchini and capsicum, sautÃÂÃÂÃÂÃÂ© 3 min.",
+              "Add diced zucchini and capsicum, sautÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ© 3 min.",
               "Add crushed tomatoes, season well, simmer 10 min until sauce thickens.",
               "Toss with drained pasta and pasta water. Serve with basil and parmesan."
             ],
-            "tip": "Chilli flakes bloom in olive oil ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ this is where the heat depth comes from.",
+            "tip": "Chilli flakes bloom in olive oil ÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ this is where the heat depth comes from.",
             "nutrition": {
               "calories": 420,
               "protein": 16,
@@ -663,7 +665,7 @@
             "protein": 10,
             "prepTime": 15,
             "cost": 1.2,
-            "emoji": "ÃÂÃÂ°ÃÂÃÂÃÂÃÂ¥ÃÂÃÂ£",
+            "emoji": "ÃÂÃÂÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¥ÃÂÃÂÃÂÃÂ£",
             "color": "#D4A035",
             "ingredients": [
               "semolina",
@@ -679,13 +681,13 @@
               "lemon"
             ],
             "steps": [
-              "Dry roast semolina in a pan on medium heat until lightly golden and fragrant ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ about 4 min. Set aside.",
+              "Dry roast semolina in a pan on medium heat until lightly golden and fragrant ÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ about 4 min. Set aside.",
               "Heat oil in same pan. Add mustard seeds, curry leaves and cashews. Let mustard pop.",
-              "Add finely chopped onion, green chilli and ginger. Cook until onion is soft ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ about 3 min.",
+              "Add finely chopped onion, green chilli and ginger. Cook until onion is soft ÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ about 3 min.",
               "Add 2 cups boiling water and salt. Bring to boil.",
               "Pour in roasted semolina gradually, stirring constantly to avoid lumps. Cook on low heat 3 min. Finish with lemon juice and coriander."
             ],
-            "tip": "Use boiling water ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ cold water makes lumpy upma. The roasting step is what gives it the nutty aroma.",
+            "tip": "Use boiling water ÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ cold water makes lumpy upma. The roasting step is what gives it the nutty aroma.",
             "nutrition": {
               "calories": 260,
               "protein": 10,
@@ -704,7 +706,7 @@
             "protein": 10,
             "prepTime": 20,
             "cost": 1.5,
-            "emoji": "ÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂ²",
+            "emoji": "ÃÂÃÂÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ²",
             "color": "#8B2500",
             "ingredients": [
               "toor dal",
@@ -721,13 +723,13 @@
               "rice"
             ],
             "steps": [
-              "Cook toor dal until soft. Soak tamarind in ÃÂÃÂÃÂÃÂ½ cup warm water, extract pulp.",
+              "Cook toor dal until soft. Soak tamarind in ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ½ cup warm water, extract pulp.",
               "Boil tamarind water with chopped tomato, turmeric, salt and rasam powder for 5 min.",
               "Add cooked dal and thin with water to a soupy consistency. Simmer 5 min.",
-              "Heat ghee ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ add mustard seeds, dried red chilli, curry leaves, garlic ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ sizzle until garlic is golden.",
+              "Heat ghee ÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ add mustard seeds, dried red chilli, curry leaves, garlic ÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ sizzle until garlic is golden.",
               "Pour tadka over rasam. Serve hot over steamed rice with papadums."
             ],
-            "tip": "Rasam should be thin and peppery ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ not thick like sambar. Add enough water to make it genuinely soupy.",
+            "tip": "Rasam should be thin and peppery ÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ not thick like sambar. Add enough water to make it genuinely soupy.",
             "nutrition": {
               "calories": 280,
               "protein": 10,
@@ -745,7 +747,7 @@
             "protein": 17,
             "prepTime": 20,
             "cost": 2.2,
-            "emoji": "ÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂµ",
+            "emoji": "ÃÂÃÂÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂµ",
             "color": "#4A6741",
             "ingredients": [
               "masoor dal",
@@ -759,7 +761,7 @@
               "tomato"
             ],
             "steps": [
-              "Cook masoor dal with turmeric until soft ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ no soaking needed ~12 min.",
+              "Cook masoor dal with turmeric until soft ÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ no soaking needed ~12 min.",
               "Heat ghee, add cumin, then garlic until golden.",
               "Add onion 4 min, then tomato and green chilli until soft.",
               "Add chopped methi, cook 3 min until wilted.",
@@ -785,7 +787,7 @@
             "protein": 18,
             "prepTime": 30,
             "cost": 2.8,
-            "emoji": "ÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂ",
+            "emoji": "ÃÂÃÂÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ",
             "color": "#8B4513",
             "ingredients": [
               "chickpeas",
@@ -802,11 +804,11 @@
               "coriander"
             ],
             "steps": [
-              "Pressure cook soaked chickpeas until very soft ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ 4 whistles. Reserve cooking liquid.",
+              "Pressure cook soaked chickpeas until very soft ÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ 4 whistles. Reserve cooking liquid.",
               "For chole: make a thick masala with blended onion, tomato, ginger, garlic. Cook until oil separates. Add chole masala, amchur, chickpeas. Simmer 15 min until thick.",
               "For bhature: mix flour, curd, baking soda, salt and oil. Knead into soft dough. Rest 30 min.",
-              "Roll bhature slightly thicker than roti. Deep fry in hot oil until puffed and golden ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ about 90 seconds each.",
-              "Serve immediately ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ bhature deflate quickly."
+              "Roll bhature slightly thicker than roti. Deep fry in hot oil until puffed and golden ÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ about 90 seconds each.",
+              "Serve immediately ÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ bhature deflate quickly."
             ],
             "tip": "Bhature must be served the instant they come out of the oil. They are best eaten within 2 minutes.",
             "nutrition": {
@@ -825,7 +827,7 @@
             "protein": 17,
             "prepTime": 20,
             "cost": 2.2,
-            "emoji": "ÃÂÃÂ°ÃÂÃÂÃÂÃÂ«ÃÂÃÂ",
+            "emoji": "ÃÂÃÂÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ«ÃÂÃÂÃÂÃÂ",
             "color": "#C47820",
             "prepMode": true,
             "ingredients": [
@@ -842,13 +844,13 @@
               "lemon"
             ],
             "steps": [
-              "Use canned or pre-cooked chickpeas. SautÃÂÃÂÃÂÃÂ© onion until golden. Add ginger, garlic, cook 2 min.",
-              "Add blended tomato and chole masala. Cook until oil separates ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ about 4 min.",
-              "Add chickpeas with ÃÂÃÂÃÂÃÂ¼ cup water. Simmer 10 min until thick and saucy.",
+              "Use canned or pre-cooked chickpeas. SautÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ© onion until golden. Add ginger, garlic, cook 2 min.",
+              "Add blended tomato and chole masala. Cook until oil separates ÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ about 4 min.",
+              "Add chickpeas with ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¼ cup water. Simmer 10 min until thick and saucy.",
               "For jeera rice: heat ghee, add cumin seeds, add soaked basmati rice, cook 12 min covered on lowest heat.",
               "Serve chole over jeera rice with coriander, lemon and sliced onion."
             ],
-            "tip": "Canned chickpeas work perfectly here ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ saves 45 minutes without compromising taste. Drain and rinse well.",
+            "tip": "Canned chickpeas work perfectly here ÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ saves 45 minutes without compromising taste. Drain and rinse well.",
             "nutrition": {
               "calories": 360,
               "protein": 17,
@@ -865,7 +867,7 @@
             "protein": 18,
             "prepTime": 40,
             "cost": 3,
-            "emoji": "ÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂ",
+            "emoji": "ÃÂÃÂÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ",
             "color": "#8B4513",
             "ingredients": [
               "whole wheat flour",
@@ -883,11 +885,11 @@
             "steps": [
               "For dal: pressure cook mixed dals with turmeric. Make a thick masala, combine with dal, simmer until thick.",
               "For baati: mix wheat flour, semolina, ghee, salt, baking soda with enough water to make stiff dough. Shape into smooth balls.",
-              "Bake baati at 180ÃÂÃÂÃÂÃÂ°C for 25ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ30 min turning halfway until golden and cooked through.",
+              "Bake baati at 180ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ°C for 25ÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ30 min turning halfway until golden and cooked through.",
               "Crack baati open and pour warm ghee generously inside each one.",
               "Serve baati dunked in thick dal with onion, green chilli and lemon on the side."
             ],
-            "tip": "Baati should have a firm, bread-like texture ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ not soft like roti. The crust should be golden all around.",
+            "tip": "Baati should have a firm, bread-like texture ÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ not soft like roti. The crust should be golden all around.",
             "nutrition": {
               "calories": 460,
               "protein": 18,
@@ -1003,5 +1005,5 @@
     "budget": false
   },
   "pantryUpdatedAt": "2026-03-31T08:39:29.904Z",
-  "lastUpdated": "2026-04-04T13:26:34.908Z"
+  "lastUpdated": "2026-04-04T13:31:45.298Z"
 }
