@@ -85,7 +85,8 @@
     "cooked rice": true,
     "flattened rice": true,
     "garam masala": true,
-    "ghee": true
+    "ghee": true,
+    "green chilli": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -123,5 +124,5 @@
     "budget": false
   },
   "pantryUpdatedAt": "2026-04-04T14:11:19.943Z",
-  "lastUpdated": "2026-04-04T16:34:30.292Z"
+  "lastUpdated": "2026-04-04T16:34:32.556Z"
 }
