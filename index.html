@@ -77,7 +77,7 @@ button,input{font-family:'DM Sans',sans-serif;}
 .nav-btn.on .nav-dot{opacity:1;}
 .page{display:none;}
 .page.active{display:block;position:absolute;top:0;left:0;right:0;bottom:0;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;padding:16px;padding-bottom:calc(66px + var(--sab));box-sizing:border-box;}
-@media(min-width:600px){.page.active{padding-left:max(16px,calc((100% - 508px)/2));padding-right:max(16px,calc((100% - 508px)/2));}}
+@media(min-width:600px){.page.active{padding-left:max(20px,calc((100% - 560px)/2));padding-right:max(20px,calc((100% - 560px)/2));}}@media(min-width:900px){.page.active{padding-left:max(24px,calc((100% - 680px)/2));padding-right:max(24px,calc((100% - 680px)/2));}}
 
 /* ── CARDS ── */
 .card{background:var(--s1);border:1px solid var(--s3);border-radius:13px;padding:16px;margin-bottom:12px;}
@@ -388,7 +388,7 @@ button,input{font-family:'DM Sans',sans-serif;}
         </div>
         <!-- How it works hint -->
         <div style="margin-top:16px;padding:14px;background:var(--s2);border-radius:12px;border:1px solid var(--s3);">
-          <div style="font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--t3);margin-bottom:10px;">How RasaWeekly works</div>
+          <div style="font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--t3);margin-bottom:10px;">How Annam works</div>
           <div style="display:flex;flex-direction:column;gap:8px;">
             <div style="display:flex;gap:10px;align-items:flex-start;"><span style="font-size:.8rem;width:20px;flex-shrink:0;">🥬</span><div style="font-size:.75rem;color:var(--t2);line-height:1.5;"><strong style="color:var(--t1);">Pantry</strong> — add ingredients you have at home</div></div>
             <div style="display:flex;gap:10px;align-items:flex-start;"><span style="font-size:.8rem;width:20px;flex-shrink:0;">📅</span><div style="font-size:.75rem;color:var(--t2);line-height:1.5;"><strong style="color:var(--t1);">Week</strong> — generate 21 meals matched to your pantry, split between A & N</div></div>
@@ -442,7 +442,9 @@ button,input{font-family:'DM Sans',sans-serif;}
 
       <div id="week-empty" style="text-align:center;padding:24px 0;display:none;">
         <div style="font-size:1.6rem;margin-bottom:8px;">📅</div>
-        <div style="font-size:.78rem;color:var(--t3);margin-bottom:12px;">Plan auto-generates every Saturday.<br>Check the Week tab Saturday morning!</div>
+        <div style="font-size:.78rem;color:var(--t3);margin-bottom:16px;">No active plan. Generate one now or wait for Saturday auto-generation.</div>
+        <button class="btn btn-gold" style="width:100%;height:48px;font-size:.88rem;font-weight:700;margin-bottom:8px;" onclick="runGenerate(false,false)">✨ Generate This Week's Plan</button>
+        <div style="font-size:.68rem;color:var(--t3);">Plan auto-generates every Saturday midnight</div>
       </div>
 
     </div>
@@ -1529,9 +1531,44 @@ function setGenLoading(on) {
 function showGenErr(msg) { const e=document.getElementById('gen-err'); if(e){e.textContent='⚠ '+msg;e.style.display='block';} }
 function hideGenErr()    { const e=document.getElementById('gen-err'); if(e) e.style.display='none'; }
 
+
+// ── RESTORE WEEK FROM HISTORY ─────────────────────────────────────────────────
+function restoreWeek(id) {
+  const entry = ST.history.find(h => String(h.id) === String(id));
+  if (!entry) { toast('Week not found'); return; }
+  // Warn if active plan exists — restoring will overwrite it
+  if (ST.plan) {
+    const done = Object.values(ST.completed).filter(Boolean).length;
+    if (!confirm(`You have an active plan (${done}/21 meals done). Restoring this week will replace it. Continue?`)) return;
+  } else {
+    if (!confirm('Restore this week\'s plan as your active plan?')) return;
+  }
+  // Rebuild plan from history entry
+  ST.plan = entry.plan.map(d => ({
+    day: d.day,
+    Breakfast: BYID[d.B?.id || d.B] || d.B,
+    Lunch:     BYID[d.L?.id || d.L] || d.L,
+    Dinner:    BYID[d.D?.id || d.D] || d.D,
+  }));
+  ST.cookMap   = entry.cookMap || {};
+  ST.completed = entry.completed || {};
+  // Remove from history
+  ST.history = ST.history.filter(h => String(h.id) !== String(id));
+  renderAll();
+  debouncedSave('Restored week');
+  toast('Week restored ✓');
+  switchTab('today');
+}
+
 function archiveWeek() {
   if (!ST.plan) return;
   const done = Object.values(ST.completed).filter(Boolean).length;
+  const total = 21;
+  // Confirm before archiving — especially if few meals done
+  const msg = done < total
+    ? `You've completed ${done}/${total} meals this week. Archive and start fresh?`
+    : `Archive this week and start next week's plan?`;
+  if (!confirm(msg)) return;
   ST.history = [{
     id:Date.now(), archivedAt:Date.now(),
     label: new Date().toLocaleDateString('en-AU',{day:'numeric',month:'short',year:'numeric'}),
@@ -1631,7 +1668,7 @@ function checkAllShop() { getShopItems().forEach(i=>ST.shopChecked[i]=true); ren
 function exportList() {
   const items = getShopItems();
   const lines = [
-    'RasaWeekly - Shopping List',
+    'Annam - Shopping List',
     new Date().toLocaleDateString('en-AU',{weekday:'long',day:'numeric',month:'long'}),
     '',
     'NEED TO BUY:',
@@ -2251,7 +2288,10 @@ function renderHistory() {
             <div class="serif" style="font-size:.9rem;font-weight:700;">${entry.label}</div>
             <div style="font-size:.66rem;color:var(--t3);margin-top:1px;">${entry.stats.done}/21 done · avg ${entry.stats.avgP}g protein</div>
           </div>
-          <div style="font-family:'Fraunces',serif;font-size:1rem;color:var(--green);">${Math.round(entry.stats.done/21*100)}%</div>
+          <div style="display:flex;align-items:center;gap:6px;">
+            <div style="font-family:'Fraunces',serif;font-size:1rem;color:var(--green);">${Math.round(entry.stats.done/21*100)}%</div>
+            ${!ST.plan ? `<button onclick="event.stopPropagation();restoreWeek('${entry.id}')" style="background:var(--gold);border:none;border-radius:6px;padding:3px 8px;font-size:.64rem;font-weight:700;cursor:pointer;color:#000;font-family:'DM Sans',sans-serif;">Restore</button>` : ''}
+          </div>
           <div style="color:var(--t4);font-size:.64rem;transition:transform .18s;transform:${open?'rotate(90deg)':'none'};">▶</div>
         </div>
         ${open?`<div class="hist-body">${entry.plan.map(day=>`
@@ -2476,7 +2516,7 @@ function scheduleWeeklyReminder() {
   sat.setDate(now.getDate()+((6-now.getDay()+7)%7||7));
   sat.setHours(14,0,0,0);
   const ms=sat-now;
-  if (ms>0 && ms<7*24*60*60*1000) setTimeout(()=>new Notification('🍛 RasaWeekly',{body:"Time to plan next week's meals!"}),ms);
+  if (ms>0 && ms<7*24*60*60*1000) setTimeout(()=>new Notification('🍛 Annam',{body:"Time to plan next week's meals!"}),ms);
 }
 
 // ── PDF PRINT ─────────────────────────────────────────────────────────────────
