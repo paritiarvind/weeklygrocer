@@ -106,7 +106,8 @@
     "cauliflower": true,
     "cucumber": true,
     "red lentils": true,
-    "quinoa": true
+    "quinoa": true,
+    "potato": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -144,5 +145,5 @@
     "budget": false
   },
   "pantryUpdatedAt": "2026-04-04T14:11:19.943Z",
-  "lastUpdated": "2026-04-04T16:56:07.507Z"
+  "lastUpdated": "2026-04-04T16:56:09.657Z"
 }
