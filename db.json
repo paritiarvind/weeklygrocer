@@ -73,7 +73,8 @@
   "shopChecked": {
     "asafoetida": true,
     "bay leaf": true,
-    "carrot": true
+    "carrot": true,
+    "oregano": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -1007,5 +1008,5 @@
     "budget": false
   },
   "pantryUpdatedAt": "2026-03-31T08:39:29.904Z",
-  "lastUpdated": "2026-04-04T13:31:59.214Z"
+  "lastUpdated": "2026-04-04T13:32:12.198Z"
 }
