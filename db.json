@@ -73,7 +73,9 @@
   "shopChecked": {
     "salt": true,
     "coriander": true,
-    "coriander powder": true
+    "coriander powder": true,
+    "amchur": true,
+    "asafoetida": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -111,5 +113,5 @@
     "budget": false
   },
   "pantryUpdatedAt": "2026-04-04T14:11:19.943Z",
-  "lastUpdated": "2026-04-04T16:33:36.477Z"
+  "lastUpdated": "2026-04-04T16:34:12.395Z"
 }
