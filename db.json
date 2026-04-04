@@ -28,7 +28,7 @@
       "day": "Friday",
       "b": "besan_chilla",
       "l": "buddha_bowl",
-      "dn": "pongal"
+      "dn": "pasta_arrabiata"
     },
     {
       "day": "Saturday",
@@ -46,33 +46,33 @@
   "nextPlan": [
     {
       "day": "Monday",
-      "b": "savoury_oats",
-      "l": "pesara_pappu",
+      "b": "pesarattu",
+      "l": "chana_masala",
       "dn": "frittata"
     },
     {
       "day": "Tuesday",
-      "b": "pesarattu",
-      "l": "chana_masala",
-      "dn": "pasta_arrabiata"
+      "b": "poha",
+      "l": "palak_paneer",
+      "dn": "mediterranean_bowl"
     },
     {
       "day": "Wednesday",
-      "b": "poha",
-      "l": "gongura_pappu",
+      "b": "savoury_oats",
+      "l": "greek_salad",
       "dn": "shakshuka"
     },
     {
       "day": "Thursday",
-      "b": "avo_toast",
-      "l": "palak_paneer",
-      "dn": "pasta_bake"
+      "b": "bread_upma",
+      "l": "rajma_chawal",
+      "dn": "stir_fry_tofu"
     },
     {
       "day": "Friday",
-      "b": "bread_upma",
-      "l": "greek_salad",
-      "dn": "stir_fry_tofu"
+      "b": "avo_toast",
+      "l": "egg_fried_rice",
+      "dn": "pasta_bake"
     },
     {
       "day": "Saturday",
@@ -83,7 +83,7 @@
     {
       "day": "Sunday",
       "b": "paneer_bhurji",
-      "l": "curd_rice",
+      "l": "gongura_pappu",
       "dn": "dosakaya_pappu"
     }
   ],
@@ -142,10 +142,7 @@
     "Tuesday-Lunch": true,
     "Tuesday-Dinner": true,
     "Wednesday-Lunch": true,
-    "Wednesday-Breakfast": true,
-    "Wednesday-Dinner": true,
-    "Thursday-Lunch": true,
-    "Thursday-Breakfast": true
+    "Wednesday-Breakfast": true
   },
   "shopChecked": {},
   "manualItems": [],
@@ -219,10 +216,10 @@
     "cashew"
   ],
   "filters": {
-    "protein": true,
+    "protein": false,
     "quick": false,
     "budget": false
   },
   "pantryUpdatedAt": "2026-03-31T08:39:29.904Z",
-  "lastUpdated": "2026-04-04T02:07:01.211Z"
+  "lastUpdated": "2026-04-04T02:15:49.805Z"
 }
