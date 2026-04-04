@@ -43,7 +43,50 @@
       "dn": "dal_baati"
     }
   ],
-  "nextPlan": null,
+  "nextPlan": [
+    {
+      "day": "Monday",
+      "b": "savoury_oats",
+      "l": "pesara_pappu",
+      "dn": "frittata"
+    },
+    {
+      "day": "Tuesday",
+      "b": "pesarattu",
+      "l": "chana_masala",
+      "dn": "pasta_arrabiata"
+    },
+    {
+      "day": "Wednesday",
+      "b": "poha",
+      "l": "gongura_pappu",
+      "dn": "shakshuka"
+    },
+    {
+      "day": "Thursday",
+      "b": "avo_toast",
+      "l": "palak_paneer",
+      "dn": "pasta_bake"
+    },
+    {
+      "day": "Friday",
+      "b": "bread_upma",
+      "l": "greek_salad",
+      "dn": "stir_fry_tofu"
+    },
+    {
+      "day": "Saturday",
+      "b": "moong_cheela",
+      "l": "dal_tadka",
+      "dn": "matar_paneer"
+    },
+    {
+      "day": "Sunday",
+      "b": "paneer_bhurji",
+      "l": "curd_rice",
+      "dn": "dosakaya_pappu"
+    }
+  ],
   "cookMap": {
     "0": "N",
     "1": "A",
@@ -67,7 +110,29 @@
     "19": "A",
     "20": "N"
   },
-  "nextCookMap": {},
+  "nextCookMap": {
+    "0": "A",
+    "1": "N",
+    "2": "A",
+    "3": "N",
+    "4": "A",
+    "5": "N",
+    "6": "A",
+    "7": "N",
+    "8": "A",
+    "9": "N",
+    "10": "A",
+    "11": "N",
+    "12": "A",
+    "13": "N",
+    "14": "A",
+    "15": "N",
+    "16": "A",
+    "17": "N",
+    "18": "A",
+    "19": "N",
+    "20": "A"
+  },
   "genNum": 1,
   "completed": {
     "Monday-Breakfast": true,
@@ -159,5 +224,5 @@
     "budget": false
   },
   "pantryUpdatedAt": "2026-03-31T08:39:29.904Z",
-  "lastUpdated": "2026-04-01T20:20:55.276Z"
+  "lastUpdated": "2026-04-04T02:07:01.211Z"
 }
