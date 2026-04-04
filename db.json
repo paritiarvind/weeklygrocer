@@ -1,9 +1,74 @@
 {
-  "plan": null,
+  "plan": [
+    {
+      "day": "Monday",
+      "b": "besan_chilla",
+      "l": "palak_paneer",
+      "dn": "frittata"
+    },
+    {
+      "day": "Tuesday",
+      "b": "avo_toast",
+      "l": "chole_rice",
+      "dn": "shakshuka"
+    },
+    {
+      "day": "Wednesday",
+      "b": "savoury_oats",
+      "l": "soya_curry",
+      "dn": "mediterranean_bowl"
+    },
+    {
+      "day": "Thursday",
+      "b": "poha",
+      "l": "egg_fried_rice",
+      "dn": "lentil_soup"
+    },
+    {
+      "day": "Friday",
+      "b": "moong_sprouts",
+      "l": "greek_salad",
+      "dn": "pasta_bake"
+    },
+    {
+      "day": "Saturday",
+      "b": "pesarattu",
+      "l": "chana_masala",
+      "dn": "baingan_bharta"
+    },
+    {
+      "day": "Sunday",
+      "b": "paneer_bhurji",
+      "l": "dal_tadka",
+      "dn": "aloo_gobi"
+    }
+  ],
   "nextPlan": null,
-  "cookMap": {},
+  "cookMap": {
+    "0": "N",
+    "1": "A",
+    "2": "N",
+    "3": "A",
+    "4": "N",
+    "5": "A",
+    "6": "N",
+    "7": "A",
+    "8": "N",
+    "9": "A",
+    "10": "N",
+    "11": "A",
+    "12": "N",
+    "13": "A",
+    "14": "N",
+    "15": "A",
+    "16": "N",
+    "17": "A",
+    "18": "N",
+    "19": "A",
+    "20": "N"
+  },
   "nextCookMap": {},
-  "genNum": 0,
+  "genNum": 1,
   "completed": {},
   "shopChecked": {},
   "manualItems": [],
@@ -34,5 +99,5 @@
     "budget": false
   },
   "pantryUpdatedAt": "",
-  "lastUpdated": "2026-04-04T14:09:06.927Z"
+  "lastUpdated": "2026-04-04T14:09:15.141Z"
 }
