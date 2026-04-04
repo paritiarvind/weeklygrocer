@@ -79,7 +79,9 @@
     "peanuts": true,
     "oregano": true,
     "idli batter": true,
-    "drumstick": true
+    "drumstick": true,
+    "hummus": true,
+    "parsley": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -1014,5 +1016,5 @@
     "budget": false
   },
   "pantryUpdatedAt": "2026-04-04T13:32:35.143Z",
-  "lastUpdated": "2026-04-04T14:02:28.688Z"
+  "lastUpdated": "2026-04-04T14:02:50.061Z"
 }
