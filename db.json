@@ -2,7 +2,7 @@
   "plan": [
     {
       "day": "Monday",
-      "b": "besan_chilla",
+      "b": "upma",
       "l": "palak_paneer",
       "dn": "frittata"
     },
@@ -111,5 +111,5 @@
     "budget": false
   },
   "pantryUpdatedAt": "2026-04-04T14:11:19.943Z",
-  "lastUpdated": "2026-04-04T16:32:46.931Z"
+  "lastUpdated": "2026-04-04T16:32:56.748Z"
 }
