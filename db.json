@@ -76,7 +76,10 @@
     "coriander powder": true,
     "amchur": true,
     "asafoetida": true,
-    "basmati rice": true
+    "basmati rice": true,
+    "capsicum": true,
+    "carrot": true,
+    "cashews": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -114,5 +117,5 @@
     "budget": false
   },
   "pantryUpdatedAt": "2026-04-04T14:11:19.943Z",
-  "lastUpdated": "2026-04-04T16:34:16.886Z"
+  "lastUpdated": "2026-04-04T16:34:21.493Z"
 }
