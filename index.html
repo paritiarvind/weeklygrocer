@@ -3,14 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<link rel="manifest" href="manifest.json">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Annam">
-<link rel="manifest" href="./manifest.json">
-<!-- Recommended for iPhone -->
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="default" />
-<link rel="apple-touch-icon" href="./icon.png" />
 <meta name="theme-color" content="#0a0a0a">
 <title>Annam</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -288,6 +284,25 @@ button,input{font-family:'DM Sans',sans-serif;}
 @media(min-width:600px){
   #content 
 }
+
+/* ── GUIDED TOUR ── */
+#tour-overlay{position:fixed;inset:0;z-index:800;pointer-events:none;}
+#tour-overlay.active{pointer-events:all;}
+#tour-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.82);transition:opacity .3s;}
+#tour-spotlight{position:absolute;border-radius:16px;box-shadow:0 0 0 9999px rgba(0,0,0,.82);transition:all .4s cubic-bezier(.4,0,.2,1);border:2px solid rgba(240,160,48,.6);}
+#tour-sheet{position:absolute;bottom:0;left:0;right:0;background:var(--s1);border-radius:24px 24px 0 0;padding:24px 20px 36px;border-top:1px solid var(--s3);transform:translateY(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);}
+#tour-sheet.visible{transform:translateY(0);}
+.tour-dots{display:flex;gap:6px;justify-content:center;margin-bottom:16px;}
+.tour-dot{width:6px;height:6px;border-radius:50%;background:var(--s4);transition:all .2s;}
+.tour-dot.active{background:var(--gold);width:18px;border-radius:3px;}
+.tour-step-icon{font-size:2.2rem;text-align:center;margin-bottom:10px;}
+.tour-step-title{font-family:'Fraunces',serif;font-size:1.3rem;font-weight:700;color:var(--t1);text-align:center;margin-bottom:8px;line-height:1.2;}
+.tour-step-body{font-size:.84rem;color:var(--t2);text-align:center;line-height:1.6;margin-bottom:20px;}
+.tour-step-tip{font-size:.72rem;color:var(--gold);text-align:center;background:rgba(240,160,48,.06);border:1px solid rgba(240,160,48,.15);border-radius:8px;padding:8px 12px;margin-bottom:20px;}
+.tour-actions{display:grid;grid-template-columns:1fr 2fr;gap:8px;}
+.tour-actions.first{grid-template-columns:1fr;}
+.tour-skip{background:none;border:1px solid var(--s3);border-radius:12px;padding:12px;font-size:.82rem;color:var(--t3);cursor:pointer;font-family:'DM Sans',sans-serif;}
+.tour-next{background:linear-gradient(135deg,var(--gold),var(--gold2));border:none;border-radius:12px;padding:12px;font-size:.88rem;font-weight:700;color:#000;cursor:pointer;font-family:'DM Sans',sans-serif;}
 </style>
 </head>
 <body>
@@ -504,6 +519,23 @@ button,input{font-family:'DM Sans',sans-serif;}
           <div style="flex:1;">
             <div style="font-size:.84rem;font-weight:500;">Saturday 2pm reminder</div>
             <div style="font-size:.68rem;color:var(--t3);margin-top:1px;">Plan next week's meals together</div>
+
+        <!-- Push notifications card -->
+        <div class="card" style="margin-top:8px;">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <span style="font-size:1.1rem;">📲</span>
+            <div style="flex:1;">
+              <div style="font-size:.84rem;font-weight:500;">Push notifications</div>
+              <div style="font-size:.68rem;color:var(--t3);margin-top:1px;" id="push-status">Prep reminders · Plan ready alerts · Both phones</div>
+            </div>
+            <button id="push-btn" onclick="togglePush()" style="background:var(--s3);border:none;border-radius:8px;padding:5px 12px;font-size:.72rem;font-weight:700;cursor:pointer;color:var(--t1);font-family:'DM Sans',sans-serif;white-space:nowrap;">Enable</button>
+          </div>
+          <div id="push-info" style="display:none;margin-top:8px;padding:8px 10px;background:rgba(240,160,48,.06);border-radius:8px;border:1px solid rgba(240,160,48,.15);">
+            <div style="font-size:.68rem;color:var(--t2);line-height:1.6;">
+              <strong style="color:var(--gold);">📱 iPhone users:</strong> Tap Share → "Add to Home Screen" first, then enable notifications. Push only works when Annam is installed as a home screen app.
+            </div>
+          </div>
+        </div>
           </div>
           <span id="notif-status" style="font-size:.62rem;padding:2px 8px;border-radius:4px;font-weight:700;"></span>
         </div>
@@ -528,6 +560,9 @@ button,input{font-family:'DM Sans',sans-serif;}
         </button>
 
         <!-- Change config -->
+        <button class="btn btn-ghost" style="width:100%;justify-content:center;margin-bottom:7px;" onclick="startTour()">
+          🗺 Take a guided tour
+        </button>
         <button class="btn btn-ghost" style="width:100%;justify-content:center;" onclick="confirmResetSetup()">
           ⚙ Change GitHub config
         </button>
@@ -556,6 +591,23 @@ button,input{font-family:'DM Sans',sans-serif;}
 
   </div><!-- /content -->
 
+
+  <!-- GUIDED TOUR OVERLAY -->
+  <div id="tour-overlay" role="dialog" aria-modal="true">
+    <div id="tour-backdrop" onclick="tourBackdropClick()"></div>
+    <div id="tour-spotlight"></div>
+    <div id="tour-sheet">
+      <div class="tour-dots" id="tour-dots"></div>
+      <div class="tour-step-icon" id="tour-icon"></div>
+      <div class="tour-step-title" id="tour-title"></div>
+      <div class="tour-step-body" id="tour-body"></div>
+      <div class="tour-step-tip" id="tour-tip" style="display:none;"></div>
+      <div class="tour-actions" id="tour-actions">
+        <button class="tour-skip" onclick="endTour()">Skip</button>
+        <button class="tour-next" id="tour-next-btn" onclick="tourNext()">Next →</button>
+      </div>
+    </div>
+  </div>
   <!-- BOTTOM NAV -->
   <nav id="bottomnav">
     <button class="nav-btn on" onclick="switchTab('today')" id="nav-today">
@@ -625,6 +677,7 @@ let ST = {
   mealNotes: {},       // {day-meal: "note text"}
   cookOverrides: {},   // {slot: 'A'|'N'} manual overrides
   nApproved: false,    // N confirmed the current plan
+  pushSubscriptions: [], // push subscription objects for both phones
   manualItems: [], history: [],
   groceries: ['avocado','eggs','paneer','chickpeas','spinach','oats','pasta','garlic','onion','olive oil','lemon','feta cheese','ginger','cumin','turmeric'],
   filters: {protein:true, quick:false, budget:false},
@@ -1382,6 +1435,7 @@ async function loadFromGitHub(showMsg=false, skipShopRender=false) {
     ST.history      = db.history      || [];
     ST.lastUpdated  = db.lastUpdated  || '';
     if (db.groceries && db.groceries.length) ST.groceries = db.groceries;
+    if (db.pushSubscriptions) ST.pushSubscriptions = db.pushSubscriptions;
     if (db.filters)          ST.filters          = db.filters;
     if (db.pantryUpdatedAt)  ST.pantryUpdatedAt  = db.pantryUpdatedAt;
     setSyncStatus('ok','Synced');
@@ -1420,6 +1474,7 @@ async function saveToGitHub(msg='Update') {
       cookOverrides: ST.cookOverrides,
       history:     ST.history,    groceries:   ST.groceries,
       filters:     ST.filters,    pantryUpdatedAt: ST.pantryUpdatedAt,
+      pushSubscriptions: ST.pushSubscriptions || [],
       lastUpdated: new Date().toISOString(),
     };
     const body = { message:msg, content:btoa(unescape(encodeURIComponent(JSON.stringify(db,null,2)))) };
@@ -2952,6 +3007,320 @@ function renderTonightPrep() {
   </div>`;
 }
 
+
+// ── PWA PUSH NOTIFICATIONS ────────────────────────────────────────────────────
+const VAPID_PUBLIC_KEY = 'BOkhIOtpBLfw3Kb84477fgQlXU-GlbdaNRTFGslyJ_0Bwr_fhElY2QziRtR-DKEHhwxzNZG8mkONwDxfF6D1U2E';
+
+function urlBase64ToUint8Array(base64String) {
+  const padding = '='.repeat((4 - base64String.length % 4) % 4);
+  const base64 = (base64String + padding).replace(/-/g, '+').replace(/_/g, '/');
+  const raw = atob(base64);
+  return new Uint8Array([...raw].map(c => c.charCodeAt(0)));
+}
+
+let swRegistration = null;
+
+async function registerServiceWorker() {
+  if (!('serviceWorker' in navigator)) return;
+  try {
+    swRegistration = await navigator.serviceWorker.register('/weeklygrocer/sw.js', { scope: '/weeklygrocer/' });
+    console.log('SW registered');
+    // Listen for subscription change messages from SW
+    navigator.serviceWorker.addEventListener('message', e => {
+      if (e.data?.type === 'SUBSCRIPTION_CHANGED') savePushSubscription(e.data.subscription);
+    });
+    updatePushUI();
+  } catch(e) {
+    console.warn('SW registration failed:', e);
+  }
+}
+
+async function getCurrentSubscription() {
+  if (!swRegistration) return null;
+  return await swRegistration.pushManager.getSubscription();
+}
+
+async function togglePush() {
+  const sub = await getCurrentSubscription();
+  if (sub) {
+    await unsubscribePush(sub);
+  } else {
+    await subscribePush();
+  }
+}
+
+async function subscribePush() {
+  if (!swRegistration) { toast('Service worker not ready — try again'); return; }
+  const perm = await Notification.requestPermission();
+  if (perm !== 'granted') {
+    toast('Notifications blocked — enable in phone settings');
+    const info = document.getElementById('push-info');
+    if (info) info.style.display = 'block';
+    return;
+  }
+  try {
+    const sub = await swRegistration.pushManager.subscribe({
+      userVisibleOnly: true,
+      applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY)
+    });
+    await savePushSubscription(sub.toJSON());
+    updatePushUI();
+    toast('🔔 Push notifications enabled!');
+  } catch(e) {
+    console.error('Subscribe failed:', e);
+    if (Notification.permission === 'denied') {
+      toast('Notifications blocked in settings');
+    } else {
+      toast('Could not enable notifications — are you on home screen?');
+      const info = document.getElementById('push-info');
+      if (info) info.style.display = 'block';
+    }
+  }
+}
+
+async function unsubscribePush(sub) {
+  try {
+    await sub.unsubscribe();
+    // Remove from db.json
+    const subs = ST.pushSubscriptions || [];
+    const endpoint = sub.endpoint;
+    ST.pushSubscriptions = subs.filter(s => s.endpoint !== endpoint);
+    debouncedSave('Push unsubscribed');
+    updatePushUI();
+    toast('Notifications disabled');
+  } catch(e) {
+    console.error('Unsubscribe failed:', e);
+  }
+}
+
+async function savePushSubscription(subJson) {
+  if (!ST.pushSubscriptions) ST.pushSubscriptions = [];
+  // Replace existing subscription with same endpoint, or add new
+  const idx = ST.pushSubscriptions.findIndex(s => s.endpoint === subJson.endpoint);
+  if (idx >= 0) ST.pushSubscriptions[idx] = subJson;
+  else ST.pushSubscriptions.push(subJson);
+  debouncedSave('Push subscription saved');
+}
+
+async function updatePushUI() {
+  const btn    = document.getElementById('push-btn');
+  const status = document.getElementById('push-status');
+  if (!btn || !status) return;
+
+  if (!('Notification' in window)) {
+    btn.textContent = 'Not supported';
+    btn.disabled = true;
+    status.textContent = 'Push not supported on this browser';
+    return;
+  }
+
+  const sub = await getCurrentSubscription();
+  if (sub) {
+    btn.textContent    = 'Disable';
+    btn.style.background = 'rgba(240,96,96,.15)';
+    btn.style.color      = 'var(--red)';
+    status.textContent   = '✓ Active — prep reminders + plan alerts enabled';
+    status.style.color   = 'var(--green)';
+  } else {
+    btn.textContent    = 'Enable';
+    btn.style.background = 'var(--gold)';
+    btn.style.color      = '#000';
+    status.textContent   = 'Prep reminders · Plan ready alerts · Both phones';
+    status.style.color   = 'var(--t3)';
+  }
+}
+
+// Send a local test notification (useful for testing)
+async function sendTestNotification() {
+  if (!swRegistration) return;
+  const sub = await getCurrentSubscription();
+  if (!sub) { toast('Enable notifications first'); return; }
+  // Show a local notification directly (no server needed for test)
+  swRegistration.showNotification('🍛 Annam', {
+    body: 'Notifications are working! You\'ll get tonight\'s prep reminders here.',
+    icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192"><rect width="192" height="192" rx="40" fill="%230a0a0a"/><text y="130" x="24" font-size="130">🍛</text></svg>',
+    vibrate: [200, 100, 200],
+    tag: 'annam-test',
+  });
+}
+
+
+// ── GUIDED TOUR ───────────────────────────────────────────────────────────────
+const TOUR_KEY = 'annam_tour_done';
+
+const TOUR_STEPS = [
+  {
+    icon: '🍛',
+    title: 'Welcome to Annam',
+    body: 'Your family meal planner for A & N. 21 meals a week — South Indian, North Indian, and Western — matched to your pantry and split between the two of you.',
+    tip: 'This tour takes 30 seconds. Tap Next to begin.',
+    target: null,
+    tab: 'today',
+  },
+  {
+    icon: '🍽️',
+    title: "Today's meals",
+    body: "Your 3 meals for today. Tap any card to see the full recipe, nutrition info, and a step-by-step Cook Now guide.",
+    tip: "Tick the ○ button when you've eaten a meal to track your progress.",
+    target: 'today-meals',
+    tab: 'today',
+  },
+  {
+    icon: '📅',
+    title: 'Your weekly plan',
+    body: 'See all 21 meals for the week. Each meal shows who cooks, prep time, and protein. Tap any meal to swap it if you want something different.',
+    tip: 'The plan auto-generates every Saturday midnight — you get an email to review it before shopping.',
+    target: 'week-plan-list',
+    tab: 'week',
+  },
+  {
+    icon: '🛒',
+    title: 'Shopping list',
+    body: "Your grocery list is auto-generated from the week's recipes. Tick items as you buy them — syncs instantly to both phones.",
+    tip: 'Save the PDF from the Week tab and cut out the shopping list section to carry to the shops.',
+    target: 'page-shop',
+    tab: 'shop',
+  },
+  {
+    icon: '🥬',
+    title: 'Your pantry',
+    body: 'Add ingredients you have at home. The app scores every recipe by pantry match — more items means better recommendations each week.',
+    tip: 'After grocery shopping, your pantry updates automatically from the shopping list.',
+    target: 'pantry-chips',
+    tab: 'pantry',
+  },
+  {
+    icon: '🎉',
+    title: "You're all set!",
+    body: "Every Saturday at 2pm you get an email with next week's plan. Review it, swap anything, do the shop, and enjoy your week.",
+    tip: null,
+    target: null,
+    tab: 'today',
+    last: true,
+  },
+];
+
+let tourStep = 0;
+let tourActive = false;
+
+function startTour() {
+  tourStep   = 0;
+  tourActive = true;
+  const overlay = document.getElementById('tour-overlay');
+  overlay.classList.add('active');
+  renderTourStep();
+  // Animate sheet in
+  setTimeout(() => {
+    document.getElementById('tour-sheet').classList.add('visible');
+  }, 50);
+}
+
+function endTour() {
+  tourActive = false;
+  const overlay = document.getElementById('tour-overlay');
+  const sheet   = document.getElementById('tour-sheet');
+  const spot    = document.getElementById('tour-spotlight');
+  sheet.classList.remove('visible');
+  setTimeout(() => {
+    overlay.classList.remove('active');
+    spot.style.opacity = '0';
+  }, 350);
+  try { localStorage.setItem(TOUR_KEY, '1'); } catch(_) {}
+}
+
+function tourNext() {
+  if (tourStep < TOUR_STEPS.length - 1) {
+    tourStep++;
+    renderTourStep();
+  } else {
+    endTour();
+  }
+}
+
+function tourBackdropClick() {
+  // Tapping backdrop advances tour (feels natural on mobile)
+  tourNext();
+}
+
+function renderTourStep() {
+  const step = TOUR_STEPS[tourStep];
+
+  // Switch tab if needed
+  if (step.tab) switchTab(step.tab);
+
+  // Update content
+  document.getElementById('tour-icon').textContent  = step.icon;
+  document.getElementById('tour-title').textContent = step.title;
+  document.getElementById('tour-body').textContent  = step.body;
+
+  const tipEl = document.getElementById('tour-tip');
+  if (step.tip) {
+    tipEl.textContent    = '💡 ' + step.tip;
+    tipEl.style.display  = 'block';
+  } else {
+    tipEl.style.display  = 'none';
+  }
+
+  // Dots
+  const dotsEl = document.getElementById('tour-dots');
+  dotsEl.innerHTML = TOUR_STEPS.map((_,i) =>
+    `<div class="tour-dot${i===tourStep?' active':''}"></div>`
+  ).join('');
+
+  // Next button label
+  const nextBtn = document.getElementById('tour-next-btn');
+  nextBtn.textContent = step.last ? "🎉 Let's go!" : 'Next →';
+
+  // Actions — first step has no skip (just next full width)
+  const actionsEl = document.getElementById('tour-actions');
+  if (tourStep === 0) {
+    actionsEl.className = 'tour-actions first';
+    actionsEl.innerHTML = '<button class="tour-next" onclick="tourNext()" style="width:100%;font-size:.95rem;">Get started →</button>';
+  } else if (step.last) {
+    actionsEl.className = 'tour-actions first';
+    actionsEl.innerHTML = `<button class="tour-next" onclick="endTour()" style="width:100%;font-size:.95rem;">🎉 Let's go!</button>`;
+  } else {
+    actionsEl.className = 'tour-actions';
+    actionsEl.innerHTML = '<button class="tour-skip" onclick="endTour()">Skip tour</button><button class="tour-next" onclick="tourNext()">Next →</button>';
+  }
+
+  // Spotlight — find target element and animate spotlight to it
+  const spot = document.getElementById('tour-spotlight');
+  if (step.target) {
+    // Wait for tab to render
+    setTimeout(() => {
+      const el = document.getElementById(step.target);
+      if (!el) { spot.style.opacity = '0'; return; }
+      const rect = el.getBoundingClientRect();
+      const pad  = 8;
+      spot.style.cssText = `
+        position:absolute;
+        top:${rect.top - pad}px;
+        left:${rect.left - pad}px;
+        width:${rect.width + pad*2}px;
+        height:${Math.min(rect.height + pad*2, window.innerHeight * 0.45)}px;
+        border-radius:16px;
+        box-shadow:0 0 0 9999px rgba(0,0,0,.82);
+        border:2px solid rgba(240,160,48,.6);
+        transition:all .4s cubic-bezier(.4,0,.2,1);
+        opacity:1;
+        pointer-events:none;
+      `;
+    }, 120);
+  } else {
+    spot.style.opacity = '0';
+    spot.style.width   = '0';
+    spot.style.height  = '0';
+  }
+}
+
+function checkFirstRun() {
+  try {
+    const done = localStorage.getItem(TOUR_KEY);
+    if (!done) setTimeout(startTour, 1200); // slight delay so app renders first
+  } catch(_) {}
+}
+
 // ── BOOT ──────────────────────────────────────────────────────────────────────
 (async()=>{
   const setupEl = document.getElementById('setup-screen');
@@ -2969,6 +3338,7 @@ function renderTonightPrep() {
   if(appEl)   appEl.style.display='flex';
   renderFilters();
   renderAll();
+  checkFirstRun();
 
   try {
     await loadFromGitHub();
