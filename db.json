@@ -1002,13 +1002,14 @@
     "zucchini",
     "green peas",
     "quinoa",
-    "cashew"
+    "cashew",
+    "urad dal"
   ],
   "filters": {
     "protein": false,
     "quick": false,
     "budget": false
   },
-  "pantryUpdatedAt": "2026-03-31T08:39:29.904Z",
-  "lastUpdated": "2026-04-04T13:32:22.334Z"
+  "pantryUpdatedAt": "2026-04-04T13:32:35.143Z",
+  "lastUpdated": "2026-04-04T13:32:36.883Z"
 }
