@@ -40,7 +40,7 @@
       "day": "Sunday",
       "b": "aloo_paratha_north",
       "l": "rasam_rice",
-      "dn": "mukkala_pulusu"
+      "dn": "tarka_dhal_dinner"
     }
   ],
   "nextPlan": null,
@@ -157,5 +157,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-04T18:57:44.736Z"
+  "lastUpdated": "2026-04-04T19:41:18.236Z"
 }
