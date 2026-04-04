@@ -79,7 +79,10 @@
     "basmati rice": true,
     "capsicum": true,
     "carrot": true,
-    "cashews": true
+    "cashews": true,
+    "chaat masala": true,
+    "chilli flakes": true,
+    "cooked rice": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -117,5 +120,5 @@
     "budget": false
   },
   "pantryUpdatedAt": "2026-04-04T14:11:19.943Z",
-  "lastUpdated": "2026-04-04T16:34:21.493Z"
+  "lastUpdated": "2026-04-04T16:34:26.126Z"
 }
