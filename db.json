@@ -88,7 +88,9 @@
     "ghee": true,
     "green chilli": true,
     "Italian herbs": true,
-    "mixed greens": true
+    "mixed greens": true,
+    "moong sprouts": true,
+    "mustard seeds": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -126,5 +128,5 @@
     "budget": false
   },
   "pantryUpdatedAt": "2026-04-04T14:11:19.943Z",
-  "lastUpdated": "2026-04-04T16:34:44.425Z"
+  "lastUpdated": "2026-04-04T16:34:47.026Z"
 }
