@@ -130,6 +130,17 @@
       "goal": "maintain",
       "targetCal": 1950,
       "targetProtein": 65
+    },
+    {
+      "id": "C",
+      "name": "Member C",
+      "gender": "",
+      "age": 30,
+      "weight": 65,
+      "height": 170,
+      "goal": "maintain",
+      "targetCal": 2000,
+      "targetProtein": 70
     }
   ],
   "preferences": {
@@ -157,5 +168,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-04T18:52:53.225Z"
+  "lastUpdated": "2026-04-04T18:57:36.276Z"
 }
