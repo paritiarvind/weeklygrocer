@@ -96,13 +96,15 @@
     "tomato",
     "kidney beans",
     "besan",
-    "mozzarella"
+    "mozzarella",
+    "muesli",
+    "urad dal"
   ],
   "filters": {
     "protein": false,
     "quick": false,
     "budget": false
   },
-  "pantryUpdatedAt": "2026-04-04T14:11:04.806Z",
-  "lastUpdated": "2026-04-04T14:11:06.504Z"
+  "pantryUpdatedAt": "2026-04-04T14:11:16.218Z",
+  "lastUpdated": "2026-04-04T14:11:17.966Z"
 }
