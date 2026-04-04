@@ -86,7 +86,8 @@
     "flattened rice": true,
     "garam masala": true,
     "ghee": true,
-    "green chilli": true
+    "green chilli": true,
+    "Italian herbs": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -124,5 +125,5 @@
     "budget": false
   },
   "pantryUpdatedAt": "2026-04-04T14:11:19.943Z",
-  "lastUpdated": "2026-04-04T16:34:32.556Z"
+  "lastUpdated": "2026-04-04T16:34:35.607Z"
 }
