@@ -95,13 +95,14 @@
     "curd",
     "tomato",
     "kidney beans",
-    "besan"
+    "besan",
+    "mozzarella"
   ],
   "filters": {
     "protein": false,
     "quick": false,
     "budget": false
   },
-  "pantryUpdatedAt": "2026-04-04T14:11:02.278Z",
-  "lastUpdated": "2026-04-04T14:11:03.701Z"
+  "pantryUpdatedAt": "2026-04-04T14:11:04.806Z",
+  "lastUpdated": "2026-04-04T14:11:06.504Z"
 }
