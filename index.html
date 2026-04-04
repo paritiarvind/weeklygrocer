@@ -305,6 +305,46 @@ button,input{font-family:'DM Sans',sans-serif;}
 .tour-actions.first{grid-template-columns:1fr;}
 .tour-skip{background:none;border:1px solid var(--s3);border-radius:12px;padding:12px;font-size:.82rem;color:var(--t3);cursor:pointer;font-family:'DM Sans',sans-serif;}
 .tour-next{background:linear-gradient(135deg,var(--gold),var(--gold2));border:none;border-radius:12px;padding:12px;font-size:.88rem;font-weight:700;color:#000;cursor:pointer;font-family:'DM Sans',sans-serif;}
+
+/* ── SETTINGS ── */
+.settings-overlay{position:fixed;inset:0;z-index:500;display:none;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);}
+.settings-overlay.open{display:flex;flex-direction:column;}
+.settings-panel{background:var(--bg);flex:1;overflow-y:auto;margin-top:env(safe-area-inset-top,0px);}
+.settings-header{display:flex;align-items:center;gap:12px;padding:16px;border-bottom:1px solid var(--s3);position:sticky;top:0;background:var(--bg);z-index:1;}
+.settings-title{font-family:'Fraunces',serif;font-size:1.1rem;font-weight:700;flex:1;}
+.settings-close{background:var(--s2);border:1px solid var(--s3);border-radius:8px;width:32px;height:32px;cursor:pointer;color:var(--t2);font-size:1rem;display:flex;align-items:center;justify-content:center;}
+.settings-section{padding:16px;}
+.settings-section-title{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--t3);margin-bottom:10px;}
+.settings-row{display:flex;align-items:center;gap:12px;padding:11px 14px;background:var(--s1);border:1px solid var(--s3);border-radius:10px;margin-bottom:6px;cursor:pointer;}
+.settings-row-icon{font-size:1.1rem;flex-shrink:0;}
+.settings-row-text{flex:1;}
+.settings-row-label{font-size:.84rem;font-weight:500;color:var(--t1);}
+.settings-row-sub{font-size:.68rem;color:var(--t3);margin-top:1px;}
+.settings-row-value{font-size:.72rem;color:var(--gold);font-weight:600;}
+.settings-toggle{width:44px;height:26px;border-radius:13px;border:none;cursor:pointer;position:relative;transition:background .2s;flex-shrink:0;}
+.settings-toggle.on{background:var(--gold);}
+.settings-toggle.off{background:var(--s4);}
+.settings-toggle::after{content:'';position:absolute;top:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:left .2s;}
+.settings-toggle.on::after{left:21px;}
+.settings-toggle.off::after{left:3px;}
+.member-card{background:var(--s1);border:1px solid var(--s3);border-radius:12px;padding:14px;margin-bottom:8px;}
+.member-header{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.member-avatar{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1rem;flex-shrink:0;}
+.member-avatar-A{background:rgba(240,160,48,.2);color:var(--gold);}
+.member-avatar-N{background:rgba(91,163,245,.2);color:var(--blue);}
+.member-name{font-weight:600;font-size:.9rem;flex:1;}
+.member-goal{font-size:.66rem;color:var(--t3);margin-top:1px;}
+.member-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:10px;}
+.member-stat{background:var(--s2);border-radius:7px;padding:7px 8px;text-align:center;}
+.member-stat-v{font-size:.88rem;font-weight:700;color:var(--t1);}
+.member-stat-l{font-size:.6rem;color:var(--t3);margin-top:1px;}
+.cuisine-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+.cuisine-chip{display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:10px;border:1.5px solid var(--s3);background:var(--s1);cursor:pointer;transition:all .15s;}
+.cuisine-chip.on{border-color:var(--gold);background:rgba(240,160,48,.06);}
+.cuisine-chip-icon{font-size:1.2rem;}
+.cuisine-chip-label{font-size:.78rem;font-weight:500;color:var(--t2);}
+.cuisine-chip.on .cuisine-chip-label{color:var(--gold);}
+.coming-soon{font-size:.6rem;color:var(--t4);margin-left:auto;}
 </style>
 </head>
 <body>
@@ -348,6 +388,7 @@ button,input{font-family:'DM Sans',sans-serif;}
     </div>
     <button onclick="loadFromGitHub(true)" title="Refresh" style="width:30px;height:30px;border-radius:8px;border:1px solid var(--s3);background:var(--s2);color:var(--t2);cursor:pointer;font-size:.8rem;">↺</button>
     <button onclick="openShare()" style="width:30px;height:30px;border-radius:8px;border:1px solid var(--s3);background:var(--s2);color:var(--t2);cursor:pointer;font-size:.78rem;font-weight:700;">↗</button>
+    <button onclick="openSettings()" style="width:30px;height:30px;border-radius:8px;border:1px solid var(--s3);background:var(--s2);color:var(--t2);cursor:pointer;font-size:.82rem;">⚙</button>
   </div>
 
   <!-- CONTENT -->
@@ -444,7 +485,6 @@ button,input{font-family:'DM Sans',sans-serif;}
           <span id="plan-status-badge" style="font-size:.62rem;padding:2px 8px;border-radius:4px;font-weight:700;display:none;"></span>
         </div>
         <div style="font-size:.7rem;color:var(--t3);margin-bottom:10px;" id="gen-panel-hint" style="font-size:.72rem;color:var(--t2);margin-bottom:10px;">🌿 Sat = South Indian &nbsp;·&nbsp; 🏔 Sun = North/South &nbsp;·&nbsp; 🏢 Weekdays = office lunches</div>
-        <div class="filters" id="filter-btns" style="margin-bottom:10px;"></div>
         <div id="gen-sub-btns" style="display:none;">
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:7px;">
             <button class="btn btn-ghost" style="font-size:.76rem;" onclick="printPDF()">🖨 Save PDF</button>
@@ -594,6 +634,117 @@ button,input{font-family:'DM Sans',sans-serif;}
   </div><!-- /content -->
 
 
+
+  <!-- SETTINGS PANEL -->
+  <div class="settings-overlay" id="settings-overlay" onclick="if(event.target===this)closeSettings()">
+    <div class="settings-panel" id="settings-panel">
+      <div class="settings-header">
+        <div class="settings-title">⚙ Settings</div>
+        <button class="settings-close" onclick="closeSettings()">✕</button>
+      </div>
+
+      <!-- HOUSEHOLD MEMBERS -->
+      <div class="settings-section">
+        <div class="settings-section-title">Household members</div>
+        <div id="settings-members"></div>
+        <button class="btn btn-ghost" style="width:100%;justify-content:center;font-size:.78rem;" onclick="addHouseholdMember()">+ Add member</button>
+      </div>
+
+      <!-- CUISINE PREFERENCES -->
+      <div class="settings-section" style="border-top:1px solid var(--s3);padding-top:16px;">
+        <div class="settings-section-title">Cuisine preferences</div>
+        <div style="font-size:.72rem;color:var(--t3);margin-bottom:10px;">Takes effect from next week's plan</div>
+        <div class="cuisine-grid" id="settings-cuisines"></div>
+      </div>
+
+      <!-- MEAL PREFERENCES -->
+      <div class="settings-section" style="border-top:1px solid var(--s3);padding-top:16px;">
+        <div class="settings-section-title">Meal preferences</div>
+        <div id="settings-meal-prefs"></div>
+      </div>
+
+      <!-- DIET & NUTRITION -->
+      <div class="settings-section" style="border-top:1px solid var(--s3);padding-top:16px;">
+        <div class="settings-section-title">Diet & nutrition defaults</div>
+        <div style="font-size:.72rem;color:var(--t3);margin-bottom:10px;">These apply every week automatically</div>
+        <div id="settings-diet"></div>
+      </div>
+
+      <!-- NOTIFICATIONS -->
+      <div class="settings-section" style="border-top:1px solid var(--s3);padding-top:16px;">
+        <div class="settings-section-title">Notifications</div>
+        <div class="settings-row" onclick="togglePush()">
+          <span class="settings-row-icon">📲</span>
+          <div class="settings-row-text">
+            <div class="settings-row-label">Push notifications</div>
+            <div class="settings-row-sub" id="settings-push-status">Prep reminders · Plan alerts</div>
+          </div>
+          <button id="settings-push-btn" class="settings-toggle off"></button>
+        </div>
+        <div class="settings-row" onclick="toggleNotif()">
+          <span class="settings-row-icon">🔔</span>
+          <div class="settings-row-text">
+            <div class="settings-row-label">Saturday 2pm reminder</div>
+            <div class="settings-row-sub">Browser notification to plan next week</div>
+          </div>
+          <span id="settings-notif-status" class="settings-row-value"></span>
+        </div>
+      </div>
+
+      <!-- DATA & SYNC -->
+      <div class="settings-section" style="border-top:1px solid var(--s3);padding-top:16px;">
+        <div class="settings-section-title">Data & sync</div>
+        <div class="settings-row" onclick="copyRestoreLink()">
+          <span class="settings-row-icon">🔗</span>
+          <div class="settings-row-text">
+            <div class="settings-row-label">Copy restore link</div>
+            <div class="settings-row-sub">Bookmark this to skip setup on any device</div>
+          </div>
+          <span class="settings-row-value">Copy</span>
+        </div>
+        <div class="settings-row" onclick="showQRCode()">
+          <span class="settings-row-icon">📱</span>
+          <div class="settings-row-text">
+            <div class="settings-row-label">Setup QR code</div>
+            <div class="settings-row-sub">Scan on new device to instant-configure</div>
+          </div>
+          <span class="settings-row-value">Show</span>
+        </div>
+        <div class="settings-row" onclick="backupDB()">
+          <span class="settings-row-icon">💾</span>
+          <div class="settings-row-text">
+            <div class="settings-row-label">Download backup</div>
+            <div class="settings-row-sub" id="settings-sync-info">Last saved: —</div>
+          </div>
+        </div>
+        <div class="settings-row" onclick="confirmResetSetup()">
+          <span class="settings-row-icon">⚙</span>
+          <div class="settings-row-text">
+            <div class="settings-row-label">Change GitHub config</div>
+            <div class="settings-row-sub">Update repo or token</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- APP -->
+      <div class="settings-section" style="border-top:1px solid var(--s3);padding-top:16px;padding-bottom:32px;">
+        <div class="settings-section-title">App</div>
+        <div class="settings-row" onclick="startTour()">
+          <span class="settings-row-icon">🗺</span>
+          <div class="settings-row-text">
+            <div class="settings-row-label">Guided tour</div>
+            <div class="settings-row-sub">Replay the app walkthrough</div>
+          </div>
+        </div>
+        <div style="text-align:center;margin-top:16px;font-size:.64rem;color:var(--t4);">
+          Annam · Family Meal Planner<br>
+          <span style="color:var(--t4);">Built with love for A & N 🍛</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
   <!-- GUIDED TOUR OVERLAY -->
   <div id="tour-overlay" role="dialog" aria-modal="true">
     <div id="tour-backdrop" onclick="tourBackdropClick()"></div>
@@ -662,7 +813,13 @@ button,input{font-family:'DM Sans',sans-serif;}
     <div style="background:rgba(66,199,122,.07);border:1px solid rgba(66,199,122,.2);border-radius:10px;padding:11px 13px;margin-bottom:16px;">
       <div style="font-size:.72rem;color:var(--green);line-height:1.6;">✓ Plan syncs instantly on both phones<br>✓ Tick a meal done — she sees it<br>✓ Shopping list stays in sync<br>✓ Same URL, always live data</div>
     </div>
-    <button class="btn-generate" onclick="closeShare()">Got it</button>
+    <button class="btn-generate" 
+        <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--s3);">
+          <button onclick="copyAppURL()" class="btn btn-ghost" style="width:100%;justify-content:center;font-size:.82rem;">
+            📋 Copy app link (for PWA)
+          </button>
+        </div>
+        <button class="btn-generate" onclick="closeShare()">Got it</button>
   </div>
 </div>
 
@@ -680,6 +837,17 @@ let ST = {
   cookOverrides: {},   // {slot: 'A'|'N'} manual overrides
   nApproved: false,    // N confirmed the current plan
   pushSubscriptions: [], // push subscription objects for both phones
+  household: [
+    { id:'A', name:'A', gender:'male',   age:32, weight:90, height:178, goal:'loss',     targetCal:1700, targetProtein:130 },
+    { id:'N', name:'N', gender:'female', age:28, weight:58, height:162, goal:'maintain', targetCal:1950, targetProtein:65  },
+  ],
+  preferences: {
+    cuisines:   { south:true, north:true, western:true, mediterranean:false, asian:false, mexican:false },
+    diet:       { highProtein:true, quickMeals:false, budgetFriendly:false, balanced:true, vegetarian:true },
+    mealTimes:  { breakfast:'07:30', lunch:'12:30', dinner:'18:30', snack:'15:30' },
+    snacksEnabled: false,
+    maxPrepTime: 45,
+  },
   manualItems: [], history: [],
   groceries: ['avocado','eggs','paneer','chickpeas','spinach','oats','pasta','garlic','onion','olive oil','lemon','feta cheese','ginger','cumin','turmeric'],
   filters: {protein:true, quick:false, budget:false},
@@ -1147,6 +1315,67 @@ const DB = [
    steps:['Pressure cook toor dal with turmeric until completely soft and mashable — 3 whistles.','Whisk the dal smooth. Add salt and adjust water for a medium-thick consistency.','Heat ghee until hot. Add mustard seeds, dried red chilli, curry leaves, asafoetida and grated ginger — sizzle 30 seconds.','Pour tempering over dal. Stir gently.','Remove from heat. Squeeze lemon juice generously — about 2 lemons. Stir and taste. It should be noticeably tangy. Garnish with coriander.'],
    tip:'Add the lemon juice OFF the heat — heat destroys the bright citrus flavour. Add more than you think you need.',
    nutrition:{calories:260,protein:14,carbs:36,fat:6},source:'Telugu Classic'},
+  // ── SNACKS ───────────────────────────────────────────────────────────────────
+  {id:'roasted_chana',quickBreakfast:true,name:'Masala Roasted Chana',meal:'Snack',protein:12,prepTime:5,cost:0.8,emoji:'🫘',color:'#8B6914',
+   ingredients:['roasted chana','chaat masala','lemon','green chilli','onion','coriander'],
+   steps:['Toss roasted chana with chaat masala, salt and a squeeze of lemon.','Add finely chopped onion, green chilli and coriander. Mix well. Eat immediately.'],
+   tip:'Buy pre-roasted chana from Indian grocery — zero cooking needed. High protein, genuinely filling.',
+   nutrition:{calories:180,protein:12,carbs:24,fat:4},source:'Indian Everyday'},
+
+  {id:'fruit_yogurt',name:'Greek Yogurt & Fruit Bowl',meal:'Snack',protein:14,prepTime:5,cost:1.5,emoji:'🍓',color:'#E8A0A0',
+   ingredients:['greek yogurt','berries','banana','honey','chia seeds'],
+   steps:['Spoon thick greek yogurt into a bowl.','Top with fresh berries, sliced banana, a drizzle of honey and chia seeds.'],
+   tip:'Use full-fat greek yogurt — it keeps you fuller and has more protein than low-fat versions.',
+   nutrition:{calories:220,protein:14,carbs:28,fat:6},source:'Healthy Snacks'},
+
+  {id:'protein_smoothie_snack',name:'Protein Banana Smoothie',meal:'Snack',protein:16,prepTime:5,cost:1.2,emoji:'🍌',color:'#FFD700',
+   ingredients:['banana','milk','greek yogurt','peanut butter','honey','oats'],
+   steps:['Add all ingredients to a blender.','Blend until smooth and creamy. Drink immediately.'],
+   tip:'Freeze the banana overnight for a thicker, colder smoothie without needing ice.',
+   nutrition:{calories:280,protein:16,carbs:36,fat:8},source:'Nutrition Basics'},
+
+  {id:'boiled_eggs_snack',name:'Spiced Boiled Eggs',meal:'Snack',protein:18,prepTime:10,cost:0.9,emoji:'🥚',color:'#F5DEB3',
+   ingredients:['eggs','chaat masala','black pepper','salt','lemon'],
+   steps:['Boil eggs for 8 minutes for hard-boiled. Cool under cold water, peel.','Slice in half, sprinkle chaat masala, black pepper, salt and a squeeze of lemon.'],
+   tip:'Boil a batch of 6 on Sunday — they keep in the fridge for 5 days, ready in seconds.',
+   nutrition:{calories:160,protein:18,carbs:2,fat:10},source:'High Protein Basics'},
+
+  {id:'mixed_nuts',name:'Spiced Mixed Nuts',meal:'Snack',protein:8,prepTime:5,cost:1.2,emoji:'🥜',color:'#DEB887',
+   ingredients:['almonds','cashews','peanuts','pumpkin seeds','chilli powder','cumin','salt','ghee'],
+   steps:['Heat a tiny amount of ghee in a pan. Add nuts and seeds.','Toss with chilli powder, cumin and salt. Roast 3 min on medium heat until fragrant. Cool before eating.'],
+   tip:'Make a large batch and store in an airtight jar — lasts 2 weeks and far better than packet nuts.',
+   nutrition:{calories:200,protein:8,carbs:8,fat:16},source:'Indian Snacks'},
+
+  {id:'hummus_veggies',name:'Hummus with Veggie Sticks',meal:'Snack',protein:8,prepTime:8,cost:1.4,emoji:'🥕',color:'#FF8C00',
+   ingredients:['hummus','carrots','cucumber','capsicum','celery','olive oil','paprika'],
+   steps:['Cut carrots, cucumber, capsicum and celery into sticks.','Serve with hummus, drizzle olive oil and sprinkle paprika on hummus.'],
+   tip:'Make hummus from scratch with canned chickpeas — takes 5 min in a blender and costs a fraction of store-bought.',
+   nutrition:{calories:190,protein:8,carbs:18,fat:10},source:'Mediterranean Basics'},
+
+  {id:'paneer_tikka_snack',name:'Quick Paneer Tikka Bites',meal:'Snack',protein:16,prepTime:12,cost:1.8,emoji:'🧀',color:'#FF6347',
+   ingredients:['paneer','yogurt','tandoori masala','lemon','oil','capsicum','onion'],
+   steps:['Cut paneer into cubes. Mix yogurt with tandoori masala and lemon — coat paneer well.','Heat a non-stick pan with oil. Cook paneer 2 min each side until charred. Serve with capsicum and onion.'],
+   tip:'Marinate paneer for even 10 minutes — it makes a significant difference to the flavour.',
+   nutrition:{calories:240,protein:16,carbs:6,fat:16},source:'Indian Snacks'},
+
+  {id:'sprouts_chaat',name:'Sprouted Moong Chaat',meal:'Snack',protein:12,prepTime:8,cost:0.8,emoji:'🌱',color:'#4A6741',
+   quickBreakfast:true,
+   ingredients:['moong sprouts','tomato','onion','cucumber','lemon','chaat masala','coriander','green chilli'],
+   steps:['Combine sprouts with finely chopped tomato, onion, cucumber and green chilli.','Add lemon juice, chaat masala and salt. Toss well. Garnish with coriander.'],
+   tip:'Sprouts are at peak nutrition — this snack has more protein per rupee than almost anything.',
+   nutrition:{calories:160,protein:12,carbs:20,fat:2},source:'Indian Health'},
+
+  {id:'apple_peanut_butter',name:'Apple with Peanut Butter',meal:'Snack',protein:8,prepTime:3,cost:1.0,emoji:'🍎',color:'#FF6B6B',
+   ingredients:['apple','peanut butter','cinnamon'],
+   steps:['Slice apple into wedges.','Serve with a tablespoon of peanut butter. Sprinkle cinnamon if desired.'],
+   tip:'Choose natural peanut butter with just peanuts and salt — no added sugar or palm oil.',
+   nutrition:{calories:200,protein:8,carbs:24,fat:10},source:'Simple Snacks'},
+
+  {id:'makhana_snack',name:'Roasted Makhana',meal:'Snack',protein:9,prepTime:8,cost:1.0,emoji:'⚪',color:'#F5F5DC',
+   ingredients:['makhana','ghee','salt','chilli powder','cumin','turmeric'],
+   steps:['Heat ghee in a pan on medium. Add makhana (fox nuts).','Roast 5-6 min tossing constantly until crisp. Add salt, chilli, cumin and turmeric. Toss well.'],
+   tip:'Makhana are done when they crush easily between fingers. Under-roasted = chewy, which is unpleasant.',
+   nutrition:{calories:180,protein:9,carbs:28,fat:5},source:'Indian Superfood'},
 ];
 
 const BYID = Object.fromEntries(DB.map(r => [r.id, r]));
@@ -1438,6 +1667,8 @@ async function loadFromGitHub(showMsg=false, skipShopRender=false) {
     ST.lastUpdated  = db.lastUpdated  || '';
     if (db.groceries && db.groceries.length) ST.groceries = db.groceries;
     if (db.pushSubscriptions) ST.pushSubscriptions = db.pushSubscriptions;
+    if (db.household)    ST.household    = db.household;
+    if (db.preferences)  ST.preferences  = {...ST.preferences, ...db.preferences};
     if (db.filters)          ST.filters          = db.filters;
     if (db.pantryUpdatedAt)  ST.pantryUpdatedAt  = db.pantryUpdatedAt;
     setSyncStatus('ok','Synced');
@@ -1477,6 +1708,8 @@ async function saveToGitHub(msg='Update') {
       history:     ST.history,    groceries:   ST.groceries,
       filters:     ST.filters,    pantryUpdatedAt: ST.pantryUpdatedAt,
       pushSubscriptions: ST.pushSubscriptions || [],
+      household: ST.household,
+      preferences: ST.preferences,
       lastUpdated: new Date().toISOString(),
     };
     const body = { message:msg, content:btoa(unescape(encodeURIComponent(JSON.stringify(db,null,2)))) };
@@ -2577,6 +2810,13 @@ function closeScan() { document.getElementById('scan-overlay').style.display='no
 // ── SHARE / NOTIF ─────────────────────────────────────────────────────────────
 function openShare()  { document.getElementById('share-overlay').style.display='flex'; }
 function closeShare() { document.getElementById('share-overlay').style.display='none'; }
+function copyAppURL() {
+  const url = location.origin + location.pathname;
+  navigator.clipboard?.writeText(url).then(() => {
+    toast('📋 App link copied!');
+    closeShare();
+  }).catch(() => { prompt('App URL:', url); });
+}
 
 async function toggleNotif() {
   if (!('Notification' in window)) { toast('Notifications not supported on this browser'); return; }
@@ -3147,6 +3387,292 @@ async function sendTestNotification() {
 }
 
 
+// ── SETTINGS ──────────────────────────────────────────────────────────────────
+const CUISINES = [
+  { id:'south',       label:'South Indian',    icon:'🌿', available:true  },
+  { id:'north',       label:'North Indian',     icon:'🏔', available:true  },
+  { id:'western',     label:'Western',          icon:'🍝', available:true  },
+  { id:'mediterranean', label:'Mediterranean',  icon:'🫒', available:false },
+  { id:'asian',       label:'Asian / Chinese',  icon:'🥢', available:false },
+  { id:'mexican',     label:'Mexican',          icon:'🌮', available:false },
+];
+
+const DIET_OPTIONS = [
+  { id:'highProtein',    label:'High protein priority',    icon:'💪', sub:'Boosts high-protein recipes in scoring' },
+  { id:'balanced',       label:'Macro cycling',            icon:'⚖️', sub:'Rotates high/moderate/refeed days for fat loss' },
+  { id:'quickMeals',     label:'Quick meals (under 20 min)', icon:'⚡', sub:'Prefers faster recipes across all meals' },
+  { id:'budgetFriendly', label:'Budget-friendly',          icon:'💰', sub:'Prioritises recipes under A$3/serving' },
+  { id:'vegetarian',     label:'Vegetarian',               icon:'🥬', sub:'All recipes are vegetarian (default)' },
+];
+
+function openSettings() {
+  const overlay = document.getElementById('settings-overlay');
+  overlay.classList.add('open');
+  renderSettingsContent();
+}
+
+function closeSettings() {
+  document.getElementById('settings-overlay').classList.remove('open');
+}
+
+function renderSettingsContent() {
+  renderSettingsMembers();
+  renderSettingsCuisines();
+  renderSettingsDiet();
+  renderSettingsMealPrefs();
+  renderSettingsPushBtn();
+  // Sync info
+  const si = document.getElementById('settings-sync-info');
+  if (si && ST.lastUpdated) si.textContent = 'Last saved ' + new Date(ST.lastUpdated).toLocaleTimeString('en-AU',{hour:'2-digit',minute:'2-digit'});
+  // Notif status
+  const ns = document.getElementById('settings-notif-status');
+  if (ns) ns.textContent = Notification?.permission === 'granted' ? 'ON' : 'OFF';
+}
+
+function renderSettingsMembers() {
+  const el = document.getElementById('settings-members');
+  if (!el) return;
+  el.innerHTML = ST.household.map((m, idx) => {
+    // Calculate BMI
+    const bmi = m.weight && m.height ? (m.weight / ((m.height/100) ** 2)).toFixed(1) : '—';
+    const goalLabel = m.goal === 'loss' ? '🔻 Weight loss' : m.goal === 'gain' ? '📈 Weight gain' : '⚖️ Maintenance';
+    return `<div class="member-card">
+      <div class="member-header">
+        <div class="member-avatar member-avatar-${m.id}">${m.name.charAt(0).toUpperCase()}</div>
+        <div style="flex:1;">
+          <div class="member-name">${m.name}</div>
+          <div class="member-goal">${goalLabel}</div>
+        </div>
+        <button onclick="editMember(${idx})" style="background:var(--s3);border:none;border-radius:7px;padding:5px 10px;font-size:.7rem;color:var(--t2);cursor:pointer;font-family:'DM Sans',sans-serif;">Edit</button>
+      </div>
+      <div class="member-stats">
+        <div class="member-stat"><div class="member-stat-v">${m.weight}kg</div><div class="member-stat-l">Weight</div></div>
+        <div class="member-stat"><div class="member-stat-v">BMI ${bmi}</div><div class="member-stat-l">Body mass</div></div>
+        <div class="member-stat"><div class="member-stat-v">${m.targetCal}</div><div class="member-stat-l">Cal/day</div></div>
+      </div>
+      <div style="font-size:.68rem;color:var(--t3);">Target protein: <span style="color:var(--gold);font-weight:600;">${m.targetProtein}g/day</span></div>
+    </div>`;
+  }).join('');
+}
+
+function renderSettingsCuisines() {
+  const el = document.getElementById('settings-cuisines');
+  if (!el) return;
+  el.innerHTML = CUISINES.map(c => {
+    const on = ST.preferences.cuisines[c.id];
+    return `<div class="cuisine-chip${on?' on':''}" onclick="${c.available ? `toggleCuisine('${c.id}')` : ''}">
+      <span class="cuisine-chip-icon">${c.icon}</span>
+      <span class="cuisine-chip-label">${c.label}</span>
+      ${!c.available ? '<span class="coming-soon">Soon</span>' : (on ? '<span style="font-size:.7rem;margin-left:auto;">✓</span>' : '')}
+    </div>`;
+  }).join('');
+}
+
+function renderSettingsDiet() {
+  const el = document.getElementById('settings-diet');
+  if (!el) return;
+  el.innerHTML = DIET_OPTIONS.map(d => {
+    const on = ST.preferences.diet[d.id];
+    return `<div class="settings-row" onclick="toggleDietPref('${d.id}')">
+      <span class="settings-row-icon">${d.icon}</span>
+      <div class="settings-row-text">
+        <div class="settings-row-label">${d.label}</div>
+        <div class="settings-row-sub">${d.sub}</div>
+      </div>
+      <button class="settings-toggle ${on?'on':'off'}" onclick="event.stopPropagation();toggleDietPref('${d.id}')"></button>
+    </div>`;
+  }).join('');
+}
+
+function renderSettingsMealPrefs() {
+  const el = document.getElementById('settings-meal-prefs');
+  if (!el) return;
+  const p = ST.preferences;
+  el.innerHTML = `
+    <div class="settings-row" onclick="toggleSnacks()">
+      <span class="settings-row-icon">🍎</span>
+      <div class="settings-row-text">
+        <div class="settings-row-label">Snacks (4th meal slot)</div>
+        <div class="settings-row-sub">Adds a 3pm snack to Today and the weekly plan</div>
+      </div>
+      <button class="settings-toggle ${p.snacksEnabled?'on':'off'}" onclick="event.stopPropagation();toggleSnacks()"></button>
+    </div>
+    <div class="settings-row">
+      <span class="settings-row-icon">⏱</span>
+      <div class="settings-row-text">
+        <div class="settings-row-label">Max prep time</div>
+        <div class="settings-row-sub">Recipes over this are deprioritised</div>
+      </div>
+      <select onchange="setMaxPrep(this.value)" style="background:var(--s2);border:1px solid var(--s3);border-radius:7px;padding:4px 8px;color:var(--t1);font-size:.76rem;cursor:pointer;">
+        ${[15,20,30,45,60].map(t => `<option value="${t}" ${p.maxPrepTime===t?'selected':''}>${t} min</option>`).join('')}
+      </select>
+    </div>`;
+}
+
+async function renderSettingsPushBtn() {
+  const btn    = document.getElementById('settings-push-btn');
+  const status = document.getElementById('settings-push-status');
+  if (!btn) return;
+  const sub = await getCurrentSubscription?.();
+  if (sub) {
+    btn.className = 'settings-toggle on';
+    if (status) status.textContent = '✓ Active on this device';
+  } else {
+    btn.className = 'settings-toggle off';
+    if (status) status.textContent = 'Prep reminders · Plan alerts';
+  }
+}
+
+// ── PREFERENCE TOGGLES ────────────────────────────────────────────────────────
+function toggleCuisine(id) {
+  ST.preferences.cuisines[id] = !ST.preferences.cuisines[id];
+  renderSettingsCuisines();
+  debouncedSave('Cuisine preference updated');
+  toast('✓ Saved — takes effect from next week');
+}
+
+function toggleDietPref(id) {
+  ST.preferences.diet[id] = !ST.preferences.diet[id];
+  renderSettingsDiet();
+  debouncedSave('Diet preference updated');
+  toast('✓ Saved');
+}
+
+function toggleSnacks() {
+  ST.preferences.snacksEnabled = !ST.preferences.snacksEnabled;
+  renderSettingsMealPrefs();
+  debouncedSave('Snack preference updated');
+  toast(ST.preferences.snacksEnabled ? '🍎 Snack slot enabled' : 'Snack slot disabled');
+  renderToday(); // Update today view
+}
+
+function setMaxPrep(val) {
+  ST.preferences.maxPrepTime = parseInt(val);
+  debouncedSave('Max prep time updated');
+  toast('✓ Max prep set to ' + val + ' min — applies from next week');
+}
+
+// ── MEMBER EDITING ────────────────────────────────────────────────────────────
+function editMember(idx) {
+  const m = ST.household[idx];
+  const goals = [{v:'loss',l:'Weight loss 🔻'},{v:'maintain',l:'Maintenance ⚖️'},{v:'gain',l:'Weight gain 📈'}];
+  const html = `
+    <div style="padding:20px;">
+      <div class="serif" style="font-size:1.1rem;font-weight:700;margin-bottom:16px;">Edit ${m.name}</div>
+      <label style="font-size:.72rem;color:var(--t3);display:block;margin-bottom:4px;">Name</label>
+      <input id="em-name" value="${m.name}" style="width:100%;background:var(--s2);border:1px solid var(--s3);border-radius:8px;padding:10px 12px;color:var(--t1);font-size:.88rem;font-family:'DM Sans',sans-serif;margin-bottom:12px;">
+      <label style="font-size:.72rem;color:var(--t3);display:block;margin-bottom:4px;">Goal</label>
+      <select id="em-goal" style="width:100%;background:var(--s2);border:1px solid var(--s3);border-radius:8px;padding:10px 12px;color:var(--t1);font-size:.88rem;font-family:'DM Sans',sans-serif;margin-bottom:12px;">
+        ${goals.map(g => `<option value="${g.v}" ${m.goal===g.v?'selected':''}>${g.l}</option>`).join('')}
+      </select>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;">
+        <div>
+          <label style="font-size:.72rem;color:var(--t3);display:block;margin-bottom:4px;">Weight (kg)</label>
+          <input id="em-weight" type="number" value="${m.weight}" style="width:100%;background:var(--s2);border:1px solid var(--s3);border-radius:8px;padding:10px 12px;color:var(--t1);font-size:.88rem;font-family:'DM Sans',sans-serif;">
+        </div>
+        <div>
+          <label style="font-size:.72rem;color:var(--t3);display:block;margin-bottom:4px;">Height (cm)</label>
+          <input id="em-height" type="number" value="${m.height}" style="width:100%;background:var(--s2);border:1px solid var(--s3);border-radius:8px;padding:10px 12px;color:var(--t1);font-size:.88rem;font-family:'DM Sans',sans-serif;">
+        </div>
+      </div>
+      <label style="font-size:.72rem;color:var(--t3);display:block;margin-bottom:4px;">Daily calorie target</label>
+      <input id="em-cal" type="number" value="${m.targetCal}" style="width:100%;background:var(--s2);border:1px solid var(--s3);border-radius:8px;padding:10px 12px;color:var(--t1);font-size:.88rem;font-family:'DM Sans',sans-serif;margin-bottom:12px;">
+      <label style="font-size:.72rem;color:var(--t3);display:block;margin-bottom:4px;">Daily protein target (g)</label>
+      <input id="em-prot" type="number" value="${m.targetProtein}" style="width:100%;background:var(--s2);border:1px solid var(--s3);border-radius:8px;padding:10px 12px;color:var(--t1);font-size:.88rem;font-family:'DM Sans',sans-serif;margin-bottom:20px;">
+      <button class="btn btn-gold" style="width:100%;height:46px;" onclick="saveMember(${idx})">Save changes ✓</button>
+    </div>`;
+
+  // Use modal sheet for editing
+  const sheet = document.getElementById('modal-sheet');
+  const modal  = document.getElementById('modal');
+  if (sheet && modal) {
+    sheet.innerHTML = `<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 16px 0;">
+      <div class="modal-handle" style="margin:0;"></div>
+      <button onclick="closeModal()" style="background:var(--s3);border:none;width:28px;height:28px;border-radius:50%;color:var(--t2);font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;">✕</button>
+    </div>${html}`;
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function saveMember(idx) {
+  const name   = document.getElementById('em-name')?.value.trim();
+  const goal   = document.getElementById('em-goal')?.value;
+  const weight = parseInt(document.getElementById('em-weight')?.value);
+  const height = parseInt(document.getElementById('em-height')?.value);
+  const cal    = parseInt(document.getElementById('em-cal')?.value);
+  const prot   = parseInt(document.getElementById('em-prot')?.value);
+
+  if (!name) { toast('Name required'); return; }
+
+  ST.household[idx] = { ...ST.household[idx], name, goal, weight, height, targetCal:cal, targetProtein:prot };
+  closeModal();
+  debouncedSave('Member profile updated');
+  renderSettingsMembers();
+  toast('✓ Profile saved');
+}
+
+function addHouseholdMember() {
+  if (ST.household.length >= 6) { toast('Maximum 6 members'); return; }
+  const ids = ['A','N','C','D','E','F'];
+  const newId = ids.find(i => !ST.household.find(m => m.id === i)) || 'X';
+  ST.household.push({ id:newId, name:'Member '+newId, gender:'', age:30, weight:65, height:170, goal:'maintain', targetCal:2000, targetProtein:70 });
+  renderSettingsMembers();
+  debouncedSave('Member added');
+  toast('Member added — tap Edit to set their details');
+}
+
+// ── TOKEN PERSISTENCE — RESTORE LINK ─────────────────────────────────────────
+function copyRestoreLink() {
+  if (!CFG) { toast('Set up GitHub config first'); return; }
+  const params = new URLSearchParams({ u: CFG.user, r: CFG.repo, t: CFG.token });
+  const link = `${location.origin}${location.pathname}?${params.toString()}`;
+  navigator.clipboard?.writeText(link).then(() => {
+    toast('🔗 Restore link copied — bookmark it!', 4000);
+  }).catch(() => {
+    // Fallback: show in prompt for manual copy
+    prompt('Copy this restore link:', link);
+  });
+}
+
+function showQRCode() {
+  if (!CFG) { toast('Set up GitHub config first'); return; }
+  const params = new URLSearchParams({ u: CFG.user, r: CFG.repo, t: CFG.token });
+  const link = `${location.origin}${location.pathname}?${params.toString()}`;
+  const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(link)}`;
+  const sheet = document.getElementById('modal-sheet');
+  const modal  = document.getElementById('modal');
+  if (sheet && modal) {
+    sheet.innerHTML = `<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 16px 0;">
+      <div class="modal-handle" style="margin:0;"></div>
+      <button onclick="closeModal()" style="background:var(--s3);border:none;width:28px;height:28px;border-radius:50%;color:var(--t2);font-size:1rem;cursor:pointer;">✕</button>
+    </div>
+    <div style="padding:24px;text-align:center;">
+      <div class="serif" style="font-size:1.1rem;font-weight:700;margin-bottom:6px;">Setup QR Code</div>
+      <div style="font-size:.74rem;color:var(--t3);margin-bottom:20px;">Scan with your wife's phone to instant-configure Annam</div>
+      <img src="${qrUrl}" style="width:200px;height:200px;border-radius:12px;border:4px solid var(--s3);">
+      <div style="font-size:.66rem;color:var(--t4);margin-top:12px;">⚠️ This contains your GitHub token. Keep it private.</div>
+    </div>`;
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+// ── AUTO-LOGIN FROM URL PARAMS ────────────────────────────────────────────────
+function checkURLParams() {
+  const params = new URLSearchParams(location.search);
+  const u = params.get('u'), r = params.get('r'), t = params.get('t');
+  if (u && r && t) {
+    CFG = { user:u, repo:r, token:t };
+    try { localStorage.setItem(CFG_KEY, JSON.stringify(CFG)); } catch(_) {}
+    // Clean URL without reload
+    history.replaceState({}, '', location.pathname);
+    toast('✓ Auto-configured from restore link', 3000);
+    return true;
+  }
+  return false;
+}
+
 // ── GUIDED TOUR ───────────────────────────────────────────────────────────────
 const TOUR_KEY = 'annam_tour_done';
 
@@ -3330,6 +3856,9 @@ function checkFirstRun() {
 
   try{const f=localStorage.getItem('rw_favs');if(f)favs=JSON.parse(f);}catch(_){}
   try{const c=localStorage.getItem(CFG_KEY);if(c)CFG=JSON.parse(c);}catch(_){}
+
+  // Check for restore link params (auto-login from bookmark)
+  checkURLParams();
 
   if (!CFG) {
     if(setupEl) setupEl.style.display='flex';
