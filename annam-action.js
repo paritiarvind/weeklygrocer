@@ -1,0 +1,223 @@
+const https = require('https');
+
+const GITHUB_USER  = process.env.GITHUB_REPOSITORY.split('/')[0];
+const GITHUB_REPO  = process.env.GITHUB_REPOSITORY.split('/')[1];
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+const RESEND_KEY   = process.env.RESEND_API_KEY;
+const TO_EMAIL     = process.env.EMAIL_A;
+
+if (!RESEND_KEY) { console.error('Missing RESEND_API_KEY secret'); process.exit(1); }
+if (!TO_EMAIL)   { console.error('Missing EMAIL_A secret'); process.exit(1); }
+
+const DAYS = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
+
+function ghRequest(method, path, body) {
+  return new Promise((resolve, reject) => {
+    const bodyStr = body ? JSON.stringify(body) : null;
+    const options = {
+      hostname: 'api.github.com',
+      path: `/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${path}`,
+      method,
+      headers: {
+        'Authorization': `token ${GITHUB_TOKEN}`,
+        'Accept': 'application/vnd.github.v3+json',
+        'User-Agent': 'Annam-Action',
+        'Content-Type': 'application/json',
+        ...(bodyStr ? { 'Content-Length': Buffer.byteLength(bodyStr) } : {}),
+      }
+    };
+    const req = https.request(options, res => {
+      let data = '';
+      res.on('data', d => data += d);
+      res.on('end', () => {
+        try { resolve(JSON.parse(data)); }
+        catch(e) { reject(new Error('JSON parse failed: ' + data.slice(0,200))); }
+      });
+    });
+    req.on('error', reject);
+    if (bodyStr) req.write(bodyStr);
+    req.end();
+  });
+}
+
+const RECIPE_POOLS = {
+  southBkf:  ['idli_sambar','masala_dosa','upma','moong_cheela','savoury_oats','poha','pesarattu'],
+  southLnc:  ['chana_masala','palak_paneer','soya_curry','curd_rice','gongura_pappu','pesara_pappu','pulihora','rasam_rice'],
+  southDin:  ['dal_makhani','matar_paneer','methi_dal','paneer_paratha','aloo_gobi','baingan_bharta','bisi_bele_bath','pongal','gutti_vankaya','nimmakaya_pappu','dosakaya_pappu'],
+  northBkf:  ['paneer_bhurji','chole_bhature','aloo_paratha_north'],
+  northLnc:  ['rajma_chawal','chole_rice'],
+  northDin:  ['chilli_paneer','dal_baati','kadai_paneer','dal_fry'],
+  quickBkf:  ['overnight_oats','bircher_muesli','smoothie_bowl','avo_toast','muesli_bowl','dahi_chivda','besan_chilla','bread_upma','moong_sprouts','savoury_oats','poha','scrambled_eggs'],
+  officeLnc: ['greek_salad','pasta_pesto','buddha_bowl','chickpea_wrap','chana_masala','palak_paneer','soya_curry','curd_rice','rajma_chawal','chole_rice'],
+  generalDin:['pasta_arrabiata','stir_fry_tofu','mediterranean_bowl','veggie_quesadilla','shakshuka','pasta_bake','coconut_curry','frittata','cauliflower_steak','mushroom_risotto'],
+};
+
+const RECIPE_NAMES = {
+  idli_sambar:'Idli with Sambar', masala_dosa:'Masala Dosa', upma:'Rava Upma',
+  moong_cheela:'Moong Dal Cheela', savoury_oats:'Savoury Masala Oats', poha:'Kanda Poha',
+  pesarattu:'Pesarattu', chana_masala:'Chana Masala', palak_paneer:'Palak Paneer',
+  soya_curry:'Soya Chunks Masala', curd_rice:'Curd Rice', gongura_pappu:'Gongura Pappu',
+  pesara_pappu:'Pesara Pappu', pulihora:'Pulihora', dal_makhani:'Dal Makhani',
+  matar_paneer:'Matar Paneer', methi_dal:'Methi Dal', paneer_paratha:'Paneer Paratha',
+  aloo_gobi:'Aloo Gobi', baingan_bharta:'Baingan Bharta', bisi_bele_bath:'Bisi Bele Bath',
+  pongal:'Ven Pongal', dosakaya_pappu:'Dosakaya Pappu', gutti_vankaya:'Gutti Vankaya',
+  nimmakaya_pappu:'Nimmakaya Pappu', dal_tadka:'Dal Tadka', rasam_rice:'Rasam with Rice', tarka_dhal_dinner:'Tarka Dhal', dal_tadka:'Dal Tadka', tarka_dhal_dinner:'Tarka Dhal', paneer_bhurji:'Paneer Bhurji',
+  chole_bhature:'Chole Bhature', aloo_paratha_north:'Aloo Paratha',
+  rajma_chawal:'Rajma Chawal', chole_rice:'Chole with Jeera Rice',
+  chilli_paneer:'Chilli Paneer', dal_baati:'Dal Baati Churma',
+  kadai_paneer:'Kadai Paneer', dal_fry:'Dal Fry', overnight_oats:'Overnight Oats',
+  bircher_muesli:'Bircher Muesli', smoothie_bowl:'Smoothie Bowl', avo_toast:'Avocado Toast',
+  muesli_bowl:'Muesli', dahi_chivda:'Dahi Chivda', besan_chilla:'Besan Chilla',
+  bread_upma:'Bread Upma', moong_sprouts:'Masala Moong Sprouts',
+  greek_salad:'Greek Salad', pasta_pesto:'Pasta with Pesto', buddha_bowl:'Buddha Bowl',
+  chickpea_wrap:'Chickpea Wrap', pasta_arrabiata:'Pasta Arrabiata',
+  stir_fry_tofu:'Tofu Stir Fry', mediterranean_bowl:'Mediterranean Bowl',
+  veggie_quesadilla:'Veggie Quesadillas', shakshuka:'Shakshuka',
+  pasta_bake:'Pasta Bake', coconut_curry:'Coconut Curry',
+  frittata:'Spinach Frittata', cauliflower_steak:'Cauliflower Steak',
+  mushroom_risotto:'Mushroom Risotto',
+};
+const rname = id => RECIPE_NAMES[id] || id.replace(/_/g,' ');
+
+function buildPlan(lastPlanIds) {
+  const lastIds = new Set(lastPlanIds || []);
+  const used = {};
+  const pick = pool => {
+    const avail = pool.filter(id => !used[id] && !lastIds.has(id));
+    const arr   = avail.length ? avail : pool.filter(id => !used[id]);
+    const id    = (arr.length ? arr : pool)[Math.floor(Math.random() * Math.min(3, (arr.length||pool.length)))];
+    used[id] = (used[id]||0) + 1;
+    return id;
+  };
+  return DAYS.map((day, di) => {
+    if (di===5) return { day, b:pick(RECIPE_POOLS.southBkf), l:pick(RECIPE_POOLS.southLnc), dn:pick(RECIPE_POOLS.southDin) };
+    if (di===6) {
+      const sunLnc = pick(RECIPE_POOLS.southLnc);
+      // If lunch is a pappu/rice dish, prefer a curry/stir-fry for dinner
+      const isPappu = sunLnc.includes('pappu') || sunLnc.includes('pulihora') || sunLnc.includes('rasam');
+      const sunDinPool = isPappu
+        ? RECIPE_POOLS.southDin.filter(id => !id.includes('pappu') && !id.includes('pulihora'))
+        : RECIPE_POOLS.southDin;
+      return { day, b:pick(RECIPE_POOLS.northBkf), l:sunLnc, dn:pick(sunDinPool.length ? sunDinPool : RECIPE_POOLS.southDin) };
+    }
+    return { day, b:pick(RECIPE_POOLS.quickBkf), l:pick(RECIPE_POOLS.officeLnc), dn:pick(RECIPE_POOLS.generalDin) };
+  });
+}
+
+function buildCookMap(gn) {
+  const m = {};
+  for (let s=0; s<21; s++) m[String(s)] = (s%2===0)===(gn%2===0) ? 'A' : 'N';
+  return m;
+}
+
+function sendEmail(emailBody) {
+  return new Promise((resolve, reject) => {
+    const body = JSON.stringify(emailBody);
+    const options = {
+      hostname: 'api.resend.com',
+      path: '/emails',
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${RESEND_KEY}`,
+        'Content-Type': 'application/json',
+        'Content-Length': Buffer.byteLength(body),
+      }
+    };
+    const req = https.request(options, res => {
+      let data = '';
+      res.on('data', d => data += d);
+      res.on('end', () => {
+        const r = JSON.parse(data);
+        if (r.id) { console.log('Email sent:', r.id); resolve(r); }
+        else { console.error('Resend error:', data); reject(new Error(data)); }
+      });
+    });
+    req.on('error', reject);
+    req.write(body);
+    req.end();
+  });
+}
+
+(async () => {
+  try {
+    console.log(`Fetching db.json for ${GITHUB_USER}/${GITHUB_REPO}...`);
+    const dbFile = await ghRequest('GET', 'db.json');
+    if (!dbFile.content) throw new Error('db.json not found or empty: ' + JSON.stringify(dbFile).slice(0,200));
+
+    const sha = dbFile.sha;
+    const db  = JSON.parse(Buffer.from(dbFile.content.replace(/\n/g,''), 'base64').toString());
+    console.log('db.json loaded. nextPlan exists:', !!db.nextPlan);
+
+    if (!db.nextPlan) {
+      const lastIds  = (db.plan||[]).flatMap(d => [d.b, d.l, d.dn]);
+      const nextPlan = buildPlan(lastIds);
+      const newGn    = (db.genNum||0) + 1;
+      db.nextPlan    = nextPlan;
+      db.nextCookMap = buildCookMap(newGn);
+      db.lastUpdated = new Date().toISOString();
+      await ghRequest('PUT', 'db.json', {
+        message: 'Auto-generate next week plan [skip ci]',
+        content: Buffer.from(JSON.stringify(db, null, 2)).toString('base64'),
+        sha,
+      });
+      console.log('Next week plan saved.');
+    }
+
+    const plan    = db.nextPlan || db.plan;
+    const cookMap = db.nextCookMap || db.cookMap || {};
+    const cook    = (di, mi) => cookMap[String(di*3+mi)] || (di*3+mi % 2 === 0 ? 'A' : 'N');
+    const DAY_COLORS = ['#1e3a8a','#065f46','#4c1d95','#7c2d12','#881337','#14532d','#312e81'];
+
+    const planRows = plan.map((d, di) => {
+      const bg    = di===5 ? '#0a1a0f' : di===6 ? '#0a0f1a' : '#1a1a1a';
+      const label = di===5 ? `${d.day} 🌿` : di===6 ? `${d.day} 🏔` : d.day;
+      const hdr   = DAY_COLORS[di];
+      return `<tr>
+        <td style="padding:8px 10px;font-size:11px;font-weight:700;color:#fff;background:${hdr};white-space:nowrap;border-bottom:1px solid #333;">${label}</td>
+        <td style="padding:8px 10px;font-size:11px;color:#e2e8f0;background:${bg};border-bottom:1px solid #333;">[${cook(di,0)}] ${rname(d.b)}</td>
+        <td style="padding:8px 10px;font-size:11px;color:#e2e8f0;background:${bg};border-bottom:1px solid #333;">[${cook(di,1)}] ${rname(d.l)}</td>
+        <td style="padding:8px 10px;font-size:11px;color:#e2e8f0;background:${bg};border-bottom:1px solid #333;">[${cook(di,2)}] ${rname(d.dn)}</td>
+      </tr>`;
+    }).join('');
+
+    const html = `<!DOCTYPE html><html><body style="margin:0;padding:0;background:#0a0a0a;">
+    <div style="font-family:'Segoe UI',Arial,sans-serif;max-width:620px;margin:0 auto;padding:20px;">
+      <div style="background:linear-gradient(135deg,#f0a030,#c47820);border-radius:12px 12px 0 0;padding:24px;text-align:center;">
+        <div style="font-size:2.2rem;">🍛</div>
+        <div style="font-family:Georgia,serif;font-size:1.6rem;font-weight:700;color:#000;margin:4px 0;">Annam</div>
+        <div style="color:#000;opacity:.65;font-size:.85rem;">Next week's meal plan is ready</div>
+      </div>
+      <div style="background:#111;border-radius:0 0 12px 12px;padding:20px;">
+        <table style="width:100%;border-collapse:collapse;margin-bottom:16px;">
+          <tr style="background:#1c1c1c;">
+            <th style="padding:8px 10px;text-align:left;font-size:10px;color:#888;text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid #333;">Day</th>
+            <th style="padding:8px 10px;text-align:left;font-size:10px;color:#f0a030;text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid #333;">Breakfast</th>
+            <th style="padding:8px 10px;text-align:left;font-size:10px;color:#f0a030;text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid #333;">Lunch</th>
+            <th style="padding:8px 10px;text-align:left;font-size:10px;color:#f0a030;text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid #333;">Dinner</th>
+          </tr>
+          ${planRows}
+        </table>
+        <div style="background:#1a1a1a;border-radius:8px;padding:12px 14px;margin-bottom:16px;font-size:.78rem;color:#888;line-height:1.6;">
+          🌿 Sat = Full South Indian Telugu &nbsp;·&nbsp; 🏔 Sun = North Indian bkf + South Indian lunch/dinner<br>
+          🏢 Weekdays = office-friendly lunches &nbsp;·&nbsp; ⚡ Quick breakfasts
+        </div>
+        <div style="text-align:center;margin-bottom:16px;">
+          <a href="https://${GITHUB_USER}.github.io/${GITHUB_REPO}" style="background:linear-gradient(135deg,#f0a030,#c47820);color:#000;text-decoration:none;padding:12px 28px;border-radius:8px;font-weight:700;font-size:.9rem;display:inline-block;">Open Annam →</a>
+        </div>
+        <div style="text-align:center;font-size:.7rem;color:#444;">Activates Sunday midnight · Every Saturday 2pm AEDT</div>
+      </div>
+    </div></body></html>`;
+
+    await sendEmail({
+      from: 'Annam <onboarding@resend.dev>',
+      to: [TO_EMAIL],
+      subject: '🍛 Next week is planned — check and shop!',
+      html,
+    });
+
+    console.log('Done.');
+  } catch(e) {
+    console.error('FAILED:', e.message);
+    process.exit(1);
+  }
+})();
