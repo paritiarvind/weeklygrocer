@@ -2,73 +2,73 @@
   "plan": [
     {
       "day": "Monday",
-      "b": "moong_sprouts",
-      "l": "soya_curry",
-      "dn": "frittata"
+      "b": "besan_chilla",
+      "l": "palak_paneer",
+      "dn": "veggie_quesadilla"
     },
     {
       "day": "Tuesday",
-      "b": "savoury_oats",
-      "l": "egg_fried_rice",
-      "dn": "shakshuka"
+      "b": "bread_upma",
+      "l": "rajma_chawal",
+      "dn": "cauliflower_steak"
     },
     {
       "day": "Wednesday",
-      "b": "avo_toast",
-      "l": "chole_rice",
-      "dn": "mediterranean_bowl"
+      "b": "smoothie_bowl",
+      "l": "chickpea_wrap",
+      "dn": "stir_fry_tofu"
     },
     {
       "day": "Thursday",
-      "b": "poha",
-      "l": "greek_salad",
-      "dn": "pasta_bake"
+      "b": "dahi_chivda",
+      "l": "pesara_pappu",
+      "dn": "pasta_arrabiata"
     },
     {
       "day": "Friday",
-      "b": "bircher_muesli",
-      "l": "chana_masala",
-      "dn": "lentil_soup"
+      "b": "muesli_bowl",
+      "l": "buddha_bowl",
+      "dn": "coconut_curry"
     },
     {
       "day": "Saturday",
-      "b": "pesarattu",
-      "l": "dal_tadka",
-      "dn": "baingan_bharta"
+      "b": "moong_cheela",
+      "l": "gongura_pappu",
+      "dn": "methi_dal"
     },
     {
       "day": "Sunday",
-      "b": "paneer_bhurji",
-      "l": "pulihora",
-      "dn": "aloo_gobi"
+      "b": "aloo_paratha_north",
+      "l": "rasam_rice",
+      "dn": "mukkala_pulusu"
     }
   ],
   "nextPlan": null,
   "cookMap": {
-    "0": "N",
-    "1": "A",
-    "2": "N",
-    "3": "A",
-    "4": "N",
-    "5": "A",
-    "6": "N",
-    "7": "A",
-    "8": "N",
-    "9": "A",
-    "10": "N",
-    "11": "A",
-    "12": "N",
-    "13": "A",
-    "14": "N",
-    "15": "A",
-    "16": "N",
-    "17": "A",
-    "18": "N",
-    "19": "A",
-    "20": "N"
+    "0": "A",
+    "1": "N",
+    "2": "A",
+    "3": "N",
+    "4": "A",
+    "5": "N",
+    "6": "A",
+    "7": "N",
+    "8": "A",
+    "9": "N",
+    "10": "A",
+    "11": "N",
+    "12": "A",
+    "13": "N",
+    "14": "A",
+    "15": "N",
+    "16": "A",
+    "17": "N",
+    "18": "A",
+    "19": "N",
+    "20": "A"
   },
   "nextCookMap": {},
-  "genNum": 3,
+  "genNum": 4,
   "completed": {},
   "shopChecked": {},
   "manualItems": [],
@@ -157,5 +157,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-04T18:45:13.777Z"
+  "lastUpdated": "2026-04-04T18:52:53.225Z"
 }
