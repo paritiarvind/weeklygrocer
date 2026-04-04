@@ -93,7 +93,9 @@
     "mustard seeds": true,
     "oregano": true,
     "peanuts": true,
-    "pepper": true
+    "pepper": true,
+    "red chilli": true,
+    "rice": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -131,5 +133,5 @@
     "budget": false
   },
   "pantryUpdatedAt": "2026-04-04T14:11:19.943Z",
-  "lastUpdated": "2026-04-04T16:34:53.008Z"
+  "lastUpdated": "2026-04-04T16:34:56.888Z"
 }
