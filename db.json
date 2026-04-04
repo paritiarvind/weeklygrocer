@@ -95,7 +95,14 @@
     "peanuts": true,
     "pepper": true,
     "red chilli": true,
-    "rice": true
+    "rice": true,
+    "roasted capsicum": true,
+    "semolina": true,
+    "sesame seeds": true,
+    "smoked paprika": true,
+    "soy sauce": true,
+    "soya chunks": true,
+    "vegetable stock": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -133,5 +140,5 @@
     "budget": false
   },
   "pantryUpdatedAt": "2026-04-04T14:11:19.943Z",
-  "lastUpdated": "2026-04-04T16:34:56.888Z"
+  "lastUpdated": "2026-04-04T16:35:06.138Z"
 }
