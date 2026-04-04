@@ -1037,7 +1037,7 @@ const DB = [
    nutrition:{calories:340,protein:16,carbs:50,fat:8},source:'North Indian Classic'},
 
   // ── TELUGU BRAHMIN (tagged region:'south', telugu:true) ───────────────────
-  {id:'pesarattu',quickBreakfast:true,region:'south',telugu:true,name:'Pesarattu',meal:'Breakfast',protein:16,prepTime:15,cost:1.4,emoji:'🫔',color:'#4A6741',
+  {id:'pesarattu',region:'south',telugu:true,name:'Pesarattu',meal:'Breakfast',protein:16,prepTime:15,cost:1.4,emoji:'🫔',color:'#4A6741',
    ingredients:['whole moong dal','ginger','green chilli','cumin','onion','coriander','oil','rice'],
    steps:['Soak whole moong dal overnight. Drain well.','Blend soaked moong with ginger, green chilli, cumin and a little rice to a smooth, pourable batter. Season with salt.','Heat a flat tawa until very hot. Pour one ladle of batter and spread into a thin circle — thinner than dosa.','Drizzle oil around edges. Scatter finely chopped onion and coriander on top, press lightly.','Cook on medium heat until edges lift and bottom is golden — about 3 min. Fold and serve with ginger chutney.'],
    tip:'The batter should be thinner than idli batter but thicker than water. Spread quickly — moong batter sets fast.',
@@ -1253,25 +1253,41 @@ function buildLocalPlan(lastIds) {
   const northBkf = allBkf.filter(r => r.region==='north');
   const northLnc = allLnc.filter(r => r.region==='north');
   const northDin = allDin.filter(r => r.region==='north');
-
-  // Weekday pools
-  // Quick breakfasts: tagged quickBreakfast (both Indian + Western, all ≤12min)
   const quickBkf = allBkf.filter(r => r.quickBreakfast);
-  // Office-friendly lunches: exclude soups, liquids, and weekendOnly items
   const officeLnc = allLnc.filter(r => !r.weekendOnly);
-  // Weekend lunches: all lunches including soups
-  const weekendLnc = allLnc;
-  // General dinners (non-regional)
   const generalDin = allDin.filter(r => !r.region);
 
+  // ── MACRO CYCLING: day pattern for A's weight loss ───────────────────────
+  // Mon/Wed/Fri = high protein deficit (score protein heavily)
+  // Tue/Thu     = moderate balanced (normal scoring)
+  // Sat         = South Indian refeed (carb-rich rice dishes OK)
+  // Sun         = lighter recovery (lower calorie preference)
+  const MACRO_PATTERN = ['high','moderate','high','moderate','high','refeed','recovery'];
+
   const used = {};
-  const pick = (arr, prevDin) => {
-    if (!arr.length) arr = allBkf; // safety fallback
+  const pick = (arr, dayType) => {
+    if (!arr || !arr.length) return null;
     const candidates = arr.map(r => {
-      let w = Math.max(0.5, scoreR(r, prevDin));
-      if ((used[r.id]||0) >= 2) w *= 0.04;
-      if ((used[r.id]||0) === 1) w *= 0.35;
-      if (lastIds && lastIds.has(r.id)) w *= 0.22;
+      let w = Math.max(0.5, scoreR(r, []));
+      // Macro cycling weight modifier
+      if (dayType === 'high') {
+        // Boost high-protein recipes (>18g), penalise low (<12g)
+        if (r.protein >= 20) w *= 1.8;
+        else if (r.protein >= 16) w *= 1.3;
+        else if (r.protein < 12) w *= 0.4;
+        // Penalise high-carb dinners on deficit days
+        if (r.meal==='Dinner' && r.nutrition?.carbs > 50) w *= 0.6;
+      } else if (dayType === 'recovery') {
+        // Light meals preferred — lower calorie
+        if (r.nutrition?.calories < 300) w *= 1.5;
+        if (r.nutrition?.calories > 450) w *= 0.5;
+      } else if (dayType === 'refeed') {
+        // South Indian carb-rich is fine — normal scoring
+        if (r.region === 'south') w *= 1.3;
+      }
+      // Anti-repeat penalties
+      if ((used[r.id]||0) >= 1) w *= 0.001;
+      if (lastIds && lastIds.has(r.id)) w *= 0.1;
       w *= 0.85 + Math.random() * 0.3;
       return {r, w};
     }).sort((a,b) => b.w - a.w);
@@ -1281,48 +1297,41 @@ function buildLocalPlan(lastIds) {
   };
 
   const plan = [];
-
   DAYS.forEach((day, di) => {
-    const isSat     = di === 5;
-    const isSun     = di === 6;
-    const isWeekend = isSat || isSun;
-
-    // Previous day's dinner ingredients for lunch overlap scoring
-    const prevDinIng = di > 0 ? (plan[di-1]?.Dinner?.ingredients || []) : [];
+    const isSat = di===5, isSun = di===6;
+    const dayType = MACRO_PATTERN[di];
+    const prevDinIng = di > 0 ? (plan[di-1]?.Dinner?.ingredients||[]) : [];
 
     let bkfPool, lncPool, dinPool;
-
     if (isSat) {
-      // Saturday = full South Indian day
       bkfPool = southBkf.length >= 2 ? southBkf : allBkf;
-      lncPool  = southLnc.length >= 1 ? southLnc : weekendLnc;
-      dinPool  = southDin.length >= 1 ? southDin : allDin;
+      lncPool = southLnc.length >= 2 ? southLnc : officeLnc;
+      dinPool = southDin.length >= 3 ? southDin : allDin;
     } else if (isSun) {
-      // Sunday = North Indian breakfast, South Indian Telugu lunch + dinner
       bkfPool = northBkf.length >= 1 ? northBkf : allBkf;
-      lncPool  = southLnc.length >= 1 ? southLnc : weekendLnc; // Telugu lunch
-      dinPool  = southDin.length >= 1 ? southDin : allDin;      // Telugu dinner
+      lncPool = southLnc.length >= 2 ? southLnc : officeLnc;
+      dinPool = southDin.length >= 3 ? southDin : allDin;
     } else {
-      // Weekdays — quick breakfasts, office-safe lunches, general dinners
-      bkfPool = quickBkf.length >= 3 ? quickBkf : allBkf;
-      lncPool  = officeLnc.length >= 3 ? officeLnc : allLnc;
-      dinPool  = generalDin.length >= 4 ? generalDin : allDin;
+      bkfPool = quickBkf.length >= 4 ? quickBkf : allBkf;
+      lncPool = officeLnc.length >= 5 ? officeLnc : allLnc;
+      dinPool = generalDin.length >= 5 ? generalDin : allDin;
     }
 
-    // Safety fallbacks if pool too small
     if (bkfPool.length < 2) bkfPool = allBkf;
     if (lncPool.length  < 2) lncPool  = allLnc;
     if (dinPool.length  < 2) dinPool  = allDin;
 
-    const breakfast = pick(bkfPool, null);
-    const lunch     = pick(lncPool, prevDinIng); // ingredient overlap scoring
-    const dinner    = pick(dinPool, null);
-
-    plan.push({day, Breakfast:breakfast, Lunch:lunch, Dinner:dinner});
+    plan.push({
+      day,
+      Breakfast: pick(bkfPool, dayType),
+      Lunch:     pick(lncPool, dayType),
+      Dinner:    pick(dinPool, dayType),
+    });
   });
-
   return plan;
 }
+
+
 function planToIds(plan){ return plan.map(d=>({day:d.day,b:d.Breakfast.id,l:d.Lunch.id,dn:d.Dinner.id})); }
 function idsToRecipes(ids){ return ids.map(d=>({day:d.day,Breakfast:BYID[d.b],Lunch:BYID[d.l],Dinner:BYID[d.dn]})); }
 function buildCookMap(gn){ const m={}; for(let s=0;s<21;s++) m[s]=(s%2===0)===(gn%2===0)?'A':'N'; return m; }
@@ -2584,7 +2593,7 @@ function printPDF() {
 
     /* ── MEAL GRID ── */
     .grid-wrap{flex:1;min-height:0;display:flex;flex-direction:column;}
-    table{width:100%;flex:1;border-collapse:collapse;table-layout:fixed;display:flex;flex-direction:column;}
+    table{width:100%;height:100%;border-collapse:collapse;table-layout:fixed;}
     .day-header{padding:5px 4px 4px;text-align:center;color:#fff;font-weight:700;font-size:9px;text-transform:uppercase;letter-spacing:.4px;line-height:1.3;}
     .day-name{font-size:11px;font-weight:800;display:block;}
     .day-date{font-size:8px;opacity:.85;display:block;margin-top:1px;font-weight:500;}
@@ -2592,9 +2601,9 @@ function printPDF() {
     .row-label{width:38px;padding:4px 3px;text-align:center;background:#fafafa;border-right:2px solid #f0f0f0;border-bottom:1px solid #f0f0f0;vertical-align:middle;height:1px;}
     .row-icon{display:block;font-size:11px;line-height:1;}
     .row-text{display:block;font-size:6.5px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:#aaa;margin-top:1px;}
-    thead{display:table;width:100%;table-layout:fixed;}
-    tbody{display:table;width:100%;table-layout:fixed;flex:1;}
-    tbody tr{height:33.3%;}
+    thead tr{height:28px;}
+    tbody{height:calc(100% - 28px);}
+    tbody tr{height:33.33%;}
     .mc{padding:6px 6px;border-bottom:1px solid #f0f0f0;border-right:1px solid #f0f0f0;vertical-align:top;}
     .mc-inner{display:flex;align-items:flex-start;gap:4px;}
     .mc-emoji{font-size:14px;flex-shrink:0;line-height:1;margin-top:1px;}
