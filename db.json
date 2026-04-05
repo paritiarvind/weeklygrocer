@@ -3,7 +3,7 @@
     {
       "day": "Monday",
       "b": "idli_sambar",
-      "l": "palak_paneer",
+      "l": "dal_tadka",
       "dn": "veggie_quesadilla"
     },
     {
@@ -160,5 +160,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-05T01:26:55.006Z"
+  "lastUpdated": "2026-04-05T01:28:23.117Z"
 }
