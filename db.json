@@ -8,7 +8,7 @@
     },
     {
       "day": "Tuesday",
-      "b": "bread_upma",
+      "b": "besan_chilla",
       "l": "rajma_chawal",
       "dn": "cauliflower_steak"
     },
@@ -160,5 +160,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-05T01:21:51.897Z"
+  "lastUpdated": "2026-04-05T01:22:11.452Z"
 }
