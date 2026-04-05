@@ -10,7 +10,7 @@
       "day": "Tuesday",
       "b": "egg_veggie_wrap",
       "l": "rajma_chawal",
-      "dn": "cauliflower_steak"
+      "dn": "frittata"
     },
     {
       "day": "Wednesday",
@@ -160,5 +160,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-05T01:25:26.477Z"
+  "lastUpdated": "2026-04-05T01:26:55.006Z"
 }
