@@ -69,7 +69,10 @@
   },
   "nextCookMap": {},
   "genNum": 4,
-  "completed": {},
+  "completed": {
+    "Sunday-Breakfast": true,
+    "Sunday-Lunch": true
+  },
   "shopChecked": {},
   "manualItems": [],
   "mealNotes": {},
@@ -157,5 +160,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-05T01:06:48.490Z"
+  "lastUpdated": "2026-04-05T01:21:23.294Z"
 }
