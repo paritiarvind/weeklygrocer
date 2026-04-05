@@ -28,7 +28,7 @@
       "day": "Friday",
       "b": "muesli_bowl",
       "l": "buddha_bowl",
-      "dn": "coconut_curry"
+      "dn": "shakshuka"
     },
     {
       "day": "Saturday",
@@ -162,5 +162,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-05T01:29:43.776Z"
+  "lastUpdated": "2026-04-05T01:29:58.692Z"
 }
