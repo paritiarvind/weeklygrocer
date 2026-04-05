@@ -8,7 +8,7 @@
     },
     {
       "day": "Tuesday",
-      "b": "besan_chilla",
+      "b": "egg_veggie_wrap",
       "l": "rajma_chawal",
       "dn": "cauliflower_steak"
     },
@@ -160,5 +160,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-05T01:23:59.426Z"
+  "lastUpdated": "2026-04-05T01:25:26.477Z"
 }
