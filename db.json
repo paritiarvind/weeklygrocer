@@ -21,7 +21,7 @@
     {
       "day": "Thursday",
       "b": "dahi_chivda",
-      "l": "pesara_pappu",
+      "l": "egg_fried_rice",
       "dn": "pasta_arrabiata"
     },
     {
@@ -200,5 +200,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-06T01:06:54.647Z"
+  "lastUpdated": "2026-04-06T01:07:30.560Z"
 }
