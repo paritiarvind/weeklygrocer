@@ -77,7 +77,8 @@
   "shopChecked": {
     "amchur": true,
     "asafoetida": true,
-    "banana": true
+    "banana": true,
+    "bay leaf": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -167,5 +168,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-06T01:02:49.424Z"
+  "lastUpdated": "2026-04-06T01:03:00.377Z"
 }
