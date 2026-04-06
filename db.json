@@ -75,7 +75,8 @@
     "Sunday-Dinner": true
   },
   "shopChecked": {
-    "amchur": true
+    "amchur": true,
+    "asafoetida": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -165,5 +166,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-06T01:02:40.970Z"
+  "lastUpdated": "2026-04-06T01:02:46.902Z"
 }
