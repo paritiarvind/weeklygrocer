@@ -93,7 +93,8 @@
     "ghee": true,
     "honey": true,
     "mixed greens": true,
-    "mixed nuts": true
+    "mixed nuts": true,
+    "mustard seeds": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -183,5 +184,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-06T01:04:03.249Z"
+  "lastUpdated": "2026-04-06T01:04:05.400Z"
 }
