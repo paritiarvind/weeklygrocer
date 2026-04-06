@@ -103,7 +103,8 @@
     "red chilli": true,
     "salt": true,
     "semolina": true,
-    "sesame seeds": true
+    "sesame seeds": true,
+    "smoked paprika": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -193,5 +194,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-06T01:04:32.434Z"
+  "lastUpdated": "2026-04-06T01:04:36.006Z"
 }
