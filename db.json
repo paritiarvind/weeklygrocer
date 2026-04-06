@@ -106,7 +106,8 @@
     "sesame seeds": true,
     "smoked paprika": true,
     "sour cream": true,
-    "soy sauce": true
+    "soy sauce": true,
+    "sugar": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -196,5 +197,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-06T01:04:39.704Z"
+  "lastUpdated": "2026-04-06T01:04:42.161Z"
 }
