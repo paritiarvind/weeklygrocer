@@ -85,7 +85,8 @@
     "cashews": true,
     "chia seeds": true,
     "chilli flakes": true,
-    "coriander": true
+    "coriander": true,
+    "dried red chilli": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -175,5 +176,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-06T01:03:23.724Z"
+  "lastUpdated": "2026-04-06T01:03:29.664Z"
 }
