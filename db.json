@@ -92,7 +92,8 @@
     "garam masala": true,
     "ghee": true,
     "honey": true,
-    "mixed greens": true
+    "mixed greens": true,
+    "mixed nuts": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -182,5 +183,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-06T01:04:00.589Z"
+  "lastUpdated": "2026-04-06T01:04:03.249Z"
 }
