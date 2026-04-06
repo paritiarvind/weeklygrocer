@@ -2,7 +2,7 @@
   "plan": [
     {
       "day": "Monday",
-      "b": "idli_sambar",
+      "b": "upma",
       "l": "dal_tadka",
       "dn": "veggie_quesadilla"
     },
@@ -163,5 +163,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-05T11:26:45.909Z"
+  "lastUpdated": "2026-04-06T01:01:23.786Z"
 }
