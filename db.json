@@ -90,7 +90,8 @@
     "flattened rice": true,
     "frozen berries": true,
     "garam masala": true,
-    "ghee": true
+    "ghee": true,
+    "honey": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -180,5 +181,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-06T01:03:40.928Z"
+  "lastUpdated": "2026-04-06T01:03:47.003Z"
 }
