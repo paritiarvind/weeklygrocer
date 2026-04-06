@@ -97,7 +97,9 @@
     "mustard seeds": true,
     "parmesan": true,
     "pepper": true,
-    "pickle": true
+    "pickle": true,
+    "protein powder": true,
+    "quinoa": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -187,5 +189,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-06T01:04:10.218Z"
+  "lastUpdated": "2026-04-06T01:04:21.376Z"
 }
