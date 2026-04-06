@@ -100,7 +100,10 @@
     "pickle": true,
     "protein powder": true,
     "quinoa": true,
-    "red chilli": true
+    "red chilli": true,
+    "salt": true,
+    "semolina": true,
+    "sesame seeds": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -190,5 +193,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-06T01:04:23.218Z"
+  "lastUpdated": "2026-04-06T01:04:32.434Z"
 }
