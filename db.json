@@ -78,7 +78,7 @@
     "Monday-Dinner": true
   },
   "shopChecked": {
-    "amchur": true,
+    "amchur": false,
     "asafoetida": true,
     "banana": true,
     "bay leaf": true,
@@ -111,7 +111,7 @@
     "sour cream": true,
     "soy sauce": true,
     "sugar": true,
-    "tahini": false,
+    "tahini": true,
     "tamarind": true,
     "zucchini": true
   },
@@ -203,5 +203,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-07T07:46:00.623Z"
+  "lastUpdated": "2026-04-07T07:46:25.944Z"
 }
