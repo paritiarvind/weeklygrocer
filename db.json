@@ -119,7 +119,8 @@
     "bread": true,
     "cucumber": true,
     "basil": true,
-    "firm tofu": true
+    "firm tofu": true,
+    "soya chunks": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -209,5 +210,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-07T08:03:29.042Z"
+  "lastUpdated": "2026-04-07T08:15:14.924Z"
 }
