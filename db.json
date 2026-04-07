@@ -15,7 +15,7 @@
     {
       "day": "Wednesday",
       "b": "smoothie_bowl",
-      "l": "chickpea_wrap",
+      "l": "pesara_pappu",
       "dn": "stir_fry_tofu"
     },
     {
@@ -213,5 +213,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-07T10:54:05.830Z"
+  "lastUpdated": "2026-04-07T20:43:58.952Z"
 }
