@@ -113,7 +113,8 @@
     "sugar": true,
     "tahini": true,
     "tamarind": true,
-    "zucchini": true
+    "zucchini": true,
+    "potato": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -203,5 +204,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-07T07:51:43.154Z"
+  "lastUpdated": "2026-04-07T07:53:47.151Z"
 }
