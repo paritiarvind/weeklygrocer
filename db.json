@@ -117,7 +117,8 @@
     "potato": true,
     "broccoli": true,
     "bread": true,
-    "cucumber": true
+    "cucumber": true,
+    "basil": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -207,5 +208,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-07T08:02:44.403Z"
+  "lastUpdated": "2026-04-07T08:03:23.539Z"
 }
