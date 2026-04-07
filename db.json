@@ -78,7 +78,7 @@
     "Monday-Dinner": true
   },
   "shopChecked": {
-    "amchur": false,
+    "amchur": true,
     "asafoetida": true,
     "banana": true,
     "bay leaf": true,
@@ -203,5 +203,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-07T07:46:25.944Z"
+  "lastUpdated": "2026-04-07T07:51:43.154Z"
 }
