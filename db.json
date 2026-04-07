@@ -114,7 +114,8 @@
     "tahini": true,
     "tamarind": true,
     "zucchini": true,
-    "potato": true
+    "potato": true,
+    "broccoli": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -204,5 +205,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-07T07:53:47.151Z"
+  "lastUpdated": "2026-04-07T07:54:36.448Z"
 }
