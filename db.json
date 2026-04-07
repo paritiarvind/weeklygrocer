@@ -118,7 +118,8 @@
     "broccoli": true,
     "bread": true,
     "cucumber": true,
-    "basil": true
+    "basil": true,
+    "firm tofu": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -208,5 +209,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-07T08:03:23.539Z"
+  "lastUpdated": "2026-04-07T08:03:29.042Z"
 }
