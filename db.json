@@ -79,7 +79,9 @@
     "Tuesday-Breakfast": true,
     "Tuesday-Lunch": true,
     "Tuesday-Dinner": true,
-    "Wednesday-Breakfast": true
+    "Wednesday-Breakfast": true,
+    "Wednesday-Lunch": true,
+    "Wednesday-Dinner": true
   },
   "shopChecked": {
     "amchur": true,
@@ -214,5 +216,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-08T09:15:04.096Z"
+  "lastUpdated": "2026-04-08T12:27:02.572Z"
 }
