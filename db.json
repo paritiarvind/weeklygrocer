@@ -43,7 +43,50 @@
       "dn": "tarka_dhal_dinner"
     }
   ],
-  "nextPlan": null,
+  "nextPlan": [
+    {
+      "day": "Monday",
+      "b": "avo_toast",
+      "l": "greek_salad",
+      "dn": "mediterranean_bowl"
+    },
+    {
+      "day": "Tuesday",
+      "b": "besan_chilla",
+      "l": "chana_masala",
+      "dn": "frittata"
+    },
+    {
+      "day": "Wednesday",
+      "b": "bread_upma",
+      "l": "curd_rice",
+      "dn": "coconut_curry"
+    },
+    {
+      "day": "Thursday",
+      "b": "moong_sprouts",
+      "l": "palak_paneer",
+      "dn": "cauliflower_steak"
+    },
+    {
+      "day": "Friday",
+      "b": "overnight_oats",
+      "l": "chole_rice",
+      "dn": "pasta_bake"
+    },
+    {
+      "day": "Saturday",
+      "b": "masala_dosa",
+      "l": "pulihora",
+      "dn": "matar_paneer"
+    },
+    {
+      "day": "Sunday",
+      "b": "chole_bhature",
+      "l": "pesara_pappu",
+      "dn": "paneer_paratha"
+    }
+  ],
   "cookMap": {
     "0": "A",
     "1": "N",
@@ -67,7 +110,29 @@
     "19": "N",
     "20": "A"
   },
-  "nextCookMap": {},
+  "nextCookMap": {
+    "0": "N",
+    "1": "A",
+    "2": "N",
+    "3": "A",
+    "4": "N",
+    "5": "A",
+    "6": "N",
+    "7": "A",
+    "8": "N",
+    "9": "A",
+    "10": "N",
+    "11": "A",
+    "12": "N",
+    "13": "A",
+    "14": "N",
+    "15": "A",
+    "16": "N",
+    "17": "A",
+    "18": "N",
+    "19": "A",
+    "20": "N"
+  },
   "genNum": 4,
   "completed": {
     "Sunday-Breakfast": true,
@@ -216,5 +281,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-08T12:27:02.572Z"
+  "lastUpdated": "2026-04-11T05:01:36.060Z"
 }
