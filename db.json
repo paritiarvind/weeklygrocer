@@ -86,7 +86,10 @@
     "ghee": true,
     "honey": true,
     "Italian herbs": true,
-    "moong sprouts": true
+    "moong sprouts": true,
+    "mushrooms": true,
+    "mustard seeds": true,
+    "oregano": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -1042,5 +1045,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-12T04:44:09.604Z"
+  "lastUpdated": "2026-04-12T04:44:13.676Z"
 }
