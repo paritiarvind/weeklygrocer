@@ -78,7 +78,8 @@
     "basmati rice": true,
     "chaat masala": true,
     "berries": true,
-    "coriander powder": true
+    "coriander powder": true,
+    "cream": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -1034,5 +1035,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-12T04:43:41.761Z"
+  "lastUpdated": "2026-04-12T04:43:45.493Z"
 }
