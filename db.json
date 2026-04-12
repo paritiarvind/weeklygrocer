@@ -99,7 +99,9 @@
     "red chilli": true,
     "red chilli powder": true,
     "smoked paprika": true,
-    "roasted capsicum": true
+    "roasted capsicum": true,
+    "chia seeds": true,
+    "chilli flakes": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -1055,5 +1057,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-12T04:45:30.554Z"
+  "lastUpdated": "2026-04-12T04:45:38.828Z"
 }
