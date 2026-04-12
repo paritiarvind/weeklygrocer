@@ -102,7 +102,8 @@
     "roasted capsicum": true,
     "chia seeds": true,
     "chilli flakes": true,
-    "coconut chutney": true
+    "coconut chutney": true,
+    "salt": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -1058,5 +1059,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-12T04:45:49.369Z"
+  "lastUpdated": "2026-04-12T04:45:53.282Z"
 }
