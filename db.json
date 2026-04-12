@@ -85,7 +85,8 @@
     "garam masala": true,
     "ghee": true,
     "honey": true,
-    "Italian herbs": true
+    "Italian herbs": true,
+    "moong sprouts": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -1041,5 +1042,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-12T04:44:06.542Z"
+  "lastUpdated": "2026-04-12T04:44:09.604Z"
 }
