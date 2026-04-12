@@ -79,7 +79,8 @@
     "chaat masala": true,
     "berries": true,
     "coriander powder": true,
-    "cream": true
+    "cream": true,
+    "curry paste": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -1035,5 +1036,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-12T04:43:45.493Z"
+  "lastUpdated": "2026-04-12T04:43:47.458Z"
 }
