@@ -103,7 +103,8 @@
     "chia seeds": true,
     "chilli flakes": true,
     "coconut chutney": true,
-    "salt": true
+    "salt": true,
+    "cooked rice": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -1059,5 +1060,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-12T04:45:53.282Z"
+  "lastUpdated": "2026-04-12T04:45:57.883Z"
 }
