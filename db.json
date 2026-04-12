@@ -101,7 +101,8 @@
     "smoked paprika": true,
     "roasted capsicum": true,
     "chia seeds": true,
-    "chilli flakes": true
+    "chilli flakes": true,
+    "coconut chutney": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -1057,5 +1058,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-12T04:45:38.828Z"
+  "lastUpdated": "2026-04-12T04:45:41.860Z"
 }
