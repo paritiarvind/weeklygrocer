@@ -72,7 +72,10 @@
   "completed": {},
   "shopChecked": {
     "ajwain": true,
-    "amchur": true
+    "amchur": true,
+    "asafoetida": true,
+    "baking soda": true,
+    "basmati rice": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -1028,5 +1031,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-12T04:40:42.477Z"
+  "lastUpdated": "2026-04-12T04:40:46.540Z"
 }
