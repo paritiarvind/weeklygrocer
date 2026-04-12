@@ -75,7 +75,8 @@
     "amchur": true,
     "asafoetida": true,
     "baking soda": true,
-    "basmati rice": true
+    "basmati rice": true,
+    "chaat masala": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -1031,5 +1032,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-12T04:40:49.136Z"
+  "lastUpdated": "2026-04-12T04:41:09.017Z"
 }
