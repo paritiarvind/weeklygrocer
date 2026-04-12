@@ -83,7 +83,8 @@
     "curry paste": true,
     "dried red chilli": true,
     "garam masala": true,
-    "ghee": true
+    "ghee": true,
+    "honey": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -1039,5 +1040,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-12T04:43:57.906Z"
+  "lastUpdated": "2026-04-12T04:44:01.760Z"
 }
