@@ -43,7 +43,50 @@
       "dn": "paneer_paratha"
     }
   ],
-  "nextPlan": null,
+  "nextPlan": [
+    {
+      "day": "Monday",
+      "b": "bircher_muesli",
+      "l": "buddha_bowl",
+      "dn": "pasta_arrabiata"
+    },
+    {
+      "day": "Tuesday",
+      "b": "dahi_chivda",
+      "l": "pasta_pesto",
+      "dn": "shakshuka"
+    },
+    {
+      "day": "Wednesday",
+      "b": "smoothie_bowl",
+      "l": "curd_rice",
+      "dn": "stir_fry_tofu"
+    },
+    {
+      "day": "Thursday",
+      "b": "muesli_bowl",
+      "l": "soya_curry",
+      "dn": "mushroom_risotto"
+    },
+    {
+      "day": "Friday",
+      "b": "scrambled_eggs",
+      "l": "chickpea_wrap",
+      "dn": "veggie_quesadilla"
+    },
+    {
+      "day": "Saturday",
+      "b": "upma",
+      "l": "rasam_rice",
+      "dn": "aloo_gobi"
+    },
+    {
+      "day": "Sunday",
+      "b": "aloo_paratha_north",
+      "l": "gongura_pappu",
+      "dn": "methi_dal"
+    }
+  ],
   "cookMap": {
     "0": "N",
     "1": "A",
@@ -67,7 +110,29 @@
     "19": "A",
     "20": "N"
   },
-  "nextCookMap": {},
+  "nextCookMap": {
+    "0": "N",
+    "1": "A",
+    "2": "N",
+    "3": "A",
+    "4": "N",
+    "5": "A",
+    "6": "N",
+    "7": "A",
+    "8": "N",
+    "9": "A",
+    "10": "N",
+    "11": "A",
+    "12": "N",
+    "13": "A",
+    "14": "N",
+    "15": "A",
+    "16": "N",
+    "17": "A",
+    "18": "N",
+    "19": "A",
+    "20": "N"
+  },
   "genNum": 4,
   "completed": {
     "Monday-Breakfast": true,
@@ -1067,5 +1132,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-14T12:32:34.788Z"
+  "lastUpdated": "2026-04-18T05:13:10.377Z"
 }
