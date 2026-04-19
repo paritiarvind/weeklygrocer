@@ -83,7 +83,9 @@
     "chilli flakes": true,
     "coriander": true,
     "coriander powder": true,
-    "corn": true
+    "corn": true,
+    "cucumber": true,
+    "dried red chilli": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -1904,5 +1906,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-19T02:22:45.345Z"
+  "lastUpdated": "2026-04-19T02:22:49.439Z"
 }
