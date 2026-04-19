@@ -10,7 +10,7 @@
       "day": "Tuesday",
       "b": "dahi_chivda",
       "l": "rajma_chawal",
-      "dn": "shakshuka"
+      "dn": "matar_paneer"
     },
     {
       "day": "Wednesday",
@@ -1890,5 +1890,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-19T02:17:50.352Z"
+  "lastUpdated": "2026-04-19T02:20:45.805Z"
 }
