@@ -103,7 +103,11 @@
     "pomegranate": true,
     "potato": true,
     "quinoa": true,
-    "red chilli": true
+    "red chilli": true,
+    "rice": true,
+    "salt": true,
+    "semolina": true,
+    "sesame seeds": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -1924,5 +1928,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-19T02:23:27.123Z"
+  "lastUpdated": "2026-04-19T02:23:31.832Z"
 }
