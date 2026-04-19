@@ -86,7 +86,8 @@
     "corn": true,
     "cucumber": true,
     "dried red chilli": true,
-    "flattened rice": true
+    "flattened rice": true,
+    "frozen berries": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -1907,5 +1908,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-19T02:22:54.560Z"
+  "lastUpdated": "2026-04-19T02:22:58.861Z"
 }
