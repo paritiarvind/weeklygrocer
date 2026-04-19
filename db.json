@@ -113,7 +113,9 @@
     "soy sauce": true,
     "soya chunks": true,
     "sugar": true,
-    "tamarind": true
+    "tamarind": true,
+    "carrot": true,
+    "cashews": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -1934,5 +1936,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-19T02:23:41.806Z"
+  "lastUpdated": "2026-04-19T02:23:50.795Z"
 }
