@@ -26,7 +26,7 @@
     },
     {
       "day": "Friday",
-      "b": "scrambled_eggs",
+      "b": "poha",
       "l": "chickpea_wrap",
       "dn": "veggie_quesadilla"
     },
@@ -1890,5 +1890,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-19T02:17:31.906Z"
+  "lastUpdated": "2026-04-19T02:17:41.626Z"
 }
