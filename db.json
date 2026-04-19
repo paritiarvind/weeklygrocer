@@ -78,7 +78,12 @@
     "bay leaf": true,
     "berries": true,
     "capsicum": false,
-    "cauliflower": false
+    "cauliflower": false,
+    "chia seeds": true,
+    "chilli flakes": true,
+    "coriander": true,
+    "coriander powder": true,
+    "corn": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -1899,5 +1904,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-19T02:22:38.585Z"
+  "lastUpdated": "2026-04-19T02:22:45.345Z"
 }
