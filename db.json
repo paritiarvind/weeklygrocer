@@ -71,7 +71,10 @@
   "genNum": 4,
   "completed": {},
   "shopChecked": {
-    "amchur": true
+    "amchur": true,
+    "banana": true,
+    "basil": true,
+    "basmati rice": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -1892,5 +1895,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-19T02:22:14.139Z"
+  "lastUpdated": "2026-04-19T02:22:19.334Z"
 }
