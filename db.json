@@ -111,7 +111,9 @@
     "smoked paprika": true,
     "sour cream": true,
     "soy sauce": true,
-    "soya chunks": true
+    "soya chunks": true,
+    "sugar": true,
+    "tamarind": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -1932,5 +1934,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-19T02:23:38.287Z"
+  "lastUpdated": "2026-04-19T02:23:41.806Z"
 }
