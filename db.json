@@ -107,7 +107,11 @@
     "rice": true,
     "salt": true,
     "semolina": true,
-    "sesame seeds": true
+    "sesame seeds": true,
+    "smoked paprika": true,
+    "sour cream": true,
+    "soy sauce": true,
+    "soya chunks": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -1928,5 +1932,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-19T02:23:31.832Z"
+  "lastUpdated": "2026-04-19T02:23:38.287Z"
 }
