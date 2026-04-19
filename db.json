@@ -91,7 +91,8 @@
     "garam masala": true,
     "ghee": true,
     "green chilli": true,
-    "honey": true
+    "honey": true,
+    "mixed greens": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -1912,5 +1913,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-19T02:23:06.643Z"
+  "lastUpdated": "2026-04-19T02:23:12.378Z"
 }
