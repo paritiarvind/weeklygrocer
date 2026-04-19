@@ -85,7 +85,8 @@
     "coriander powder": true,
     "corn": true,
     "cucumber": true,
-    "dried red chilli": true
+    "dried red chilli": true,
+    "flattened rice": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -1906,5 +1907,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-19T02:22:49.439Z"
+  "lastUpdated": "2026-04-19T02:22:54.560Z"
 }
