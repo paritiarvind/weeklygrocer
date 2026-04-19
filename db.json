@@ -77,7 +77,7 @@
     "basmati rice": true,
     "bay leaf": true,
     "berries": true,
-    "capsicum": true,
+    "capsicum": false,
     "cauliflower": false
   },
   "manualItems": [],
@@ -1899,5 +1899,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-19T02:22:35.001Z"
+  "lastUpdated": "2026-04-19T02:22:38.585Z"
 }
