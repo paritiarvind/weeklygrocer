@@ -92,7 +92,15 @@
     "ghee": true,
     "green chilli": true,
     "honey": true,
-    "mixed greens": true
+    "mixed greens": true,
+    "mixed nuts": true,
+    "mustard seeds": true,
+    "oregano": true,
+    "parmesan": true,
+    "peanuts": true,
+    "pepper": true,
+    "pickle": true,
+    "pomegranate": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -1913,5 +1921,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-19T02:23:12.378Z"
+  "lastUpdated": "2026-04-19T02:23:22.091Z"
 }
