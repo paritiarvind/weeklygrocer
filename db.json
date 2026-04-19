@@ -15,7 +15,7 @@
     {
       "day": "Wednesday",
       "b": "smoothie_bowl",
-      "l": "curd_rice",
+      "l": "greek_salad",
       "dn": "stir_fry_tofu"
     },
     {
@@ -1890,5 +1890,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-19T02:16:39.168Z"
+  "lastUpdated": "2026-04-19T02:17:12.270Z"
 }
