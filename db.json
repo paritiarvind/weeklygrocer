@@ -9,7 +9,7 @@
     {
       "day": "Tuesday",
       "b": "dahi_chivda",
-      "l": "chana_masala",
+      "l": "rajma_chawal",
       "dn": "shakshuka"
     },
     {
@@ -1890,5 +1890,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-19T02:17:41.626Z"
+  "lastUpdated": "2026-04-19T02:17:50.352Z"
 }
