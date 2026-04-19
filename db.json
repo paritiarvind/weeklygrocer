@@ -87,7 +87,11 @@
     "cucumber": true,
     "dried red chilli": true,
     "flattened rice": true,
-    "frozen berries": true
+    "frozen berries": true,
+    "garam masala": true,
+    "ghee": true,
+    "green chilli": true,
+    "honey": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -1908,5 +1912,5 @@
     "snacksEnabled": true,
     "maxPrepTime": 30
   },
-  "lastUpdated": "2026-04-19T02:22:58.861Z"
+  "lastUpdated": "2026-04-19T02:23:06.643Z"
 }
