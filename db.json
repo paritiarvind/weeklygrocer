@@ -43,7 +43,50 @@
       "dn": "baingan_bharta"
     }
   ],
-  "nextPlan": null,
+  "nextPlan": [
+    {
+      "day": "Monday",
+      "b": "bircher_muesli",
+      "l": "pasta_pesto",
+      "dn": "stir_fry_tofu"
+    },
+    {
+      "day": "Tuesday",
+      "b": "overnight_oats",
+      "l": "chickpea_wrap",
+      "dn": "pasta_arrabiata"
+    },
+    {
+      "day": "Wednesday",
+      "b": "smoothie_bowl",
+      "l": "greek_salad",
+      "dn": "mushroom_risotto"
+    },
+    {
+      "day": "Thursday",
+      "b": "muesli_bowl",
+      "l": "rajma_chawal",
+      "dn": "coconut_curry"
+    },
+    {
+      "day": "Friday",
+      "b": "poha",
+      "l": "buddha_bowl",
+      "dn": "cauliflower_steak"
+    },
+    {
+      "day": "Saturday",
+      "b": "idli_sambar",
+      "l": "pulihora",
+      "dn": "paneer_paratha"
+    },
+    {
+      "day": "Sunday",
+      "b": "aloo_paratha_north",
+      "l": "curd_rice",
+      "dn": "methi_dal"
+    }
+  ],
   "cookMap": {
     "0": "N",
     "1": "A",
@@ -67,7 +110,29 @@
     "19": "A",
     "20": "N"
   },
-  "nextCookMap": {},
+  "nextCookMap": {
+    "0": "A",
+    "1": "N",
+    "2": "A",
+    "3": "N",
+    "4": "A",
+    "5": "N",
+    "6": "A",
+    "7": "N",
+    "8": "A",
+    "9": "N",
+    "10": "A",
+    "11": "N",
+    "12": "A",
+    "13": "N",
+    "14": "A",
+    "15": "N",
+    "16": "A",
+    "17": "N",
+    "18": "A",
+    "19": "N",
+    "20": "A"
+  },
   "genNum": 1,
   "completed": {},
   "shopChecked": {},
@@ -151,5 +216,5 @@
     "snacksEnabled": false,
     "maxPrepTime": 45
   },
-  "lastUpdated": "2026-04-19T12:14:28.037Z"
+  "lastUpdated": "2026-04-25T05:19:25.189Z"
 }
