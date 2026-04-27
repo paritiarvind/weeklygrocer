@@ -160,7 +160,8 @@
     "green chilli": true,
     "gongura leaves": true,
     "flour tortillas": true,
-    "dried red chilli": true
+    "dried red chilli": true,
+    "crushed tomatoes": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -242,5 +243,5 @@
     "snacksEnabled": false,
     "maxPrepTime": 45
   },
-  "lastUpdated": "2026-04-27T07:22:57.395Z"
+  "lastUpdated": "2026-04-27T07:23:00.564Z"
 }
