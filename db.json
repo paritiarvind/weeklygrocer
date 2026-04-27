@@ -135,7 +135,11 @@
   },
   "genNum": 1,
   "completed": {},
-  "shopChecked": {},
+  "shopChecked": {
+    "toor dal": true,
+    "tomato": false,
+    "tamarind": true
+  },
   "manualItems": [],
   "mealNotes": {},
   "nApproved": false,
@@ -216,5 +220,5 @@
     "snacksEnabled": false,
     "maxPrepTime": 45
   },
-  "lastUpdated": "2026-04-27T00:42:42.515Z"
+  "lastUpdated": "2026-04-27T07:21:47.414Z"
 }
