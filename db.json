@@ -154,7 +154,9 @@
     "mushrooms": true,
     "mozzarella": true,
     "moong sprouts": true,
-    "moong dal": true
+    "moong dal": true,
+    "mixed greens": true,
+    "Italian herbs": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -236,5 +238,5 @@
     "snacksEnabled": false,
     "maxPrepTime": 45
   },
-  "lastUpdated": "2026-04-27T07:22:37.533Z"
+  "lastUpdated": "2026-04-27T07:22:41.570Z"
 }
