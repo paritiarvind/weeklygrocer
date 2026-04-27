@@ -159,8 +159,8 @@
     "Italian herbs": true,
     "green chilli": true,
     "gongura leaves": true,
-    "ghee": true,
-    "garam masala": true
+    "flour tortillas": true,
+    "dried red chilli": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -242,5 +242,5 @@
     "snacksEnabled": false,
     "maxPrepTime": 45
   },
-  "lastUpdated": "2026-04-27T07:22:51.745Z"
+  "lastUpdated": "2026-04-27T07:22:55.586Z"
 }
