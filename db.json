@@ -164,7 +164,9 @@
     "crushed tomatoes": true,
     "cream": true,
     "corn": true,
-    "coriander powder": true
+    "coriander powder": true,
+    "chilli flakes": true,
+    "chaat masala": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -246,5 +248,5 @@
     "snacksEnabled": false,
     "maxPrepTime": 45
   },
-  "lastUpdated": "2026-04-27T07:23:23.028Z"
+  "lastUpdated": "2026-04-27T07:23:25.907Z"
 }
