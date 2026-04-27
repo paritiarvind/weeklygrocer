@@ -157,7 +157,8 @@
     "moong dal": true,
     "mixed greens": true,
     "Italian herbs": true,
-    "green chilli": true
+    "green chilli": true,
+    "gongura leaves": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -239,5 +240,5 @@
     "snacksEnabled": false,
     "maxPrepTime": 45
   },
-  "lastUpdated": "2026-04-27T07:22:44.769Z"
+  "lastUpdated": "2026-04-27T07:22:47.377Z"
 }
