@@ -148,7 +148,10 @@
     "red chilli": true,
     "pomegranate seeds": true,
     "pepper": true,
-    "peanuts": true
+    "peanuts": true,
+    "parmesan": true,
+    "mustard seeds": true,
+    "mushrooms": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -230,5 +233,5 @@
     "snacksEnabled": false,
     "maxPrepTime": 45
   },
-  "lastUpdated": "2026-04-27T07:22:12.113Z"
+  "lastUpdated": "2026-04-27T07:22:26.432Z"
 }
