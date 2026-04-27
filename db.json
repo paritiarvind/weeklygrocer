@@ -162,7 +162,8 @@
     "flour tortillas": true,
     "dried red chilli": true,
     "crushed tomatoes": true,
-    "cream": true
+    "cream": true,
+    "corn": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -244,5 +245,5 @@
     "snacksEnabled": false,
     "maxPrepTime": 45
   },
-  "lastUpdated": "2026-04-27T07:23:03.657Z"
+  "lastUpdated": "2026-04-27T07:23:08.286Z"
 }
