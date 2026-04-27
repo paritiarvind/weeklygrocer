@@ -151,7 +151,8 @@
     "peanuts": true,
     "parmesan": true,
     "mustard seeds": true,
-    "mushrooms": true
+    "mushrooms": true,
+    "mozzarella": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -233,5 +234,5 @@
     "snacksEnabled": false,
     "maxPrepTime": 45
   },
-  "lastUpdated": "2026-04-27T07:22:26.432Z"
+  "lastUpdated": "2026-04-27T07:22:29.795Z"
 }
