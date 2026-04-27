@@ -145,7 +145,10 @@
     "sesame seeds": true,
     "salt": true,
     "roasted capsicum": true,
-    "red chilli": true
+    "red chilli": true,
+    "pomegranate seeds": true,
+    "pepper": true,
+    "peanuts": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -227,5 +230,5 @@
     "snacksEnabled": false,
     "maxPrepTime": 45
   },
-  "lastUpdated": "2026-04-27T07:22:04.021Z"
+  "lastUpdated": "2026-04-27T07:22:12.113Z"
 }
