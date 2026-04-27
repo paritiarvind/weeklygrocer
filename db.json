@@ -143,7 +143,9 @@
     "sour cream": true,
     "smoked paprika": true,
     "sesame seeds": true,
-    "salt": true
+    "salt": true,
+    "roasted capsicum": true,
+    "red chilli": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -225,5 +227,5 @@
     "snacksEnabled": false,
     "maxPrepTime": 45
   },
-  "lastUpdated": "2026-04-27T07:22:01.416Z"
+  "lastUpdated": "2026-04-27T07:22:04.021Z"
 }
