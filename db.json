@@ -9,7 +9,7 @@
     {
       "day": "Tuesday",
       "b": "poha",
-      "l": "buddha_bowl",
+      "l": "pasta_pesto",
       "dn": "shakshuka"
     },
     {
@@ -257,5 +257,5 @@
     "snacksEnabled": false,
     "maxPrepTime": 45
   },
-  "lastUpdated": "2026-04-27T11:55:38.927Z"
+  "lastUpdated": "2026-04-27T11:56:06.671Z"
 }
