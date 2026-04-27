@@ -9,7 +9,7 @@
     {
       "day": "Tuesday",
       "b": "avo_toast",
-      "l": "chole_rice",
+      "l": "buddha_bowl",
       "dn": "shakshuka"
     },
     {
@@ -216,5 +216,5 @@
     "snacksEnabled": false,
     "maxPrepTime": 45
   },
-  "lastUpdated": "2026-04-27T00:40:02.019Z"
+  "lastUpdated": "2026-04-27T00:42:00.448Z"
 }
