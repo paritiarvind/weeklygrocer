@@ -4,7 +4,7 @@
       "day": "Monday",
       "b": "besan_chilla",
       "l": "palak_paneer",
-      "dn": "frittata"
+      "dn": "cauliflower_steak"
     },
     {
       "day": "Tuesday",
@@ -216,5 +216,5 @@
     "snacksEnabled": false,
     "maxPrepTime": 45
   },
-  "lastUpdated": "2026-04-25T05:19:25.189Z"
+  "lastUpdated": "2026-04-27T00:40:02.019Z"
 }
