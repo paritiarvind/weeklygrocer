@@ -156,7 +156,8 @@
     "moong sprouts": true,
     "moong dal": true,
     "mixed greens": true,
-    "Italian herbs": true
+    "Italian herbs": true,
+    "green chilli": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -238,5 +239,5 @@
     "snacksEnabled": false,
     "maxPrepTime": 45
   },
-  "lastUpdated": "2026-04-27T07:22:41.570Z"
+  "lastUpdated": "2026-04-27T07:22:44.769Z"
 }
