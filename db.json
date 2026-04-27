@@ -166,7 +166,9 @@
     "corn": true,
     "coriander powder": true,
     "chilli flakes": true,
-    "chaat masala": true
+    "chaat masala": true,
+    "black beans": true,
+    "besan": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -248,5 +250,5 @@
     "snacksEnabled": false,
     "maxPrepTime": 45
   },
-  "lastUpdated": "2026-04-27T07:23:27.405Z"
+  "lastUpdated": "2026-04-27T07:23:34.785Z"
 }
