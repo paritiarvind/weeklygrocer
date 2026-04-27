@@ -153,7 +153,8 @@
     "mustard seeds": true,
     "mushrooms": true,
     "mozzarella": true,
-    "moong sprouts": true
+    "moong sprouts": true,
+    "moong dal": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -235,5 +236,5 @@
     "snacksEnabled": false,
     "maxPrepTime": 45
   },
-  "lastUpdated": "2026-04-27T07:22:35.002Z"
+  "lastUpdated": "2026-04-27T07:22:37.533Z"
 }
