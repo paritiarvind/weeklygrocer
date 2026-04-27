@@ -8,7 +8,7 @@
     },
     {
       "day": "Tuesday",
-      "b": "avo_toast",
+      "b": "poha",
       "l": "buddha_bowl",
       "dn": "shakshuka"
     },
@@ -257,5 +257,5 @@
     "snacksEnabled": false,
     "maxPrepTime": 45
   },
-  "lastUpdated": "2026-04-27T11:55:19.947Z"
+  "lastUpdated": "2026-04-27T11:55:38.927Z"
 }
