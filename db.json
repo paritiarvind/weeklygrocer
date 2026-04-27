@@ -14,7 +14,7 @@
     },
     {
       "day": "Wednesday",
-      "b": "moong_sprouts",
+      "b": "avo_toast",
       "l": "soya_curry",
       "dn": "mediterranean_bowl"
     },
@@ -257,5 +257,5 @@
     "snacksEnabled": false,
     "maxPrepTime": 45
   },
-  "lastUpdated": "2026-04-27T11:56:31.221Z"
+  "lastUpdated": "2026-04-27T11:58:35.914Z"
 }
