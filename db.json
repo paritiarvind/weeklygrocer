@@ -168,7 +168,10 @@
     "chilli flakes": true,
     "chaat masala": true,
     "black beans": true,
-    "besan": true
+    "besan": true,
+    "asafoetida": true,
+    "amchur": true,
+    "ajwain": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -250,5 +253,5 @@
     "snacksEnabled": false,
     "maxPrepTime": 45
   },
-  "lastUpdated": "2026-04-27T07:23:34.785Z"
+  "lastUpdated": "2026-04-27T07:23:38.257Z"
 }
