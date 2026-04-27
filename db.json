@@ -22,7 +22,7 @@
       "day": "Thursday",
       "b": "savoury_oats",
       "l": "chana_masala",
-      "dn": "pasta_bake"
+      "dn": "methi_dal"
     },
     {
       "day": "Friday",
@@ -257,5 +257,5 @@
     "snacksEnabled": false,
     "maxPrepTime": 45
   },
-  "lastUpdated": "2026-04-27T11:58:35.914Z"
+  "lastUpdated": "2026-04-27T12:02:33.021Z"
 }
