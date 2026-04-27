@@ -140,7 +140,10 @@
     "tomato": false,
     "tamarind": true,
     "soy sauce": true,
-    "sour cream": true
+    "sour cream": true,
+    "smoked paprika": true,
+    "sesame seeds": true,
+    "salt": true
   },
   "manualItems": [],
   "mealNotes": {},
@@ -222,5 +225,5 @@
     "snacksEnabled": false,
     "maxPrepTime": 45
   },
-  "lastUpdated": "2026-04-27T07:21:57.024Z"
+  "lastUpdated": "2026-04-27T07:22:01.416Z"
 }
