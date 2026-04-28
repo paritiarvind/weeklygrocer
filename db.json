@@ -138,7 +138,8 @@
     "Monday-Breakfast": true,
     "Monday-Lunch": true,
     "Monday-Dinner": true,
-    "Tuesday-Breakfast": true
+    "Tuesday-Breakfast": true,
+    "Tuesday-Lunch": true
   },
   "shopChecked": {
     "toor dal": true,
@@ -258,5 +259,5 @@
     "snacksEnabled": false,
     "maxPrepTime": 45
   },
-  "lastUpdated": "2026-04-28T08:28:55.913Z"
+  "lastUpdated": "2026-04-28T08:28:58.095Z"
 }
